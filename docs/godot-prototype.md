@@ -10,7 +10,14 @@ Current implementation: November 22, 2026. A controllable event-vision laborator
 .\run-lab.ps1 -Validate
 ```
 
-Or double-click [Run Event Vision Lab.cmd](../Run%20Event%20Vision%20Lab.cmd), which uses Windows PowerShell 5.1. Standard Godot 4.7.2 binaries reside in `tools/godot/4.7.2/` and are excluded from Git. A fresh clone requires that download; see the root README. Vulkan/Mobile is tested; D3D12 is an untested alternative. Headless import checks do not validate GPU execution.
+Or double-click [Run Event Vision Lab.cmd](../Run%20Event%20Vision%20Lab.cmd), which uses Windows PowerShell 5.1. The launcher resolves the engine directory in this order: explicit `-GodotDirectory`, environment variable `EVENT_LAB_GODOT_DIR`, shared `C:\Godot_v4.7.2-stable_win64.exe\`, then checkout-local `tools/godot/4.7.2/`. Explicit paths must be valid; they do not silently fall back. Both standard GUI and console executables are required, and the launcher checks for version 4.7.2. Engine binaries remain excluded from Git. A fresh clone/worktree on this machine can use the shared installation without copying binaries. Vulkan/Mobile is tested; D3D12 is an untested alternative. Headless import checks do not validate GPU execution.
+
+```powershell
+.\run-lab.ps1 -GodotDirectory 'C:\Godot_v4.7.2-stable_win64.exe' -Validate -EvidenceDirectory "$env:TEMP\event-lab-sensor"
+.\run-lab.ps1 -ProfileSeconds 3 -EvidenceDirectory "$env:TEMP\event-lab-timing"
+```
+
+`-EvidenceDirectory` redirects logs/reports without changing which checkout's `prototype` runs. Use a distinct output directory per track and run GPU checks sequentially. Omitting it retains the historical output location and overwrite behavior. The launcher does not install Godot or change PATH/environment settings.
 
 ## First experiment: light moves, object does not
 

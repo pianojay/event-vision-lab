@@ -6,7 +6,7 @@ The GPU renders a controlled scene into linear intensity, maintains an ideal log
 
 ## Run on Windows
 
-Requires the standard Windows x64 build of **Godot 4.7.2**, with a working Vulkan GPU/driver. Put the extracted executable and console executable in `tools/godot/4.7.2/`. The engine download and generated caches are excluded from Git. Use the [official Godot download](https://godotengine.org/download/windows/) or its version archive; see the [prototype guide](docs/godot-prototype.md) for the recorded build and checksum.
+Requires the standard Windows x64 build of **Godot 4.7.2**, with a working Vulkan GPU/driver. The launcher uses `-GodotDirectory`, then `EVENT_LAB_GODOT_DIR`, then the shared installation at `C:\Godot_v4.7.2-stable_win64.exe\`, then checkout-local `tools/godot/4.7.2/`. Both GUI and console executables must be present; the version is checked before launch. The shared location is a directory despite its `.exe` suffix and works across component worktrees. The engine download and generated caches are excluded from Git. See the [prototype guide](docs/godot-prototype.md) for setup and checksum.
 
 ```powershell
 .\run-lab.ps1
@@ -21,6 +21,8 @@ Alternatively, double-click `Run Event Vision Lab.cmd`, which uses built-in Wind
 ```
 
 The GPU checks require a real rendering context; `--headless` does not validate this compute implementation. Test/profile commands replace the corresponding local evidence files.
+
+For worktree checks, use `-EvidenceDirectory "$env:TEMP\event-lab-timing"` (or a distinct sensor/rendering directory) to preserve historical evidence. GPU runs must be sequential across worktrees.
 
 The Windows/Iris Plus active-lighting trial passed 25 GPU checks at 240×180. The prototype targets 120 Hz sensor sampling and a 60 FPS display. These results cover a small analytic scene, not a calibrated camera or realistic general-purpose simulator.
 

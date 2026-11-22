@@ -7,9 +7,11 @@ Established November 22, 2026. This document records the shared development root
 - Shared integration branch: `codex/fidelity-integration`.
 - Starting baseline: `24c6a4766b69762bade47de63d3e72834a02e48b` on `main` (research plus the existing analytic prototype).
 - This coordination commit establishes the development root. Use its exact commit SHA when creating component worktrees; record the SHA in each handoff. A moving branch name alone is not a reproducible starting point.
-- Component branches/worktrees and agents have not been created by this setup. Runtime interfaces have not yet been extracted or implemented. The rules below describe the intended boundary, not an existing API.
+- Component worktrees now exist on `codex/fidelity-timing`, `codex/fidelity-sensor` and `codex/fidelity-rendering`. Runtime interfaces have not yet been extracted or implemented. The rules below describe the intended boundary, not an existing API.
 
 Keep this checkout for coordination and integration. Give each component its own worktree and branch when starting it. The integration branch collects compatible milestones; validated integration can subsequently be merged into `main`. Ordinary unrelated incremental development continues to follow the repository's normal `main` workflow. No mandatory PR policy is introduced.
+
+All worktrees can use the shared Godot 4.7.2 directory `C:\Godot_v4.7.2-stable_win64.exe\` through `run-lab.ps1`; no checkout-local engine copy is required. Use `-EvidenceDirectory` with a distinct track output path for validation/profiling. See [launcher setup](../godot-prototype.md#run-on-windows) for overrides and version checks.
 
 ## Work allocation
 

@@ -4,17 +4,40 @@ param(
     [ValidateSet('vulkan','d3d12')][string]$Driver = 'vulkan',
     [int]$ProfileSeconds = 0,
     [string]$CapturePath = '',
-    [ValidateRange(0,3)][int]$View = 0
+    [ValidateRange(0,3)][int]$View = 0,
+    [string]$GodotDirectory = '',
+    [string]$EvidenceDirectory = ''
 )
 $ErrorActionPreference = 'Stop'
 $projectPath = Join-Path $PSScriptRoot 'prototype'
-$godotDirectory = Join-Path $PSScriptRoot 'tools\godot\4.7.2'
-$consoleExe = Join-Path $godotDirectory 'Godot_v4.7.2-stable_win64_console.exe'
-$guiExe = Join-Path $godotDirectory 'Godot_v4.7.2-stable_win64.exe'
-if (-not (Test-Path -LiteralPath $guiExe)) {
-    throw 'Godot 4.7.2 is missing. See docs/godot-prototype.md for the official portable download.'
+# Explicit settings must resolve as given; do not silently fall back after a typo.
+if (-not $GodotDirectory) { $GodotDirectory = $env:EVENT_LAB_GODOT_DIR }
+if (-not $GodotDirectory) {
+    $candidates = @('C:\Godot_v4.7.2-stable_win64.exe', (Join-Path $PSScriptRoot 'tools\godot\4.7.2'))
+    foreach ($candidate in $candidates) {
+        if ((Test-Path -LiteralPath (Join-Path $candidate 'Godot_v4.7.2-stable_win64.exe') -PathType Leaf) -and
+            (Test-Path -LiteralPath (Join-Path $candidate 'Godot_v4.7.2-stable_win64_console.exe') -PathType Leaf)) {
+            $GodotDirectory = $candidate
+            break
+        }
+    }
 }
-$evidencePath = Join-Path $PSScriptRoot 'docs\evidence\2026-11-22'
+if (-not $GodotDirectory) {
+    throw 'Godot 4.7.2 was not found. Set -GodotDirectory or EVENT_LAB_GODOT_DIR; see docs/godot-prototype.md.'
+}
+$GodotDirectory = [System.IO.Path]::GetFullPath($GodotDirectory)
+$consoleExe = Join-Path $GodotDirectory 'Godot_v4.7.2-stable_win64_console.exe'
+$guiExe = Join-Path $GodotDirectory 'Godot_v4.7.2-stable_win64.exe'
+foreach ($executable in @($guiExe, $consoleExe)) {
+    if (-not (Test-Path -LiteralPath $executable -PathType Leaf)) { throw "Godot executable missing: $executable" }
+}
+$version = & $consoleExe --version
+if ($LASTEXITCODE -ne 0 -or "$version" -notmatch '^4\.7\.2\.') {
+    throw "Expected Godot 4.7.2; received '$version' from $consoleExe"
+}
+Write-Host "Godot $version from $GodotDirectory"
+if ($EvidenceDirectory) { $evidencePath = [System.IO.Path]::GetFullPath($EvidenceDirectory) }
+else { $evidencePath = Join-Path $PSScriptRoot 'docs\evidence\2026-11-22' }
 New-Item -ItemType Directory -Force -Path $evidencePath | Out-Null
 $godotArguments = @('--path', $projectPath, '--rendering-method', 'mobile', '--rendering-driver', $Driver)
 if ($Editor) {
