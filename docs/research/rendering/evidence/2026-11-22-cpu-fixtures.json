@@ -1,0 +1,103 @@
+{
+  "schema": "event-lab-rendering-checks-v1",
+  "recorded_at_utc": "2026-11-22T11:43:54.371926+00:00",
+  "source_commit": "4093d318993ed85e09c77ccf0d1c1b44133dc543",
+  "source_worktree_dirty": false,
+  "source_sha256": {
+    "tools/rendering/optical_fixture.py": "fc30d89bf8aa216708576fa7dfb6c2edd51763cdab78e0cf8b834a982439f05d",
+    "tools/rendering/test_optical_fixture.py": "9db34c01c3ff8ad74191a90f9f04f1362ad736ae4ef97ffb0cf143f614e689dd",
+    "tools/rendering/validate_fixtures.py": "859ba6a8d669645c991966cfeaccce3c58f174093381e68a4fda735e4714f495",
+    "tools/rendering/fixtures/edge.json": "5b99cf2df9266ffeb002bb2970d59c543eb6003688a273160bb63fa8ec65da38",
+    "tools/rendering/fixtures/matte-sphere.json": "e79f0aff1f2681e8b65f6905f1c5d9a955f294b46e539828f89ba7e6bb50fceb"
+  },
+  "execution": {
+    "python": "3.14.8",
+    "os": "Windows-11-10.0.26300-SP0",
+    "cpu": "Intel64 Family 6 Model 126 Stepping 5, GenuineIntel",
+    "gpu_executed": false,
+    "scope": "CPU-only analytical/serialization checks; wall times include Python overhead, not a sustained performance benchmark"
+  },
+  "tests": {
+    "run": 18,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "output": "test_axial_sphere_matches_closed_form_and_preserves_hdr (test_optical_fixture.OpticalFixtureTests.test_axial_sphere_matches_closed_form_and_preserves_hdr) ... ok\ntest_camera_axis_and_top_left_orientation (test_optical_fixture.OpticalFixtureTests.test_camera_axis_and_top_left_orientation) ... ok\ntest_checked_in_fixtures_load_and_typo_is_rejected (test_optical_fixture.OpticalFixtureTests.test_checked_in_fixtures_load_and_typo_is_rejected) ... ok\ntest_constant_field_and_zero_are_preserved (test_optical_fixture.OpticalFixtureTests.test_constant_field_and_zero_are_preserved) ... ok\ntest_edge_motion_changes_integrated_flux_by_exact_area (test_optical_fixture.OpticalFixtureTests.test_edge_motion_changes_integrated_flux_by_exact_area) ... ok\ntest_edge_outside_image (test_optical_fixture.OpticalFixtureTests.test_edge_outside_image) ... ok\ntest_exact_edge_coverage_and_image_orientation (test_optical_fixture.OpticalFixtureTests.test_exact_edge_coverage_and_image_orientation) ... ok\ntest_existing_sequence_is_never_overwritten (test_optical_fixture.OpticalFixtureTests.test_existing_sequence_is_never_overwritten) ... ok\ntest_f32_encoding_roundtrip_keeps_hdr_and_order (test_optical_fixture.OpticalFixtureTests.test_f32_encoding_roundtrip_keeps_hdr_and_order) ... ok\ntest_invalid_dimensions_time_and_geometry_are_rejected (test_optical_fixture.OpticalFixtureTests.test_invalid_dimensions_time_and_geometry_are_rejected) ... ok\ntest_invalid_exact_mode_is_rejected (test_optical_fixture.OpticalFixtureTests.test_invalid_exact_mode_is_rejected) ... ok\ntest_invalid_intensity_is_rejected (test_optical_fixture.OpticalFixtureTests.test_invalid_intensity_is_rejected) ... ok\ntest_linear_area_integration_precedes_log (test_optical_fixture.OpticalFixtureTests.test_linear_area_integration_precedes_log) ... ok\ntest_midpoint_quadrature_error_bound_across_phases (test_optical_fixture.OpticalFixtureTests.test_midpoint_quadrature_error_bound_across_phases) ... ok\ntest_point_samples_can_hide_subpixel_optical_change (test_optical_fixture.OpticalFixtureTests.test_point_samples_can_hide_subpixel_optical_change) ... ok\ntest_sequence_manifest_hashes_and_samples_match_payloads (test_optical_fixture.OpticalFixtureTests.test_sequence_manifest_hashes_and_samples_match_payloads) ... ok\ntest_sphere_background_and_repeatability (test_optical_fixture.OpticalFixtureTests.test_sphere_background_and_repeatability) ... ok\ntest_sphere_backlight_and_lamp_off_leave_ambient (test_optical_fixture.OpticalFixtureTests.test_sphere_backlight_and_lamp_off_leave_ambient) ... ok\n\n----------------------------------------------------------------------\nRan 18 tests in 0.222s\n\nOK\n"
+  },
+  "edge_fixture": {
+    "width": 64,
+    "height": 48,
+    "times_ns": [
+      0,
+      8333333,
+      16666667
+    ],
+    "oracle": "exact box-area integral in linear intensity, float64",
+    "sweep": [
+      {
+        "samples_per_axis": 1,
+        "max_abs_intensity_error": 0.3420000075098869,
+        "mean_abs_intensity_error": 0.004125000729536026,
+        "max_abs_log_intensity_error": 1.4861397015504434,
+        "cpu_diagnostic_wall_seconds": 0.0041185000009136274
+      },
+      {
+        "samples_per_axis": 2,
+        "max_abs_intensity_error": 0.11699998950988544,
+        "mean_abs_intensity_error": 0.0017812506435470393,
+        "max_abs_log_intensity_error": 0.7747271111765592,
+        "cpu_diagnostic_wall_seconds": 0.004042599997774232
+      },
+      {
+        "samples_per_axis": 4,
+        "max_abs_intensity_error": 0.10800000292092593,
+        "mean_abs_intensity_error": 0.001687500620881678,
+        "max_abs_log_intensity_error": 0.40392783358414386,
+        "cpu_diagnostic_wall_seconds": 0.003796400000283029
+      },
+      {
+        "samples_per_axis": 8,
+        "max_abs_intensity_error": 0.004500009000003025,
+        "mean_abs_intensity_error": 7.031308983766343e-05,
+        "max_abs_log_intensity_error": 0.02095529565209575,
+        "cpu_diagnostic_wall_seconds": 0.003994099999545142
+      },
+      {
+        "samples_per_axis": 16,
+        "max_abs_intensity_error": 0.004500009000003025,
+        "mean_abs_intensity_error": 7.031308983766343e-05,
+        "max_abs_log_intensity_error": 0.02095529565209575,
+        "cpu_diagnostic_wall_seconds": 0.004095299998880364
+      },
+      {
+        "samples_per_axis": 32,
+        "max_abs_intensity_error": 0.004500009000003025,
+        "mean_abs_intensity_error": 7.031308983766343e-05,
+        "max_abs_log_intensity_error": 0.02095529565209575,
+        "cpu_diagnostic_wall_seconds": 0.0045706000018981285
+      }
+    ]
+  },
+  "hidden_subpixel_change": {
+    "times_ns": [
+      0,
+      10000000
+    ],
+    "exact_intensities": [
+      0.9099999999999999,
+      0.6399999999999999
+    ],
+    "exact_delta_log": -0.35197642315717825,
+    "center_samples_unchanged": true
+  },
+  "static_sphere": {
+    "width": 64,
+    "height": 48,
+    "samples_per_axis": 1,
+    "frames": 3,
+    "identical_bytes": true,
+    "frame_sha256": "d10713e66c40fe668b2d8b8607c1059fa3cdf78d9627fb87d8214443adfabb6f",
+    "cpu_diagnostic_wall_seconds": 0.07092410000041127
+  },
+  "passed": true
+}
