@@ -26,6 +26,8 @@ The initial Windows/Iris Plus trial passed 16 GPU checks at 240×180. The protot
 
 ## Materials
 
+Development uses GitHub Issues to preserve feedback and decisions, with incremental changes on `main`. Branches are for genuinely divergent development, including environment-specific experiments; PRs are optional. See [AGENTS.md](AGENTS.md).
+
 - [Documentation index](docs/README.md)
 - [Prototype controls, results and fidelity limits](docs/godot-prototype.md)
 - [Concept and requirements](docs/concept-and-requirements.md)
