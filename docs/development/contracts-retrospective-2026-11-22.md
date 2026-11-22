@@ -2,6 +2,8 @@
 
 November 22, 2026. Records the user's response to the first milestone compatibility check and the coordinator's interpretation. This is a discussion record, not a frozen contract or an implementation specification. The [upstream pipeline audit](../research/pipeline-contract-audit.md) investigates precedents for the next design discussion.
 
+Follow-up: [issue #7](https://github.com/pianojay/event-vision-lab/issues/7) tracks the contract design and adapter validation. It remains open; creating the issue does not adopt a particular design.
+
 ## Context
 
 Three independently useful CPU milestones passed a local compatibility check: 55 track tests plus five cross-component probes. They merged without file conflicts, but disagreed at some connection points: log-endpoint interpolation versus held input, reset and interval ownership, zero intensity, event stages and capacity handling. Local compatibility evidence remains on `codex/fidelity-compatibility-2026-11-22`, commit `7dbbfe9`; this memo does not promote that merge to the shared integration branch. No new test result is claimed here.

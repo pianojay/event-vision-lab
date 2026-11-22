@@ -26,7 +26,7 @@ Ownership denotes responsibility, not permission to edit another checkout. Compo
 
 ## Initial interface decisions
 
-The [November 22 retrospective](contracts-retrospective-2026-11-22.md) clarifies the user's direction: contracts should support independently configurable behavior with explicit reasons, rather than canonizing one daughter's proposal or dataset format. The [upstream source audit](../research/pipeline-contract-audit.md) supplies precedents and caveats. The boundary requirements below remain to be designed; no universal runtime configuration or serialization has been selected.
+The [November 22 retrospective](contracts-retrospective-2026-11-22.md) clarifies the user's direction: contracts should support independently configurable behavior with explicit reasons, rather than canonizing one daughter's proposal or dataset format. The [upstream source audit](../research/pipeline-contract-audit.md) supplies precedents and caveats; [issue #7](https://github.com/pianojay/event-vision-lab/issues/7) tracks cross-component design. The boundary requirements below remain to be designed; no universal runtime configuration or serialization has been selected.
 
 Before concurrent runtime edits, land one small shared-interface commit here and bring it into all component branches. Record concrete file paths and callable/buffer layouts in this document at that point. Until then, independent oracles, fixtures and research tools can proceed in track-specific directories.
 

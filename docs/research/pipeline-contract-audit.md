@@ -2,6 +2,8 @@
 
 **November 22, 2026. Source-level audit, not an upstream execution benchmark.** This extends the [fidelity survey](sensor-simulation-fidelity.md) with actual call paths, configuration precedence, state and output boundaries. It informs the [contract retrospective](../development/contracts-retrospective-2026-11-22.md); it does not select our runtime API.
 
+Design follow-up: [#7 — Configurable pipeline contracts](https://github.com/pianojay/event-vision-lab/issues/7). This audit supplies evidence; its suggested design implications remain proposals.
+
 ## Method and scope
 
 Inspected six upstream repositories at pinned commits. The [machine-readable source ledger](pipeline-contract-audit-sources.json) records the commit and Git blob ID for each inspected file. Conclusions below apply to these paths/revisions, not every historical version, backend or example of the named simulator. No external dependencies, simulator environments or datasets were installed, and no upstream simulator was executed. The earlier Event6D findings remain in the fidelity survey; its original full generator recipe has not been reproduced.
