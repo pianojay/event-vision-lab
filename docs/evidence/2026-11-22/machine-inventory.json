@@ -1,0 +1,108 @@
+{
+  "assessment_date": "2026-11-22",
+  "timezone": "Asia/Seoul",
+  "methods": {
+    "hardware": "Read-only Windows CIM and Get-Volume; sandbox restriction resolved by approved elevated query.",
+    "python": "python stdlib importlib.metadata and shutil.which",
+    "developer_tools": "PowerShell Get-Command, vswhere, known installation paths and uninstall registrations"
+  },
+  "hardware": {
+    "OS": {
+      "Caption": "Microsoft Windows 11 Home",
+      "Version": "10.0.26300",
+      "BuildNumber": "26300",
+      "OSArchitecture": "64비트",
+      "TotalVisibleMemorySize": 24868520,
+      "FreePhysicalMemory": 13893068
+    },
+    "System": {
+      "Manufacturer": "LG Electronics                  ",
+      "Model": "17Z90N-VA76K",
+      "TotalPhysicalMemory": 25465364480
+    },
+    "CPU": {
+      "Name": "Intel(R) Core(TM) i7-1065G7 CPU @ 1.30GHz",
+      "NumberOfCores": 4,
+      "NumberOfLogicalProcessors": 8,
+      "MaxClockSpeed": 1498
+    },
+    "GPU": {
+      "Name": "Intel(R) Iris(R) Plus Graphics",
+      "DriverVersion": "30.0.100.9836",
+      "AdapterRAM": 1073741824,
+      "VideoModeDescription": "2560 x 1600 x 4294967296색",
+      "PNPDeviceID": "PCI\\VEN_8086&DEV_8A52&SUBSYS_03611854&REV_07\\3&11583659&0&10"
+    },
+    "Volumes": [
+      {
+        "DriveLetter": "D",
+        "FileSystem": "NTFS",
+        "Size": 297343643648,
+        "SizeRemaining": 175508283392
+      },
+      {
+        "DriveLetter": "C",
+        "FileSystem": "NTFS",
+        "Size": 493578350592,
+        "SizeRemaining": 249882701824
+      }
+    ],
+    "Disks": [
+      {
+        "Model": "HFS512GD9TNG-L2A0A",
+        "Size": 512105932800,
+        "MediaType": "Fixed hard disk media"
+      },
+      {
+        "Model": "TS512GMTS830S",
+        "Size": 512105932800,
+        "MediaType": "Fixed hard disk media"
+      }
+    ]
+  },
+  "python": {
+    "python": "3.14.8 (tags/v3.14.8:8e6e75d, Sep 30 2026, 18:19:33) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "packages": [
+      {
+        "name": "pip",
+        "version": "26.2.1"
+      }
+    ],
+    "executables": {
+      "python": "C:\\Python314\\python.EXE",
+      "node": "C:\\Program Files\\nodejs\\node.EXE",
+      "npm": "C:\\Program Files\\nodejs\\npm.CMD",
+      "git": "C:\\Program Files\\Git\\cmd\\git.EXE",
+      "cmake": null,
+      "ninja": null,
+      "ffmpeg": null,
+      "nvidia-smi": null,
+      "godot": null,
+      "Godot": null,
+      "Unity": null,
+      "UnrealEditor": null,
+      "nvcc": null
+    }
+  },
+  "additional_tools": {
+    "node": "26.13.0",
+    "npm": "11.20.0",
+    "git": "2.56.0.windows.4",
+    "visual_studio_build_tools": "18.11.2",
+    "msvc": "14.51.36231",
+    "windows_sdk": "10.0.26100.0",
+    "cmake_bundled_with_vs": "4.3.1-msvc1",
+    "ninja_bundled_with_vs": "1.13.2",
+    "dotnet_sdk": "Not found at checked C:\\Program Files\\dotnet\\sdk path",
+    "game_engines": "No Godot/Unity/Unreal binary on PATH; no engine found in checked standard Program Files locations or application registrations. Portable/custom installs not exhaustively searched.",
+    "wsl": "wsl.exe present; distro query returned E_ACCESSDENIED inside sandbox. Distro/functional WSL status unknown.",
+    "optional_tools": "uv, ffmpeg, CUDA nvcc, nvidia-smi, docker not found on PATH"
+  },
+  "limitations": [
+    "No GPU API or engine rendering benchmark performed.",
+    "Win32_VideoController.AdapterRAM is not a measurement of usable dedicated VRAM on an integrated GPU.",
+    "No inference/model compatibility benchmark performed.",
+    "Free memory and disk space are point-in-time observations."
+  ]
+}

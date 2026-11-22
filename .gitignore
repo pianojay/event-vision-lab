@@ -1,0 +1,5 @@
+tools/godot/
+prototype/.godot/
+docs/evidence/*/build/
+*.tmp
+docs/evidence/*/godot-interactive.log

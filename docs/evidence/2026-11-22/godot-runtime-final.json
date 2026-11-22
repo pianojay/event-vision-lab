@@ -1,0 +1,20 @@
+{
+	"adapter": "Intel(R) Iris(R) Plus Graphics",
+	"elapsed_seconds": 12.005659,
+	"engine_delta_sum_seconds": 12.1549666666668,
+	"frame_median_ms": 16.666,
+	"frame_p95_ms": 16.729,
+	"frame_samples_after_2s_warmup": 601,
+	"godot": "4.7.2-stable (official)",
+	"renderer": "mobile",
+	"scope": "Full analytic scene + ideal sensor + UI. Frame wall times include VSync/scheduling; not isolated GPU timings. No reconstruction, event tuples, or 3D asset engine scene.",
+	"sensor_size": [
+		240,
+		180
+	],
+	"sensor_target_hz": 120.0,
+	"skipped_intervals": 9,
+	"skipped_intervals_after_2s_warmup": 0,
+	"submitted_samples_per_wall_second": 120.693083153536,
+	"submitted_sensor_samples": 1449
+}

@@ -1,0 +1,17 @@
+{
+  "kind":"single-thread CPU sensor microbenchmark",
+  "self_check":"passed",
+  "simulated_sample_hz":240,
+  "warmup_samples":60,
+  "measured_samples":600,
+  "contrast_threshold":0.25,
+  "scope":"log intensity, residual thresholds, interpolated timestamps, event vector; precomputed input; no rendering, transfer, sorting, noise, refractory, display or inference",
+  "cases":[
+    {"width":240,"height":180,"active_fraction":0.062500,"median_ms":0.457900,"p95_ms":0.559100,"mean_ms":0.474287,"measured_samples_per_second":2108.430242,"events_per_simulated_second":1296000.000000,"event_bytes":16,"checksum":906.497500},
+    {"width":320,"height":240,"active_fraction":0.062500,"median_ms":0.902500,"p95_ms":0.996900,"mean_ms":0.932704,"measured_samples_per_second":1072.151316,"events_per_simulated_second":2304000.000000,"event_bytes":16,"checksum":906.497500},
+    {"width":640,"height":480,"active_fraction":0.062500,"median_ms":3.857000,"p95_ms":7.624000,"mean_ms":4.300774,"measured_samples_per_second":232.516260,"events_per_simulated_second":9216000.000000,"event_bytes":16,"checksum":906.497500},
+    {"width":240,"height":180,"active_fraction":1.000000,"median_ms":1.099600,"p95_ms":2.527200,"mean_ms":1.411143,"measured_samples_per_second":708.645319,"events_per_simulated_second":20736000.000000,"event_bytes":16,"checksum":906.497500},
+    {"width":320,"height":240,"active_fraction":1.000000,"median_ms":1.828600,"p95_ms":4.314800,"mean_ms":2.221821,"measured_samples_per_second":450.081262,"events_per_simulated_second":36864000.000000,"event_bytes":16,"checksum":906.497500},
+    {"width":640,"height":480,"active_fraction":1.000000,"median_ms":7.796000,"p95_ms":17.365300,"mean_ms":9.552204,"measured_samples_per_second":104.687885,"events_per_simulated_second":147456000.000000,"event_bytes":16,"checksum":906.497500}
+  ]
+}

@@ -1,0 +1,13 @@
+* text=auto eol=lf
+*.gd text eol=lf
+*.gdshader text eol=lf
+*.glsl text eol=lf
+*.godot text eol=lf
+*.tscn text eol=lf
+*.ps1 text eol=lf
+*.cmd text eol=crlf
+*.png binary
+# Preserve verbatim exports/logs and Godot-generated import metadata.
+"ChatGPT-Event Vision Game-20261122-0816.md" -whitespace
+*.log -whitespace
+*.import -whitespace
