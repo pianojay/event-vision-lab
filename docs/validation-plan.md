@@ -2,6 +2,8 @@
 
 This plan separates hardware plausibility, simulator correctness, and practical fidelity. A shipping game is not required. The CPU benchmark and the initial Godot shader/GPU checks have now run; see [current results and limitations](godot-prototype.md). Broader validation below remains future work unless explicitly recorded there.
 
+The [fidelity experiment plan](research/fidelity-experiment-plan.md) adds concrete proposals for temporal convergence and complete event output (#4), sensor dynamics/noise/readout (#5), and optical/material comparisons (#6). It defines the evidence needed beyond the existing 25 ideal-model GPU checks; none of those new experiments has run yet. See the [research comparison](research/sensor-simulation-fidelity.md) for source provenance and calibration limits.
+
 ## Gate 1: graphics and intensity capture
 
 Run the chosen engine on this actual Iris Plus driver. Record engine version, graphics API, adapter, viewport formats, power mode, and sensor/display resolutions. Test both the preferred renderer and fallback where relevant.

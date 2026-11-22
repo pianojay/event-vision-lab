@@ -8,7 +8,7 @@ The basic mechanics—lighting changes, shadows, threshold adjustment, event bin
 
 There is no defensible final minimum until a representative game exists. For a first room-scale version, use a **provisional development floor of a reasonably recent four-core CPU, 16 GB system RAM, SSD storage, and integrated graphics with a working supported graphics API**. A packaged runtime may eventually fit in 8 GB, but that has not been demonstrated. CPU model/generation, sustained clocks and GPU capability matter more than the core count or graphics-memory number alone.
 
-This laptop exceeds that provisional RAM floor and has usable measured CPU sensor throughput at 240×180. It still needs an actual engine/rendering trial.
+This laptop exceeds that provisional RAM floor and has measured CPU sensor throughput plus a Godot/Vulkan analytic-scene trial at 240×180. Richer scene rendering and additional sensor behavior still need separate trials.
 
 ## Planning tiers
 
@@ -82,3 +82,5 @@ An interactive desktop is convenient but not strictly required: a supported offs
 CPU model, allocated cores, system RAM/free RAM, GPU identity/free VRAM and competing processes, OS/driver, accelerated graphics-context creation, storage quota, session/job limits, and the intended remote connection. Then run a representative room plus optional inference and measure actual step latency.
 
 The practical strategy with the currently discussed options is to keep a low-resolution laptop version for immediate interaction/design, and use TITAN RTX access to measure richer rendering and advanced perception. If remote interactive performance is good, it can also host the full playable version. Neither avenue needs every ambitious feature enabled at once.
+
+The [fidelity experiment plan](research/fidelity-experiment-plan.md) makes short offline reference generation a useful first external-GPU workload. Temporal correctness and generic pixel dynamics can be investigated locally before a richer renderer or remote interactive session is needed. No remote-host capability was verified by that research.

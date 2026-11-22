@@ -77,6 +77,8 @@ This updates the active-lighting profile and optional capture, not the historica
 
 No noise, refractory behavior, finite photoreceptor bandwidth, calibrated materials, refraction, multi-bounce light transport, full event export, normal/depth estimation or learned reconstruction. A sampled strobe can alias, and endpoint interpolation is not exact physical jump timing. The matte sphere is a controlled test, not validation of a practical environment.
 
+The [sensor fidelity review](research/sensor-simulation-fidelity.md) audits these limits against Event6D and established simulators. The [experiment plan](research/fidelity-experiment-plan.md) tracks temporal accuracy/event export (#4), generic nonideal sensor behavior (#5), and rendering/optics (#6). These are proposed improvements; the current implementation and measured scope above remain the baseline.
+
 Strobe-off startup, monochrome and aggregation are initial display measures, **not a photosensitivity safety certification**. Raw or opt-in strobe views can still flash; actual output analysis and further accessibility work remain under #2. The active-lighting checks concern measurement semantics and do not establish that users can reliably infer shape.
 
 The engine build is `4.7.2.stable.official.ed1daf0bf`, obtained from the official Godot download and validated by Windows Authenticode. ZIP SHA-256: `731980F9608D61333E5BAF54A2EF17210ACC7A538446C0CB9969F002ACA1E953`. Ubuntu/TITAN RTX host `vilab204` remains untouched.
