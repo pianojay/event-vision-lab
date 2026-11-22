@@ -6,13 +6,15 @@ layout(local_size_x=8, local_size_y=8, local_size_z=1) in;
 layout(set=0, binding=0, std430) buffer SensorState { vec4 pixels[]; } state;
 layout(rgba32f, set=0, binding=1) uniform writeonly image2D radiance_out;
 layout(rgba32f, set=0, binding=2) uniform writeonly image2D events_out;
+layout(rgba32f, set=0, binding=3) uniform image2D activity_out;
 layout(push_constant, std430) uniform Parameters {
     vec4 clock;      // sample time, elapsed sample time, reset, constant-input test
-    vec4 sensor;     // ON threshold, OFF threshold, unused, test linear intensity
+    vec4 sensor;     // ON threshold, OFF threshold, activity decay seconds, test intensity
     vec4 camera;     // camera xyz, yaw
     vec4 optics;     // pitch, width, height, tan(half vertical FOV)
     vec4 world;      // moving object phase, lamp on, strobe enabled, light strength
-    vec4 stimulus;   // strobe Hz, panel phase, unused, unused
+    vec4 stimulus;   // strobe Hz, panel phase, matte sphere control, control albedo
+    vec4 light;      // point source xyz, unused; independent from camera
 } p;
 
 vec3 moving_center() {
@@ -50,6 +52,10 @@ void box_hit(vec3 ro, vec3 rd, vec3 center, vec3 extent,
 float intersect_world(vec3 ro, vec3 rd, out vec3 normal, out float material) {
     float nearest=1000.0;
     normal=vec3(0,1,0); material=0.0;
+    if (p.stimulus.z>0.5) {
+        sphere_hit(ro,rd,vec3(0,1,-1),1.0,7.0,nearest,normal,material);
+        return nearest;
+    }
     if (abs(rd.y)>1e-6) {
         float t=-ro.y/rd.y;
         vec3 hit=ro+rd*t;
@@ -108,7 +114,8 @@ vec3 scene_radiance(vec2 uv) {
         float pattern=0.1+0.9*step(0.5,fract(hit.x*3.0+p.stimulus.y*0.5));
         return vec3(pattern)*1.4;
     }
-    vec3 to_light=vec3(1.6,3.0,1.2)-hit;
+    if (mat==7.0) albedo=vec3(p.stimulus.w);
+    vec3 to_light=p.light.xyz-hit;
     float distance=length(to_light);
     vec3 light_dir=to_light/distance;
     vec3 shadow_normal; float shadow_mat;
@@ -118,7 +125,7 @@ vec3 scene_radiance(vec2 uv) {
     float lamp=p.world.y*strobe*p.world.w;
     float direct=lamp*visibility*max(dot(n,light_dir),0.0)*6.0/(distance*distance+1.0);
     // Fixed ambient term + analytic direct illumination. No simulated GI.
-    float specular=pow(max(dot(reflect(-light_dir,n),-rd),0.0),32.0)*0.15;
+    float specular=mat==7.0 ? 0.0 : pow(max(dot(reflect(-light_dir,n),-rd),0.0),32.0)*0.15;
     return albedo*(0.035+direct)+vec3(specular*lamp*visibility/(distance*distance+1.0));
 }
 
@@ -152,4 +159,10 @@ void main() {
     state.pixels[index]=old;
     imageStore(radiance_out,pixel,vec4(radiance,1.0));
     imageStore(events_out,pixel,vec4(on,off,old.y,old.z));
+    // Event-derived activity integrates EVERY substep, including bursts which
+    // precede the final sample of a displayed frame. Not an RGB reconstruction.
+    vec4 history=p.clock.z>0.5 ? vec4(0.0) : imageLoad(activity_out,pixel);
+    history.rg=history.rg*exp(-p.clock.y/max(p.sensor.z,0.001))+vec2(on,off);
+    history.ba+=vec2(on,off);
+    imageStore(activity_out,pixel,history);
 }

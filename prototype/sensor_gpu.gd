@@ -7,6 +7,7 @@ var pipeline := RID()
 var buffer := RID()
 var radiance := RID()
 var events := RID()
+var activity := RID()
 var uniforms := RID()
 var error := ""
 
@@ -29,6 +30,7 @@ func initialize(device: RenderingDevice, sensor_size: Vector2i) -> bool:
 	buffer = rd.storage_buffer_create(initial.size(), initial)
 	radiance = _make_texture()
 	events = _make_texture()
+	activity = _make_texture()
 	var state_uniform := RDUniform.new()
 	state_uniform.uniform_type = RenderingDevice.UNIFORM_TYPE_STORAGE_BUFFER
 	state_uniform.binding = 0
@@ -41,7 +43,11 @@ func initialize(device: RenderingDevice, sensor_size: Vector2i) -> bool:
 	event_uniform.uniform_type = RenderingDevice.UNIFORM_TYPE_IMAGE
 	event_uniform.binding = 2
 	event_uniform.add_id(events)
-	uniforms = rd.uniform_set_create([state_uniform, radiance_uniform, event_uniform], shader, 0)
+	var activity_uniform := RDUniform.new()
+	activity_uniform.uniform_type = RenderingDevice.UNIFORM_TYPE_IMAGE
+	activity_uniform.binding = 3
+	activity_uniform.add_id(activity)
+	uniforms = rd.uniform_set_create([state_uniform, radiance_uniform, event_uniform, activity_uniform], shader, 0)
 	return pipeline.is_valid() and uniforms.is_valid()
 
 func _make_texture() -> RID:
@@ -69,7 +75,13 @@ func read_events() -> PackedFloat32Array:
 func read_state() -> PackedFloat32Array:
 	return rd.buffer_get_data(buffer).to_float32_array()
 
+func read_activity() -> PackedFloat32Array:
+	return rd.texture_get_data(activity, 0).to_float32_array()
+
+func read_radiance() -> PackedFloat32Array:
+	return rd.texture_get_data(radiance, 0).to_float32_array()
+
 func cleanup() -> void:
-	for resource in [uniforms, pipeline, shader, buffer, radiance, events]:
+	for resource in [uniforms, pipeline, shader, buffer, radiance, events, activity]:
 		if resource.is_valid():
 			rd.free_rid(resource)

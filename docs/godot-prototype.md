@@ -1,103 +1,82 @@
 # Godot shader prototype
 
-Implemented November 22, 2026, on this Windows laptop. Purpose: **a controllable event-vision simulation without a physical event camera**. The artifact is a shader laboratory, with no game objective or asset-production requirement.
+Current implementation: November 22, 2026. A controllable event-vision laboratory without a physical camera. The active-lighting extension addresses [#1](https://github.com/pianojay/event-vision-lab/issues/1) and provides initial display changes for [#2](https://github.com/pianojay/event-vision-lab/issues/2). Neither issue is considered fully resolved.
 
-## Run
-
-From `D:\ChatGPT\Event Game`:
+## Run on Windows
 
 ```powershell
 .\run-lab.ps1
-```
-
-Or double-click [Run Event Vision Lab.cmd](../Run%20Event%20Vision%20Lab.cmd). Open the editable project with:
-
-```powershell
 .\run-lab.ps1 -Editor
-```
-
-The project is [prototype/project.godot](../prototype/project.godot). The downloaded standard Windows Godot executable is local to `tools/godot/4.7.2/`; no global installation or PATH change is required. The `_sc_` marker makes the editor portable. Normal project shader-cache access may still require permission outside the agent's restricted filesystem; the successful GPU runs used normal user-cache access.
-
-Vulkan is tested. `-Driver d3d12` is an available **untested** alternative. Compatibility/OpenGL cannot run this compute-shader implementation. Headless Godot disables the real RenderingDevice and is suitable for import checks, not these GPU tests.
-
-## Controls and experiments
-
-| Control | Effect |
-| --- | --- |
-| WASD; Q/E | Move the virtual camera horizontally; lower/raise it |
-| Arrow keys or right-drag over the image | Look around |
-| 1 | Freeze object/panel changes, constant lamp; scene should disappear from event view after history decays |
-| 2 | Stationary scene with pulsed lighting; events remain despite no motion |
-| 3 | Moving object under constant illumination |
-| T / strobe checkbox | Toggle physical lamp modulation |
-| R | Initialize the sensor reference from the current sample and clear history |
-| V / observation selector | Cycle time surface, raw-display window, reference intensity |
-| Threshold slider | Change the ON/OFF log-contrast threshold together |
-| Decay slider | Change time-surface persistence |
-| Other stimulus controls | Toggle lamp, moving object, changing emissive panel; adjust strobe frequency |
-
-Cyan denotes ON/brighter events; coral denotes OFF/darker events. The default starts with light pulses and a moving object. A strobe can flood whole surfaces with events. Under multiplicative illumination changes, log differences can be similar across different albedos: an event visualization is not guaranteed to reveal the hidden texture. This is part of the intended intuition, rather than a special edge-reveal effect.
-
-The reference intensity mode is **debug ground truth**, not grayscale reconstructed from events. It is explicitly selected and labeled.
-
-## Architecture
-
-1. A GPU compute shader analytically intersects a small room, spheres, and a box, including a shadow ray to a point light.
-2. It computes deterministic linear RGB radiance from simple materials, fixed ambient illumination, direct lighting and a specular term. A panel emits a controllable changing pattern. Strobe changes the lamp in this scene calculation.
-3. Linear luminance feeds the logarithmic threshold sensor. Persistent FP32 per-pixel state retains the contrast reference, previous log intensity, and last ON/OFF crossing times.
-4. Each sample accounts for multiple threshold crossings and retains residual contrast. The most recent crossing time is interpolated within the sampled interval.
-5. A separate canvas shader visualizes event history. Display-only tone mapping applies in the debug intensity mode, downstream of sensing.
-
-The state and images remain on the GPU during normal interaction; there is no per-frame CPU image readback. Sensor and world calculation run in the same kernel for this first version; the input model can later be replaced with a more practical scene renderer. It currently uses neither imported 3D assets nor Godot's stock 3D lighting pipeline.
-
-At a **120 Hz fixed simulation step**, multiple newly rendered scene samples can be dispatched per 60 Hz display frame. Camera pose is interpolated across those substeps. The shader scene is recomputed each time, rather than reusing one viewport image. The UI exposes skipped intervals if the scheduler cannot keep up. Missed intervals advance the scene clock and cannot be recovered from endpoint interpolation.
-
-## What is validated
-
-The same sensor kernel is exercised on an actual local GPU device by [sensor_tests.gd](../prototype/tests/sensor_tests.gd):
-
-```powershell
 .\run-lab.ps1 -Validate
 ```
 
-All **16 checks passed**: initialization, static input, multiple ON/OFF crossings, retained residual, last-crossing timestamp, independent polarity thresholds, a low-intensity FP32 input, unchanged rendered scene, illumination-only response, object motion, and both missed/captured strobe transitions.
+Or double-click [Run Event Vision Lab.cmd](../Run%20Event%20Vision%20Lab.cmd), which uses Windows PowerShell 5.1. Standard Godot 4.7.2 binaries reside in `tools/godot/4.7.2/` and are excluded from Git. A fresh clone requires that download; see the root README. Vulkan/Mobile is tested; D3D12 is an untested alternative. Headless import checks do not validate GPU execution.
 
-Evidence: [GPU checks and timing](evidence/2026-11-22/godot-sensor-tests.json), [test log](evidence/2026-11-22/godot-sensor-tests.log).
+## First experiment: light moves, object does not
 
-| Measurement on Intel Iris Plus | Result | Meaning |
-| --- | ---: | --- |
-| World + sensor, synchronous local GPU device | Median 0.879 ms; p95 0.954 ms/sample | 240×180; 40 warmup + 120 timed samples; includes submission/synchronization; excludes UI |
-| Final interactive configuration, 12-second run | Median 16.666 ms; p95 16.729 ms/display interval | Actual wall-clock process intervals after two-second warmup; roughly 60 FPS |
-| Sensor scheduling in that run | 120 Hz target; zero skipped intervals after warmup | Nine skipped intervals during startup; includes GPU compilation/setup transients |
+Startup uses a **stationary matte sphere**, an **orbiting point light**, **monochrome decaying event counts**, and **strobe off**. The changing appearance comes from varying illumination rather than a moving object. Scroll the right panel for additional controls.
 
-The runtime is capped at 60 FPS with VSync disabled. The initial VSync run produced roughly 30 FPS despite the fast sensor kernel; the capped configuration resolved that observed limitation. Earlier runtime JSON files were exploratory and used engine-provided, potentially smoothed delta times. Use **[godot-runtime-final.json](evidence/2026-11-22/godot-runtime-final.json)** for the corrected wall-clock profile and **[its log](evidence/2026-11-22/godot-runtime-final.log)**.
+| Control | Meaning |
+| --- | --- |
+| Fixed world light | Source stays independent of the camera; adjust azimuth/elevation or use left/right/above presets |
+| Camera-mounted light | Point source follows camera position with a small offset; it is not a directional spotlight |
+| Orbiting light | Source moves around `(0,1,-1)` at a three-unit radius; set elevation, starting-angle offset and orbit speed |
+| Matte sphere control | Constant diffuse albedo, no specular term; disable to return to the original analytic room |
+| Albedo / lamp strength | Vary reflectance independently of illumination amplitude |
+| P / pause checkbox | Freeze acquisition, camera and the displayed simulation time for inspection |
+| R | Initialize reference from current intensity; clear event history |
+| 1 | Static sphere and fixed light: event view fades away |
+| 2 | Stationary sphere with orbiting light |
+| 3 | Original room, moving object and fixed light |
+| V / observation selector | Activity counts, time surface, raw display window, debug intensity |
+| WASD / Q/E; arrows / right-drag | Translate / raise/lower; look |
+| Strobe checkbox / T | Explicit opt-in square-wave modulation; not required for the active-lighting experiment |
 
-Profile and capture again, replacing the current final profile:
+The azimuth/elevation presets reposition the source instantaneously; they are controlled lighting changes, not a physical motion trajectory. Orbit mode computes a new source position at every sensor step. The camera pose is interpolated across substeps. A fixed camera cannot reveal a change-free scene through ideal events alone.
+
+## Research basis and scope
+
+[EventPS (CVPR 2024)](https://ieeexplore.ieee.org/abstract/document/10655016) motivates varying illumination with a stationary event camera to study normals. [EventPSR (CVPR 2025)](https://openaccess.thecvf.com/content/CVPR2025/papers/Yu_EventPSR_Surface_Normal_and_Reflectance_Estimation_from_Photometric_Stereo_Using_CVPR_2025_paper.pdf) motivates deliberate illumination and material comparisons. This implementation adopts the **acquisition principle**, not those reconstruction algorithms or a reproduction of their experimental performance. No surface-normal estimator is implemented.
+
+A camera-mounted lamp, movable point light, and orbit control are alternatives to global blinking. They are not structured-light triangulation. A projector baseline, spatial coding, calibrated sensor and depth inference remain future experiments. See [the research brief](research/strobe-observability-and-display.md).
+
+## Sensor and visualization
+
+The analytic compute shader generates deterministic linear radiance from geometry, diffuse cosine shading, inverse-distance attenuation and hard shadows. The room includes a simple specular term; the matte control omits it. Fixed ambient is an approximation. The ideal logarithmic sensor maintains contrast reference/residual, computes multiple ON/OFF crossings, and interpolates the last crossing time.
+
+**Activity mode** integrates each polarity at every sensor step:
+
+`H_next = exp(-dt/tau) * H_previous + crossing_count`.
+
+The decay slider sets `tau`. This is an exponentially weighted count history, not an exact finite-window count or an intensity reconstruction. Bursts from earlier substeps remain visible even when the final substep has no events. Bounded display gain maps histories to grayscale by default; optional muted colors distinguish polarity. The other modes preserve timestamp-based time surfaces and raw presence within a display interval. The debug intensity view uses ground-truth radiance and is labeled accordingly.
+
+State, event images and activity remain on GPU during ordinary interaction. A separate activity texture also holds cumulative per-polarity counts for numerical diagnostics; this is not a packed or globally sorted event stream. The 120 Hz simulation targets multiple freshly rendered samples per capped 60 FPS presentation frame. Skipped sensor intervals are reported.
+
+## Validation and evidence
+
+**25 GPU checks passed** on Intel Iris Plus. They include the original 16 sensor checks and nine new active-lighting/activity checks:
+
+- Static sphere/fixed light is silent; changing direction produces both polarities and spatially varying responses.
+- Sampled sphere radiance agrees with an independent analytic diffuse cosine/distance prediction within `1e-4` (measured 0.758555 versus expected 0.758576 in the recorded run).
+- Ideal diffuse event counts remain equal between albedos 0.1 and 0.8 under the controlled illumination change. This illustrates log-ratio cancellation, not calibrated low-light behavior.
+- Burst integration retains all substeps, agrees between grouped/serial dispatch, preserves OFF history and clears on reset.
+
+Current evidence: [GPU checks](evidence/2026-11-22/active-lighting-tests.json), [GPU log](evidence/2026-11-22/active-lighting-tests.log), [interactive profile](evidence/2026-11-22/active-lighting-runtime.json), [runtime log](evidence/2026-11-22/active-lighting-runtime.log).
+
+The final active-lighting profile recorded approximately 60 FPS (median 16.665 ms; p95 16.733 ms), 120 Hz sensor target and no skipped intervals after two-second warmup during a 12-second run. Short synchronous GPU timing was 0.761 ms median / 0.881 ms p95 per room+sensor sample. These are scoped measurements, not a sustained performance guarantee. Older `godot-*` evidence files preserve the initial prototype baseline.
 
 ```powershell
-.\run-lab.ps1 -ProfileSeconds 12 -CapturePath 'D:\ChatGPT\Event Game\docs\evidence\2026-11-22\godot-preview.png'
+.\run-lab.ps1 -ProfileSeconds 12 -CapturePath 'D:\ChatGPT\Event Game\docs\evidence\2026-11-22\active-lighting-preview.png'
 ```
 
-This short run establishes an operable minimal setup. It does not establish long-duration thermal stability, accurate input-to-photon latency, or performance of more complex scenes. A native desktop capture attempt was interrupted when its tool session expired and the app window was no longer available; layout inspection instead used the app's own rendered output below.
+This updates the active-lighting profile and optional capture, not the historical baseline. `-View 3` selects debug intensity for a profile; 0 is activity, 1 time surface, 2 raw.
 
-![Godot event-vision prototype](evidence/2026-11-22/godot-preview.png)
+![Active-lighting count view](evidence/2026-11-22/active-lighting-preview.png)
 
-## Fidelity limits
+## Limits and remaining work
 
-- An ideal deterministic sensor, not a calibrated physical event camera. No noise, threshold mismatch, refractory period, photoreceptor bandwidth or bandwidth saturation yet.
-- Fixed sampled-time approximation. A flash completely between samples can be missed; the GPU tests deliberately demonstrate this. High strobe settings are experiments in aliasing, not a promise of accurate capture.
-- Per-pixel crossing counts and most recent ON/OFF times are computed. A globally ordered `(x,y,t,p)` event stream is **not yet exported**, and every individual crossing time is not retained. The raw view bins recent events into the display interval.
-- The analytic world has simple direct illumination and hard shadows. Fixed ambient is an approximation; there is no simulated global illumination, refraction, multi-bounce reflection, calibrated photometry, lens model or imported practical environment.
-- Debug RGB is ground truth. Learned reconstruction, flow, binning/ROI modules, and real-data validation remain future work.
+No noise, refractory behavior, finite photoreceptor bandwidth, calibrated materials, refraction, multi-bounce light transport, full event export, normal/depth estimation or learned reconstruction. A sampled strobe can alias, and endpoint interpolation is not exact physical jump timing. The matte sphere is a controlled test, not validation of a practical environment.
 
-The next useful fidelity work is to select a practical observation scenario and validate its geometry, material and lighting behavior; then compare the sensor model against real event data or published reference simulations. Game development is optional.
+Strobe-off startup, monochrome and aggregation are initial display measures, **not a photosensitivity safety certification**. Raw or opt-in strobe views can still flash; actual output analysis and further accessibility work remain under #2. The active-lighting checks concern measurement semantics and do not establish that users can reliably infer shape.
 
-## Runtime provenance and deferred host
-
-Downloaded from the [official Godot Windows page](https://godotengine.org/download/windows/), version `4.7.2.stable.official.ed1daf0bf`. Windows reported a valid Authenticode signature from Prehensile Tales B.V. ZIP SHA-256:
-
-```text
-731980F9608D61333E5BAF54A2EF17210ACC7A538446C0CB9969F002ACA1E953
-```
-
-No OpenAI API, Python dependency, event-camera hardware, or GPU driver installation was needed. The project uses standard Godot/GLSL and can later be tried on Ubuntu with a supported GPU context; `--headless` alone is not a GPU execution path. The user-designated TITAN RTX Ubuntu host, `ssh vilab204`, has not been contacted.
+The engine build is `4.7.2.stable.official.ed1daf0bf`, obtained from the official Godot download and validated by Windows Authenticode. ZIP SHA-256: `731980F9608D61333E5BAF54A2EF17210ACC7A538446C0CB9969F002ACA1E953`. Ubuntu/TITAN RTX host `vilab204` remains untouched.

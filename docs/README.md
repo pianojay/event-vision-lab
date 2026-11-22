@@ -4,7 +4,7 @@ Assessment date: **2026-11-22, Asia/Seoul**.
 
 **Purpose: simulate event vision without a physical event camera, in a practical and physically meaningful setup. A game is an optional medium; a shader or interactive experiment is a sufficient initial artifact.** The user's November 22 clarification supersedes the earlier assumption that a first-person game and an objective were required.
 
-**A Windows Godot prototype now runs on this laptop.** Godot 4.7.2 Mobile/Vulkan drives a shader-rendered room and a persistent FP32 ideal event sensor at 240×180, targeting 120 Hz, with a 60 FPS display cap. Sixteen GPU checks passed. The final 12-second run recorded 16.73 ms p95 display intervals and no skipped sensor intervals after the two-second warmup. This validates the small analytic scene, not the eventual real-world fidelity target or learned reconstruction.
+**A Windows Godot prototype now runs on this laptop.** Godot 4.7.2 Mobile/Vulkan drives a shader-rendered room and a persistent FP32 ideal event sensor at 240×180, targeting 120 Hz, with a 60 FPS display cap. The active-lighting extension adds fixed, camera-mounted and orbiting lights, a matte sphere control and per-substep count integration. Twenty-five GPU checks passed; see the prototype guide for current measurements. Strobing is off by default. This validates the small analytic scene, not the eventual real-world fidelity target or learned reconstruction.
 
 Start with **[the Godot prototype guide](godot-prototype.md)**. Launch from the workspace with `./run-lab.ps1`, or double-click `Run Event Vision Lab.cmd`.
 

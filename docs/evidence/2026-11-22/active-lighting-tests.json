@@ -1,0 +1,152 @@
+{
+	"adapter": "Intel(R) Iris(R) Plus Graphics",
+	"checks": [
+		{
+			"details": null,
+			"name": "initialization has no false flash",
+			"passed": true
+		},
+		{
+			"details": null,
+			"name": "constant intensity produces zero events",
+			"passed": true
+		},
+		{
+			"details": 2.0,
+			"name": "multiple ON crossings",
+			"passed": true
+		},
+		{
+			"details": 1.80000007152557,
+			"name": "last crossing timestamp interpolated",
+			"passed": true
+		},
+		{
+			"details": 0.5,
+			"name": "subthreshold residual retained",
+			"passed": true
+		},
+		{
+			"details": 1.0,
+			"name": "residual contributes to next crossing",
+			"passed": true
+		},
+		{
+			"details": 3.0,
+			"name": "multiple OFF crossings",
+			"passed": true
+		},
+		{
+			"details": 2.0,
+			"name": "independent ON threshold",
+			"passed": true
+		},
+		{
+			"details": 1.0,
+			"name": "independent OFF threshold",
+			"passed": true
+		},
+		{
+			"details": 2.0,
+			"name": "linear low-light input survives FP32 path",
+			"passed": true
+		},
+		{
+			"details": 0.0,
+			"name": "rendered static world produces zero events",
+			"passed": true
+		},
+		{
+			"details": 422365.0,
+			"name": "stationary world responds to illumination only",
+			"passed": true
+		},
+		{
+			"details": 1879.0,
+			"name": "object motion generates events",
+			"passed": true
+		},
+		{
+			"details": 0.0,
+			"name": "endpoint sampling misses intervening strobe",
+			"passed": true
+		},
+		{
+			"details": 422365.0,
+			"name": "sampling during strobe OFF captures change",
+			"passed": true
+		},
+		{
+			"details": 422365.0,
+			"name": "sampling next strobe ON captures change",
+			"passed": true
+		},
+		{
+			"details": null,
+			"name": "static matte sphere and fixed light are silent",
+			"passed": true
+		},
+		{
+			"details": [
+				6723.0,
+				6723.0
+			],
+			"name": "changing light direction generates both polarities",
+			"passed": true
+		},
+		{
+			"details": [
+				1.0,
+				17.0
+			],
+			"name": "surface response varies spatially",
+			"passed": true
+		},
+		{
+			"details": {
+				"expected": 0.758576316967924,
+				"measured": 0.758555114269257
+			},
+			"name": "matte irradiance matches analytic cosine and distance",
+			"passed": true
+		},
+		{
+			"details": 0,
+			"name": "ideal diffuse event counts are albedo invariant",
+			"passed": true
+		},
+		{
+			"details": {
+				"expected": 2.72418326227833,
+				"measured": 2.72418332099915,
+				"total_ON": 3.0
+			},
+			"name": "activity retains bursts before final zero-event substep",
+			"passed": true
+		},
+		{
+			"details": null,
+			"name": "activity independent of display batching",
+			"passed": true
+		},
+		{
+			"details": null,
+			"name": "OFF history survives later silent substep",
+			"passed": true
+		},
+		{
+			"details": null,
+			"name": "reset clears activity and diagnostic totals",
+			"passed": true
+		}
+	],
+	"godot": "4.7.2-stable (official)",
+	"kernel_sync_median_ms": 0.761,
+	"kernel_sync_p95_ms": 0.881,
+	"passed": true,
+	"sensor_size": [
+		240,
+		180
+	],
+	"timing_scope": "Local GPU device, analytic linear scene plus ideal sensor, submit and sync per sample, 40 warmup / 120 timed samples. Includes CPU submission/synchronization. Excludes UI, inference, streaming and packed event output."
+}

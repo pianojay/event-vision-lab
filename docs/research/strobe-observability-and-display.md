@@ -1,5 +1,7 @@
 # Strobe observability and display research
 
+**Research snapshot preceding implementation.** The first active-lighting acquisition and count-display changes are now implemented; see [the current prototype guide](../godot-prototype.md). Remaining fidelity and accessibility work stays open.
+
 November 22, 2026. Addresses [issue #1](https://github.com/pianojay/event-vision-lab/issues/1), its material/light-source comment, and [issue #2](https://github.com/pianojay/event-vision-lab/issues/2). Research and implementation diagnosis only: no runtime behavior was changed, no flashing demonstration was launched, and neither issue is resolved by this note.
 
 ## Assessment

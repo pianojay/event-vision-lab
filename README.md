@@ -2,7 +2,7 @@
 
 Simulate event vision without a physical event camera. A game is an optional medium; this first implementation is an interactive Godot shader laboratory.
 
-The GPU renders a controlled scene into linear intensity, maintains an ideal log-contrast event sensor, and displays raw events or a time surface. Lighting changes, object motion and changing surface appearance can be controlled independently. A labeled reference-intensity view helps compare the hidden scene with the sensor output.
+The GPU renders a controlled scene into linear intensity, maintains an ideal log-contrast event sensor, and displays decaying event counts, raw events or a time surface. Active-lighting controls include fixed, camera-mounted and orbiting point sources, with a matte-sphere control scene. Strobing is off by default. Lighting changes, object motion and changing surface appearance can be controlled independently. A labeled reference-intensity view helps compare the hidden scene with the sensor output.
 
 ## Run on Windows
 
@@ -22,7 +22,7 @@ Alternatively, double-click `Run Event Vision Lab.cmd`, which uses built-in Wind
 
 The GPU checks require a real rendering context; `--headless` does not validate this compute implementation. Test/profile commands replace the corresponding local evidence files.
 
-The initial Windows/Iris Plus trial passed 16 GPU checks at 240×180. The prototype targets 120 Hz sensor sampling and a 60 FPS display. These results cover a small analytic scene, not a calibrated camera or realistic general-purpose simulator.
+The Windows/Iris Plus active-lighting trial passed 25 GPU checks at 240×180. The prototype targets 120 Hz sensor sampling and a 60 FPS display. These results cover a small analytic scene, not a calibrated camera or realistic general-purpose simulator.
 
 ## Materials
 

@@ -1,0 +1,22 @@
+{
+	"active_lighting": "fixed / camera-mounted / orbit point light; matte control or room",
+	"adapter": "Intel(R) Iris(R) Plus Graphics",
+	"default_strobe": false,
+	"elapsed_seconds": 12.003063,
+	"engine_delta_sum_seconds": 12.1742986666668,
+	"frame_median_ms": 16.665,
+	"frame_p95_ms": 16.733,
+	"frame_samples_after_2s_warmup": 601,
+	"godot": "4.7.2-stable (official)",
+	"renderer": "mobile",
+	"scope": "Full analytic scene + ideal sensor + UI. Frame wall times include VSync/scheduling; not isolated GPU timings. No reconstruction, event tuples, or 3D asset engine scene.",
+	"sensor_size": [
+		240,
+		180
+	],
+	"sensor_target_hz": 120.0,
+	"skipped_intervals": 9,
+	"skipped_intervals_after_2s_warmup": 0,
+	"submitted_samples_per_wall_second": 120.88581056352,
+	"submitted_sensor_samples": 1451
+}

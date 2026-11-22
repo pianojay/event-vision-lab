@@ -4,7 +4,7 @@ param(
     [ValidateSet('vulkan','d3d12')][string]$Driver = 'vulkan',
     [int]$ProfileSeconds = 0,
     [string]$CapturePath = '',
-    [ValidateRange(0,2)][int]$View = 0
+    [ValidateRange(0,3)][int]$View = 0
 )
 $ErrorActionPreference = 'Stop'
 $projectPath = Join-Path $PSScriptRoot 'prototype'
@@ -20,9 +20,9 @@ $godotArguments = @('--path', $projectPath, '--rendering-method', 'mobile', '--r
 if ($Editor) {
     $godotArguments += '--editor'
 } elseif ($Validate) {
-    $godotArguments += @('--script', 'res://tests/sensor_tests.gd', '--log-file', (Join-Path $evidencePath 'godot-sensor-tests.log'), '--', ('--report=' + (Join-Path $evidencePath 'godot-sensor-tests.json')))
+    $godotArguments += @('--script', 'res://tests/sensor_tests.gd', '--log-file', (Join-Path $evidencePath 'active-lighting-tests.log'), '--', ('--report=' + (Join-Path $evidencePath 'active-lighting-tests.json')))
 } elseif ($ProfileSeconds -gt 0) {
-    $godotArguments += @('--log-file', (Join-Path $evidencePath 'godot-runtime-final.log'), '--', ('--duration=' + $ProfileSeconds), ('--report=' + (Join-Path $evidencePath 'godot-runtime-final.json')))
+    $godotArguments += @('--log-file', (Join-Path $evidencePath 'active-lighting-runtime.log'), '--', ('--duration=' + $ProfileSeconds), ('--report=' + (Join-Path $evidencePath 'active-lighting-runtime.json')))
     $godotArguments += '--view=' + $View
     if ($CapturePath) { $godotArguments += '--capture=' + [System.IO.Path]::GetFullPath($CapturePath) }
 } else {
