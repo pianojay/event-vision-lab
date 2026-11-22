@@ -2,4 +2,5 @@ tools/godot/
 prototype/.godot/
 docs/evidence/*/build/
 *.tmp
+__pycache__/
 docs/evidence/*/godot-interactive.log

@@ -1,0 +1,173 @@
+{
+  "audit_date": "2026-11-22",
+  "timezone": "Asia/Seoul",
+  "method": "Read-only source inspection through GitHub connector; no upstream simulator installed or executed.",
+  "repositories": [
+    {
+      "repository": "uzh-rpg/rpg_esim",
+      "commit": "4cf0b8952e9f58f674c3098f1b027a4b6db53427",
+      "files": [
+        {
+          "path": "event_camera_simulator/esim/src/simulator.cpp",
+          "git_blob_sha": "3ec4bbbb3a2685e0cee2bdfbd9537c6d77741b25",
+          "url": "https://github.com/uzh-rpg/rpg_esim/blob/4cf0b8952e9f58f674c3098f1b027a4b6db53427/event_camera_simulator/esim/src/simulator.cpp"
+        },
+        {
+          "path": "event_camera_simulator/esim/src/event_simulator.cpp",
+          "git_blob_sha": "a52911f5ae409a7d8b5814b0edcaa3da35fc5c18",
+          "url": "https://github.com/uzh-rpg/rpg_esim/blob/4cf0b8952e9f58f674c3098f1b027a4b6db53427/event_camera_simulator/esim/src/event_simulator.cpp"
+        },
+        {
+          "path": "event_camera_simulator/esim_data_provider/src/data_provider_online_render.cpp",
+          "git_blob_sha": "ccd34ee757e06deaecba410d53e1490a45376d93",
+          "url": "https://github.com/uzh-rpg/rpg_esim/blob/4cf0b8952e9f58f674c3098f1b027a4b6db53427/event_camera_simulator/esim_data_provider/src/data_provider_online_render.cpp"
+        },
+        {
+          "path": "event_camera_simulator/esim_ros/cfg/example.conf",
+          "git_blob_sha": "be8869c01021b22a1e167080d1854ba299a58d29",
+          "url": "https://github.com/uzh-rpg/rpg_esim/blob/4cf0b8952e9f58f674c3098f1b027a4b6db53427/event_camera_simulator/esim_ros/cfg/example.conf"
+        },
+        {
+          "path": "event_camera_simulator/esim/include/esim/esim/event_simulator.hpp",
+          "git_blob_sha": "fc8ad03a098062ec237b7aebea3ce61f12e9c08d",
+          "url": "https://github.com/uzh-rpg/rpg_esim/blob/4cf0b8952e9f58f674c3098f1b027a4b6db53427/event_camera_simulator/esim/include/esim/esim/event_simulator.hpp"
+        },
+        {
+          "path": "event_camera_simulator/esim_visualization/include/esim/visualization/publisher_interface.hpp",
+          "git_blob_sha": "73cbf9a120198aa26ea200bf694beb42a92b4e6c",
+          "url": "https://github.com/uzh-rpg/rpg_esim/blob/4cf0b8952e9f58f674c3098f1b027a4b6db53427/event_camera_simulator/esim_visualization/include/esim/visualization/publisher_interface.hpp"
+        },
+        {
+          "path": "event_camera_simulator/esim_data_provider/src/data_provider_factory.cpp",
+          "git_blob_sha": "f283d78e00da7af09c7e835056b9a8136057961d",
+          "url": "https://github.com/uzh-rpg/rpg_esim/blob/4cf0b8952e9f58f674c3098f1b027a4b6db53427/event_camera_simulator/esim_data_provider/src/data_provider_factory.cpp"
+        }
+      ]
+    },
+    {
+      "repository": "uzh-rpg/rpg_vid2e",
+      "commit": "ecbb11a9345bb9d31b4b691e7d82965da4401345",
+      "files": [
+        {
+          "path": "esim_torch/scripts/generate_events.py",
+          "git_blob_sha": "82d45d222146d9229b79c263691e622fb9135f87",
+          "url": "https://github.com/uzh-rpg/rpg_vid2e/blob/ecbb11a9345bb9d31b4b691e7d82965da4401345/esim_torch/scripts/generate_events.py"
+        },
+        {
+          "path": "esim_torch/src/esim_torch/esim_torch.py",
+          "git_blob_sha": "67cbd657a7c2e1d448c395db4f2c7d30b590610a",
+          "url": "https://github.com/uzh-rpg/rpg_vid2e/blob/ecbb11a9345bb9d31b4b691e7d82965da4401345/esim_torch/src/esim_torch/esim_torch.py"
+        },
+        {
+          "path": "esim_torch/src/esim_torch/esim_cuda_kernel.cu",
+          "git_blob_sha": "2f9d999aaffa24784b13c7cb1be64c2a830e6120",
+          "url": "https://github.com/uzh-rpg/rpg_vid2e/blob/ecbb11a9345bb9d31b4b691e7d82965da4401345/esim_torch/src/esim_torch/esim_cuda_kernel.cu"
+        }
+      ]
+    },
+    {
+      "repository": "SensorsINI/v2e",
+      "commit": "f63ab4c10d29e39a9d500c47be561e295e429c65",
+      "files": [
+        {
+          "path": "v2ecore/emulator.py",
+          "git_blob_sha": "64a7d97a43f37d1482ce438de353e1d1cdc9d5dd",
+          "url": "https://github.com/SensorsINI/v2e/blob/f63ab4c10d29e39a9d500c47be561e295e429c65/v2ecore/emulator.py"
+        },
+        {
+          "path": "v2ecore/output/ae_text_output.py",
+          "git_blob_sha": "cd42ff322abf6b24b1feb23cf1a3aa5f1d127ae9",
+          "url": "https://github.com/SensorsINI/v2e/blob/f63ab4c10d29e39a9d500c47be561e295e429c65/v2ecore/output/ae_text_output.py"
+        },
+        {
+          "path": "v2ecore/v2e_args.py",
+          "git_blob_sha": "a8cbb57b0b05ae49f1a3a61db320f8c309d57cde",
+          "url": "https://github.com/SensorsINI/v2e/blob/f63ab4c10d29e39a9d500c47be561e295e429c65/v2ecore/v2e_args.py"
+        },
+        {
+          "path": "v2e.py",
+          "git_blob_sha": "849aa0aa36a27dd6f0c58d16f6a02675eea5c7b8",
+          "url": "https://github.com/SensorsINI/v2e/blob/f63ab4c10d29e39a9d500c47be561e295e429c65/v2e.py"
+        }
+      ]
+    },
+    {
+      "repository": "neuromorphicsystems/IEBCS",
+      "commit": "8fdab5c3d078435d091fa8a94ad657e1fedf0c59",
+      "files": [
+        {
+          "path": "examples/00_video_2_events/1_example_video_to_events.py",
+          "git_blob_sha": "408493bc103a420d9e9c116e01fc4fb742cd2c9b",
+          "url": "https://github.com/neuromorphicsystems/IEBCS/blob/8fdab5c3d078435d091fa8a94ad657e1fedf0c59/examples/00_video_2_events/1_example_video_to_events.py"
+        },
+        {
+          "path": "src/dvs_sensor.py",
+          "git_blob_sha": "d26799fdd4d0dd241a6f969b7829caecc28422e8",
+          "url": "https://github.com/neuromorphicsystems/IEBCS/blob/8fdab5c3d078435d091fa8a94ad657e1fedf0c59/src/dvs_sensor.py"
+        },
+        {
+          "path": "src/arbiter.py",
+          "git_blob_sha": "b9599b23eaa69add1ab217844bbf98a4789e738c",
+          "url": "https://github.com/neuromorphicsystems/IEBCS/blob/8fdab5c3d078435d091fa8a94ad657e1fedf0c59/src/arbiter.py"
+        },
+        {
+          "path": "src/event_buffer.py",
+          "git_blob_sha": "de93828a2ed980012e9e9f41655755a658c64be0",
+          "url": "https://github.com/neuromorphicsystems/IEBCS/blob/8fdab5c3d078435d091fa8a94ad657e1fedf0c59/src/event_buffer.py"
+        }
+      ]
+    },
+    {
+      "repository": "microsoft/AirSim",
+      "commit": "1ca93f6f77e4e8a39b2b241c1fe2764da4d7dd41",
+      "files": [
+        {
+          "path": "PythonClient/eventcamera_sim/event_simulator.py",
+          "git_blob_sha": "a36f9911770a25a00a3e456b06e571e0ca547433",
+          "url": "https://github.com/microsoft/AirSim/blob/1ca93f6f77e4e8a39b2b241c1fe2764da4d7dd41/PythonClient/eventcamera_sim/event_simulator.py"
+        },
+        {
+          "path": "PythonClient/eventcamera_sim/test_event_sim.py",
+          "git_blob_sha": "22c0df9fadb05cac64a66789a9a548beb303e90b",
+          "url": "https://github.com/microsoft/AirSim/blob/1ca93f6f77e4e8a39b2b241c1fe2764da4d7dd41/PythonClient/eventcamera_sim/test_event_sim.py"
+        }
+      ]
+    },
+    {
+      "repository": "Lynn0306/DVS-Voltmeter",
+      "commit": "9d86353ecfaaa1af82b9eb66b162f0bf80cd4861",
+      "files": [
+        {
+          "path": "main.py",
+          "git_blob_sha": "af17add3e4c9311af0100448dc43eea562819e07",
+          "url": "https://github.com/Lynn0306/DVS-Voltmeter/blob/9d86353ecfaaa1af82b9eb66b162f0bf80cd4861/main.py"
+        },
+        {
+          "path": "src/config.py",
+          "git_blob_sha": "67e113c03bfb3b127f48786c824bfc6b7475b990",
+          "url": "https://github.com/Lynn0306/DVS-Voltmeter/blob/9d86353ecfaaa1af82b9eb66b162f0bf80cd4861/src/config.py"
+        },
+        {
+          "path": "src/simulator.py",
+          "git_blob_sha": "388cd40ba1172d73be1d2b519faf44f258ed3745",
+          "url": "https://github.com/Lynn0306/DVS-Voltmeter/blob/9d86353ecfaaa1af82b9eb66b162f0bf80cd4861/src/simulator.py"
+        },
+        {
+          "path": "src/simulator_utils.py",
+          "git_blob_sha": "e2c7c6069a6e179cadc8c6ec321b8c43ad785134",
+          "url": "https://github.com/Lynn0306/DVS-Voltmeter/blob/9d86353ecfaaa1af82b9eb66b162f0bf80cd4861/src/simulator_utils.py"
+        }
+      ]
+    }
+  ],
+  "documentation": [
+    {
+      "url": "https://dsec.ifi.uzh.ch/data-format/",
+      "scope": "Event time offset, raw/rectified coordinates and dataset storage."
+    },
+    {
+      "url": "https://www.cvlibs.net/datasets/kitti/raw_data.php",
+      "scope": "Raw versus synchronized/rectified data and timestamp/calibration conventions."
+    }
+  ]
+}

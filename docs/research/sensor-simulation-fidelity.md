@@ -4,6 +4,8 @@ Research date: **2026-11-22, Asia/Seoul**. Prototype audited at `4c3ce83e6a864e4
 
 ## Findings
 
+The later [pipeline contract audit](pipeline-contract-audit.md) traces six pinned upstream code paths. It adds implementation-specific configuration, refractory, timestamp and writer caveats beyond the paper-level comparisons here; consult it before claiming parity with a named simulator.
+
 The user's two dimensions are independently adjustable: **the optical signal reaching a pixel** and **the electronics that turn that signal into events**. Temporal sampling couples them and deserves its own assessment. A realistic renderer can feed an ideal sensor; a detailed sensor can consume simplistic images. Neither combination is automatically a calibrated camera simulator.
 
 The present prototype is useful for controlled illumination and ideal contrast experiments. Its largest immediate gaps are unresolved intensity changes between samples, missing nonideal pixel dynamics, and the absence of a complete event stream for comparison. More complex geometry is a separate improvement. A practical next step is an accurate small experiment with declared limits; a renderer replacement or external GPU is not a prerequisite for that step.

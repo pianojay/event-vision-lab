@@ -15,6 +15,8 @@ Start with **[the Godot prototype guide](godot-prototype.md)**. Launch from the 
 | [Sensor simulation fidelity](research/sensor-simulation-fidelity.md) | Current source audit; Event6D, ESIM, v2e and other simulator comparisons; rendering/optics, timing and electronics limits |
 | [Fidelity experiment plan](research/fidelity-experiment-plan.md) | Issues #4–#6: proposed local and external-GPU experiments, validation criteria and dependency order |
 | [Fidelity development coordination](development/fidelity-coordination.md) | Shared integration root, three component tracks, interface milestone, ownership and GPU validation schedule |
+| [Contract retrospective](development/contracts-retrospective-2026-11-22.md) | User's preference for flexible, justified contracts; separates unresolved proposals from decisions |
+| [Upstream pipeline contract audit](research/pipeline-contract-audit.md) | Six pinned source pipelines: configuration, signal/time/state/readout/output boundaries and dataset adapters |
 | [Concept and requirements](concept-and-requirements.md) | Preserves the user's actual goals and distinguishes them from suggestions in the export |
 | [Machine readiness](machine-readiness.md) | Hardware, installed tools, measured CPU results, and limits of the conclusion |
 | [Hardware tiers and remote TITAN RTX](hardware-tiers.md) | Provisional whole-machine envelopes, feature barriers, and remote execution options |

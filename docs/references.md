@@ -35,5 +35,7 @@ Consulted November 22, 2026. Links to live documentation and default branches ca
 | [PECS paper](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/06110.pdf) and [trial code](https://github.com/lanpokn/PECS_trail_version) | Lens/spectral/photoelectric modeling and implementation caveats |
 | [Statistical path-traced event detection](https://arxiv.org/abs/2408.07996), [BlenderProc renderer](https://dlr-rm.github.io/BlenderProc/docs/tutorials/renderer.html) | Rendering-estimator uncertainty and reference-rendering controls |
 | [Prophesee bias manual](https://docs.prophesee.ai/stable/hw/manuals/biases.html) | Device-specific contrast, bandwidth and refractory controls; profiles require matching conditions |
+| [Pipeline contract audit](research/pipeline-contract-audit.md) and [source ledger](research/pipeline-contract-audit-sources.json) | Six pinned upstream source paths; stage activation, effective configuration, lifecycle, timestamp and output semantics |
+| [DSEC data format](https://dsec.ifi.uzh.ch/data-format/) and [KITTI raw data](https://www.cvlibs.net/datasets/kitti/raw_data.php) | Dataset-specific timestamp/coordinate/calibration conventions; not interchangeable sensor models |
 
 The requirement interpretation comes from the supplied export. Resolution choices, implementation preference, performance gates, and capability judgments are engineering proposals/inferences based on that source, the local evidence, and the documented tool constraints. They are not vendor performance guarantees.
