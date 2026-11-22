@@ -4,8 +4,8 @@ Build a practical event-vision simulator without requiring an event camera. A sh
 
 # Feedback and history
 
-- Use GitHub Issues as the durable record of feedback, bugs, experiments, and development decisions. Keep the original observation and subsequent reasoning explicit so the project's history can be understood later.
-- **Do not create an issue for an immediately solvable problem.** Fix it directly, validate the change, and explain it in the commit. Reserve new issues for feedback that needs investigation, discussion, deferred work, or ongoing tracking.
+- **Create GitHub Issues selectively for things worth retaining over time:** long-term blockers, small project or experiment pitches, interesting observations or discoveries, and similarly substantive findings or decisions. Preserve the observation and reasoning so the history remains useful.
+- Minor routine problems do not need issues: fix them, validate the change, and explain it in the commit. Ease of fixing is not the deciding factor; an easily fixed problem can still merit an issue when it reveals something interesting or valuable to record. Do not create an issue merely because a bug or feedback exists.
 - When feedback already has an issue, read it and its discussion before implementation. Reuse that issue rather than creating duplicates. Record meaningful decisions, changed assumptions, implementation results, and validation evidence in the issue as work progresses.
 - Link issue-driven commits to their issue numbers, for example `refs #12`. Distinguish an implemented change from a validated outcome; close an issue only when its stated resolution criteria are met.
 - Keep `docs/` accurate about the current design, setup, and measured limitations. Issues hold the feedback/discussion history; documentation describes the current result. Small maintenance changes may be explained in their commit without creating an artificial issue.
