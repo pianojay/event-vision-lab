@@ -12,7 +12,7 @@ Requires the standard Windows x64 build of **Godot 4.7.2**, with a working Vulka
 .\run-lab.ps1
 ```
 
-Alternatively, double-click `Run Event Vision Lab.cmd` (requires PowerShell 7 on PATH). Open the project in the editor with `./run-lab.ps1 -Editor`.
+Alternatively, double-click `Run Event Vision Lab.cmd`, which uses built-in Windows PowerShell 5.1; PowerShell 7 is not required. Open the project in the editor with `./run-lab.ps1 -Editor`.
 
 ## Validate
 
