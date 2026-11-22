@@ -14,6 +14,7 @@ Start with **[the Godot prototype guide](godot-prototype.md)**. Launch from the 
 | [Strobe observability and display research](research/strobe-observability-and-display.md) | Issues #1/#2: code diagnosis, photometric stereo/structured light, display accessibility, and proposed experiments |
 | [Sensor simulation fidelity](research/sensor-simulation-fidelity.md) | Current source audit; Event6D, ESIM, v2e and other simulator comparisons; rendering/optics, timing and electronics limits |
 | [Fidelity experiment plan](research/fidelity-experiment-plan.md) | Issues #4–#6: proposed local and external-GPU experiments, validation criteria and dependency order |
+| [Fidelity development coordination](development/fidelity-coordination.md) | Shared integration root, three component tracks, interface milestone, ownership and GPU validation schedule |
 | [Concept and requirements](concept-and-requirements.md) | Preserves the user's actual goals and distinguishes them from suggestions in the export |
 | [Machine readiness](machine-readiness.md) | Hardware, installed tools, measured CPU results, and limits of the conclusion |
 | [Hardware tiers and remote TITAN RTX](hardware-tiers.md) | Provisional whole-machine envelopes, feature barriers, and remote execution options |
