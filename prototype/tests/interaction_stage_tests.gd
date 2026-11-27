@@ -64,6 +64,25 @@ func run() -> void:
 	root.add_child(lab)
 	lab.perception.configure(Vector2i(80,60),{"representation":"decay"})
 	lab.sensor_size = Vector2i(80,60)
+	for bin_size in [1,2,4]:
+		var processing: Dictionary = JSON.parse_string(JSON.stringify(lab.perception.processor.config))
+		processing.bin_size = float(bin_size)
+		var requested := {"processing":processing,"inference_enabled":false,"reduced_flashes":true}
+		var result: Dictionary = lab.validation_apply_scenario(requested)
+		check("JSON processing accepted for bin "+str(bin_size),result.get("applied",false))
+		if result.get("applied",false):
+			check("JSON processing matches effective settings "+str(bin_size),result.effective.processing==processing)
+	var invalid: Dictionary = JSON.parse_string(JSON.stringify(lab.perception.processor.config))
+	invalid.bin_size = 1.5
+	check("fractional JSON bin rejected",not lab.validation_apply_scenario({"processing":invalid}).applied)
+	invalid.bin_size = 2.0
+	invalid.window_capacity = 1.5
+	check("fractional JSON capacity rejected",not lab.validation_apply_scenario({"processing":invalid}).applied)
+	invalid.window_capacity = 1000001.0
+	check("oversized JSON capacity rejected",not lab.validation_apply_scenario({"processing":invalid}).applied)
+	invalid.window_capacity = 0.0
+	check("zero JSON capacity rejected",not lab.validation_apply_scenario({"processing":invalid}).applied)
+	lab.perception.configure(Vector2i(80,60),{"representation":"decay"})
 	lab.stage_check.button_pressed = true
 	lab._focus_station(7)
 	check("focus routes to station geometry",lab.interaction_stage.selected==7 and lab.camera_position==Stage.center(7)+Vector3(0,0,3))
