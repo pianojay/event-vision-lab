@@ -91,6 +91,16 @@ func run() -> void:
 	var saved_reference: bool = lab.needs_reset
 	lab._set_mode(3)
 	check("V truth view retains sensor/material",lab.needs_reset==saved_reference and lab.interaction_stage.population.stored_energy==energy)
+	lab.live_config = {"scene":"interaction-stage"}
+	var input := InputEventKey.new()
+	input.physical_keycode = KEY_G
+	input.pressed = true
+	lab._input(input)
+	check("prescribed trajectory permits processing shortcut",lab.perception.processor.config.bin_size==4)
+	input.physical_keycode = KEY_I
+	lab._input(input)
+	check("prescribed trajectory permits inference shortcut",not lab.perception.inference_enabled)
+	check("post-event scalar controls remain separately marked",lab.get_tree().get_nodes_in_group("post_event_control").size()==4)
 	lab.queue_free()
 	print("INTERACTION_STAGE_TESTS ",checks-failed,"/",checks)
 	quit(1 if failed else 0)

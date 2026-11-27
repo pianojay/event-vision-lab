@@ -186,8 +186,9 @@ func _start_acquisition() -> bool:
 	if live_config.scene != "interactive":
 		# Prescribed trajectories own scene parameters; observation, pause, and reset remain available.
 		for control in find_children("*","BaseButton",true,false):
-			if control not in [mode_select,colors_check,pause_check,inference_check,processing_bin,processing_polarity,processing_mode,processing_roi]: control.disabled = true
-		for control in find_children("*","HSlider",true,false): control.editable = false
+			if control not in [mode_select,colors_check,pause_check,inference_check,processing_bin,processing_polarity,processing_mode,processing_roi,processing_normalization,reduced_check] and not control.is_in_group("post_event_control"): control.disabled = true
+		for control in find_children("*","HSlider",true,false):
+			if not control.is_in_group("post_event_control"): control.editable = false
 	return true
 
 func _process_acquisition(delta: float) -> void:
@@ -458,7 +459,7 @@ func _input(event: InputEvent) -> void:
 			pitch = clampf(pitch - event.relative.y * 0.004, -0.9, 0.9)
 	if event is InputEventKey and not (event.ctrl_pressed or event.alt_pressed or event.shift_pressed or event.meta_pressed):
 		var key: Key = event.physical_keycode if event.physical_keycode != 0 else event.keycode
-		if not live_config.is_empty() and live_config.scene != "interactive" and key not in [KEY_P,KEY_R,KEY_V,KEY_C]: return
+		if not live_config.is_empty() and live_config.scene != "interactive" and key not in [KEY_P,KEY_R,KEY_V,KEY_C,KEY_G,KEY_Y,KEY_U,KEY_O,KEY_I]: return
 		if shortcut_actions.has(key):
 			if event.pressed and not event.echo:
 				shortcut_actions[key].call()
@@ -778,15 +779,20 @@ func _build_stage_ui(sidebar: VBoxContainer) -> void:
 	processing_mode.item_selected.connect(func(_v: int): _configure_processing())
 	sidebar.add_child(processing_mode)
 	sidebar.add_child(_label("Window / decay (10 to 1000 ms)",12))
-	_slider(sidebar,10,1000,10,100,func(v: float): processing_window_ms=v; _configure_processing())
+	var temporal_slider := _slider(sidebar,10,1000,10,100,func(v: float): processing_window_ms=v; _configure_processing())
+	temporal_slider.add_to_group("post_event_control")
 	sidebar.add_child(_label("Display gain (retains processing history)",12))
-	_slider(sidebar,0.05,2,0.05,0.5,func(v: float): processing_gain=v; _configure_processing())
+	var gain_slider := _slider(sidebar,0.05,2,0.05,0.5,func(v: float): processing_gain=v; _configure_processing())
+	gain_slider.add_to_group("post_event_control")
 	inference_check = _check("Infer relative grayscale [I]",false)
 	inference_check.toggled.connect(func(v: bool): perception.inference_enabled=v; reconstruction_panel.visible=v)
 	sidebar.add_child(inference_check)
 	sidebar.add_child(_label("Constant log prior (-4 to 4; starts new inference)",12))
-	_slider(sidebar,-4,4,0.1,0,func(v: float): perception.prior=v; perception.reset_prior(acquisition_cursor_ns))
-	sidebar.add_child(_button("Reset constant log prior here",func(): perception.reset_prior(acquisition_cursor_ns)))
+	var prior_slider := _slider(sidebar,-4,4,0.1,0,func(v: float): perception.prior=v; perception.reset_prior(acquisition_cursor_ns))
+	prior_slider.add_to_group("post_event_control")
+	var prior_reset := _button("Reset constant log prior here",func(): perception.reset_prior(acquisition_cursor_ns))
+	prior_reset.add_to_group("post_event_control")
+	sidebar.add_child(prior_reset)
 	sidebar.add_child(_button("Save effective settings",_save_settings))
 	sidebar.add_child(_button("Load saved settings",_load_settings))
 	reduced_check = _check("Reduced flashes (display only)",true)
