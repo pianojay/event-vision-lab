@@ -66,7 +66,7 @@ Independent [same-capture tool observations](../evidence/2026-11-28/composed-sta
 
 Independent blinded [nine-station observations](../evidence/2026-11-28/composed-stage/station-observations/blinded-review.md) and [pulse-aligned observations](../evidence/2026-11-28/composed-stage/station-pulse-observations-v2/blinded-review.md) use only emitted events. Original windows missed a brief source-off burst; the revised windows bracket the declared source-off time. Some conditions remain visually similar or saturated. Persistent afterglow and an additional indirect-light region are observable. These are AI observer records, not human comprehension or material-classification results. Static plots use their declared gain/window mappings, distinct from the app display limiter.
 
-A uniform multiplicative brightness/albedo change can cancel in ideal log contrast. More darkness or a different material label does not guarantee fewer or more ideal events. Moving illumination and spatially varying sources reveal useful contours, but this prototype does not recover normals or depth.
+Separate runs with the same optical trajectory and a fixed multiplicative reflectance or input-intensity scale have the same temporal log contrast while intensities remain above the numerical floor. Changing that factor during a run is an optical change and can emit events. Uniform time-varying strobing supplies common-mode contrast; it is not a spatially coded projector. Moving illumination, occlusion and spatially varying sources reveal useful contours, but this prototype does not recover normals or depth. More darkness or a material label alone does not guarantee fewer or more ideal events.
 
 ## Profiles, boundaries and limits
 
