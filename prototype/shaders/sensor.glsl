@@ -18,6 +18,18 @@ layout(push_constant, std430) uniform Parameters {
     vec4 light;      // point source xyz, occluder enabled
 } p;
 
+// Preserve small contrast around the anchor instead of subtracting rounded logs.
+float relative_log(float intensity, float anchor_intensity, float anchor_log) {
+    float delta=intensity-anchor_intensity;
+    if (abs(delta)<=0.01*anchor_intensity) {
+        precise float z=delta/(intensity+anchor_intensity);
+        precise float z2=z*z;
+        precise float result=2.0*z*(1.0+z2*(1.0/3.0+z2/5.0));
+        return result;
+    }
+    return log(intensity)-anchor_log;
+}
+
 void main() {
     ivec2 pixel=ivec2(gl_GlobalInvocationID.xy), size=ivec2(p.optics.yz);
     if (any(greaterThanEqual(pixel,size))) return;
@@ -25,21 +37,22 @@ void main() {
     float intensity=max(imageLoad(optical_input,pixel).a,1e-6);
     float current=log(intensity);
     vec4 old=state.pixels[index]; // reference, last ON, last OFF, previous log I
-    vec4 counts=anchors.pixels[2*index]; // anchor log, ON count, OFF count, unused
-    vec4 thresholds=anchors.pixels[2*index+1];
+    vec4 counts=anchors.pixels[2*index]; // anchor log, ON count, OFF count, anchor intensity
+    vec4 thresholds=anchors.pixels[2*index+1]; // ON, OFF, previous intensity, unused
     float on=0.0, off=0.0;
     if (p.clock.z>0.5) {
         old=vec4(current,-1000.0,-1000.0,current);
-        counts=vec4(current,0,0,0);
+        counts=vec4(current,0,0,intensity);
+        thresholds.z=intensity;
     } else if (thresholds.x!=p.sensor.x || thresholds.y!=p.sensor.y) {
         old.x=old.w;
-        counts=vec4(old.w,0,0,0);
+        counts=vec4(old.w,0,0,thresholds.z);
     }
     precise float old_on=counts.y*p.sensor.x;
     precise float old_off=counts.z*p.sensor.y;
     precise float offset=old_on-old_off;
-    float previous_relative=old.w-counts.x;
-    float current_relative=current-counts.x;
+    float previous_relative=relative_log(thresholds.z,counts.w,counts.x);
+    float current_relative=relative_log(intensity,counts.w,counts.x);
     vec4 diagnostic=vec4(offset,previous_relative,current_relative,0.0);
     vec4 levels=vec4(counts.yz,p.sensor.xy);
     if (p.clock.z<0.5) {
@@ -75,7 +88,7 @@ void main() {
         old.w=current;
     }
     anchors.pixels[2*index]=counts;
-    anchors.pixels[2*index+1]=vec4(p.sensor.xy,0,0);
+    anchors.pixels[2*index+1]=vec4(p.sensor.xy,intensity,0);
     diagnostics.pixels[2*index]=diagnostic;
     diagnostics.pixels[2*index+1]=levels;
     state.pixels[index]=old;

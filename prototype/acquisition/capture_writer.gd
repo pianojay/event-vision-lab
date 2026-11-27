@@ -33,7 +33,7 @@ func begin(path: String, settings: Dictionary) -> bool:
 		return false
 	event_file.store_line("x,y,t_ns,p,sequence")
 	var hashes := {}
-	for file in ["main.gd", "sensor_gpu.gd", "shaders/optical.glsl", "shaders/sensor.glsl", "stage/stage_controller.gd", "acquisition/run_config.gd", "acquisition/crossings.gd", "acquisition/capture_writer.gd"]:
+	for file in ["main.gd", "sensor_gpu.gd", "shaders/optical.glsl", "shaders/sensor.glsl", "stage/stage_controller.gd", "stage/interaction_stage.gd", "shaders/interaction_stage.glsl", "shaders/material_models.glsl", "materials/registry.json", "materials/emission_state.gd", "materials/transport_models.gd", "acquisition/run_config.gd", "acquisition/crossings.gd", "acquisition/capture_writer.gd"]:
 		var context := HashingContext.new()
 		context.start(HashingContext.HASH_SHA256)
 		context.update(FileAccess.get_file_as_string("res://" + file).replace("\r\n","\n").to_utf8_buffer())

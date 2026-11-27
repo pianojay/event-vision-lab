@@ -2,14 +2,14 @@
 
 Established November 22, 2026. This document records the shared development root and coordination rules for issues [#4](https://github.com/pianojay/event-vision-lab/issues/4), [#5](https://github.com/pianojay/event-vision-lab/issues/5) and [#6](https://github.com/pianojay/event-vision-lab/issues/6). The [research](../research/sensor-simulation-fidelity.md) and [experiment plan](../research/fidelity-experiment-plan.md) define their technical scope.
 
-November 28 integration milestone: the committed CPU component milestones and compatibility probes are integrated with their history. `tools/pipeline/pipeline.py` now composes those modules into named configurable profiles, capture artifacts, and `prototype/replay.gd`. The [implemented v1 reference](pipeline-v1.md) gives the concrete interfaces and limits. This is a CPU acquisition and event-replay path. Shared live GPU sensor/render interfaces remain unextracted. The initial boundary proposals below are historical requirements, not a claim that CPU choices are universal or adopted by every component runtime.
+November 28 integration milestone: the CPU components, generic sensor/readout, bounded live optical-to-ideal-sensor acquisition, event tools, material models, and stage are implemented in distinct groups. The [CPU v1 reference](pipeline-v1.md), [live acquisition contract](live-acquisition-v1.md), and [stage guide](interaction-stage.md) give their separate profiles and limits. GPU optics and sensor dynamics now use separate shaders and declared buffers; CPU held-input nonideal evolution is not silently substituted for GPU log-linear interpolation. The [composed validation guide](composed-validation.md) separates correctness, sustained profiles, and output evidence. The initial proposals below remain historical requirements, rather than a universal model or serialization choice.
 
 ## Root and status
 
 - Shared integration branch: `codex/fidelity-integration`.
 - Starting baseline: `24c6a4766b69762bade47de63d3e72834a02e48b` on `main` (research plus the existing analytic prototype).
 - This coordination commit establishes the development root. Use its exact commit SHA when creating component worktrees; record the SHA in each handoff. A moving branch name alone is not a reproducible starting point.
-- Component worktrees exist on `codex/fidelity-timing`, `codex/fidelity-sensor` and `codex/fidelity-rendering`. Their retained CPU milestones are composed by the integration adapter. Their checkouts are unchanged. Live GPU runtime interfaces have not yet been extracted.
+- Original component branches `codex/fidelity-timing`, `codex/fidelity-sensor` and `codex/fidelity-rendering` retain their milestone commits. Their clean existing checkouts were reused on new component branches for this grouped pass. Stage, sensor and validation checkouts each have one assigned writer; no original component history was deleted. Reviewed groups merge into the integration root with merge commits.
 
 Keep this checkout for coordination and integration. Give each component its own worktree and branch when starting it. The integration branch collects compatible milestones; validated integration can subsequently be merged into `main`. Ordinary unrelated incremental development continues to follow the repository's normal `main` workflow. No mandatory PR policy is introduced.
 

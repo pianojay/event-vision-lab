@@ -1,0 +1,37 @@
+{
+  "command": [
+    "C:\\Godot_v4.7.2-stable_win64.exe\\Godot_v4.7.2-stable_win64.exe",
+    "--path",
+    "D:\\ChatGPT\\Event Game\\runs\\composed-final-source\\prototype",
+    "--display-driver",
+    "windows",
+    "--rendering-method",
+    "mobile",
+    "--rendering-driver",
+    "vulkan",
+    "--position",
+    "-32000,-32000",
+    "--resolution",
+    "1280x800",
+    "--single-window",
+    "--script",
+    "D:/ChatGPT/Event Game/runs/issue-roadmap/default_startup_probe.gd",
+    "--log-file",
+    "D:\\ChatGPT\\Event Game\\runs\\default-startup-before\\godot.log",
+    "--",
+    "--report=D:\\ChatGPT\\Event Game\\runs\\default-startup-before\\report.json",
+    "--source-revision=446417c4007bffe8ddf87157e12778403a42a6e9"
+  ],
+  "process_id": 13432,
+  "exit_code": 0,
+  "owned_windows": 3,
+  "visible_window_observations": 0,
+  "startup_show_window": "SW_HIDE",
+  "position": [
+    -32000,
+    -32000
+  ],
+  "computer_use": false,
+  "real_context": "windows/vulkan/mobile",
+  "duration_s": 4.428349099995103
+}

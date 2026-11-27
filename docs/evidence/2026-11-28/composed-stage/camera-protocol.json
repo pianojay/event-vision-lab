@@ -1,0 +1,31 @@
+{
+  "source_revision": "446417c4007bffe8ddf87157e12778403a42a6e9",
+  "purpose": "Regenerate the four previously failing camera configurations; same current archived optical input feeds the unchanged independent solver",
+  "gates": {
+    "count_error": 0,
+    "polarity_error": 0,
+    "timestamp_max_ns": 100000
+  },
+  "runs": [
+    {
+      "id": "camera-treatment",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\timing-boundary-final\\camera-treatment.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\timing-boundary-final\\camera-treatment"
+    },
+    {
+      "id": "camera-control",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\timing-boundary-final\\camera-control.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\timing-boundary-final\\camera-control"
+    },
+    {
+      "id": "camera-temporal",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\timing-boundary-final\\camera-temporal.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\timing-boundary-final\\camera-temporal"
+    },
+    {
+      "id": "camera-spatial",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\timing-boundary-final\\camera-spatial.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\timing-boundary-final\\camera-spatial"
+    }
+  ]
+}

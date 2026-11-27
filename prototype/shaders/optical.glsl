@@ -12,6 +12,9 @@ layout(push_constant, std430) uniform Parameters {
     vec4 light;      // point source xyz, occluder enabled
 } p;
 
+#include "material_models.glsl"
+#include "interaction_stage.glsl"
+
 vec3 moving_center() {
     return vec3(sin(p.world.x * 0.9) * 1.8, 0.5, -2.5);
 }
@@ -89,6 +92,7 @@ vec3 scene_radiance(vec2 uv) {
     vec2 screen=uv*2.0-1.0;
     screen.y=-screen.y;
     vec3 rd=normalize(forward+right*screen.x*(p.optics.y/p.optics.z)*p.optics.w+up*screen.y*p.optics.w);
+    if (s.control.x>0.5) return vec3(stage_radiance(p.camera.xyz,rd));
     vec3 n; float mat;
     float t=intersect_world(p.camera.xyz,rd,n,mat);
     if (mat==0.0) return vec3(0.015);
@@ -130,5 +134,7 @@ void main() {
     if (any(greaterThanEqual(pixel,size))) return;
     vec3 radiance=p.clock.w>0.5 ? vec3(p.sensor.w) : scene_radiance((vec2(pixel)+0.5)/vec2(size));
     float intensity=dot(radiance,vec3(0.2126,0.7152,0.0722));
+    // RGB can show a selected optical truth component. Alpha always retains total detector input.
+    if(stage_debug.x>=0.0) radiance=stage_debug;
     imageStore(optical_out,pixel,vec4(radiance,intensity));
 }

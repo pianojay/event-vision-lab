@@ -69,6 +69,42 @@ func threshold_transition_checks() -> void:
 	values = step(input)
 	expanded = Expand.expand(values,Vector2i(1,1),1000,2000,input[4],input[5])
 	check("threshold edit at exact start does not repeat endpoint",not expanded.has("error") and expanded.events.is_empty(),expanded)
+func slow_anchor_return_checks() -> void:
+	# Actual FP32 optical samples from the refraction camera capture, pixels 41,16 and 42,23.
+	var input := params(0.07544426620006561,true)
+	input[4]=0.2
+	input[5]=0.2
+	step(input)
+	input[2]=0
+	input[7]=0.10428895801305771
+	step(input)
+	input[7]=0.0754442885518074
+	step(input)
+	input[7]=0.07544415444135666
+	var values := step(input)
+	var expanded := Expand.expand(values,Vector2i(1,1),166666670,183333337,input[4],input[5])
+	var anchor_log := log(0.07544426620006561)
+	var previous_log := log(0.0754442885518074)
+	var current_log := log(0.07544415444135666)
+	var expected := 166666670+Expand.round_even((anchor_log-previous_log)/(current_log-previous_log)*16666667)
+	check("slow anchor return retains fractional timestamp",not expanded.has("error") and expanded.events.size()==1 and abs(expanded.events[0][2]-expected)<=100000,{"actual":expanded,"expected_ns":expected})
+	input[2]=1
+	input[7]=0.1042657122015953
+	step(input)
+	input[2]=0
+	input[7]=0.07546325027942657
+	step(input)
+	input[7]=0.10426568984985352
+	step(input)
+	input[7]=0.10426570475101471
+	values=step(input)
+	check("one ULP below anchor does not emit early",values[3]==0,Array(values))
+	input[7]=0.1042657122015953
+	values=step(input)
+	expanded=Expand.expand(values,Vector2i(1,1),283333339,300000006,input[4],input[5])
+	check("slow exact anchor return owns its ending interval",not expanded.has("error") and expanded.events==[[0,0,300000006,1]],expanded)
+	values=step(input)
+	check("constant anchor does not repeat endpoint",values[3]==0,Array(values))
 func run() -> void:
 	device=RenderingServer.create_local_rendering_device()
 	if device==null:
@@ -95,7 +131,7 @@ func run() -> void:
 	step(params(1,true))
 	var old_ref:=PackedFloat32Array([0.638227581977844,-1000,-1000,0.443717420101166]).to_byte_array()
 	device.buffer_update(kernel.buffer,0,old_ref.size(),old_ref)
-	var anchor_data:=PackedFloat32Array([0.638227581977844,0,0,0,0.2,0.2,0,0]).to_byte_array()
+	var anchor_data:=PackedFloat32Array([0.638227581977844,0,0,exp(0.638227581977844),0.2,0.2,exp(0.443717420101166),0]).to_byte_array()
 	device.buffer_update(kernel.anchors,0,anchor_data.size(),anchor_data)
 	var input:=params(exp(0.438228875398636))
 	input[4]=0.2
@@ -126,6 +162,7 @@ func run() -> void:
 	values=step(fall)
 	check("anchored counts retain exact return after nine levels",values[3]==-9,Array(values))
 	threshold_transition_checks()
+	slow_anchor_return_checks()
 	var failed:=false
 	for item in checks:
 		if not item.passed: failed=true

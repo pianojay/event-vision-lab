@@ -153,7 +153,7 @@ func _run() -> void:
 	root.add_child(unhandled)
 	_key(KEY_V)
 	_check("handled shortcut press and release do not propagate", unhandled.count == 0, unhandled.count)
-	_key(KEY_Z)
+	_key(KEY_F12)
 	_check("unbound keys still propagate", unhandled.count == 2, unhandled.count)
 	await process_frame
 	for selector in [lab.mode_select, lab.light_mode]:

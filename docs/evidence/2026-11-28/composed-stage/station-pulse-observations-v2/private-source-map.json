@@ -1,0 +1,29 @@
+[
+  {
+    "trial": "pulse-01",
+    "station": 5,
+    "source_name": "fluorescence",
+    "rows": [
+      "control",
+      "treatment"
+    ]
+  },
+  {
+    "trial": "pulse-02",
+    "station": 6,
+    "source_name": "phosphorescence",
+    "rows": [
+      "treatment",
+      "control"
+    ]
+  },
+  {
+    "trial": "pulse-03",
+    "station": 8,
+    "source_name": "interreflection",
+    "rows": [
+      "treatment",
+      "control"
+    ]
+  }
+]

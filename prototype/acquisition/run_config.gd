@@ -6,7 +6,8 @@ const DEFAULTS := {
 	"scene": "sphere-light", "on_threshold": 0.2, "off_threshold": 0.2,
 	"capture_capacity": 500000, "candidate_limit_per_step": 1000000,
 	"reset_times_ns": [], "sensor": "ideal", "trajectory": "log-linear",
-	"intensity_floor": 0.000001, "source_revision": "unrecorded"
+	"intensity_floor": 0.000001, "source_revision": "unrecorded",
+	"archive_mode":"diagnostic", "station":0, "stage_action":"static", "treatment":true, "wall_paced":false, "processing_enabled":true, "reconstruction_enabled":false
 }
 static func parse(overrides: Dictionary) -> Dictionary:
 	var config := DEFAULTS.duplicate(true)
@@ -15,7 +16,7 @@ static func parse(overrides: Dictionary) -> Dictionary:
 		config[key] = overrides[key]
 	if config.profile_name != PROFILE or config.sensor != "ideal" or config.trajectory != "log-linear" or config.intensity_floor != 0.000001:
 		return {"error": "Unsupported live sensor, trajectory, or numerical floor"}
-	if config.scene not in ["sphere-light", "camera-occlusion", "static", "interactive"]:
+	if config.scene not in ["sphere-light", "camera-occlusion", "static", "interactive", "interaction-stage"]:
 		return {"error": "Unsupported stage scenario"}
 	for key in ["width", "height", "duration_ns", "sample_period_ns", "capture_capacity", "candidate_limit_per_step"]:
 		if typeof(config[key]) not in [TYPE_INT, TYPE_FLOAT] or not is_finite(config[key]) or config[key] != int(config[key]):
@@ -46,8 +47,15 @@ static func parse(overrides: Dictionary) -> Dictionary:
 			return {"error": "Reset times must be increasing interior integers"}
 		previous = int(value)
 		config.reset_times_ns[index] = previous
+	if config.archive_mode not in ["diagnostic","stream"] or config.stage_action not in ["static","light","camera","object","pulse","compare","stripe","tour"]:
+		return {"error":"Invalid archive mode or stage action"}
+	if typeof(config.station) not in [TYPE_INT,TYPE_FLOAT] or config.station != int(config.station) or config.station < 0 or config.station > 8:
+		return {"error":"Station must be an integer in [0,8]"}
+	config.station = int(config.station)
+	for key in ["treatment","wall_paced","processing_enabled","reconstruction_enabled"]:
+		if not config[key] is bool: return {"error":"Expected boolean: "+key}
 	var frames: int = ceili(float(config.duration_ns) / config.sample_period_ns) + 1 + config.reset_times_ns.size() * 2
-	if frames > 10000 or frames * config.width * config.height > 10000000:
+	if config.archive_mode == "diagnostic" and (frames > 10000 or frames * config.width * config.height > 10000000):
 		return {"error": "Optical archive exceeds ten million sample values or ten thousand frames"}
 	return {"config": config}
 
