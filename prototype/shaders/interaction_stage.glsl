@@ -46,8 +46,10 @@ float stage_pattern(vec3 ro,vec3 rd) {
     if(rd.z<0.0) {
         for(int panel=3;panel<=4;panel++) {
             vec2 local=q.xy-stage_center(panel).xy;
-            if(abs(local.x)<0.9 && abs(local.y)<0.9)
-                return 0.44+0.36*sin(2.0*MAT_PI*(local.x-s.motion.y)/0.5);
+            if(abs(local.x)<0.9 && abs(local.y)<0.9) {
+                float source_offset=panel==int(s.control.y)?s.motion.y:0.0;
+                return 0.44+0.36*sin(2.0*MAT_PI*(local.x-source_offset)/0.5);
+            }
         }
     }
     float checker=mod(floor(q.x*4.0)+floor(q.y*4.0),2.0);

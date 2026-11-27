@@ -44,7 +44,7 @@ The media display has a default reduced-flashes setting and an explicit opt-out.
 
 ## Geometry and restricted models
 
-Station centres are `(x,y,z)` with `x=(-3,0,3)`, `y=(6,3.5,1)`, and `z=-3` metres. Patterned emissive background planes lie at z=-5 and z=4. Two finite 1.8 m square emitters on the rear plane are centred behind transmission and refraction. Their relative linear radiance is `0.44 + 0.36*sin(2*pi*(local_x-stripe_offset)/0.5 m)`, bounded from 0.08 to 0.8. The emitter boundaries stay fixed while the stripe translates. Rays outside the emitters see the fixed checker. The front plane remains fixed. These are prescribed emissive sources, separate from point-lamp illumination. Both treatment and control observe the same sources through their actual ray paths. Navigation changes actual rays and occlusion, not screen-space material labels. All material functions operate before the logarithmic sensor.
+Station centres are `(x,y,z)` with `x=(-3,0,3)`, `y=(6,3.5,1)`, and `z=-3` metres. Patterned emissive background planes lie at z=-5 and z=4. Two finite 1.8 m square emitters on the rear plane are centred behind transmission and refraction. Their relative linear radiance is `0.44 + 0.36*sin(2*pi*(local_x-stripe_offset)/0.5 m)`, bounded from 0.08 to 0.8. The emitter boundaries stay fixed while the selected station's stripe translates. The other rear emitter stays at zero offset, so an experiment drives one physical source even when the neighboring source is visible. Selection sets the source to control; treatment and control use the same selected source motion. Rays outside the emitters see the fixed checker. The front plane remains fixed. These are prescribed emissive sources, separate from point-lamp illumination. Both treatment and control observe the same sources through their actual ray paths. Navigation changes actual rays and occlusion, not screen-space material labels. All material functions operate before the logarithmic sensor.
 
 | Station | Implemented geometry and optical model |
 | --- | --- |
@@ -102,3 +102,5 @@ python -B -m unittest tools.stage.test_experiment -v
 ```
 
 At the initial integration checkpoint, three runner tests and fifty stage/state checks pass. The existing 69 controls and 43 acquisition checks also pass. Full stage GPU, spatial/temporal, sustained operation, and actual output analysis must be recorded separately before claiming their criteria complete. No material or parent issue closes solely on these results.
+
+Version 3 restricts the stripe offset to the selected station's rear emitter. Version 2 drove both finite emitters simultaneously, producing activity in a neighboring visible station. This is a source-control correction before optical transport; it does not mask pixels or filter events. Version 2 captures and their failed task-localization result remain evidence.
