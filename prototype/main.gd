@@ -20,6 +20,8 @@ var processing_bin: OptionButton
 var processing_polarity: OptionButton
 var processing_mode: OptionButton
 var processing_roi: CheckBox
+var processing_normalization: CheckBox
+var reduced_check: CheckBox
 var processing_gain := 0.5
 var processing_window_ms := 100.0
 var settings_path := "user://interaction-settings.json"
@@ -760,6 +762,9 @@ func _build_stage_ui(sidebar: VBoxContainer) -> void:
 	processing_roi = _check("Central half ROI [O]",false)
 	processing_roi.toggled.connect(func(_v: bool): _configure_processing())
 	sidebar.add_child(processing_roi)
+	processing_normalization = _check("Normalize counts per source pixel",false)
+	processing_normalization.toggled.connect(func(_v: bool): _configure_processing())
+	sidebar.add_child(processing_normalization)
 	processing_bin = OptionButton.new()
 	for label in ["1 x 1 bins [G]","2 x 2 bins [G]","4 x 4 bins [G]"]: processing_bin.add_item(label)
 	processing_bin.item_selected.connect(func(_v: int): _configure_processing())
@@ -784,9 +789,9 @@ func _build_stage_ui(sidebar: VBoxContainer) -> void:
 	sidebar.add_child(_button("Reset constant log prior here",func(): perception.reset_prior(acquisition_cursor_ns)))
 	sidebar.add_child(_button("Save effective settings",_save_settings))
 	sidebar.add_child(_button("Load saved settings",_load_settings))
-	var reduced := _check("Reduced flashes (display only)",true)
-	reduced.toggled.connect(_set_reduced_flashes)
-	sidebar.add_child(reduced)
+	reduced_check = _check("Reduced flashes (display only)",true)
+	reduced_check.toggled.connect(_set_reduced_flashes)
+	sidebar.add_child(reduced_check)
 	_set_reduced_flashes(true)
 	sidebar.add_child(_label("Default media RGB cap 0.08. Opt out above.
 A display limit, not a safety certification.
@@ -833,7 +838,7 @@ func _configure_processing() -> void:
 	if perception.processor.config.is_empty(): return
 	var roi := [0,0,sensor_size.x,sensor_size.y]
 	if processing_roi.button_pressed: roi = [sensor_size.x/4,sensor_size.y/4,sensor_size.x*3/4,sensor_size.y*3/4]
-	perception.processor.configure({"roi":roi,"bin_size":[1,2,4][processing_bin.selected],"polarity":["both","on","off"][processing_polarity.selected],"representation":["decay","window","time-surface"][processing_mode.selected],"window_ns":int(processing_window_ms*1000000),"tau_ns":int(processing_window_ms*1000000),"gain":processing_gain},sensor_size)
+	perception.processor.configure({"roi":roi,"bin_size":[1,2,4][processing_bin.selected],"polarity":["both","on","off"][processing_polarity.selected],"representation":["decay","window","time-surface"][processing_mode.selected],"window_ns":int(processing_window_ms*1000000),"tau_ns":int(processing_window_ms*1000000),"gain":processing_gain,"normalization":"per-pixel" if processing_normalization.button_pressed else "count"},sensor_size)
 	# No event or sensor is changed. A paused view can update from current aggregates.
 	perception.last_processed = perception.processor.snapshot(acquisition_cursor_ns)
 	_update_perception_views()
@@ -917,6 +922,7 @@ func _sync_processing_controls() -> void:
 	processing_bin.select([1,2,4].find(config.bin_size))
 	processing_polarity.select(["both","on","off"].find(config.polarity))
 	processing_mode.select(["decay","window","time-surface"].find(config.representation))
+	processing_normalization.set_pressed_no_signal(config.normalization=="per-pixel")
 	processing_gain = config.gain
 	processing_window_ms = config.window_ns*1e-6
 
@@ -927,6 +933,7 @@ var peak_resident_events := 0
 
 func _set_reduced_flashes(value: bool) -> void:
 	reduced_flashes = value
+	if reduced_check: reduced_check.set_pressed_no_signal(value)
 	display_material.set_shader_parameter("reduced_flashes",value)
 	for panel in [raw_panel,processing_panel,reconstruction_panel]:
 		if panel.material == null:
