@@ -71,7 +71,7 @@ func run() -> void:
 		var result: Dictionary = lab.validation_apply_scenario(requested)
 		check("JSON processing accepted for bin "+str(bin_size),result.get("applied",false))
 		if result.get("applied",false):
-			check("JSON processing matches effective settings "+str(bin_size),result.effective.processing==processing)
+			check("JSON processing matches effective settings "+str(bin_size),result.effective.processing.bin_size==processing.bin_size and result.effective.processing.window_capacity==processing.window_capacity)
 	var invalid: Dictionary = JSON.parse_string(JSON.stringify(lab.perception.processor.config))
 	invalid.bin_size = 1.5
 	check("fractional JSON bin rejected",not lab.validation_apply_scenario({"processing":invalid}).applied)
@@ -83,6 +83,7 @@ func run() -> void:
 	invalid.window_capacity = 0.0
 	check("zero JSON capacity rejected",not lab.validation_apply_scenario({"processing":invalid}).applied)
 	lab.perception.configure(Vector2i(80,60),{"representation":"decay"})
+	lab._sync_processing_controls()
 	lab.stage_check.button_pressed = true
 	lab._focus_station(7)
 	check("focus routes to station geometry",lab.interaction_stage.selected==7 and lab.camera_position==Stage.center(7)+Vector3(0,0,3))

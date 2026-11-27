@@ -921,7 +921,7 @@ func _valid_processing(config: Dictionary) -> bool:
 	for value in config.roi:
 		if typeof(value) not in [TYPE_FLOAT,TYPE_INT] or not is_finite(value) or value != int(value): return false
 	var roi: Array = config.roi
-	return roi[0]>=0 and roi[1]>=0 and roi[2]>roi[0] and roi[3]>roi[1] and roi[2]<=sensor_size.x and roi[3]<=sensor_size.y and config.bin_size in [1,2,4] and config.polarity in ["both","on","off"] and config.representation in ["decay","window","time-surface"] and config.normalization in ["count","per-pixel"] and config.window_ns>0 and config.tau_ns>0 and is_finite(config.gain) and config.gain>0 and config.get("window_capacity",100000) in range(1,1000001)
+	return roi[0]>=0 and roi[1]>=0 and roi[2]>roi[0] and roi[3]>roi[1] and roi[2]<=sensor_size.x and roi[3]<=sensor_size.y and int(config.bin_size) in [1,2,4] and config.polarity in ["both","on","off"] and config.representation in ["decay","window","time-surface"] and config.normalization in ["count","per-pixel"] and config.window_ns>0 and config.tau_ns>0 and is_finite(config.gain) and config.gain>0 and int(config.get("window_capacity",100000)) in range(1,1000001)
 
 func _sync_processing_controls() -> void:
 	var config: Dictionary = perception.processor.config
