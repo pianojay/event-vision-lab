@@ -1,0 +1,2947 @@
+{
+  "schema": "event-lab-reconstruction-evaluation-v1",
+  "source": "docs\\evidence\\2026-11-28\\pipeline-prototype\\runs\\viewer-nonideal\\manifest.json",
+  "source_sha256": "c41903c0dabea0dc77050608bda85cffd4af01b1d0867119abcae702ce6c4cfe",
+  "config": {
+    "initial_log_intensity": 0.0,
+    "on_threshold": 0.2,
+    "off_threshold": 0.2
+  },
+  "method": "constant-prior contrast integration",
+  "inference_inputs": [
+    "pixel-emitted events",
+    "dimensions",
+    "nominal ON/OFF thresholds",
+    "constant prior"
+  ],
+  "initial_intensity_observed": false,
+  "truth_used_for_inference": false,
+  "truth_used_for_evaluation": "archived FP32 optical samples; separately read after all inference",
+  "scale_alignment": "none for output; explicit global-log-offset fit reported separately for evaluation",
+  "capture_count": 1526,
+  "capture_loss": 0,
+  "frame_count": 321,
+  "frames": [
+    {
+      "cursor_ns": 0,
+      "integrated_count": 0,
+      "observed_pixels": 0,
+      "latest_event_age_ns": null,
+      "log_rmse_no_alignment": 0.0,
+      "global_log_offset_fitted_for_evaluation": 0.0,
+      "log_rmse_after_explicit_global_alignment": 0.0
+    },
+    {
+      "cursor_ns": 1000000,
+      "integrated_count": 0,
+      "observed_pixels": 0,
+      "latest_event_age_ns": null,
+      "log_rmse_no_alignment": 0.01684862244546845,
+      "global_log_offset_fitted_for_evaluation": -0.0029784437962106533,
+      "log_rmse_after_explicit_global_alignment": 0.016583273225233838
+    },
+    {
+      "cursor_ns": 2000000,
+      "integrated_count": 0,
+      "observed_pixels": 0,
+      "latest_event_age_ns": null,
+      "log_rmse_no_alignment": 0.032230209315848,
+      "global_log_offset_fitted_for_evaluation": -0.00569754989157449,
+      "log_rmse_after_explicit_global_alignment": 0.0317226152417545
+    },
+    {
+      "cursor_ns": 3000000,
+      "integrated_count": 0,
+      "observed_pixels": 0,
+      "latest_event_age_ns": null,
+      "log_rmse_no_alignment": 0.04637988115236526,
+      "global_log_offset_fitted_for_evaluation": -0.008198882118365905,
+      "log_rmse_after_explicit_global_alignment": 0.04564944367368201
+    },
+    {
+      "cursor_ns": 4000000,
+      "integrated_count": 0,
+      "observed_pixels": 0,
+      "latest_event_age_ns": null,
+      "log_rmse_no_alignment": 0.05948044703847686,
+      "global_log_offset_fitted_for_evaluation": -0.010514756862228572,
+      "log_rmse_after_explicit_global_alignment": 0.058543688541338665
+    },
+    {
+      "cursor_ns": 5000000,
+      "integrated_count": 16,
+      "observed_pixels": 16,
+      "latest_event_age_ns": 618752,
+      "log_rmse_no_alignment": 0.03632144281012753,
+      "global_log_offset_fitted_for_evaluation": -0.006420784628380137,
+      "log_rmse_after_explicit_global_alignment": 0.03574941583530173
+    },
+    {
+      "cursor_ns": 6000000,
+      "integrated_count": 16,
+      "observed_pixels": 16,
+      "latest_event_age_ns": 1618752,
+      "log_rmse_no_alignment": 0.047730351930337526,
+      "global_log_offset_fitted_for_evaluation": -0.00843761387959052,
+      "log_rmse_after_explicit_global_alignment": 0.04697864586610406
+    },
+    {
+      "cursor_ns": 7000000,
+      "integrated_count": 22,
+      "observed_pixels": 16,
+      "latest_event_age_ns": 15767,
+      "log_rmse_no_alignment": 0.04832210191822917,
+      "global_log_offset_fitted_for_evaluation": -0.007988383722231707,
+      "log_rmse_after_explicit_global_alignment": 0.047657226726931054
+    },
+    {
+      "cursor_ns": 8000000,
+      "integrated_count": 32,
+      "observed_pixels": 16,
+      "latest_event_age_ns": 539428,
+      "log_rmse_no_alignment": 0.033196301359190314,
+      "global_log_offset_fitted_for_evaluation": -0.005868332450348918,
+      "log_rmse_after_explicit_global_alignment": 0.03267349228629168
+    },
+    {
+      "cursor_ns": 9000000,
+      "integrated_count": 32,
+      "observed_pixels": 16,
+      "latest_event_age_ns": 1539428,
+      "log_rmse_no_alignment": 0.04275412852394973,
+      "global_log_offset_fitted_for_evaluation": -0.007557933550751513,
+      "log_rmse_after_explicit_global_alignment": 0.042080793080511644
+    },
+    {
+      "cursor_ns": 10000000,
+      "integrated_count": 35,
+      "observed_pixels": 16,
+      "latest_event_age_ns": 89631,
+      "log_rmse_no_alignment": 0.04725239111947446,
+      "global_log_offset_fitted_for_evaluation": -0.007988974392498288,
+      "log_rmse_after_explicit_global_alignment": 0.046572145695295115
+    },
+    {
+      "cursor_ns": 11000000,
+      "integrated_count": 45,
+      "observed_pixels": 16,
+      "latest_event_age_ns": 178086,
+      "log_rmse_no_alignment": 0.031744325425076526,
+      "global_log_offset_fitted_for_evaluation": -0.007061168188708941,
+      "log_rmse_after_explicit_global_alignment": 0.030949024225392384
+    },
+    {
+      "cursor_ns": 12000000,
+      "integrated_count": 48,
+      "observed_pixels": 16,
+      "latest_event_age_ns": 735809,
+      "log_rmse_no_alignment": 0.03619286955312082,
+      "global_log_offset_fitted_for_evaluation": -0.008608399284072778,
+      "log_rmse_after_explicit_global_alignment": 0.03515422120109043
+    },
+    {
+      "cursor_ns": 13000000,
+      "integrated_count": 48,
+      "observed_pixels": 16,
+      "latest_event_age_ns": 1735809,
+      "log_rmse_no_alignment": 0.04921616390631609,
+      "global_log_offset_fitted_for_evaluation": -0.011109731510864192,
+      "log_rmse_after_explicit_global_alignment": 0.04794585128465113
+    },
+    {
+      "cursor_ns": 14000000,
+      "integrated_count": 50,
+      "observed_pixels": 18,
+      "latest_event_age_ns": 18310,
+      "log_rmse_no_alignment": 0.05864787422176073,
+      "global_log_offset_fitted_for_evaluation": -0.012644356254726858,
+      "log_rmse_after_explicit_global_alignment": 0.057268607505639745
+    },
+    {
+      "cursor_ns": 15000000,
+      "integrated_count": 64,
+      "observed_pixels": 32,
+      "latest_event_age_ns": 464545,
+      "log_rmse_no_alignment": 0.03987962665014819,
+      "global_log_offset_fitted_for_evaluation": -0.009331634020878424,
+      "log_rmse_after_explicit_global_alignment": 0.03877248029537953
+    },
+    {
+      "cursor_ns": 16000000,
+      "integrated_count": 64,
+      "observed_pixels": 32,
+      "latest_event_age_ns": 1464545,
+      "log_rmse_no_alignment": 0.05049082995296988,
+      "global_log_offset_fitted_for_evaluation": -0.011348463272088808,
+      "log_rmse_after_explicit_global_alignment": 0.04919894603242808
+    },
+    {
+      "cursor_ns": 17000000,
+      "integrated_count": 71,
+      "observed_pixels": 32,
+      "latest_event_age_ns": 55556,
+      "log_rmse_no_alignment": 0.049254285140338604,
+      "global_log_offset_fitted_for_evaluation": -0.010508608114729994,
+      "log_rmse_after_explicit_global_alignment": 0.04812020116517398
+    },
+    {
+      "cursor_ns": 18000000,
+      "integrated_count": 80,
+      "observed_pixels": 32,
+      "latest_event_age_ns": 146830,
+      "log_rmse_no_alignment": 0.03705579358043793,
+      "global_log_offset_fitted_for_evaluation": -0.008779181842847206,
+      "log_rmse_after_explicit_global_alignment": 0.03600080282502388
+    },
+    {
+      "cursor_ns": 19000000,
+      "integrated_count": 80,
+      "observed_pixels": 32,
+      "latest_event_age_ns": 1146830,
+      "log_rmse_no_alignment": 0.04581542229193415,
+      "global_log_offset_fitted_for_evaluation": -0.0104687829432498,
+      "log_rmse_after_explicit_global_alignment": 0.044603335116058074
+    },
+    {
+      "cursor_ns": 20000000,
+      "integrated_count": 83,
+      "observed_pixels": 32,
+      "latest_event_age_ns": 674275,
+      "log_rmse_no_alignment": 0.0500392434040887,
+      "global_log_offset_fitted_for_evaluation": -0.010899823784996576,
+      "log_rmse_after_explicit_global_alignment": 0.04883768751599175
+    },
+    {
+      "cursor_ns": 21000000,
+      "integrated_count": 93,
+      "observed_pixels": 32,
+      "latest_event_age_ns": 78063,
+      "log_rmse_no_alignment": 0.03576086702862508,
+      "global_log_offset_fitted_for_evaluation": -0.009972017581207228,
+      "log_rmse_after_explicit_global_alignment": 0.034342371438197135
+    },
+    {
+      "cursor_ns": 22000000,
+      "integrated_count": 95,
+      "observed_pixels": 32,
+      "latest_event_age_ns": 224019,
+      "log_rmse_no_alignment": 0.04161679294764942,
+      "global_log_offset_fitted_for_evaluation": -0.011909873676571064,
+      "log_rmse_after_explicit_global_alignment": 0.039876213012968544
+    },
+    {
+      "cursor_ns": 23000000,
+      "integrated_count": 96,
+      "observed_pixels": 32,
+      "latest_event_age_ns": 111364,
+      "log_rmse_no_alignment": 0.05189767050262676,
+      "global_log_offset_fitted_for_evaluation": -0.01402058090336248,
+      "log_rmse_after_explicit_global_alignment": 0.04996790484632594
+    },
+    {
+      "cursor_ns": 24000000,
+      "integrated_count": 96,
+      "observed_pixels": 32,
+      "latest_event_age_ns": 1111364,
+      "log_rmse_no_alignment": 0.0638764307690148,
+      "global_log_offset_fitted_for_evaluation": -0.016336455647225148,
+      "log_rmse_after_explicit_global_alignment": 0.061752073849183284
+    },
+    {
+      "cursor_ns": 25000000,
+      "integrated_count": 112,
+      "observed_pixels": 48,
+      "latest_event_age_ns": 470861,
+      "log_rmse_no_alignment": 0.04314535937619542,
+      "global_log_offset_fitted_for_evaluation": -0.012242483413376712,
+      "log_rmse_after_explicit_global_alignment": 0.04137201512585833
+    },
+    {
+      "cursor_ns": 26000000,
+      "integrated_count": 112,
+      "observed_pixels": 48,
+      "latest_event_age_ns": 1470861,
+      "log_rmse_no_alignment": 0.05310801562180199,
+      "global_log_offset_fitted_for_evaluation": -0.014259312664587095,
+      "log_rmse_after_explicit_global_alignment": 0.05115792534514189
+    },
+    {
+      "cursor_ns": 27000000,
+      "integrated_count": 113,
+      "observed_pixels": 48,
+      "latest_event_age_ns": 179308,
+      "log_rmse_no_alignment": 0.06146699990211317,
+      "global_log_offset_fitted_for_evaluation": -0.01576320750722828,
+      "log_rmse_after_explicit_global_alignment": 0.05941139087793218
+    },
+    {
+      "cursor_ns": 28000000,
+      "integrated_count": 128,
+      "observed_pixels": 48,
+      "latest_event_age_ns": 164138,
+      "log_rmse_no_alignment": 0.04054959003272253,
+      "global_log_offset_fitted_for_evaluation": -0.011690031235345493,
+      "log_rmse_after_explicit_global_alignment": 0.038827985030626
+    },
+    {
+      "cursor_ns": 29000000,
+      "integrated_count": 128,
+      "observed_pixels": 48,
+      "latest_event_age_ns": 1164138,
+      "log_rmse_no_alignment": 0.04868460058102666,
+      "global_log_offset_fitted_for_evaluation": -0.013379632335748088,
+      "log_rmse_after_explicit_global_alignment": 0.0468099964996186
+    },
+    {
+      "cursor_ns": 30000000,
+      "integrated_count": 129,
+      "observed_pixels": 48,
+      "latest_event_age_ns": 38909,
+      "log_rmse_no_alignment": 0.0554694128689352,
+      "global_log_offset_fitted_for_evaluation": -0.014591923177494864,
+      "log_rmse_after_explicit_global_alignment": 0.053515713038382304
+    },
+    {
+      "cursor_ns": 31000000,
+      "integrated_count": 137,
+      "observed_pixels": 48,
+      "latest_event_age_ns": 52018,
+      "log_rmse_no_alignment": 0.046406486225900344,
+      "global_log_offset_fitted_for_evaluation": -0.014445366973705517,
+      "log_rmse_after_explicit_global_alignment": 0.044100944851892414
+    },
+    {
+      "cursor_ns": 32000000,
+      "integrated_count": 143,
+      "observed_pixels": 48,
+      "latest_event_age_ns": 224753,
+      "log_rmse_no_alignment": 0.04475594786386908,
+      "global_log_offset_fitted_for_evaluation": -0.014820723069069352,
+      "log_rmse_after_explicit_global_alignment": 0.042230806728066686
+    },
+    {
+      "cursor_ns": 33000000,
+      "integrated_count": 144,
+      "observed_pixels": 48,
+      "latest_event_age_ns": 218115,
+      "log_rmse_no_alignment": 0.054447273738407326,
+      "global_log_offset_fitted_for_evaluation": -0.016931430295860767,
+      "log_rmse_after_explicit_global_alignment": 0.05174777565926354
+    },
+    {
+      "cursor_ns": 34000000,
+      "integrated_count": 144,
+      "observed_pixels": 48,
+      "latest_event_age_ns": 1218115,
+      "log_rmse_no_alignment": 0.06596465585246833,
+      "global_log_offset_fitted_for_evaluation": -0.019247305039723432,
+      "log_rmse_after_explicit_global_alignment": 0.0630941920500011
+    },
+    {
+      "cursor_ns": 35000000,
+      "integrated_count": 160,
+      "observed_pixels": 64,
+      "latest_event_age_ns": 510234,
+      "log_rmse_no_alignment": 0.046180725954091485,
+      "global_log_offset_fitted_for_evaluation": -0.015153332805874999,
+      "log_rmse_after_explicit_global_alignment": 0.04362380032185747
+    },
+    {
+      "cursor_ns": 36000000,
+      "integrated_count": 160,
+      "observed_pixels": 64,
+      "latest_event_age_ns": 1510234,
+      "log_rmse_no_alignment": 0.05560214687610011,
+      "global_log_offset_fitted_for_evaluation": -0.01717016205708538,
+      "log_rmse_after_explicit_global_alignment": 0.05288463172004542
+    },
+    {
+      "cursor_ns": 37000000,
+      "integrated_count": 164,
+      "observed_pixels": 64,
+      "latest_event_age_ns": 74850,
+      "log_rmse_no_alignment": 0.05923507796690106,
+      "global_log_offset_fitted_for_evaluation": -0.01750218189972657,
+      "log_rmse_after_explicit_global_alignment": 0.05659035333423649
+    },
+    {
+      "cursor_ns": 38000000,
+      "integrated_count": 176,
+      "observed_pixels": 64,
+      "latest_event_age_ns": 269438,
+      "log_rmse_no_alignment": 0.043765359198431296,
+      "global_log_offset_fitted_for_evaluation": -0.01460088062784378,
+      "log_rmse_after_explicit_global_alignment": 0.04125798044814083
+    },
+    {
+      "cursor_ns": 39000000,
+      "integrated_count": 176,
+      "observed_pixels": 64,
+      "latest_event_age_ns": 1269438,
+      "log_rmse_no_alignment": 0.05139384931759779,
+      "global_log_offset_fitted_for_evaluation": -0.016290481728246375,
+      "log_rmse_after_explicit_global_alignment": 0.04874369654367237
+    },
+    {
+      "cursor_ns": 40000000,
+      "integrated_count": 179,
+      "observed_pixels": 64,
+      "latest_event_age_ns": 165715,
+      "log_rmse_no_alignment": 0.05519239719694483,
+      "global_log_offset_fitted_for_evaluation": -0.016721522569993152,
+      "log_rmse_after_explicit_global_alignment": 0.052598397231156516
+    },
+    {
+      "cursor_ns": 41000000,
+      "integrated_count": 188,
+      "observed_pixels": 64,
+      "latest_event_age_ns": 40507,
+      "log_rmse_no_alignment": 0.04440732679798629,
+      "global_log_offset_fitted_for_evaluation": -0.016184341366203805,
+      "log_rmse_after_explicit_global_alignment": 0.04135308655814383
+    },
+    {
+      "cursor_ns": 42000000,
+      "integrated_count": 191,
+      "observed_pixels": 64,
+      "latest_event_age_ns": 475684,
+      "log_rmse_no_alignment": 0.04768891153233854,
+      "global_log_offset_fitted_for_evaluation": -0.01773157246156764,
+      "log_rmse_after_explicit_global_alignment": 0.04426989520181167
+    },
+    {
+      "cursor_ns": 43000000,
+      "integrated_count": 192,
+      "observed_pixels": 64,
+      "latest_event_age_ns": 765256,
+      "log_rmse_no_alignment": 0.0568827129406721,
+      "global_log_offset_fitted_for_evaluation": -0.019842279688359055,
+      "log_rmse_after_explicit_global_alignment": 0.05330972676969784
+    },
+    {
+      "cursor_ns": 44000000,
+      "integrated_count": 192,
+      "observed_pixels": 64,
+      "latest_event_age_ns": 1765256,
+      "log_rmse_no_alignment": 0.0679887728649402,
+      "global_log_offset_fitted_for_evaluation": -0.022158154432221723,
+      "log_rmse_after_explicit_global_alignment": 0.06427666316664425
+    },
+    {
+      "cursor_ns": 45000000,
+      "integrated_count": 208,
+      "observed_pixels": 80,
+      "latest_event_age_ns": 479988,
+      "log_rmse_no_alignment": 0.0490285311180413,
+      "global_log_offset_fitted_for_evaluation": -0.018064182198373288,
+      "log_rmse_after_explicit_global_alignment": 0.045579405273618014
+    },
+    {
+      "cursor_ns": 46000000,
+      "integrated_count": 208,
+      "observed_pixels": 80,
+      "latest_event_age_ns": 1479988,
+      "log_rmse_no_alignment": 0.0579891037280044,
+      "global_log_offset_fitted_for_evaluation": -0.02008101144958367,
+      "log_rmse_after_explicit_global_alignment": 0.054401186846786194
+    },
+    {
+      "cursor_ns": 47000000,
+      "integrated_count": 212,
+      "observed_pixels": 80,
+      "latest_event_age_ns": 120373,
+      "log_rmse_no_alignment": 0.061481150572274525,
+      "global_log_offset_fitted_for_evaluation": -0.020413031292224857,
+      "log_rmse_after_explicit_global_alignment": 0.05799344815712669
+    },
+    {
+      "cursor_ns": 48000000,
+      "integrated_count": 224,
+      "observed_pixels": 80,
+      "latest_event_age_ns": 188939,
+      "log_rmse_no_alignment": 0.046760497000283896,
+      "global_log_offset_fitted_for_evaluation": -0.017511730020342068,
+      "log_rmse_after_explicit_global_alignment": 0.043357622068192464
+    },
+    {
+      "cursor_ns": 49000000,
+      "integrated_count": 224,
+      "observed_pixels": 80,
+      "latest_event_age_ns": 1188939,
+      "log_rmse_no_alignment": 0.05396726009003784,
+      "global_log_offset_fitted_for_evaluation": -0.019201331120744663,
+      "log_rmse_after_explicit_global_alignment": 0.050435840875485694
+    },
+    {
+      "cursor_ns": 50000000,
+      "integrated_count": 227,
+      "observed_pixels": 80,
+      "latest_event_age_ns": 66358,
+      "log_rmse_no_alignment": 0.05759633775068662,
+      "global_log_offset_fitted_for_evaluation": -0.01963237196249144,
+      "log_rmse_after_explicit_global_alignment": 0.05414709681430342
+    },
+    {
+      "cursor_ns": 51000000,
+      "integrated_count": 237,
+      "observed_pixels": 80,
+      "latest_event_age_ns": 34469,
+      "log_rmse_no_alignment": 0.04574113960622908,
+      "global_log_offset_fitted_for_evaluation": -0.01870456575870209,
+      "log_rmse_after_explicit_global_alignment": 0.04174195817465836
+    },
+    {
+      "cursor_ns": 52000000,
+      "integrated_count": 239,
+      "observed_pixels": 80,
+      "latest_event_age_ns": 499626,
+      "log_rmse_no_alignment": 0.05045165703012198,
+      "global_log_offset_fitted_for_evaluation": -0.020642421854065927,
+      "log_rmse_after_explicit_global_alignment": 0.04603542241669819
+    },
+    {
+      "cursor_ns": 53000000,
+      "integrated_count": 240,
+      "observed_pixels": 80,
+      "latest_event_age_ns": 361391,
+      "log_rmse_no_alignment": 0.05921807532702114,
+      "global_log_offset_fitted_for_evaluation": -0.022753129080857342,
+      "log_rmse_after_explicit_global_alignment": 0.05467243878286933
+    },
+    {
+      "cursor_ns": 54000000,
+      "integrated_count": 241,
+      "observed_pixels": 81,
+      "latest_event_age_ns": 66191,
+      "log_rmse_no_alignment": 0.06862118279416758,
+      "global_log_offset_fitted_for_evaluation": -0.02467837882472001,
+      "log_rmse_after_explicit_global_alignment": 0.06403002691436395
+    },
+    {
+      "cursor_ns": 55000000,
+      "integrated_count": 256,
+      "observed_pixels": 96,
+      "latest_event_age_ns": 585057,
+      "log_rmse_no_alignment": 0.051719766797024405,
+      "global_log_offset_fitted_for_evaluation": -0.020975031590871572,
+      "log_rmse_after_explicit_global_alignment": 0.04727559970323515
+    },
+    {
+      "cursor_ns": 56000000,
+      "integrated_count": 256,
+      "observed_pixels": 96,
+      "latest_event_age_ns": 1585057,
+      "log_rmse_no_alignment": 0.0602816187997892,
+      "global_log_offset_fitted_for_evaluation": -0.022991860842081956,
+      "log_rmse_after_explicit_global_alignment": 0.0557247512344509
+    },
+    {
+      "cursor_ns": 57000000,
+      "integrated_count": 260,
+      "observed_pixels": 96,
+      "latest_event_age_ns": 190251,
+      "log_rmse_no_alignment": 0.06364801088515286,
+      "global_log_offset_fitted_for_evaluation": -0.023323880684723144,
+      "log_rmse_after_explicit_global_alignment": 0.059220485302311866
+    },
+    {
+      "cursor_ns": 58000000,
+      "integrated_count": 272,
+      "observed_pixels": 96,
+      "latest_event_age_ns": 458475,
+      "log_rmse_no_alignment": 0.04957500876106231,
+      "global_log_offset_fitted_for_evaluation": -0.020422579412840355,
+      "log_rmse_after_explicit_global_alignment": 0.04517299794994387
+    },
+    {
+      "cursor_ns": 59000000,
+      "integrated_count": 272,
+      "observed_pixels": 96,
+      "latest_event_age_ns": 1458475,
+      "log_rmse_no_alignment": 0.05642342222492035,
+      "global_log_offset_fitted_for_evaluation": -0.02211218051324295,
+      "log_rmse_after_explicit_global_alignment": 0.05191005729645647
+    },
+    {
+      "cursor_ns": 60000000,
+      "integrated_count": 276,
+      "observed_pixels": 96,
+      "latest_event_age_ns": 59900,
+      "log_rmse_no_alignment": 0.05863087327871346,
+      "global_log_offset_fitted_for_evaluation": -0.022152596354989725,
+      "log_rmse_after_explicit_global_alignment": 0.05428482086327127
+    },
+    {
+      "cursor_ns": 61000000,
+      "integrated_count": 286,
+      "observed_pixels": 96,
+      "latest_event_age_ns": 97732,
+      "log_rmse_no_alignment": 0.047037145232357865,
+      "global_log_offset_fitted_for_evaluation": -0.02122479015120038,
+      "log_rmse_after_explicit_global_alignment": 0.04197619938307224
+    },
+    {
+      "cursor_ns": 62000000,
+      "integrated_count": 288,
+      "observed_pixels": 96,
+      "latest_event_age_ns": 486286,
+      "log_rmse_no_alignment": 0.05162955429033301,
+      "global_log_offset_fitted_for_evaluation": -0.023162646246564216,
+      "log_rmse_after_explicit_global_alignment": 0.04614220080441513
+    },
+    {
+      "cursor_ns": 63000000,
+      "integrated_count": 288,
+      "observed_pixels": 96,
+      "latest_event_age_ns": 1486286,
+      "log_rmse_no_alignment": 0.06146476925347231,
+      "global_log_offset_fitted_for_evaluation": -0.02566397847335563,
+      "log_rmse_after_explicit_global_alignment": 0.05585049747586617
+    },
+    {
+      "cursor_ns": 64000000,
+      "integrated_count": 289,
+      "observed_pixels": 97,
+      "latest_event_age_ns": 96457,
+      "log_rmse_no_alignment": 0.07056914440473545,
+      "global_log_offset_fitted_for_evaluation": -0.027589228217218296,
+      "log_rmse_after_explicit_global_alignment": 0.06495258754194978
+    },
+    {
+      "cursor_ns": 65000000,
+      "integrated_count": 304,
+      "observed_pixels": 112,
+      "latest_event_age_ns": 654271,
+      "log_rmse_no_alignment": 0.05427772739793398,
+      "global_log_offset_fitted_for_evaluation": -0.023885880983369863,
+      "log_rmse_after_explicit_global_alignment": 0.048739474567671776
+    },
+    {
+      "cursor_ns": 66000000,
+      "integrated_count": 304,
+      "observed_pixels": 112,
+      "latest_event_age_ns": 1654271,
+      "log_rmse_no_alignment": 0.06249008704641836,
+      "global_log_offset_fitted_for_evaluation": -0.025902710234580247,
+      "log_rmse_after_explicit_global_alignment": 0.05686880147824742
+    },
+    {
+      "cursor_ns": 67000000,
+      "integrated_count": 309,
+      "observed_pixels": 112,
+      "latest_event_age_ns": 150967,
+      "log_rmse_no_alignment": 0.06435859197128686,
+      "global_log_offset_fitted_for_evaluation": -0.02584410507722143,
+      "log_rmse_after_explicit_global_alignment": 0.05894158628069088
+    },
+    {
+      "cursor_ns": 68000000,
+      "integrated_count": 320,
+      "observed_pixels": 112,
+      "latest_event_age_ns": 622262,
+      "log_rmse_no_alignment": 0.05223809823878783,
+      "global_log_offset_fitted_for_evaluation": -0.023333428805338643,
+      "log_rmse_after_explicit_global_alignment": 0.04673724433245334
+    },
+    {
+      "cursor_ns": 69000000,
+      "integrated_count": 320,
+      "observed_pixels": 112,
+      "latest_event_age_ns": 1622262,
+      "log_rmse_no_alignment": 0.05877703624305568,
+      "global_log_offset_fitted_for_evaluation": -0.025023029905741238,
+      "log_rmse_after_explicit_global_alignment": 0.053184471078068084
+    },
+    {
+      "cursor_ns": 70000000,
+      "integrated_count": 324,
+      "observed_pixels": 112,
+      "latest_event_age_ns": 127452,
+      "log_rmse_no_alignment": 0.06089923411152558,
+      "global_log_offset_fitted_for_evaluation": -0.025063445747488013,
+      "log_rmse_after_explicit_global_alignment": 0.055502616178276905
+    },
+    {
+      "cursor_ns": 71000000,
+      "integrated_count": 335,
+      "observed_pixels": 112,
+      "latest_event_age_ns": 44793,
+      "log_rmse_no_alignment": 0.048298387247850356,
+      "global_log_offset_fitted_for_evaluation": -0.023745014543698664,
+      "log_rmse_after_explicit_global_alignment": 0.04205839387165008
+    },
+    {
+      "cursor_ns": 72000000,
+      "integrated_count": 336,
+      "observed_pixels": 112,
+      "latest_event_age_ns": 966969,
+      "log_rmse_no_alignment": 0.054191773270158713,
+      "global_log_offset_fitted_for_evaluation": -0.026073495639062503,
+      "log_rmse_after_explicit_global_alignment": 0.04750706384659104
+    },
+    {
+      "cursor_ns": 73000000,
+      "integrated_count": 336,
+      "observed_pixels": 112,
+      "latest_event_age_ns": 1966969,
+      "log_rmse_no_alignment": 0.06363218740015496,
+      "global_log_offset_fitted_for_evaluation": -0.028574827865853917,
+      "log_rmse_after_explicit_global_alignment": 0.05685538220577941
+    },
+    {
+      "cursor_ns": 74000000,
+      "integrated_count": 337,
+      "observed_pixels": 113,
+      "latest_event_age_ns": 45716,
+      "log_rmse_no_alignment": 0.0724647607873113,
+      "global_log_offset_fitted_for_evaluation": -0.030500077609716583,
+      "log_rmse_after_explicit_global_alignment": 0.06573345283615882
+    },
+    {
+      "cursor_ns": 75000000,
+      "integrated_count": 352,
+      "observed_pixels": 128,
+      "latest_event_age_ns": 509237,
+      "log_rmse_no_alignment": 0.05672044697840698,
+      "global_log_offset_fitted_for_evaluation": -0.026796730375868147,
+      "log_rmse_after_explicit_global_alignment": 0.04999144273366496
+    },
+    {
+      "cursor_ns": 76000000,
+      "integrated_count": 352,
+      "observed_pixels": 128,
+      "latest_event_age_ns": 1509237,
+      "log_rmse_no_alignment": 0.064623125837542,
+      "global_log_offset_fitted_for_evaluation": -0.02881355962707853,
+      "log_rmse_after_explicit_global_alignment": 0.057843989961201485
+    },
+    {
+      "cursor_ns": 77000000,
+      "integrated_count": 360,
+      "observed_pixels": 128,
+      "latest_event_age_ns": 8882,
+      "log_rmse_no_alignment": 0.06223046476851234,
+      "global_log_offset_fitted_for_evaluation": -0.027583079469719718,
+      "log_rmse_after_explicit_global_alignment": 0.05578355019423004
+    },
+    {
+      "cursor_ns": 78000000,
+      "integrated_count": 368,
+      "observed_pixels": 128,
+      "latest_event_age_ns": 266825,
+      "log_rmse_no_alignment": 0.0547718570212029,
+      "global_log_offset_fitted_for_evaluation": -0.02624427819783693,
+      "log_rmse_after_explicit_global_alignment": 0.04807488100271945
+    },
+    {
+      "cursor_ns": 79000000,
+      "integrated_count": 368,
+      "observed_pixels": 128,
+      "latest_event_age_ns": 1266825,
+      "log_rmse_no_alignment": 0.061039965624689906,
+      "global_log_offset_fitted_for_evaluation": -0.027933879298239525,
+      "log_rmse_after_explicit_global_alignment": 0.05427315902741161
+    },
+    {
+      "cursor_ns": 80000000,
+      "integrated_count": 371,
+      "observed_pixels": 128,
+      "latest_event_age_ns": 65076,
+      "log_rmse_no_alignment": 0.06427091382677473,
+      "global_log_offset_fitted_for_evaluation": -0.028364920139986302,
+      "log_rmse_after_explicit_global_alignment": 0.057673058437895434
+    },
+    {
+      "cursor_ns": 81000000,
+      "integrated_count": 381,
+      "observed_pixels": 128,
+      "latest_event_age_ns": 268559,
+      "log_rmse_no_alignment": 0.053904212213092155,
+      "global_log_offset_fitted_for_evaluation": -0.027437113936196952,
+      "log_rmse_after_explicit_global_alignment": 0.04639901801941739
+    },
+    {
+      "cursor_ns": 82000000,
+      "integrated_count": 383,
+      "observed_pixels": 128,
+      "latest_event_age_ns": 752475,
+      "log_rmse_no_alignment": 0.05795499925737719,
+      "global_log_offset_fitted_for_evaluation": -0.02937497003156079,
+      "log_rmse_after_explicit_global_alignment": 0.04995891386497005
+    },
+    {
+      "cursor_ns": 83000000,
+      "integrated_count": 384,
+      "observed_pixels": 128,
+      "latest_event_age_ns": 753348,
+      "log_rmse_no_alignment": 0.06572817270603439,
+      "global_log_offset_fitted_for_evaluation": -0.031485677258352204,
+      "log_rmse_after_explicit_global_alignment": 0.05769614211415844
+    },
+    {
+      "cursor_ns": 84000000,
+      "integrated_count": 384,
+      "observed_pixels": 128,
+      "latest_event_age_ns": 1753348,
+      "log_rmse_no_alignment": 0.07554484027029118,
+      "global_log_offset_fitted_for_evaluation": -0.03380155200221487,
+      "log_rmse_after_explicit_global_alignment": 0.06756092046224188
+    },
+    {
+      "cursor_ns": 85000000,
+      "integrated_count": 400,
+      "observed_pixels": 144,
+      "latest_event_age_ns": 611666,
+      "log_rmse_no_alignment": 0.05906222582476995,
+      "global_log_offset_fitted_for_evaluation": -0.029707579768366438,
+      "log_rmse_after_explicit_global_alignment": 0.051047098092666034
+    },
+    {
+      "cursor_ns": 86000000,
+      "integrated_count": 400,
+      "observed_pixels": 144,
+      "latest_event_age_ns": 1611666,
+      "log_rmse_no_alignment": 0.06668797348068566,
+      "global_log_offset_fitted_for_evaluation": -0.03172440901957682,
+      "log_rmse_after_explicit_global_alignment": 0.05865873915555316
+    },
+    {
+      "cursor_ns": 87000000,
+      "integrated_count": 405,
+      "observed_pixels": 144,
+      "latest_event_age_ns": 47042,
+      "log_rmse_no_alignment": 0.06844196949546585,
+      "global_log_offset_fitted_for_evaluation": -0.031665803862218005,
+      "log_rmse_after_explicit_global_alignment": 0.06067602536568968
+    },
+    {
+      "cursor_ns": 88000000,
+      "integrated_count": 416,
+      "observed_pixels": 144,
+      "latest_event_age_ns": 522601,
+      "log_rmse_no_alignment": 0.057193476336877255,
+      "global_log_offset_fitted_for_evaluation": -0.029155127590335218,
+      "log_rmse_after_explicit_global_alignment": 0.04920439279869443
+    },
+    {
+      "cursor_ns": 89000000,
+      "integrated_count": 416,
+      "observed_pixels": 144,
+      "latest_event_age_ns": 1522601,
+      "log_rmse_no_alignment": 0.0632219488580443,
+      "global_log_offset_fitted_for_evaluation": -0.030844728690737813,
+      "log_rmse_after_explicit_global_alignment": 0.05518711379845793
+    },
+    {
+      "cursor_ns": 90000000,
+      "integrated_count": 416,
+      "observed_pixels": 144,
+      "latest_event_age_ns": 2522601,
+      "log_rmse_no_alignment": 0.06967479086808887,
+      "global_log_offset_fitted_for_evaluation": -0.03244764453248459,
+      "log_rmse_after_explicit_global_alignment": 0.06165814501592991
+    },
+    {
+      "cursor_ns": 91000000,
+      "integrated_count": 431,
+      "observed_pixels": 144,
+      "latest_event_age_ns": 192784,
+      "log_rmse_no_alignment": 0.0536191107594578,
+      "global_log_offset_fitted_for_evaluation": -0.02956671332869524,
+      "log_rmse_after_explicit_global_alignment": 0.04473050973970405
+    },
+    {
+      "cursor_ns": 92000000,
+      "integrated_count": 432,
+      "observed_pixels": 144,
+      "latest_event_age_ns": 686062,
+      "log_rmse_no_alignment": 0.05898324438394329,
+      "global_log_offset_fitted_for_evaluation": -0.031895194424059074,
+      "log_rmse_after_explicit_global_alignment": 0.04961572019740768
+    },
+    {
+      "cursor_ns": 93000000,
+      "integrated_count": 432,
+      "observed_pixels": 144,
+      "latest_event_age_ns": 1686062,
+      "log_rmse_no_alignment": 0.0677593543447702,
+      "global_log_offset_fitted_for_evaluation": -0.034396526650850495,
+      "log_rmse_after_explicit_global_alignment": 0.05837986858136511
+    },
+    {
+      "cursor_ns": 94000000,
+      "integrated_count": 432,
+      "observed_pixels": 144,
+      "latest_event_age_ns": 2686062,
+      "log_rmse_no_alignment": 0.07731856378263666,
+      "global_log_offset_fitted_for_evaluation": -0.03671240139471316,
+      "log_rmse_after_explicit_global_alignment": 0.06804674782267789
+    },
+    {
+      "cursor_ns": 95000000,
+      "integrated_count": 448,
+      "observed_pixels": 160,
+      "latest_event_age_ns": 537210,
+      "log_rmse_no_alignment": 0.061314630662852136,
+      "global_log_offset_fitted_for_evaluation": -0.03261842916086472,
+      "log_rmse_after_explicit_global_alignment": 0.05191841689034458
+    },
+    {
+      "cursor_ns": 96000000,
+      "integrated_count": 448,
+      "observed_pixels": 160,
+      "latest_event_age_ns": 1537210,
+      "log_rmse_no_alignment": 0.0686907797372142,
+      "global_log_offset_fitted_for_evaluation": -0.034635258412075105,
+      "log_rmse_after_explicit_global_alignment": 0.05931966027916258
+    },
+    {
+      "cursor_ns": 97000000,
+      "integrated_count": 450,
+      "observed_pixels": 160,
+      "latest_event_age_ns": 232115,
+      "log_rmse_no_alignment": 0.07413484761926406,
+      "global_log_offset_fitted_for_evaluation": -0.03574852825471629,
+      "log_rmse_after_explicit_global_alignment": 0.06494627286575613
+    },
+    {
+      "cursor_ns": 98000000,
+      "integrated_count": 464,
+      "observed_pixels": 160,
+      "latest_event_age_ns": 339169,
+      "log_rmse_no_alignment": 0.05951664598616746,
+      "global_log_offset_fitted_for_evaluation": -0.032065976982833505,
+      "log_rmse_after_explicit_global_alignment": 0.05013984712361193
+    },
+    {
+      "cursor_ns": 99000000,
+      "integrated_count": 464,
+      "observed_pixels": 160,
+      "latest_event_age_ns": 1339169,
+      "log_rmse_no_alignment": 0.06533109697039392,
+      "global_log_offset_fitted_for_evaluation": -0.0337555780832361,
+      "log_rmse_after_explicit_global_alignment": 0.05593490126586052
+    },
+    {
+      "cursor_ns": 100000000,
+      "integrated_count": 466,
+      "observed_pixels": 160,
+      "latest_event_age_ns": 139019,
+      "log_rmse_no_alignment": 0.0694544557737864,
+      "global_log_offset_fitted_for_evaluation": -0.034577243924982876,
+      "log_rmse_after_explicit_global_alignment": 0.06023566741877344
+    },
+    {
+      "cursor_ns": 101000000,
+      "integrated_count": 476,
+      "observed_pixels": 160,
+      "latest_event_age_ns": 114387,
+      "log_rmse_no_alignment": 0.059990292189805346,
+      "global_log_offset_fitted_for_evaluation": -0.033649437721193526,
+      "log_rmse_after_explicit_global_alignment": 0.04966437856316877
+    },
+    {
+      "cursor_ns": 102000000,
+      "integrated_count": 480,
+      "observed_pixels": 160,
+      "latest_event_age_ns": 60083,
+      "log_rmse_no_alignment": 0.06123855429385824,
+      "global_log_offset_fitted_for_evaluation": -0.034806043816557365,
+      "log_rmse_after_explicit_global_alignment": 0.050385512261380376
+    },
+    {
+      "cursor_ns": 103000000,
+      "integrated_count": 480,
+      "observed_pixels": 160,
+      "latest_event_age_ns": 1060083,
+      "log_rmse_no_alignment": 0.06973139547697274,
+      "global_log_offset_fitted_for_evaluation": -0.03730737604334878,
+      "log_rmse_after_explicit_global_alignment": 0.05891202939914852
+    },
+    {
+      "cursor_ns": 104000000,
+      "integrated_count": 480,
+      "observed_pixels": 160,
+      "latest_event_age_ns": 2060083,
+      "log_rmse_no_alignment": 0.07905249976664556,
+      "global_log_offset_fitted_for_evaluation": -0.03962325078721145,
+      "log_rmse_after_explicit_global_alignment": 0.06840537783251581
+    },
+    {
+      "cursor_ns": 105000000,
+      "integrated_count": 496,
+      "observed_pixels": 176,
+      "latest_event_age_ns": 535221,
+      "log_rmse_no_alignment": 0.06348717466754851,
+      "global_log_offset_fitted_for_evaluation": -0.03552927855336301,
+      "log_rmse_after_explicit_global_alignment": 0.052614557992492456
+    },
+    {
+      "cursor_ns": 106000000,
+      "integrated_count": 496,
+      "observed_pixels": 176,
+      "latest_event_age_ns": 1535221,
+      "log_rmse_no_alignment": 0.0706368220891365,
+      "global_log_offset_fitted_for_evaluation": -0.037546107804573396,
+      "log_rmse_after_explicit_global_alignment": 0.059831851246469676
+    },
+    {
+      "cursor_ns": 107000000,
+      "integrated_count": 501,
+      "observed_pixels": 176,
+      "latest_event_age_ns": 89120,
+      "log_rmse_no_alignment": 0.0722950760170426,
+      "global_log_offset_fitted_for_evaluation": -0.03748750264721458,
+      "log_rmse_after_explicit_global_alignment": 0.06181638263102305
+    },
+    {
+      "cursor_ns": 108000000,
+      "integrated_count": 512,
+      "observed_pixels": 176,
+      "latest_event_age_ns": 334092,
+      "log_rmse_no_alignment": 0.061752478196333366,
+      "global_log_offset_fitted_for_evaluation": -0.034976826375331796,
+      "log_rmse_after_explicit_global_alignment": 0.050891946122137266
+    },
+    {
+      "cursor_ns": 109000000,
+      "integrated_count": 512,
+      "observed_pixels": 176,
+      "latest_event_age_ns": 1334092,
+      "log_rmse_no_alignment": 0.06737425061031002,
+      "global_log_offset_fitted_for_evaluation": -0.036666427475734384,
+      "log_rmse_after_explicit_global_alignment": 0.05652311687679272
+    },
+    {
+      "cursor_ns": 110000000,
+      "integrated_count": 516,
+      "observed_pixels": 176,
+      "latest_event_age_ns": 39513,
+      "log_rmse_no_alignment": 0.0692334194674348,
+      "global_log_offset_fitted_for_evaluation": -0.03670684331748116,
+      "log_rmse_after_explicit_global_alignment": 0.058701567481794455
+    },
+    {
+      "cursor_ns": 111000000,
+      "integrated_count": 525,
+      "observed_pixels": 176,
+      "latest_event_age_ns": 152821,
+      "log_rmse_no_alignment": 0.060984230225129575,
+      "global_log_offset_fitted_for_evaluation": -0.03616966211369182,
+      "log_rmse_after_explicit_global_alignment": 0.049100222797182645
+    },
+    {
+      "cursor_ns": 112000000,
+      "integrated_count": 528,
+      "observed_pixels": 176,
+      "latest_event_age_ns": 39962,
+      "log_rmse_no_alignment": 0.06341370471710092,
+      "global_log_offset_fitted_for_evaluation": -0.03771689320905565,
+      "log_rmse_after_explicit_global_alignment": 0.05097777861582789
+    },
+    {
+      "cursor_ns": 113000000,
+      "integrated_count": 528,
+      "observed_pixels": 176,
+      "latest_event_age_ns": 1039962,
+      "log_rmse_no_alignment": 0.07164917954248895,
+      "global_log_offset_fitted_for_evaluation": -0.04021822543584706,
+      "log_rmse_after_explicit_global_alignment": 0.05929670540513362
+    },
+    {
+      "cursor_ns": 114000000,
+      "integrated_count": 528,
+      "observed_pixels": 176,
+      "latest_event_age_ns": 2039962,
+      "log_rmse_no_alignment": 0.08074921134785988,
+      "global_log_offset_fitted_for_evaluation": -0.04253410017970973,
+      "log_rmse_after_explicit_global_alignment": 0.06863880429613965
+    },
+    {
+      "cursor_ns": 115000000,
+      "integrated_count": 544,
+      "observed_pixels": 192,
+      "latest_event_age_ns": 565325,
+      "log_rmse_no_alignment": 0.06558779430056827,
+      "global_log_offset_fitted_for_evaluation": -0.0384401279458613,
+      "log_rmse_after_explicit_global_alignment": 0.05314240608703628
+    },
+    {
+      "cursor_ns": 116000000,
+      "integrated_count": 544,
+      "observed_pixels": 192,
+      "latest_event_age_ns": 1565325,
+      "log_rmse_no_alignment": 0.0725306697114963,
+      "global_log_offset_fitted_for_evaluation": -0.04045695719707168,
+      "log_rmse_after_explicit_global_alignment": 0.06019910849134294
+    },
+    {
+      "cursor_ns": 117000000,
+      "integrated_count": 547,
+      "observed_pixels": 192,
+      "latest_event_age_ns": 21409,
+      "log_rmse_no_alignment": 0.07653804358858017,
+      "global_log_offset_fitted_for_evaluation": -0.04117960203971287,
+      "log_rmse_after_explicit_global_alignment": 0.06451598633066284
+    },
+    {
+      "cursor_ns": 118000000,
+      "integrated_count": 560,
+      "observed_pixels": 192,
+      "latest_event_age_ns": 409921,
+      "log_rmse_no_alignment": 0.06391013986320537,
+      "global_log_offset_fitted_for_evaluation": -0.03788767576783008,
+      "log_rmse_after_explicit_global_alignment": 0.051468728391580204
+    },
+    {
+      "cursor_ns": 119000000,
+      "integrated_count": 560,
+      "observed_pixels": 192,
+      "latest_event_age_ns": 1409921,
+      "log_rmse_no_alignment": 0.06935724229845579,
+      "global_log_offset_fitted_for_evaluation": -0.039577276868232675,
+      "log_rmse_after_explicit_global_alignment": 0.05695670474089911
+    },
+    {
+      "cursor_ns": 120000000,
+      "integrated_count": 562,
+      "observed_pixels": 192,
+      "latest_event_age_ns": 127544,
+      "log_rmse_no_alignment": 0.07325432584308274,
+      "global_log_offset_fitted_for_evaluation": -0.04039894270997945,
+      "log_rmse_after_explicit_global_alignment": 0.06110746012264245
+    },
+    {
+      "cursor_ns": 121000000,
+      "integrated_count": 573,
+      "observed_pixels": 192,
+      "latest_event_age_ns": 243,
+      "log_rmse_no_alignment": 0.063168138725923,
+      "global_log_offset_fitted_for_evaluation": -0.0390805115061901,
+      "log_rmse_after_explicit_global_alignment": 0.04962788903945034
+    },
+    {
+      "cursor_ns": 122000000,
+      "integrated_count": 576,
+      "observed_pixels": 192,
+      "latest_event_age_ns": 322591,
+      "log_rmse_no_alignment": 0.06551668001275333,
+      "global_log_offset_fitted_for_evaluation": -0.04062774260155394,
+      "log_rmse_after_explicit_global_alignment": 0.05139865650963449
+    },
+    {
+      "cursor_ns": 123000000,
+      "integrated_count": 576,
+      "observed_pixels": 192,
+      "latest_event_age_ns": 1322591,
+      "log_rmse_no_alignment": 0.07351695275960275,
+      "global_log_offset_fitted_for_evaluation": -0.043129074828345354,
+      "log_rmse_after_explicit_global_alignment": 0.05953675543316624
+    },
+    {
+      "cursor_ns": 124000000,
+      "integrated_count": 576,
+      "observed_pixels": 192,
+      "latest_event_age_ns": 2322591,
+      "log_rmse_no_alignment": 0.08241099773238514,
+      "global_log_offset_fitted_for_evaluation": -0.04544494957220802,
+      "log_rmse_after_explicit_global_alignment": 0.0687483025654209
+    },
+    {
+      "cursor_ns": 125000000,
+      "integrated_count": 592,
+      "observed_pixels": 208,
+      "latest_event_age_ns": 562960,
+      "log_rmse_no_alignment": 0.06762319258331051,
+      "global_log_offset_fitted_for_evaluation": -0.04135097733835959,
+      "log_rmse_after_explicit_global_alignment": 0.05350694205728799
+    },
+    {
+      "cursor_ns": 126000000,
+      "integrated_count": 592,
+      "observed_pixels": 208,
+      "latest_event_age_ns": 1562960,
+      "log_rmse_no_alignment": 0.07437630982203952,
+      "global_log_offset_fitted_for_evaluation": -0.04336780658956997,
+      "log_rmse_after_explicit_global_alignment": 0.06042407479104388
+    },
+    {
+      "cursor_ns": 127000000,
+      "integrated_count": 597,
+      "observed_pixels": 208,
+      "latest_event_age_ns": 4143,
+      "log_rmse_no_alignment": 0.07595296468342534,
+      "global_log_offset_fitted_for_evaluation": -0.043309201432211154,
+      "log_rmse_after_explicit_global_alignment": 0.062395239525991214
+    },
+    {
+      "cursor_ns": 128000000,
+      "integrated_count": 608,
+      "observed_pixels": 208,
+      "latest_event_age_ns": 404043,
+      "log_rmse_no_alignment": 0.06599729836349605,
+      "global_log_offset_fitted_for_evaluation": -0.040798525160328364,
+      "log_rmse_after_explicit_global_alignment": 0.05187604202348489
+    },
+    {
+      "cursor_ns": 129000000,
+      "integrated_count": 608,
+      "observed_pixels": 208,
+      "latest_event_age_ns": 1404043,
+      "log_rmse_no_alignment": 0.07128509292406476,
+      "global_log_offset_fitted_for_evaluation": -0.042488126260730966,
+      "log_rmse_after_explicit_global_alignment": 0.05723917889037834
+    },
+    {
+      "cursor_ns": 130000000,
+      "integrated_count": 610,
+      "observed_pixels": 208,
+      "latest_event_age_ns": 44947,
+      "log_rmse_no_alignment": 0.07508217943473926,
+      "global_log_offset_fitted_for_evaluation": -0.04330979210247774,
+      "log_rmse_after_explicit_global_alignment": 0.06133184798056015
+    },
+    {
+      "cursor_ns": 131000000,
+      "integrated_count": 621,
+      "observed_pixels": 208,
+      "latest_event_age_ns": 63032,
+      "log_rmse_no_alignment": 0.06527902545261607,
+      "global_log_offset_fitted_for_evaluation": -0.04199136089868839,
+      "log_rmse_after_explicit_global_alignment": 0.049980764038972045
+    },
+    {
+      "cursor_ns": 132000000,
+      "integrated_count": 624,
+      "observed_pixels": 208,
+      "latest_event_age_ns": 301937,
+      "log_rmse_no_alignment": 0.06755422099202504,
+      "global_log_offset_fitted_for_evaluation": -0.043538591994052224,
+      "log_rmse_after_explicit_global_alignment": 0.05165233567821313
+    },
+    {
+      "cursor_ns": 133000000,
+      "integrated_count": 624,
+      "observed_pixels": 208,
+      "latest_event_age_ns": 1301937,
+      "log_rmse_no_alignment": 0.07533843479263096,
+      "global_log_offset_fitted_for_evaluation": -0.046039924220843645,
+      "log_rmse_after_explicit_global_alignment": 0.05963392603830879
+    },
+    {
+      "cursor_ns": 134000000,
+      "integrated_count": 624,
+      "observed_pixels": 208,
+      "latest_event_age_ns": 2301937,
+      "log_rmse_no_alignment": 0.08403993075433268,
+      "global_log_offset_fitted_for_evaluation": -0.048355798964706306,
+      "log_rmse_after_explicit_global_alignment": 0.0687344649188305
+    },
+    {
+      "cursor_ns": 135000000,
+      "integrated_count": 640,
+      "observed_pixels": 224,
+      "latest_event_age_ns": 633604,
+      "log_rmse_no_alignment": 0.06959909186983222,
+      "global_log_offset_fitted_for_evaluation": -0.04426182673085787,
+      "log_rmse_after_explicit_global_alignment": 0.05371149116858386
+    },
+    {
+      "cursor_ns": 136000000,
+      "integrated_count": 640,
+      "observed_pixels": 224,
+      "latest_event_age_ns": 1633604,
+      "log_rmse_no_alignment": 0.07617724644990692,
+      "global_log_offset_fitted_for_evaluation": -0.046278655982068255,
+      "log_rmse_after_explicit_global_alignment": 0.060508337253499495
+    },
+    {
+      "cursor_ns": 137000000,
+      "integrated_count": 644,
+      "observed_pixels": 224,
+      "latest_event_age_ns": 4889,
+      "log_rmse_no_alignment": 0.07886804550135178,
+      "global_log_offset_fitted_for_evaluation": -0.046610675824709444,
+      "log_rmse_after_explicit_global_alignment": 0.06362085743187638
+    },
+    {
+      "cursor_ns": 138000000,
+      "integrated_count": 656,
+      "observed_pixels": 224,
+      "latest_event_age_ns": 574364,
+      "log_rmse_no_alignment": 0.06802044402402974,
+      "global_log_offset_fitted_for_evaluation": -0.043709374552826655,
+      "log_rmse_after_explicit_global_alignment": 0.05211786048397298
+    },
+    {
+      "cursor_ns": 139000000,
+      "integrated_count": 656,
+      "observed_pixels": 224,
+      "latest_event_age_ns": 1574364,
+      "log_rmse_no_alignment": 0.07316216158054922,
+      "global_log_offset_fitted_for_evaluation": -0.04539897565322925,
+      "log_rmse_after_explicit_global_alignment": 0.057372771388315306
+    },
+    {
+      "cursor_ns": 140000000,
+      "integrated_count": 657,
+      "observed_pixels": 224,
+      "latest_event_age_ns": 579886,
+      "log_rmse_no_alignment": 0.07784193803746593,
+      "global_log_offset_fitted_for_evaluation": -0.046611266494976024,
+      "log_rmse_after_explicit_global_alignment": 0.062343862193186356
+    },
+    {
+      "cursor_ns": 141000000,
+      "integrated_count": 669,
+      "observed_pixels": 224,
+      "latest_event_age_ns": 110108,
+      "log_rmse_no_alignment": 0.06732375938692922,
+      "global_log_offset_fitted_for_evaluation": -0.04490221029118668,
+      "log_rmse_after_explicit_global_alignment": 0.050162536707738285
+    },
+    {
+      "cursor_ns": 142000000,
+      "integrated_count": 672,
+      "observed_pixels": 224,
+      "latest_event_age_ns": 835944,
+      "log_rmse_no_alignment": 0.06953208027799256,
+      "global_log_offset_fitted_for_evaluation": -0.046449441386550515,
+      "log_rmse_after_explicit_global_alignment": 0.05174127542554986
+    },
+    {
+      "cursor_ns": 143000000,
+      "integrated_count": 672,
+      "observed_pixels": 224,
+      "latest_event_age_ns": 1835944,
+      "log_rmse_no_alignment": 0.07711690586991514,
+      "global_log_offset_fitted_for_evaluation": -0.04895077361334193,
+      "log_rmse_after_explicit_global_alignment": 0.05958891619760088
+    },
+    {
+      "cursor_ns": 144000000,
+      "integrated_count": 672,
+      "observed_pixels": 224,
+      "latest_event_age_ns": 2835944,
+      "log_rmse_no_alignment": 0.08563788516269465,
+      "global_log_offset_fitted_for_evaluation": -0.0512666483572046,
+      "log_rmse_after_explicit_global_alignment": 0.06859721671728096
+    },
+    {
+      "cursor_ns": 145000000,
+      "integrated_count": 688,
+      "observed_pixels": 240,
+      "latest_event_age_ns": 461842,
+      "log_rmse_no_alignment": 0.07152042367779424,
+      "global_log_offset_fitted_for_evaluation": -0.04717267612335616,
+      "log_rmse_after_explicit_global_alignment": 0.05375787970532446
+    },
+    {
+      "cursor_ns": 146000000,
+      "integrated_count": 688,
+      "observed_pixels": 240,
+      "latest_event_age_ns": 1461842,
+      "log_rmse_no_alignment": 0.07793657864337965,
+      "global_log_offset_fitted_for_evaluation": -0.049189505374566546,
+      "log_rmse_after_explicit_global_alignment": 0.06045248424706127
+    },
+    {
+      "cursor_ns": 147000000,
+      "integrated_count": 689,
+      "observed_pixels": 240,
+      "latest_event_age_ns": 208023,
+      "log_rmse_no_alignment": 0.08385607338956742,
+      "global_log_offset_fitted_for_evaluation": -0.05069340021720773,
+      "log_rmse_after_explicit_global_alignment": 0.06679835491039073
+    },
+    {
+      "cursor_ns": 148000000,
+      "integrated_count": 704,
+      "observed_pixels": 240,
+      "latest_event_age_ns": 139387,
+      "log_rmse_no_alignment": 0.06998512855722998,
+      "global_log_offset_fitted_for_evaluation": -0.046620223945324946,
+      "log_rmse_after_explicit_global_alignment": 0.05219648396644891
+    },
+    {
+      "cursor_ns": 149000000,
+      "integrated_count": 704,
+      "observed_pixels": 240,
+      "latest_event_age_ns": 1139387,
+      "log_rmse_no_alignment": 0.07499226160801019,
+      "global_log_offset_fitted_for_evaluation": -0.048309825045727534,
+      "log_rmse_after_explicit_global_alignment": 0.0573585225152761
+    },
+    {
+      "cursor_ns": 150000000,
+      "integrated_count": 705,
+      "observed_pixels": 240,
+      "latest_event_age_ns": 93715,
+      "log_rmse_no_alignment": 0.0795644690259071,
+      "global_log_offset_fitted_for_evaluation": -0.049522115887474315,
+      "log_rmse_after_explicit_global_alignment": 0.062274109944680016
+    },
+    {
+      "cursor_ns": 151000000,
+      "integrated_count": 716,
+      "observed_pixels": 240,
+      "latest_event_age_ns": 68541,
+      "log_rmse_no_alignment": 0.07038836712658877,
+      "global_log_offset_fitted_for_evaluation": -0.048203684683684966,
+      "log_rmse_after_explicit_global_alignment": 0.051292562907923785
+    },
+    {
+      "cursor_ns": 152000000,
+      "integrated_count": 719,
+      "observed_pixels": 240,
+      "latest_event_age_ns": 761918,
+      "log_rmse_no_alignment": 0.07250340568927438,
+      "global_log_offset_fitted_for_evaluation": -0.049750915779048804,
+      "log_rmse_after_explicit_global_alignment": 0.052740783229769134
+    },
+    {
+      "cursor_ns": 153000000,
+      "integrated_count": 720,
+      "observed_pixels": 240,
+      "latest_event_age_ns": 63537,
+      "log_rmse_no_alignment": 0.07885527620200945,
+      "global_log_offset_fitted_for_evaluation": -0.05186162300584021,
+      "log_rmse_after_explicit_global_alignment": 0.05940140271151265
+    },
+    {
+      "cursor_ns": 154000000,
+      "integrated_count": 721,
+      "observed_pixels": 241,
+      "latest_event_age_ns": 217067,
+      "log_rmse_no_alignment": 0.08614081998407612,
+      "global_log_offset_fitted_for_evaluation": -0.05378687274970288,
+      "log_rmse_after_explicit_global_alignment": 0.06728456871628351
+    },
+    {
+      "cursor_ns": 155000000,
+      "integrated_count": 736,
+      "observed_pixels": 256,
+      "latest_event_age_ns": 549321,
+      "log_rmse_no_alignment": 0.07339147373501255,
+      "global_log_offset_fitted_for_evaluation": -0.050083525515854446,
+      "log_rmse_after_explicit_global_alignment": 0.05364651795689812
+    },
+    {
+      "cursor_ns": 156000000,
+      "integrated_count": 736,
+      "observed_pixels": 256,
+      "latest_event_age_ns": 1549321,
+      "log_rmse_no_alignment": 0.0796570631179781,
+      "global_log_offset_fitted_for_evaluation": -0.05210035476706483,
+      "log_rmse_after_explicit_global_alignment": 0.06025612614272122
+    },
+    {
+      "cursor_ns": 157000000,
+      "integrated_count": 741,
+      "observed_pixels": 256,
+      "latest_event_age_ns": 4139,
+      "log_rmse_no_alignment": 0.08113115977255096,
+      "global_log_offset_fitted_for_evaluation": -0.05204174960970602,
+      "log_rmse_after_explicit_global_alignment": 0.06224083373156127
+    },
+    {
+      "cursor_ns": 158000000,
+      "integrated_count": 752,
+      "observed_pixels": 256,
+      "latest_event_age_ns": 369881,
+      "log_rmse_no_alignment": 0.0718961447722884,
+      "global_log_offset_fitted_for_evaluation": -0.04953107333782323,
+      "log_rmse_after_explicit_global_alignment": 0.05211265112351346
+    },
+    {
+      "cursor_ns": 159000000,
+      "integrated_count": 753,
+      "observed_pixels": 256,
+      "latest_event_age_ns": 274251,
+      "log_rmse_no_alignment": 0.0760536217169261,
+      "global_log_offset_fitted_for_evaluation": -0.050830049438225826,
+      "log_rmse_after_explicit_global_alignment": 0.056572603355058836
+    },
+    {
+      "cursor_ns": 160000000,
+      "integrated_count": 755,
+      "observed_pixels": 256,
+      "latest_event_age_ns": 141001,
+      "log_rmse_no_alignment": 0.07937159237217974,
+      "global_log_offset_fitted_for_evaluation": -0.0516517152799726,
+      "log_rmse_after_explicit_global_alignment": 0.06026566173478978
+    },
+    {
+      "cursor_ns": 161000000,
+      "integrated_count": 766,
+      "observed_pixels": 256,
+      "latest_event_age_ns": 150284,
+      "log_rmse_no_alignment": 0.07017027270196671,
+      "global_log_offset_fitted_for_evaluation": -0.05033328407618325,
+      "log_rmse_after_explicit_global_alignment": 0.048892000216544745
+    },
+    {
+      "cursor_ns": 162000000,
+      "integrated_count": 768,
+      "observed_pixels": 256,
+      "latest_event_age_ns": 177937,
+      "log_rmse_no_alignment": 0.07332792793797525,
+      "global_log_offset_fitted_for_evaluation": -0.05227114017154709,
+      "log_rmse_after_explicit_global_alignment": 0.051426772413241804
+    },
+    {
+      "cursor_ns": 163000000,
+      "integrated_count": 769,
+      "observed_pixels": 256,
+      "latest_event_age_ns": 219999,
+      "log_rmse_no_alignment": 0.08058936508019271,
+      "global_log_offset_fitted_for_evaluation": -0.054381847398338505,
+      "log_rmse_after_explicit_global_alignment": 0.059474872320774336
+    },
+    {
+      "cursor_ns": 164000000,
+      "integrated_count": 769,
+      "observed_pixels": 256,
+      "latest_event_age_ns": 1219999,
+      "log_rmse_no_alignment": 0.08877767719544204,
+      "global_log_offset_fitted_for_evaluation": -0.05669772214220117,
+      "log_rmse_after_explicit_global_alignment": 0.06831430503272254
+    },
+    {
+      "cursor_ns": 165000000,
+      "integrated_count": 785,
+      "observed_pixels": 272,
+      "latest_event_age_ns": 498980,
+      "log_rmse_no_alignment": 0.07525157537308055,
+      "global_log_offset_fitted_for_evaluation": -0.05260374990835274,
+      "log_rmse_after_explicit_global_alignment": 0.05381119857157898
+    },
+    {
+      "cursor_ns": 166000000,
+      "integrated_count": 785,
+      "observed_pixels": 272,
+      "latest_event_age_ns": 1498980,
+      "log_rmse_no_alignment": 0.08137406763653231,
+      "global_log_offset_fitted_for_evaluation": -0.05462057915956312,
+      "log_rmse_after_explicit_global_alignment": 0.060318581017699956
+    },
+    {
+      "cursor_ns": 167000000,
+      "integrated_count": 789,
+      "observed_pixels": 272,
+      "latest_event_age_ns": 114220,
+      "log_rmse_no_alignment": 0.08389835879341366,
+      "global_log_offset_fitted_for_evaluation": -0.054952599002204304,
+      "log_rmse_after_explicit_global_alignment": 0.06339673864743602
+    },
+    {
+      "cursor_ns": 168000000,
+      "integrated_count": 801,
+      "observed_pixels": 272,
+      "latest_event_age_ns": 239782,
+      "log_rmse_no_alignment": 0.07379394834436791,
+      "global_log_offset_fitted_for_evaluation": -0.052051297730321515,
+      "log_rmse_after_explicit_global_alignment": 0.05230878718571733
+    },
+    {
+      "cursor_ns": 169000000,
+      "integrated_count": 801,
+      "observed_pixels": 272,
+      "latest_event_age_ns": 1239782,
+      "log_rmse_no_alignment": 0.07855869076151582,
+      "global_log_offset_fitted_for_evaluation": -0.05374089883072411,
+      "log_rmse_after_explicit_global_alignment": 0.05730081750751334
+    },
+    {
+      "cursor_ns": 170000000,
+      "integrated_count": 804,
+      "observed_pixels": 272,
+      "latest_event_age_ns": 271341,
+      "log_rmse_no_alignment": 0.08109464134472048,
+      "global_log_offset_fitted_for_evaluation": -0.05417193967247089,
+      "log_rmse_after_explicit_global_alignment": 0.060346845874088756
+    },
+    {
+      "cursor_ns": 171000000,
+      "integrated_count": 813,
+      "observed_pixels": 272,
+      "latest_event_age_ns": 159033,
+      "log_rmse_no_alignment": 0.07417648427788065,
+      "global_log_offset_fitted_for_evaluation": -0.05363475846868154,
+      "log_rmse_after_explicit_global_alignment": 0.05123927696438416
+    },
+    {
+      "cursor_ns": 172000000,
+      "integrated_count": 815,
+      "observed_pixels": 272,
+      "latest_event_age_ns": 564846,
+      "log_rmse_no_alignment": 0.07717038722486232,
+      "global_log_offset_fitted_for_evaluation": -0.05557261456404538,
+      "log_rmse_after_explicit_global_alignment": 0.05354393686451572
+    },
+    {
+      "cursor_ns": 173000000,
+      "integrated_count": 817,
+      "observed_pixels": 272,
+      "latest_event_age_ns": 625812,
+      "log_rmse_no_alignment": 0.08225438090445049,
+      "global_log_offset_fitted_for_evaluation": -0.05729269679083679,
+      "log_rmse_after_explicit_global_alignment": 0.059019743073040136
+    },
+    {
+      "cursor_ns": 174000000,
+      "integrated_count": 818,
+      "observed_pixels": 273,
+      "latest_event_age_ns": 21279,
+      "log_rmse_no_alignment": 0.08926292321343862,
+      "global_log_offset_fitted_for_evaluation": -0.05921794653469946,
+      "log_rmse_after_explicit_global_alignment": 0.06679149847713942
+    },
+    {
+      "cursor_ns": 175000000,
+      "integrated_count": 833,
+      "observed_pixels": 288,
+      "latest_event_age_ns": 407567,
+      "log_rmse_no_alignment": 0.07703205183607839,
+      "global_log_offset_fitted_for_evaluation": -0.05551459930085102,
+      "log_rmse_after_explicit_global_alignment": 0.05340474018794792
+    },
+    {
+      "cursor_ns": 176000000,
+      "integrated_count": 833,
+      "observed_pixels": 288,
+      "latest_event_age_ns": 1407567,
+      "log_rmse_no_alignment": 0.08302334790684351,
+      "global_log_offset_fitted_for_evaluation": -0.057531428552061406,
+      "log_rmse_after_explicit_global_alignment": 0.05985825779639625
+    },
+    {
+      "cursor_ns": 177000000,
+      "integrated_count": 837,
+      "observed_pixels": 288,
+      "latest_event_age_ns": 2761,
+      "log_rmse_no_alignment": 0.08549895918766623,
+      "global_log_offset_fitted_for_evaluation": -0.057863448394702595,
+      "log_rmse_after_explicit_global_alignment": 0.06294357284145703
+    },
+    {
+      "cursor_ns": 178000000,
+      "integrated_count": 848,
+      "observed_pixels": 288,
+      "latest_event_age_ns": 230987,
+      "log_rmse_no_alignment": 0.07708123985416819,
+      "global_log_offset_fitted_for_evaluation": -0.055352772122819804,
+      "log_rmse_after_explicit_global_alignment": 0.05364315572162948
+    },
+    {
+      "cursor_ns": 179000000,
+      "integrated_count": 849,
+      "observed_pixels": 288,
+      "latest_event_age_ns": 991547,
+      "log_rmse_no_alignment": 0.0802658414776131,
+      "global_log_offset_fitted_for_evaluation": -0.0566517482232224,
+      "log_rmse_after_explicit_global_alignment": 0.056861100335483604
+    },
+    {
+      "cursor_ns": 180000000,
+      "integrated_count": 850,
+      "observed_pixels": 288,
+      "latest_event_age_ns": 729246,
+      "log_rmse_no_alignment": 0.08455336030223522,
+      "global_log_offset_fitted_for_evaluation": -0.057864039064969175,
+      "log_rmse_after_explicit_global_alignment": 0.06165244294825087
+    },
+    {
+      "cursor_ns": 181000000,
+      "integrated_count": 861,
+      "observed_pixels": 288,
+      "latest_event_age_ns": 75760,
+      "log_rmse_no_alignment": 0.07598215733823646,
+      "global_log_offset_fitted_for_evaluation": -0.05654560786117983,
+      "log_rmse_after_explicit_global_alignment": 0.050753152270397936
+    },
+    {
+      "cursor_ns": 182000000,
+      "integrated_count": 863,
+      "observed_pixels": 288,
+      "latest_event_age_ns": 408447,
+      "log_rmse_no_alignment": 0.0789075793468602,
+      "global_log_offset_fitted_for_evaluation": -0.05848346395654366,
+      "log_rmse_after_explicit_global_alignment": 0.05297254498346003
+    },
+    {
+      "cursor_ns": 183000000,
+      "integrated_count": 864,
+      "observed_pixels": 288,
+      "latest_event_age_ns": 582527,
+      "log_rmse_no_alignment": 0.0847809933106043,
+      "global_log_offset_fitted_for_evaluation": -0.06059417118333508,
+      "log_rmse_after_explicit_global_alignment": 0.059297244837660176
+    },
+    {
+      "cursor_ns": 184000000,
+      "integrated_count": 865,
+      "observed_pixels": 289,
+      "latest_event_age_ns": 14524,
+      "log_rmse_no_alignment": 0.0915964142822553,
+      "global_log_offset_fitted_for_evaluation": -0.06251942092719774,
+      "log_rmse_after_explicit_global_alignment": 0.06694195333491854
+    },
+    {
+      "cursor_ns": 185000000,
+      "integrated_count": 881,
+      "observed_pixels": 304,
+      "latest_event_age_ns": 527386,
+      "log_rmse_no_alignment": 0.0787722947743819,
+      "global_log_offset_fitted_for_evaluation": -0.05842544869334931,
+      "log_rmse_after_explicit_global_alignment": 0.052835039216441594
+    },
+    {
+      "cursor_ns": 186000000,
+      "integrated_count": 881,
+      "observed_pixels": 304,
+      "latest_event_age_ns": 1527386,
+      "log_rmse_no_alignment": 0.08464049687712509,
+      "global_log_offset_fitted_for_evaluation": -0.0604422779445597,
+      "log_rmse_after_explicit_global_alignment": 0.05925153794188988
+    },
+    {
+      "cursor_ns": 187000000,
+      "integrated_count": 887,
+      "observed_pixels": 304,
+      "latest_event_age_ns": 131440,
+      "log_rmse_no_alignment": 0.08497560090995812,
+      "global_log_offset_fitted_for_evaluation": -0.05999304778720088,
+      "log_rmse_after_explicit_global_alignment": 0.06018045336495155
+    },
+    {
+      "cursor_ns": 188000000,
+      "integrated_count": 897,
+      "observed_pixels": 304,
+      "latest_event_age_ns": 313992,
+      "log_rmse_no_alignment": 0.07738101601906587,
+      "global_log_offset_fitted_for_evaluation": -0.05787299651531809,
+      "log_rmse_after_explicit_global_alignment": 0.05136670044377884
+    },
+    {
+      "cursor_ns": 189000000,
+      "integrated_count": 897,
+      "observed_pixels": 304,
+      "latest_event_age_ns": 1313992,
+      "log_rmse_no_alignment": 0.08193743175164303,
+      "global_log_offset_fitted_for_evaluation": -0.059562597615720685,
+      "log_rmse_after_explicit_global_alignment": 0.056267572253678275
+    },
+    {
+      "cursor_ns": 190000000,
+      "integrated_count": 902,
+      "observed_pixels": 304,
+      "latest_event_age_ns": 8248,
+      "log_rmse_no_alignment": 0.08256405521227517,
+      "global_log_offset_fitted_for_evaluation": -0.059212388457467464,
+      "log_rmse_after_explicit_global_alignment": 0.05753882399091588
+    },
+    {
+      "cursor_ns": 191000000,
+      "integrated_count": 912,
+      "observed_pixels": 304,
+      "latest_event_age_ns": 82556,
+      "log_rmse_no_alignment": 0.07477791748424793,
+      "global_log_offset_fitted_for_evaluation": -0.058284582253678115,
+      "log_rmse_after_explicit_global_alignment": 0.04684703208096778
+    },
+    {
+      "cursor_ns": 192000000,
+      "integrated_count": 912,
+      "observed_pixels": 304,
+      "latest_event_age_ns": 1082556,
+      "log_rmse_no_alignment": 0.07966584749762239,
+      "global_log_offset_fitted_for_evaluation": -0.06100368834904195,
+      "log_rmse_after_explicit_global_alignment": 0.05123667890610582
+    },
+    {
+      "cursor_ns": 193000000,
+      "integrated_count": 913,
+      "observed_pixels": 304,
+      "latest_event_age_ns": 958366,
+      "log_rmse_no_alignment": 0.0854871803597833,
+      "global_log_offset_fitted_for_evaluation": -0.06311439557583337,
+      "log_rmse_after_explicit_global_alignment": 0.05765961391618353
+    },
+    {
+      "cursor_ns": 194000000,
+      "integrated_count": 913,
+      "observed_pixels": 304,
+      "latest_event_age_ns": 1958366,
+      "log_rmse_no_alignment": 0.09324638443422696,
+      "global_log_offset_fitted_for_evaluation": -0.06543027031969603,
+      "log_rmse_after_explicit_global_alignment": 0.06643619447219376
+    },
+    {
+      "cursor_ns": 195000000,
+      "integrated_count": 929,
+      "observed_pixels": 320,
+      "latest_event_age_ns": 526647,
+      "log_rmse_no_alignment": 0.08047491433961243,
+      "global_log_offset_fitted_for_evaluation": -0.0613362980858476,
+      "log_rmse_after_explicit_global_alignment": 0.052096740541918804
+    },
+    {
+      "cursor_ns": 196000000,
+      "integrated_count": 929,
+      "observed_pixels": 320,
+      "latest_event_age_ns": 1526647,
+      "log_rmse_no_alignment": 0.08622732238422151,
+      "global_log_offset_fitted_for_evaluation": -0.06335312733705799,
+      "log_rmse_after_explicit_global_alignment": 0.058493866192678566
+    },
+    {
+      "cursor_ns": 197000000,
+      "integrated_count": 933,
+      "observed_pixels": 320,
+      "latest_event_age_ns": 109691,
+      "log_rmse_no_alignment": 0.08861346878475025,
+      "global_log_offset_fitted_for_evaluation": -0.06368514717969917,
+      "log_rmse_after_explicit_global_alignment": 0.06161614138167013
+    },
+    {
+      "cursor_ns": 198000000,
+      "integrated_count": 945,
+      "observed_pixels": 320,
+      "latest_event_age_ns": 312088,
+      "log_rmse_no_alignment": 0.07911358324642345,
+      "global_log_offset_fitted_for_evaluation": -0.06078384590781638,
+      "log_rmse_after_explicit_global_alignment": 0.05063875127551634
+    },
+    {
+      "cursor_ns": 199000000,
+      "integrated_count": 945,
+      "observed_pixels": 320,
+      "latest_event_age_ns": 1312088,
+      "log_rmse_no_alignment": 0.08357559533740101,
+      "global_log_offset_fitted_for_evaluation": -0.062473447008218976,
+      "log_rmse_after_explicit_global_alignment": 0.05551530018753623
+    },
+    {
+      "cursor_ns": 200000000,
+      "integrated_count": 948,
+      "observed_pixels": 320,
+      "latest_event_age_ns": 353384,
+      "log_rmse_no_alignment": 0.0859636731222345,
+      "global_log_offset_fitted_for_evaluation": -0.06290448784996575,
+      "log_rmse_after_explicit_global_alignment": 0.05858991811736806
+    },
+    {
+      "cursor_ns": 201000000,
+      "integrated_count": 959,
+      "observed_pixels": 320,
+      "latest_event_age_ns": 102297,
+      "log_rmse_no_alignment": 0.07754850476984901,
+      "global_log_offset_fitted_for_evaluation": -0.061586056646176404,
+      "log_rmse_after_explicit_global_alignment": 0.047126725101721716
+    },
+    {
+      "cursor_ns": 202000000,
+      "integrated_count": 960,
+      "observed_pixels": 320,
+      "latest_event_age_ns": 267186,
+      "log_rmse_no_alignment": 0.08134976749481383,
+      "global_log_offset_fitted_for_evaluation": -0.06391453774154024,
+      "log_rmse_after_explicit_global_alignment": 0.05032610194268476
+    },
+    {
+      "cursor_ns": 203000000,
+      "integrated_count": 961,
+      "observed_pixels": 320,
+      "latest_event_age_ns": 950472,
+      "log_rmse_no_alignment": 0.08705857464840533,
+      "global_log_offset_fitted_for_evaluation": -0.06602524496833165,
+      "log_rmse_after_explicit_global_alignment": 0.05674383179415856
+    },
+    {
+      "cursor_ns": 204000000,
+      "integrated_count": 961,
+      "observed_pixels": 320,
+      "latest_event_age_ns": 1950472,
+      "log_rmse_no_alignment": 0.09468909981619579,
+      "global_log_offset_fitted_for_evaluation": -0.06834111971219432,
+      "log_rmse_after_explicit_global_alignment": 0.06554019362562956
+    },
+    {
+      "cursor_ns": 205000000,
+      "integrated_count": 977,
+      "observed_pixels": 336,
+      "latest_event_age_ns": 565847,
+      "log_rmse_no_alignment": 0.08214225010257391,
+      "global_log_offset_fitted_for_evaluation": -0.06424714747834588,
+      "log_rmse_after_explicit_global_alignment": 0.05118254871349684
+    },
+    {
+      "cursor_ns": 206000000,
+      "integrated_count": 977,
+      "observed_pixels": 336,
+      "latest_event_age_ns": 1565847,
+      "log_rmse_no_alignment": 0.08778546884022613,
+      "global_log_offset_fitted_for_evaluation": -0.06626397672955626,
+      "log_rmse_after_explicit_global_alignment": 0.05757928383961664
+    },
+    {
+      "cursor_ns": 207000000,
+      "integrated_count": 985,
+      "observed_pixels": 336,
+      "latest_event_age_ns": 34568,
+      "log_rmse_no_alignment": 0.08603935664443674,
+      "global_log_offset_fitted_for_evaluation": -0.06503349657219745,
+      "log_rmse_after_explicit_global_alignment": 0.05633307390319263
+    },
+    {
+      "cursor_ns": 208000000,
+      "integrated_count": 993,
+      "observed_pixels": 336,
+      "latest_event_age_ns": 411218,
+      "log_rmse_no_alignment": 0.08080901229463591,
+      "global_log_offset_fitted_for_evaluation": -0.06369469530031467,
+      "log_rmse_after_explicit_global_alignment": 0.04973009409436797
+    },
+    {
+      "cursor_ns": 209000000,
+      "integrated_count": 993,
+      "observed_pixels": 336,
+      "latest_event_age_ns": 1411218,
+      "log_rmse_no_alignment": 0.08518226077034378,
+      "global_log_offset_fitted_for_evaluation": -0.06538429640071726,
+      "log_rmse_after_explicit_global_alignment": 0.05459772279253048
+    },
+    {
+      "cursor_ns": 210000000,
+      "integrated_count": 998,
+      "observed_pixels": 336,
+      "latest_event_age_ns": 67440,
+      "log_rmse_no_alignment": 0.08578518544007066,
+      "global_log_offset_fitted_for_evaluation": -0.06503408724246404,
+      "log_rmse_after_explicit_global_alignment": 0.05594341370998814
+    },
+    {
+      "cursor_ns": 211000000,
+      "integrated_count": 1007,
+      "observed_pixels": 336,
+      "latest_event_age_ns": 62561,
+      "log_rmse_no_alignment": 0.07927741170084414,
+      "global_log_offset_fitted_for_evaluation": -0.0644969060386747,
+      "log_rmse_after_explicit_global_alignment": 0.04609834180774303
+    },
+    {
+      "cursor_ns": 212000000,
+      "integrated_count": 1009,
+      "observed_pixels": 336,
+      "latest_event_age_ns": 327120,
+      "log_rmse_no_alignment": 0.08208547892650477,
+      "global_log_offset_fitted_for_evaluation": -0.06643476213403852,
+      "log_rmse_after_explicit_global_alignment": 0.048212531885261735
+    },
+    {
+      "cursor_ns": 213000000,
+      "integrated_count": 1009,
+      "observed_pixels": 336,
+      "latest_event_age_ns": 1327120,
+      "log_rmse_no_alignment": 0.0886021040029965,
+      "global_log_offset_fitted_for_evaluation": -0.06893609436082994,
+      "log_rmse_after_explicit_global_alignment": 0.05566100724953295
+    },
+    {
+      "cursor_ns": 214000000,
+      "integrated_count": 1010,
+      "observed_pixels": 337,
+      "latest_event_age_ns": 160703,
+      "log_rmse_no_alignment": 0.09514420169611819,
+      "global_log_offset_fitted_for_evaluation": -0.07086134410469261,
+      "log_rmse_after_explicit_global_alignment": 0.06349085783061972
+    },
+    {
+      "cursor_ns": 215000000,
+      "integrated_count": 1025,
+      "observed_pixels": 352,
+      "latest_event_age_ns": 570091,
+      "log_rmse_no_alignment": 0.08377640876678617,
+      "global_log_offset_fitted_for_evaluation": -0.06715799687084417,
+      "log_rmse_after_explicit_global_alignment": 0.050082832609141946
+    },
+    {
+      "cursor_ns": 216000000,
+      "integrated_count": 1025,
+      "observed_pixels": 352,
+      "latest_event_age_ns": 1570091,
+      "log_rmse_no_alignment": 0.0893164371963199,
+      "global_log_offset_fitted_for_evaluation": -0.06917482612205456,
+      "log_rmse_after_explicit_global_alignment": 0.05650017154334734
+    },
+    {
+      "cursor_ns": 217000000,
+      "integrated_count": 1033,
+      "observed_pixels": 352,
+      "latest_event_age_ns": 42953,
+      "log_rmse_no_alignment": 0.08760084648982808,
+      "global_log_offset_fitted_for_evaluation": -0.06794434596469574,
+      "log_rmse_after_explicit_global_alignment": 0.05529443152039958
+    },
+    {
+      "cursor_ns": 218000000,
+      "integrated_count": 1041,
+      "observed_pixels": 352,
+      "latest_event_age_ns": 421731,
+      "log_rmse_no_alignment": 0.08246959368143185,
+      "global_log_offset_fitted_for_evaluation": -0.06660554469281295,
+      "log_rmse_after_explicit_global_alignment": 0.048630600429710506
+    },
+    {
+      "cursor_ns": 219000000,
+      "integrated_count": 1042,
+      "observed_pixels": 352,
+      "latest_event_age_ns": 74752,
+      "log_rmse_no_alignment": 0.08611812599635402,
+      "global_log_offset_fitted_for_evaluation": -0.06790452079321554,
+      "log_rmse_after_explicit_global_alignment": 0.05296515534733816
+    },
+    {
+      "cursor_ns": 220000000,
+      "integrated_count": 1048,
+      "observed_pixels": 352,
+      "latest_event_age_ns": 16958,
+      "log_rmse_no_alignment": 0.08560632561503993,
+      "global_log_offset_fitted_for_evaluation": -0.06716368663496232,
+      "log_rmse_after_explicit_global_alignment": 0.05307996027606677
+    },
+    {
+      "cursor_ns": 221000000,
+      "integrated_count": 1055,
+      "observed_pixels": 352,
+      "latest_event_age_ns": 317025,
+      "log_rmse_no_alignment": 0.08096941039634033,
+      "global_log_offset_fitted_for_evaluation": -0.06740775543117297,
+      "log_rmse_after_explicit_global_alignment": 0.04485799736571123
+    },
+    {
+      "cursor_ns": 222000000,
+      "integrated_count": 1057,
+      "observed_pixels": 352,
+      "latest_event_age_ns": 363511,
+      "log_rmse_no_alignment": 0.08372074572374223,
+      "global_log_offset_fitted_for_evaluation": -0.06934561152653682,
+      "log_rmse_after_explicit_global_alignment": 0.046907882349879616
+    },
+    {
+      "cursor_ns": 223000000,
+      "integrated_count": 1057,
+      "observed_pixels": 352,
+      "latest_event_age_ns": 1363511,
+      "log_rmse_no_alignment": 0.09011920021673324,
+      "global_log_offset_fitted_for_evaluation": -0.07184694375332823,
+      "log_rmse_after_explicit_global_alignment": 0.05440116654089086
+    },
+    {
+      "cursor_ns": 224000000,
+      "integrated_count": 1058,
+      "observed_pixels": 353,
+      "latest_event_age_ns": 13212,
+      "log_rmse_no_alignment": 0.09655856528727766,
+      "global_log_offset_fitted_for_evaluation": -0.0737721934971909,
+      "log_rmse_after_explicit_global_alignment": 0.06229943817523951
+    },
+    {
+      "cursor_ns": 225000000,
+      "integrated_count": 1074,
+      "observed_pixels": 368,
+      "latest_event_age_ns": 550487,
+      "log_rmse_no_alignment": 0.08541064245744225,
+      "global_log_offset_fitted_for_evaluation": -0.06967822126334246,
+      "log_rmse_after_explicit_global_alignment": 0.04939558003070443
+    },
+    {
+      "cursor_ns": 226000000,
+      "integrated_count": 1074,
+      "observed_pixels": 368,
+      "latest_event_age_ns": 1550487,
+      "log_rmse_no_alignment": 0.09085107116912572,
+      "global_log_offset_fitted_for_evaluation": -0.07169505051455284,
+      "log_rmse_after_explicit_global_alignment": 0.055800867952866665
+    },
+    {
+      "cursor_ns": 227000000,
+      "integrated_count": 1080,
+      "observed_pixels": 368,
+      "latest_event_age_ns": 22349,
+      "log_rmse_no_alignment": 0.09116334883591869,
+      "global_log_offset_fitted_for_evaluation": -0.07124582035719403,
+      "log_rmse_after_explicit_global_alignment": 0.056875207714872
+    },
+    {
+      "cursor_ns": 228000000,
+      "integrated_count": 1090,
+      "observed_pixels": 368,
+      "latest_event_age_ns": 372817,
+      "log_rmse_no_alignment": 0.08412921645370204,
+      "global_log_offset_fitted_for_evaluation": -0.06912576908531125,
+      "log_rmse_after_explicit_global_alignment": 0.04795157045893366
+    },
+    {
+      "cursor_ns": 229000000,
+      "integrated_count": 1090,
+      "observed_pixels": 368,
+      "latest_event_age_ns": 1372817,
+      "log_rmse_no_alignment": 0.08833824847157704,
+      "global_log_offset_fitted_for_evaluation": -0.07081537018571384,
+      "log_rmse_after_explicit_global_alignment": 0.052809369324830935
+    },
+    {
+      "cursor_ns": 230000000,
+      "integrated_count": 1095,
+      "observed_pixels": 368,
+      "latest_event_age_ns": 90610,
+      "log_rmse_no_alignment": 0.08891977639460495,
+      "global_log_offset_fitted_for_evaluation": -0.07046516102746062,
+      "log_rmse_after_explicit_global_alignment": 0.05423456200100256
+    },
+    {
+      "cursor_ns": 231000000,
+      "integrated_count": 1103,
+      "observed_pixels": 368,
+      "latest_event_age_ns": 72684,
+      "log_rmse_no_alignment": 0.08356693624799721,
+      "global_log_offset_fitted_for_evaluation": -0.07031860482367126,
+      "log_rmse_after_explicit_global_alignment": 0.045152260735528915
+    },
+    {
+      "cursor_ns": 232000000,
+      "integrated_count": 1106,
+      "observed_pixels": 368,
+      "latest_event_age_ns": 188875,
+      "log_rmse_no_alignment": 0.08535604515014089,
+      "global_log_offset_fitted_for_evaluation": -0.0718658359190351,
+      "log_rmse_after_explicit_global_alignment": 0.046053838833817265
+    },
+    {
+      "cursor_ns": 233000000,
+      "integrated_count": 1106,
+      "observed_pixels": 368,
+      "latest_event_age_ns": 1188875,
+      "log_rmse_no_alignment": 0.09164039189591586,
+      "global_log_offset_fitted_for_evaluation": -0.07436716814582651,
+      "log_rmse_after_explicit_global_alignment": 0.053548909688315854
+    },
+    {
+      "cursor_ns": 234000000,
+      "integrated_count": 1107,
+      "observed_pixels": 369,
+      "latest_event_age_ns": 151881,
+      "log_rmse_no_alignment": 0.09797983317739856,
+      "global_log_offset_fitted_for_evaluation": -0.07629241788968918,
+      "log_rmse_after_explicit_global_alignment": 0.061477757620263654
+    },
+    {
+      "cursor_ns": 235000000,
+      "integrated_count": 1122,
+      "observed_pixels": 384,
+      "latest_event_age_ns": 586008,
+      "log_rmse_no_alignment": 0.08698341944841488,
+      "global_log_offset_fitted_for_evaluation": -0.07258907065584075,
+      "log_rmse_after_explicit_global_alignment": 0.04792642361224379
+    },
+    {
+      "cursor_ns": 236000000,
+      "integrated_count": 1122,
+      "observed_pixels": 384,
+      "latest_event_age_ns": 1586008,
+      "log_rmse_no_alignment": 0.0923312219486095,
+      "global_log_offset_fitted_for_evaluation": -0.07460589990705113,
+      "log_rmse_after_explicit_global_alignment": 0.054396822017305925
+    },
+    {
+      "cursor_ns": 237000000,
+      "integrated_count": 1125,
+      "observed_pixels": 384,
+      "latest_event_age_ns": 265260,
+      "log_rmse_no_alignment": 0.09551140567540936,
+      "global_log_offset_fitted_for_evaluation": -0.07532854474969232,
+      "log_rmse_after_explicit_global_alignment": 0.05872000476827487
+    },
+    {
+      "cursor_ns": 238000000,
+      "integrated_count": 1138,
+      "observed_pixels": 384,
+      "latest_event_age_ns": 460795,
+      "log_rmse_no_alignment": 0.0857255065605313,
+      "global_log_offset_fitted_for_evaluation": -0.07203661847780952,
+      "log_rmse_after_explicit_global_alignment": 0.04647136831794612
+    },
+    {
+      "cursor_ns": 239000000,
+      "integrated_count": 1139,
+      "observed_pixels": 384,
+      "latest_event_age_ns": 41823,
+      "log_rmse_no_alignment": 0.08924102317994308,
+      "global_log_offset_fitted_for_evaluation": -0.07333559457821212,
+      "log_rmse_after_explicit_global_alignment": 0.05085126140090572
+    },
+    {
+      "cursor_ns": 240000000,
+      "integrated_count": 1141,
+      "observed_pixels": 384,
+      "latest_event_age_ns": 200386,
+      "log_rmse_no_alignment": 0.09208505045683205,
+      "global_log_offset_fitted_for_evaluation": -0.0741572604199589,
+      "log_rmse_after_explicit_global_alignment": 0.054592648265528405
+    },
+    {
+      "cursor_ns": 241000000,
+      "integrated_count": 1150,
+      "observed_pixels": 384,
+      "latest_event_age_ns": 76534,
+      "log_rmse_no_alignment": 0.08605502008967944,
+      "global_log_offset_fitted_for_evaluation": -0.07362007921616955,
+      "log_rmse_after_explicit_global_alignment": 0.04455951546908979
+    },
+    {
+      "cursor_ns": 242000000,
+      "integrated_count": 1154,
+      "observed_pixels": 384,
+      "latest_event_age_ns": 493818,
+      "log_rmse_no_alignment": 0.08692980994813422,
+      "global_log_offset_fitted_for_evaluation": -0.07477668531153339,
+      "log_rmse_after_explicit_global_alignment": 0.044331018389369786
+    },
+    {
+      "cursor_ns": 243000000,
+      "integrated_count": 1154,
+      "observed_pixels": 384,
+      "latest_event_age_ns": 1493818,
+      "log_rmse_no_alignment": 0.09310799557923523,
+      "global_log_offset_fitted_for_evaluation": -0.0772780175383248,
+      "log_rmse_after_explicit_global_alignment": 0.05193464013670693
+    },
+    {
+      "cursor_ns": 244000000,
+      "integrated_count": 1154,
+      "observed_pixels": 384,
+      "latest_event_age_ns": 2493818,
+      "log_rmse_no_alignment": 0.10027925530722898,
+      "global_log_offset_fitted_for_evaluation": -0.07959389228218747,
+      "log_rmse_after_explicit_global_alignment": 0.0609978799331907
+    },
+    {
+      "cursor_ns": 245000000,
+      "integrated_count": 1171,
+      "observed_pixels": 400,
+      "latest_event_age_ns": 110978,
+      "log_rmse_no_alignment": 0.08855849162035376,
+      "global_log_offset_fitted_for_evaluation": -0.07510929504833903,
+      "log_rmse_after_explicit_global_alignment": 0.046916950406157266
+    },
+    {
+      "cursor_ns": 246000000,
+      "integrated_count": 1171,
+      "observed_pixels": 400,
+      "latest_event_age_ns": 1110978,
+      "log_rmse_no_alignment": 0.09381655358014798,
+      "global_log_offset_fitted_for_evaluation": -0.07712612429954942,
+      "log_rmse_after_explicit_global_alignment": 0.05341448002355944
+    },
+    {
+      "cursor_ns": 247000000,
+      "integrated_count": 1176,
+      "observed_pixels": 400,
+      "latest_event_age_ns": 183540,
+      "log_rmse_no_alignment": 0.0950713579744942,
+      "global_log_offset_fitted_for_evaluation": -0.07706751914219061,
+      "log_rmse_after_explicit_global_alignment": 0.05567010508686424
+    },
+    {
+      "cursor_ns": 248000000,
+      "integrated_count": 1187,
+      "observed_pixels": 400,
+      "latest_event_age_ns": 457256,
+      "log_rmse_no_alignment": 0.08732327097740375,
+      "global_log_offset_fitted_for_evaluation": -0.07455684287030781,
+      "log_rmse_after_explicit_global_alignment": 0.04546021156357847
+    },
+    {
+      "cursor_ns": 249000000,
+      "integrated_count": 1187,
+      "observed_pixels": 400,
+      "latest_event_age_ns": 1457256,
+      "log_rmse_no_alignment": 0.09138530919193366,
+      "global_log_offset_fitted_for_evaluation": -0.07624644397071041,
+      "log_rmse_after_explicit_global_alignment": 0.05037613043820092
+    },
+    {
+      "cursor_ns": 250000000,
+      "integrated_count": 1192,
+      "observed_pixels": 400,
+      "latest_event_age_ns": 47043,
+      "log_rmse_no_alignment": 0.09194756781528142,
+      "global_log_offset_fitted_for_evaluation": -0.07589623481245719,
+      "log_rmse_after_explicit_global_alignment": 0.051904881932609566
+    },
+    {
+      "cursor_ns": 251000000,
+      "integrated_count": 1199,
+      "observed_pixels": 400,
+      "latest_event_age_ns": 152681,
+      "log_rmse_no_alignment": 0.08764677781737626,
+      "global_log_offset_fitted_for_evaluation": -0.07614030360866784,
+      "log_rmse_after_explicit_global_alignment": 0.043412116144555805
+    },
+    {
+      "cursor_ns": 252000000,
+      "integrated_count": 1203,
+      "observed_pixels": 400,
+      "latest_event_age_ns": 482317,
+      "log_rmse_no_alignment": 0.08850583617339662,
+      "global_log_offset_fitted_for_evaluation": -0.07729690970403168,
+      "log_rmse_after_explicit_global_alignment": 0.043109984771035316
+    },
+    {
+      "cursor_ns": 253000000,
+      "integrated_count": 1203,
+      "observed_pixels": 400,
+      "latest_event_age_ns": 1482317,
+      "log_rmse_no_alignment": 0.09458112930133723,
+      "global_log_offset_fitted_for_evaluation": -0.07979824193082309,
+      "log_rmse_after_explicit_global_alignment": 0.050772340941363944
+    },
+    {
+      "cursor_ns": 254000000,
+      "integrated_count": 1203,
+      "observed_pixels": 400,
+      "latest_event_age_ns": 2482317,
+      "log_rmse_no_alignment": 0.10164851314262201,
+      "global_log_offset_fitted_for_evaluation": -0.08211411667468575,
+      "log_rmse_after_explicit_global_alignment": 0.05991403897954045
+    },
+    {
+      "cursor_ns": 255000000,
+      "integrated_count": 1219,
+      "observed_pixels": 416,
+      "latest_event_age_ns": 604562,
+      "log_rmse_no_alignment": 0.09007632237174269,
+      "global_log_offset_fitted_for_evaluation": -0.07802014444083732,
+      "log_rmse_after_explicit_global_alignment": 0.045017784412929446
+    },
+    {
+      "cursor_ns": 256000000,
+      "integrated_count": 1219,
+      "observed_pixels": 416,
+      "latest_event_age_ns": 1604562,
+      "log_rmse_no_alignment": 0.09525063327664873,
+      "global_log_offset_fitted_for_evaluation": -0.08003697369204771,
+      "log_rmse_after_explicit_global_alignment": 0.05164073955532672
+    },
+    {
+      "cursor_ns": 257000000,
+      "integrated_count": 1223,
+      "observed_pixels": 416,
+      "latest_event_age_ns": 7347,
+      "log_rmse_no_alignment": 0.09741600928038502,
+      "global_log_offset_fitted_for_evaluation": -0.08036899353468889,
+      "log_rmse_after_explicit_global_alignment": 0.0550518277838002
+    },
+    {
+      "cursor_ns": 258000000,
+      "integrated_count": 1235,
+      "observed_pixels": 416,
+      "latest_event_age_ns": 505630,
+      "log_rmse_no_alignment": 0.08886220269686616,
+      "global_log_offset_fitted_for_evaluation": -0.0774676922628061,
+      "log_rmse_after_explicit_global_alignment": 0.043534442957434284
+    },
+    {
+      "cursor_ns": 259000000,
+      "integrated_count": 1235,
+      "observed_pixels": 416,
+      "latest_event_age_ns": 1505630,
+      "log_rmse_no_alignment": 0.09285694454401974,
+      "global_log_offset_fitted_for_evaluation": -0.0791572933632087,
+      "log_rmse_after_explicit_global_alignment": 0.048544155749812724
+    },
+    {
+      "cursor_ns": 260000000,
+      "integrated_count": 1236,
+      "observed_pixels": 416,
+      "latest_event_age_ns": 100312,
+      "log_rmse_no_alignment": 0.09658715018231695,
+      "global_log_offset_fitted_for_evaluation": -0.08036958420495548,
+      "log_rmse_after_explicit_global_alignment": 0.05357058441966097
+    },
+    {
+      "cursor_ns": 261000000,
+      "integrated_count": 1250,
+      "observed_pixels": 416,
+      "latest_event_age_ns": 67893,
+      "log_rmse_no_alignment": 0.0866048865323256,
+      "global_log_offset_fitted_for_evaluation": -0.07787927800116613,
+      "log_rmse_after_explicit_global_alignment": 0.037884355996823736
+    },
+    {
+      "cursor_ns": 262000000,
+      "integrated_count": 1251,
+      "observed_pixels": 416,
+      "latest_event_age_ns": 634819,
+      "log_rmse_no_alignment": 0.09002455470980109,
+      "global_log_offset_fitted_for_evaluation": -0.08020775909652997,
+      "log_rmse_after_explicit_global_alignment": 0.04087952826796051
+    },
+    {
+      "cursor_ns": 263000000,
+      "integrated_count": 1251,
+      "observed_pixels": 416,
+      "latest_event_age_ns": 1634819,
+      "log_rmse_no_alignment": 0.09600378864327239,
+      "global_log_offset_fitted_for_evaluation": -0.08270909132332138,
+      "log_rmse_after_explicit_global_alignment": 0.04874354979207611
+    },
+    {
+      "cursor_ns": 264000000,
+      "integrated_count": 1251,
+      "observed_pixels": 416,
+      "latest_event_age_ns": 2634819,
+      "log_rmse_no_alignment": 0.10297357737813931,
+      "global_log_offset_fitted_for_evaluation": -0.08502496606718404,
+      "log_rmse_after_explicit_global_alignment": 0.05808883527258783
+    },
+    {
+      "cursor_ns": 265000000,
+      "integrated_count": 1267,
+      "observed_pixels": 432,
+      "latest_event_age_ns": 418524,
+      "log_rmse_no_alignment": 0.09156899729692335,
+      "global_log_offset_fitted_for_evaluation": -0.08093099383333562,
+      "log_rmse_after_explicit_global_alignment": 0.042837547818619946
+    },
+    {
+      "cursor_ns": 266000000,
+      "integrated_count": 1267,
+      "observed_pixels": 432,
+      "latest_event_age_ns": 1418524,
+      "log_rmse_no_alignment": 0.09666343959092531,
+      "global_log_offset_fitted_for_evaluation": -0.082947823084546,
+      "log_rmse_after_explicit_global_alignment": 0.049633448390005365
+    },
+    {
+      "cursor_ns": 267000000,
+      "integrated_count": 1271,
+      "observed_pixels": 432,
+      "latest_event_age_ns": 182154,
+      "log_rmse_no_alignment": 0.09879785563493726,
+      "global_log_offset_fitted_for_evaluation": -0.08327984292718718,
+      "log_rmse_after_explicit_global_alignment": 0.053155282334730734
+    },
+    {
+      "cursor_ns": 268000000,
+      "integrated_count": 1283,
+      "observed_pixels": 432,
+      "latest_event_age_ns": 16936,
+      "log_rmse_no_alignment": 0.09037493281925454,
+      "global_log_offset_fitted_for_evaluation": -0.08037854165530439,
+      "log_rmse_after_explicit_global_alignment": 0.0413148704881338
+    },
+    {
+      "cursor_ns": 269000000,
+      "integrated_count": 1283,
+      "observed_pixels": 432,
+      "latest_event_age_ns": 1016936,
+      "log_rmse_no_alignment": 0.09430561788142318,
+      "global_log_offset_fitted_for_evaluation": -0.08206814275570698,
+      "log_rmse_after_explicit_global_alignment": 0.046458255548674054
+    },
+    {
+      "cursor_ns": 270000000,
+      "integrated_count": 1287,
+      "observed_pixels": 432,
+      "latest_event_age_ns": 44381,
+      "log_rmse_no_alignment": 0.0956427011844078,
+      "global_log_offset_fitted_for_evaluation": -0.08210855859745377,
+      "log_rmse_after_explicit_global_alignment": 0.04904804680003503
+    },
+    {
+      "cursor_ns": 271000000,
+      "integrated_count": 1296,
+      "observed_pixels": 432,
+      "latest_event_age_ns": 210511,
+      "log_rmse_no_alignment": 0.08985174597551096,
+      "global_log_offset_fitted_for_evaluation": -0.08157137739366442,
+      "log_rmse_after_explicit_global_alignment": 0.03767554438821191
+    },
+    {
+      "cursor_ns": 272000000,
+      "integrated_count": 1298,
+      "observed_pixels": 432,
+      "latest_event_age_ns": 15960,
+      "log_rmse_no_alignment": 0.09233880061738006,
+      "global_log_offset_fitted_for_evaluation": -0.08350923348902825,
+      "log_rmse_after_explicit_global_alignment": 0.039403832574144766
+    },
+    {
+      "cursor_ns": 273000000,
+      "integrated_count": 1298,
+      "observed_pixels": 432,
+      "latest_event_age_ns": 1015960,
+      "log_rmse_no_alignment": 0.09817719227305505,
+      "global_log_offset_fitted_for_evaluation": -0.08601056571581966,
+      "log_rmse_after_explicit_global_alignment": 0.04733860652643978
+    },
+    {
+      "cursor_ns": 274000000,
+      "integrated_count": 1299,
+      "observed_pixels": 432,
+      "latest_event_age_ns": 16878,
+      "log_rmse_no_alignment": 0.10428180594906039,
+      "global_log_offset_fitted_for_evaluation": -0.08793581545968233,
+      "log_rmse_after_explicit_global_alignment": 0.05605343353834965
+    },
+    {
+      "cursor_ns": 275000000,
+      "integrated_count": 1315,
+      "observed_pixels": 448,
+      "latest_event_age_ns": 526610,
+      "log_rmse_no_alignment": 0.09303772718585618,
+      "global_log_offset_fitted_for_evaluation": -0.08384184322583389,
+      "log_rmse_after_explicit_global_alignment": 0.04033068316312646
+    },
+    {
+      "cursor_ns": 276000000,
+      "integrated_count": 1315,
+      "observed_pixels": 448,
+      "latest_event_age_ns": 1526610,
+      "log_rmse_no_alignment": 0.09805589205904106,
+      "global_log_offset_fitted_for_evaluation": -0.08585867247704428,
+      "log_rmse_after_explicit_global_alignment": 0.04736292144678104
+    },
+    {
+      "cursor_ns": 277000000,
+      "integrated_count": 1320,
+      "observed_pixels": 448,
+      "latest_event_age_ns": 88714,
+      "log_rmse_no_alignment": 0.0992571173717631,
+      "global_log_offset_fitted_for_evaluation": -0.08580006731968547,
+      "log_rmse_after_explicit_global_alignment": 0.04990314415835338
+    },
+    {
+      "cursor_ns": 278000000,
+      "integrated_count": 1331,
+      "observed_pixels": 448,
+      "latest_event_age_ns": 311992,
+      "log_rmse_no_alignment": 0.09186275576113867,
+      "global_log_offset_fitted_for_evaluation": -0.08328939104780268,
+      "log_rmse_after_explicit_global_alignment": 0.03875104172685974
+    },
+    {
+      "cursor_ns": 279000000,
+      "integrated_count": 1331,
+      "observed_pixels": 448,
+      "latest_event_age_ns": 1311992,
+      "log_rmse_no_alignment": 0.09573237163020067,
+      "global_log_offset_fitted_for_evaluation": -0.08497899214820527,
+      "log_rmse_after_explicit_global_alignment": 0.04408239865771956
+    },
+    {
+      "cursor_ns": 280000000,
+      "integrated_count": 1333,
+      "observed_pixels": 448,
+      "latest_event_age_ns": 353873,
+      "log_rmse_no_alignment": 0.09859237380964454,
+      "global_log_offset_fitted_for_evaluation": -0.08580065798995205,
+      "log_rmse_after_explicit_global_alignment": 0.0485664829065474
+    },
+    {
+      "cursor_ns": 281000000,
+      "integrated_count": 1343,
+      "observed_pixels": 448,
+      "latest_event_age_ns": 231697,
+      "log_rmse_no_alignment": 0.09217033092924237,
+      "global_log_offset_fitted_for_evaluation": -0.0848728517861627,
+      "log_rmse_after_explicit_global_alignment": 0.03594396935913051
+    },
+    {
+      "cursor_ns": 282000000,
+      "integrated_count": 1345,
+      "observed_pixels": 448,
+      "latest_event_age_ns": 471331,
+      "log_rmse_no_alignment": 0.0945964468054407,
+      "global_log_offset_fitted_for_evaluation": -0.08681070788152653,
+      "log_rmse_after_explicit_global_alignment": 0.03758176080657794
+    },
+    {
+      "cursor_ns": 283000000,
+      "integrated_count": 1347,
+      "observed_pixels": 448,
+      "latest_event_age_ns": 950070,
+      "log_rmse_no_alignment": 0.09878766249767128,
+      "global_log_offset_fitted_for_evaluation": -0.08853079010831795,
+      "log_rmse_after_explicit_global_alignment": 0.04383265294903743
+    },
+    {
+      "cursor_ns": 284000000,
+      "integrated_count": 1348,
+      "observed_pixels": 449,
+      "latest_event_age_ns": 51825,
+      "log_rmse_no_alignment": 0.10469521739023048,
+      "global_log_offset_fitted_for_evaluation": -0.09045603985218062,
+      "log_rmse_after_explicit_global_alignment": 0.052714261814506426
+    },
+    {
+      "cursor_ns": 285000000,
+      "integrated_count": 1363,
+      "observed_pixels": 464,
+      "latest_event_age_ns": 552606,
+      "log_rmse_no_alignment": 0.09448362870812936,
+      "global_log_offset_fitted_for_evaluation": -0.08675269261833218,
+      "log_rmse_after_explicit_global_alignment": 0.03743162322588775
+    },
+    {
+      "cursor_ns": 286000000,
+      "integrated_count": 1363,
+      "observed_pixels": 464,
+      "latest_event_age_ns": 1552606,
+      "log_rmse_no_alignment": 0.09942884582172397,
+      "global_log_offset_fitted_for_evaluation": -0.08876952186954257,
+      "log_rmse_after_explicit_global_alignment": 0.04478914342218391
+    },
+    {
+      "cursor_ns": 287000000,
+      "integrated_count": 1368,
+      "observed_pixels": 464,
+      "latest_event_age_ns": 13645,
+      "log_rmse_no_alignment": 0.10061368079390497,
+      "global_log_offset_fitted_for_evaluation": -0.08871091671218376,
+      "log_rmse_after_explicit_global_alignment": 0.04747089654706133
+    },
+    {
+      "cursor_ns": 288000000,
+      "integrated_count": 1379,
+      "observed_pixels": 464,
+      "latest_event_age_ns": 378149,
+      "log_rmse_no_alignment": 0.09332686274581645,
+      "global_log_offset_fitted_for_evaluation": -0.08620024044030096,
+      "log_rmse_after_explicit_global_alignment": 0.03576900694750644
+    },
+    {
+      "cursor_ns": 289000000,
+      "integrated_count": 1379,
+      "observed_pixels": 464,
+      "latest_event_age_ns": 1378149,
+      "log_rmse_no_alignment": 0.09713817165197569,
+      "global_log_offset_fitted_for_evaluation": -0.08788984154070356,
+      "log_rmse_after_explicit_global_alignment": 0.04136665499939187
+    },
+    {
+      "cursor_ns": 290000000,
+      "integrated_count": 1382,
+      "observed_pixels": 464,
+      "latest_event_age_ns": 366195,
+      "log_rmse_no_alignment": 0.09920028907495214,
+      "global_log_offset_fitted_for_evaluation": -0.08832088238245034,
+      "log_rmse_after_explicit_global_alignment": 0.045167677466739914
+    },
+    {
+      "cursor_ns": 291000000,
+      "integrated_count": 1393,
+      "observed_pixels": 464,
+      "latest_event_age_ns": 124663,
+      "log_rmse_no_alignment": 0.09200388496105467,
+      "global_log_offset_fitted_for_evaluation": -0.08700245117866098,
+      "log_rmse_after_explicit_global_alignment": 0.029921369233905315
+    },
+    {
+      "cursor_ns": 292000000,
+      "integrated_count": 1395,
+      "observed_pixels": 464,
+      "latest_event_age_ns": 208598,
+      "log_rmse_no_alignment": 0.09443427710601433,
+      "global_log_offset_fitted_for_evaluation": -0.08894030727402483,
+      "log_rmse_after_explicit_global_alignment": 0.03174042272146905
+    },
+    {
+      "cursor_ns": 293000000,
+      "integrated_count": 1395,
+      "observed_pixels": 464,
+      "latest_event_age_ns": 1208598,
+      "log_rmse_no_alignment": 0.10015058499928821,
+      "global_log_offset_fitted_for_evaluation": -0.09144163950081624,
+      "log_rmse_after_explicit_global_alignment": 0.04084808736161848
+    },
+    {
+      "cursor_ns": 294000000,
+      "integrated_count": 1395,
+      "observed_pixels": 464,
+      "latest_event_age_ns": 2208598,
+      "log_rmse_no_alignment": 0.1068502217119327,
+      "global_log_offset_fitted_for_evaluation": -0.0937575142446789,
+      "log_rmse_after_explicit_global_alignment": 0.051249374655189785
+    },
+    {
+      "cursor_ns": 295000000,
+      "integrated_count": 1411,
+      "observed_pixels": 480,
+      "latest_event_age_ns": 501542,
+      "log_rmse_no_alignment": 0.09590773434818221,
+      "global_log_offset_fitted_for_evaluation": -0.08966354201083047,
+      "log_rmse_after_explicit_global_alignment": 0.03404031054314179
+    },
+    {
+      "cursor_ns": 296000000,
+      "integrated_count": 1411,
+      "observed_pixels": 480,
+      "latest_event_age_ns": 1501542,
+      "log_rmse_no_alignment": 0.10078309776637152,
+      "global_log_offset_fitted_for_evaluation": -0.09168037126204086,
+      "log_rmse_after_explicit_global_alignment": 0.04185621006063921
+    },
+    {
+      "cursor_ns": 297000000,
+      "integrated_count": 1418,
+      "observed_pixels": 480,
+      "latest_event_age_ns": 41283,
+      "log_rmse_no_alignment": 0.10016932410040541,
+      "global_log_offset_fitted_for_evaluation": -0.09084051610468204,
+      "log_rmse_after_explicit_global_alignment": 0.04221248777988647
+    },
+    {
+      "cursor_ns": 298000000,
+      "integrated_count": 1427,
+      "observed_pixels": 480,
+      "latest_event_age_ns": 246565,
+      "log_rmse_no_alignment": 0.0947683529661791,
+      "global_log_offset_fitted_for_evaluation": -0.08911108983279925,
+      "log_rmse_after_explicit_global_alignment": 0.03225297494391934
+    },
+    {
+      "cursor_ns": 299000000,
+      "integrated_count": 1427,
+      "observed_pixels": 480,
+      "latest_event_age_ns": 1246565,
+      "log_rmse_no_alignment": 0.09852391489295652,
+      "global_log_offset_fitted_for_evaluation": -0.09080069093320185,
+      "log_rmse_after_explicit_global_alignment": 0.038238675864727505
+    },
+    {
+      "cursor_ns": 300000000,
+      "integrated_count": 1431,
+      "observed_pixels": 480,
+      "latest_event_age_ns": 13398,
+      "log_rmse_no_alignment": 0.09980450156023754,
+      "global_log_offset_fitted_for_evaluation": -0.09084110677494862,
+      "log_rmse_after_explicit_global_alignment": 0.041338019444451396
+    },
+    {
+      "cursor_ns": 301000000,
+      "integrated_count": 1441,
+      "observed_pixels": 480,
+      "latest_event_age_ns": 218034,
+      "log_rmse_no_alignment": 0.09346578123502113,
+      "global_log_offset_fitted_for_evaluation": -0.08991330057115927,
+      "log_rmse_after_explicit_global_alignment": 0.025523531148201224
+    },
+    {
+      "cursor_ns": 302000000,
+      "integrated_count": 1442,
+      "observed_pixels": 480,
+      "latest_event_age_ns": 479004,
+      "log_rmse_no_alignment": 0.09664298392171985,
+      "global_log_offset_fitted_for_evaluation": -0.09224178166652311,
+      "log_rmse_after_explicit_global_alignment": 0.028832621391043943
+    },
+    {
+      "cursor_ns": 303000000,
+      "integrated_count": 1443,
+      "observed_pixels": 480,
+      "latest_event_age_ns": 658566,
+      "log_rmse_no_alignment": 0.10149520722499904,
+      "global_log_offset_fitted_for_evaluation": -0.09435248889331453,
+      "log_rmse_after_explicit_global_alignment": 0.037401670140281916
+    },
+    {
+      "cursor_ns": 304000000,
+      "integrated_count": 1443,
+      "observed_pixels": 480,
+      "latest_event_age_ns": 1658566,
+      "log_rmse_no_alignment": 0.10811155023324298,
+      "global_log_offset_fitted_for_evaluation": -0.0966683636371772,
+      "log_rmse_after_explicit_global_alignment": 0.04840800311462455
+    },
+    {
+      "cursor_ns": 305000000,
+      "integrated_count": 1459,
+      "observed_pixels": 496,
+      "latest_event_age_ns": 480230,
+      "log_rmse_no_alignment": 0.09731100103147299,
+      "global_log_offset_fitted_for_evaluation": -0.09257439140332877,
+      "log_rmse_after_explicit_global_alignment": 0.02999021470497713
+    },
+    {
+      "cursor_ns": 306000000,
+      "integrated_count": 1459,
+      "observed_pixels": 496,
+      "latest_event_age_ns": 1480230,
+      "log_rmse_no_alignment": 0.10211939193577216,
+      "global_log_offset_fitted_for_evaluation": -0.09459122065453915,
+      "log_rmse_after_explicit_global_alignment": 0.03848208913788509
+    },
+    {
+      "cursor_ns": 307000000,
+      "integrated_count": 1462,
+      "observed_pixels": 496,
+      "latest_event_age_ns": 138642,
+      "log_rmse_no_alignment": 0.10500354411590629,
+      "global_log_offset_fitted_for_evaluation": -0.09531386549718034,
+      "log_rmse_after_explicit_global_alignment": 0.04405691002426854
+    },
+    {
+      "cursor_ns": 308000000,
+      "integrated_count": 1475,
+      "observed_pixels": 496,
+      "latest_event_age_ns": 189595,
+      "log_rmse_no_alignment": 0.09618824324140737,
+      "global_log_offset_fitted_for_evaluation": -0.09202193922529754,
+      "log_rmse_after_explicit_global_alignment": 0.02800251487070041
+    },
+    {
+      "cursor_ns": 309000000,
+      "integrated_count": 1475,
+      "observed_pixels": 496,
+      "latest_event_age_ns": 1189595,
+      "log_rmse_no_alignment": 0.0998904360776365,
+      "global_log_offset_fitted_for_evaluation": -0.09371154032570013,
+      "log_rmse_after_explicit_global_alignment": 0.03458679559550235
+    },
+    {
+      "cursor_ns": 310000000,
+      "integrated_count": 1477,
+      "observed_pixels": 496,
+      "latest_event_age_ns": 438541,
+      "log_rmse_no_alignment": 0.10263463555378476,
+      "global_log_offset_fitted_for_evaluation": -0.09453320616744691,
+      "log_rmse_after_explicit_global_alignment": 0.03996675301999394
+    },
+    {
+      "cursor_ns": 311000000,
+      "integrated_count": 1486,
+      "observed_pixels": 496,
+      "latest_event_age_ns": 32573,
+      "log_rmse_no_alignment": 0.09726087795334795,
+      "global_log_offset_fitted_for_evaluation": -0.09399602496365757,
+      "log_rmse_after_explicit_global_alignment": 0.024988510785709295
+    },
+    {
+      "cursor_ns": 312000000,
+      "integrated_count": 1490,
+      "observed_pixels": 496,
+      "latest_event_age_ns": 217018,
+      "log_rmse_no_alignment": 0.09803572693278531,
+      "global_log_offset_fitted_for_evaluation": -0.0951526310590214,
+      "log_rmse_after_explicit_global_alignment": 0.02360043554228194
+    },
+    {
+      "cursor_ns": 313000000,
+      "integrated_count": 1491,
+      "observed_pixels": 496,
+      "latest_event_age_ns": 365039,
+      "log_rmse_no_alignment": 0.10282224712381723,
+      "global_log_offset_fitted_for_evaluation": -0.09726333828581281,
+      "log_rmse_after_explicit_global_alignment": 0.03335052516964135
+    },
+    {
+      "cursor_ns": 314000000,
+      "integrated_count": 1491,
+      "observed_pixels": 496,
+      "latest_event_age_ns": 1365039,
+      "log_rmse_no_alignment": 0.10935833167976214,
+      "global_log_offset_fitted_for_evaluation": -0.09957921302967548,
+      "log_rmse_after_explicit_global_alignment": 0.04520204685820517
+    },
+    {
+      "cursor_ns": 315000000,
+      "integrated_count": 1507,
+      "observed_pixels": 512,
+      "latest_event_age_ns": 627941,
+      "log_rmse_no_alignment": 0.0986943176464237,
+      "global_log_offset_fitted_for_evaluation": -0.09548524079582704,
+      "log_rmse_after_explicit_global_alignment": 0.024962714713270013
+    },
+    {
+      "cursor_ns": 316000000,
+      "integrated_count": 1507,
+      "observed_pixels": 512,
+      "latest_event_age_ns": 1627941,
+      "log_rmse_no_alignment": 0.10343842430778656,
+      "global_log_offset_fitted_for_evaluation": -0.09750207004703743,
+      "log_rmse_after_explicit_global_alignment": 0.0345377179301166
+    },
+    {
+      "cursor_ns": 317000000,
+      "integrated_count": 1515,
+      "observed_pixels": 512,
+      "latest_event_age_ns": 31666,
+      "log_rmse_no_alignment": 0.10196072761395908,
+      "global_log_offset_fitted_for_evaluation": -0.09627158988967861,
+      "log_rmse_after_explicit_global_alignment": 0.033582301226710014
+    },
+    {
+      "cursor_ns": 318000000,
+      "integrated_count": 1523,
+      "observed_pixels": 512,
+      "latest_event_age_ns": 561096,
+      "log_rmse_no_alignment": 0.09758747640867652,
+      "global_log_offset_fitted_for_evaluation": -0.09493278861779583,
+      "log_rmse_after_explicit_global_alignment": 0.022607105012869104
+    },
+    {
+      "cursor_ns": 319000000,
+      "integrated_count": 1523,
+      "observed_pixels": 512,
+      "latest_event_age_ns": 1561096,
+      "log_rmse_no_alignment": 0.10123851358907947,
+      "global_log_offset_fitted_for_evaluation": -0.09662238971819842,
+      "log_rmse_after_explicit_global_alignment": 0.030221688220064935
+    },
+    {
+      "cursor_ns": 320000000,
+      "integrated_count": 1526,
+      "observed_pixels": 512,
+      "latest_event_age_ns": 243955,
+      "log_rmse_no_alignment": 0.10321874633220268,
+      "global_log_offset_fitted_for_evaluation": -0.0970534305599452,
+      "log_rmse_after_explicit_global_alignment": 0.0351388846000766
+    }
+  ],
+  "offline_latency": {
+    "repeats": 5,
+    "sequence_ms": [
+      115.9873,
+      113.805,
+      117.5828,
+      128.9077,
+      246.0026
+    ],
+    "median_sequence_ms": 117.5828,
+    "median_snapshot_ms": 0.3663015576323988,
+    "snapshot_range_ms": [
+      0.35453271028037386,
+      0.7663632398753895
+    ],
+    "integrated_events_counted_across_snapshots": 243168,
+    "failures": 0,
+    "timing_scope": "full-history snapshots including log, intensity, support arrays; excludes load, render, and truth evaluation",
+    "allocation_peak_bytes_separate_tracemalloc_run": 10276472,
+    "limitation": "offline single-process CPU measurements during concurrent project development; no live backlog guarantee"
+  },
+  "sustained_live_backlog": null,
+  "host": {
+    "python": "3.14.8",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 126 Stepping 5, GenuineIntel",
+    "logical_cpus": 8
+  },
+  "missing_evaluations": [
+    "representative reflective/transmissive station",
+    "sustained concurrent live acquisition"
+  ]
+}
