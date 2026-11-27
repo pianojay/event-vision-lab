@@ -1,0 +1,283 @@
+{
+  "result": {
+    "closed": 24,
+    "order": [
+      12,
+      13,
+      14,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      10,
+      5,
+      11,
+      15,
+      4,
+      6,
+      1,
+      2,
+      7,
+      9,
+      16,
+      8
+    ],
+    "promotion": {
+      "baseRefName": "main",
+      "headRefOid": "74602671442246e052eadc8f3bece550f9058cc4",
+      "mergeCommit": {
+        "oid": "88b81d9855f0c9a5778703d726027ac21842b6b0"
+      },
+      "state": "MERGED"
+    },
+    "remaining_open": []
+  },
+  "resolutions": [
+    {
+      "number": 12,
+      "state": "CLOSED",
+      "comment": "https://github.com/pianojay/event-vision-lab/issues/12#issuecomment-7229413441",
+      "verified_utc": "2026-11-27T22:35:10.893481+00:00",
+      "original_body_sha256": "a2bd01d512d680fe3ab1d1f0914ade1291840e42e62b4866eb6ec1db14cb7004",
+      "resolved_body_sha256": "9c90eb6f5d0cdfbf32dd71b520bf6ba94aef90dbd4dd9cad1f50966dc675a3a9",
+      "text_comparison": "LF normalized; trailing newlines ignored",
+      "reconciled_existing_comment": true
+    },
+    {
+      "number": 13,
+      "state": "CLOSED",
+      "comment": "https://github.com/pianojay/event-vision-lab/issues/13#issuecomment-7229452413",
+      "verified_utc": "2026-11-27T22:35:18.396656+00:00",
+      "original_body_sha256": "00402641342d2a05fbbbbc8296d019ec3b8ff050ee9e44abe1541adad1305b94",
+      "resolved_body_sha256": "77eb94e9141f48b2761c1064d95df98e14c944236020cbadb08b1107ecc2ef76",
+      "text_comparison": "LF normalized; trailing newlines ignored",
+      "reconciled_existing_comment": false
+    },
+    {
+      "number": 14,
+      "state": "CLOSED",
+      "comment": "https://github.com/pianojay/event-vision-lab/issues/14#issuecomment-7229454422",
+      "verified_utc": "2026-11-27T22:35:25.644185+00:00",
+      "original_body_sha256": "eab1c408df5c9f482315ebd66d584729ceb0c14b6b0f7cc260462f9268ed676e",
+      "resolved_body_sha256": "972837a5f04dadef66e8ae76c7d4229c2dd8dd639773a09b03ccb21a480be158",
+      "text_comparison": "LF normalized; trailing newlines ignored",
+      "reconciled_existing_comment": false
+    },
+    {
+      "number": 17,
+      "state": "CLOSED",
+      "comment": "https://github.com/pianojay/event-vision-lab/issues/17#issuecomment-7229455744",
+      "verified_utc": "2026-11-27T22:35:31.341993+00:00",
+      "original_body_sha256": "e2e9000acff0c20628a4aa7d3abd6214a4bcd2486146431def14b4ea2e569f3c",
+      "resolved_body_sha256": "8d9df48301cf66512b3c3b41058c48faf6b070d68fb36aba3ee9e9416858d96c",
+      "text_comparison": "LF normalized; trailing newlines ignored",
+      "reconciled_existing_comment": false
+    },
+    {
+      "number": 18,
+      "state": "CLOSED",
+      "comment": "https://github.com/pianojay/event-vision-lab/issues/18#issuecomment-7229457166",
+      "verified_utc": "2026-11-27T22:35:37.739684+00:00",
+      "original_body_sha256": "c6de185ed5fcf11c9856abc60750f8852e3250fea9c1880af400167c87b8cb85",
+      "resolved_body_sha256": "7b117f04237a687b128f40758cbb3ae3159edafe2094af1734a47dace929c814",
+      "text_comparison": "LF normalized; trailing newlines ignored",
+      "reconciled_existing_comment": false
+    },
+    {
+      "number": 19,
+      "state": "CLOSED",
+      "comment": "https://github.com/pianojay/event-vision-lab/issues/19#issuecomment-7229458425",
+      "verified_utc": "2026-11-27T22:35:43.105795+00:00",
+      "original_body_sha256": "fb8512cce28f0cd725109dfb2995c0d80a3f6e63b9c4cc768d3bdae5741e0df8",
+      "resolved_body_sha256": "2c2a057a02fe822079d3b60baee2f8ef2e3d6b2d40cdb4e965f77f1df501c9cd",
+      "text_comparison": "LF normalized; trailing newlines ignored",
+      "reconciled_existing_comment": false
+    },
+    {
+      "number": 20,
+      "state": "CLOSED",
+      "comment": "https://github.com/pianojay/event-vision-lab/issues/20#issuecomment-7229459647",
+      "verified_utc": "2026-11-27T22:35:48.367423+00:00",
+      "original_body_sha256": "21321b842bfe00bdb520daf4ea1f28af180744d3c3b4c464f4795d75bcc06abc",
+      "resolved_body_sha256": "851611b0d43ae5bd4b9c7f4cdb842829a8baf03f5da3728aa8bd8282b6cf543c",
+      "text_comparison": "LF normalized; trailing newlines ignored",
+      "reconciled_existing_comment": false
+    },
+    {
+      "number": 21,
+      "state": "CLOSED",
+      "comment": "https://github.com/pianojay/event-vision-lab/issues/21#issuecomment-7229460770",
+      "verified_utc": "2026-11-27T22:35:53.837532+00:00",
+      "original_body_sha256": "2898b9a5b7e9be552c60b80da249b6b2d3f006e6557cac78784a81a93db4e4cc",
+      "resolved_body_sha256": "21bcc920a6dafb0fa8c171888a44d381f20dbe4f003baa3f0f6161bcb326ca32",
+      "text_comparison": "LF normalized; trailing newlines ignored",
+      "reconciled_existing_comment": false
+    },
+    {
+      "number": 22,
+      "state": "CLOSED",
+      "comment": "https://github.com/pianojay/event-vision-lab/issues/22#issuecomment-7229462026",
+      "verified_utc": "2026-11-27T22:35:59.357490+00:00",
+      "original_body_sha256": "7feb6c9bd1eea09194c6030c1e720fe9025075848306203a328429ebf8cb4335",
+      "resolved_body_sha256": "eec430f87eb922a36ca1cec066272422f00a5a62d4751555e6888cf98b4e62fd",
+      "text_comparison": "LF normalized; trailing newlines ignored",
+      "reconciled_existing_comment": false
+    },
+    {
+      "number": 23,
+      "state": "CLOSED",
+      "comment": "https://github.com/pianojay/event-vision-lab/issues/23#issuecomment-7229463316",
+      "verified_utc": "2026-11-27T22:36:05.422707+00:00",
+      "original_body_sha256": "bda4ab02651bfb38081097c2cef47f2355014ccaf45f1ed4fa1ce93e54b3ac2a",
+      "resolved_body_sha256": "5132cbd1f8ed46e31bb9e56945014aa6abfbf2e70a9571719ebb6ba7a5397057",
+      "text_comparison": "LF normalized; trailing newlines ignored",
+      "reconciled_existing_comment": false
+    },
+    {
+      "number": 24,
+      "state": "CLOSED",
+      "comment": "https://github.com/pianojay/event-vision-lab/issues/24#issuecomment-7229464708",
+      "verified_utc": "2026-11-27T22:36:10.767702+00:00",
+      "original_body_sha256": "c4697cc9f5f7f36e480a3cb94b55590d3be24be8bc7735bbd56e5a9f7c98eee7",
+      "resolved_body_sha256": "1c974dada07694baaab757e0f6fe125ca5f23c9428236d9887b46a1f3d77a20e",
+      "text_comparison": "LF normalized; trailing newlines ignored",
+      "reconciled_existing_comment": false
+    },
+    {
+      "number": 25,
+      "state": "CLOSED",
+      "comment": "https://github.com/pianojay/event-vision-lab/issues/25#issuecomment-7229465945",
+      "verified_utc": "2026-11-27T22:36:17.129472+00:00",
+      "original_body_sha256": "12f02ad28808385d901f9bb2d617e476dcb922e17b1395e195108640fe12a896",
+      "resolved_body_sha256": "7af8d11455fac874ce2954fc06da4dc51eec7e21ff7f1fa1e7512619e536c466",
+      "text_comparison": "LF normalized; trailing newlines ignored",
+      "reconciled_existing_comment": false
+    },
+    {
+      "number": 10,
+      "state": "CLOSED",
+      "comment": "https://github.com/pianojay/event-vision-lab/issues/10#issuecomment-7229467492",
+      "verified_utc": "2026-11-27T22:36:23.099399+00:00",
+      "original_body_sha256": "800839eab3f564ee77f0e02e6e69b52f912bfad4082c684f0136f9c86d50e016",
+      "resolved_body_sha256": "c832a1bfbf5ab593c1c58df539b0ae35ff7face8f662dc9fb0d0fbfb31da1f46",
+      "text_comparison": "LF normalized; trailing newlines ignored",
+      "reconciled_existing_comment": false
+    },
+    {
+      "number": 5,
+      "state": "CLOSED",
+      "comment": "https://github.com/pianojay/event-vision-lab/issues/5#issuecomment-7229468503",
+      "verified_utc": "2026-11-27T22:36:28.045671+00:00",
+      "original_body_sha256": "5c2141f00e82eb513374c865942940674c9a7bcb51a6acc3140f01dfd2f973f1",
+      "resolved_body_sha256": "5c2141f00e82eb513374c865942940674c9a7bcb51a6acc3140f01dfd2f973f1",
+      "text_comparison": "LF normalized; trailing newlines ignored",
+      "reconciled_existing_comment": false
+    },
+    {
+      "number": 11,
+      "state": "CLOSED",
+      "comment": "https://github.com/pianojay/event-vision-lab/issues/11#issuecomment-7229469857",
+      "verified_utc": "2026-11-27T22:36:35.081145+00:00",
+      "original_body_sha256": "568153a0e7b19491204eab2873934e758b60c1814b742f767b8836c86d839ff3",
+      "resolved_body_sha256": "6105ae0911fd64c500b35ad7d79884a619b9952a663d770c2270e4715168205d",
+      "text_comparison": "LF normalized; trailing newlines ignored",
+      "reconciled_existing_comment": false
+    },
+    {
+      "number": 15,
+      "state": "CLOSED",
+      "comment": "https://github.com/pianojay/event-vision-lab/issues/15#issuecomment-7229471480",
+      "verified_utc": "2026-11-27T22:36:40.561300+00:00",
+      "original_body_sha256": "4adc6d447bbd1547adad07067b939a6e7e8bc60723509c49d4fcc1fb5efcecc9",
+      "resolved_body_sha256": "ae8f95164b53d38027f615642f0f8a751df39b9ee221b473bf571791f06cb549",
+      "text_comparison": "LF normalized; trailing newlines ignored",
+      "reconciled_existing_comment": false
+    },
+    {
+      "number": 4,
+      "state": "CLOSED",
+      "comment": "https://github.com/pianojay/event-vision-lab/issues/4#issuecomment-7229472462",
+      "verified_utc": "2026-11-27T22:36:45.044993+00:00",
+      "original_body_sha256": "0fdaff3eab1c75bcdeba1e4db38937dd7c4fa53c32ec53160e9c4c0720d326e1",
+      "resolved_body_sha256": "0fdaff3eab1c75bcdeba1e4db38937dd7c4fa53c32ec53160e9c4c0720d326e1",
+      "text_comparison": "LF normalized; trailing newlines ignored",
+      "reconciled_existing_comment": false
+    },
+    {
+      "number": 6,
+      "state": "CLOSED",
+      "comment": "https://github.com/pianojay/event-vision-lab/issues/6#issuecomment-7229473721",
+      "verified_utc": "2026-11-27T22:36:50.904937+00:00",
+      "original_body_sha256": "cc4b77eca5d160e0970b3f9ce7298df73bc8f2aff81f4978ad8009c013f771b8",
+      "resolved_body_sha256": "577e9949ac0b1c18b22a3510fe536566bf10e1324032ed5a9c28e9404249493b",
+      "text_comparison": "LF normalized; trailing newlines ignored",
+      "reconciled_existing_comment": false
+    },
+    {
+      "number": 1,
+      "state": "CLOSED",
+      "comment": "https://github.com/pianojay/event-vision-lab/issues/1#issuecomment-7229474675",
+      "verified_utc": "2026-11-27T22:36:55.411069+00:00",
+      "original_body_sha256": "e4859a995fb1d2bd6ba5cf4890589ff7ee11bae5bc3fe1f78c52808a997779e8",
+      "resolved_body_sha256": "e4859a995fb1d2bd6ba5cf4890589ff7ee11bae5bc3fe1f78c52808a997779e8",
+      "text_comparison": "LF normalized; trailing newlines ignored",
+      "reconciled_existing_comment": false
+    },
+    {
+      "number": 2,
+      "state": "CLOSED",
+      "comment": "https://github.com/pianojay/event-vision-lab/issues/2#issuecomment-7229475707",
+      "verified_utc": "2026-11-27T22:36:59.292116+00:00",
+      "original_body_sha256": "2def55a1f58360996a338729eb262aa153c86bb8f186d41a950b34df82987b9d",
+      "resolved_body_sha256": "2def55a1f58360996a338729eb262aa153c86bb8f186d41a950b34df82987b9d",
+      "text_comparison": "LF normalized; trailing newlines ignored",
+      "reconciled_existing_comment": false
+    },
+    {
+      "number": 7,
+      "state": "CLOSED",
+      "comment": "https://github.com/pianojay/event-vision-lab/issues/7#issuecomment-7229476573",
+      "verified_utc": "2026-11-27T22:37:03.356799+00:00",
+      "original_body_sha256": "c02480f1764bf3d12beab5721a56ab6b340b8c3657f26cedc15dcc8dd01425a5",
+      "resolved_body_sha256": "c02480f1764bf3d12beab5721a56ab6b340b8c3657f26cedc15dcc8dd01425a5",
+      "text_comparison": "LF normalized; trailing newlines ignored",
+      "reconciled_existing_comment": false
+    },
+    {
+      "number": 9,
+      "state": "CLOSED",
+      "comment": "https://github.com/pianojay/event-vision-lab/issues/9#issuecomment-7229477731",
+      "verified_utc": "2026-11-27T22:37:08.867699+00:00",
+      "original_body_sha256": "def448fae48ba1e958f0ca56dd68fef4796368cba105498ea20bcda1dd0a7455",
+      "resolved_body_sha256": "2b35ea198076168dfea63702c3f495592d92b41724d1c4b0320bea4795ada432",
+      "text_comparison": "LF normalized; trailing newlines ignored",
+      "reconciled_existing_comment": false
+    },
+    {
+      "number": 16,
+      "state": "CLOSED",
+      "comment": "https://github.com/pianojay/event-vision-lab/issues/16#issuecomment-7229478990",
+      "verified_utc": "2026-11-27T22:37:14.484101+00:00",
+      "original_body_sha256": "d031fe09a4cd196ea28c589d31fce2635168d095c010577111aa160d66cd180d",
+      "resolved_body_sha256": "675bd48e759145f768fd74ee38c46daebf179882b2eb86737b7b91529937c612",
+      "text_comparison": "LF normalized; trailing newlines ignored",
+      "reconciled_existing_comment": false
+    },
+    {
+      "number": 8,
+      "state": "CLOSED",
+      "comment": "https://github.com/pianojay/event-vision-lab/issues/8#issuecomment-7229480272",
+      "verified_utc": "2026-11-27T22:37:19.706124+00:00",
+      "original_body_sha256": "9a8ebda0de72c1b4ea29d58c9de80d8abbf26d8d68261dc95c6235d1fb29eeaf",
+      "resolved_body_sha256": "a64d7962fe8b65b4bb5d38a516a4f128482376278f069bb68be57b9745eac634",
+      "text_comparison": "LF normalized; trailing newlines ignored",
+      "reconciled_existing_comment": false
+    }
+  ],
+  "scope": "Completed bounded prototype criteria; comments retain unclaimed calibration, quality, output and timing capabilities"
+}
