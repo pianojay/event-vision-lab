@@ -58,6 +58,14 @@ void main() {
     result.value[25]=mat_afterglow_power(mat_population_step(stored,0.0,0.3,0.4,0.6),0.4,0.8);
     result.value[26]=mat_population_step(stored,100.0,0.0,0.4,0.6);
     result.value[27]=mat_population_step(0.0,2.0,0.000001,0.4,0.6);
+    result.value[28]=mat_subsurface_stripe(0.0,0.008,0.03,1.0,500.0,0.04);
+    result.value[29]=mat_subsurface_stripe(0.03,0.008,0.03,1.0,500.0,0.04);
+    result.value[30]=mat_subsurface_stripe(0.03,0.008,0.0,1.0,500.0,0.04);
+    result.value[31]=mat_square_view_factor(0.2,0.3,64);
+    result.value[32]=mat_indirect_receiver(3.0,0.7,0.6,0.12,0.12,16);
+    result.value[33]=mat_indirect_receiver(3.0,0.7,0.6,0.12,0.12,0);
+    result.value[34]=mat_indirect_receiver(3.0,0.0,0.6,0.12,0.12,16);
+    result.value[35]=mat_indirect_receiver(3.0,0.7,0.6,0.12,0.12,1);
 }
 """
 	var spirv := rd.shader_compile_spirv_from_source(source)
@@ -121,6 +129,18 @@ void main() {
 	_check("Afterglow persists after source off",values[25],0.8*stored_expected*exp(-0.3/0.4)/0.4)
 	_check("Paused material state",values[26],stored_expected)
 	_check("Small timestep reservoir",values[27],0.6*2.0*0.4*(1.0-exp(-0.000001/0.4)),0.0000000001)
+	# Independent finite-difference slab reference, 12801 cells across [-0.3,0.3] m.
+	# Reproduce with tools.materials.transport_reference.diffusion_fd and interpolate.
+	_check("Spatial diffusion center vs finite differences",values[28],0.12087740469921374,0.000001)
+	_check("Nonlocal diffusion vs finite differences",values[29],0.013166400818478415,0.000001)
+	_check("Unexcited diffusion control",values[30],0.0)
+	# Independent four-area-coordinate midpoint quadrature, 48 samples per axis.
+	_check("Patch view factor vs independent 4D quadrature",values[31],0.11071581888929753)
+	# Independent Gaussian elimination of the 2x2 radiosity system.
+	_check("Indirect receiver vs linear solve",values[32],0.04842130685484727)
+	_check("Direct-only occluded receiver",values[33],0.0)
+	_check("Zero-reflectance indirect control",values[34],0.0)
+	_check("One-bounce diffuse transfer",values[35],3.0*0.7*0.6*0.12/PI)
 	for resource in [uniforms,pipeline,shader,buffer]:
 		rd.free_rid(resource)
 	rd.free()

@@ -38,7 +38,7 @@ The equation and terminology references were accessed on 2026-11-28. They are ed
 - [PBRT fourth edition, specular reflection and transmission](https://www.pbr-book.org/4ed/Reflection_Models/Specular_Reflection_and_Transmission), Snell directions, dielectric Fresnel, and total internal reflection. The bounded glossy lobe here is an explicitly derived approximation, not PBRT's microfacet model.
 - [PBRT third edition, subsurface diffusion](https://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/Subsurface_Scattering_Using_the_Diffusion_Equation), diffusion assumptions and reduced scattering. The finite-slab source and boundary solution here differ from PBRT's semi-infinite photon-beam diffusion.
 - [PBRT fourth edition, light transport equation](https://www.pbr-book.org/4ed/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation), energy balance, geometric coupling, and the multiple-reflection series.
-- IUPAC stable terms [fluorescence F02453](https://goldbook.iupac.org/terms/view/F02453), [phosphorescence P04569](https://goldbook.iupac.org/terms/view/P04569), and [excitation-emission spectrum E02249](https://goldbook.iupac.org/terms/view/E02249). Direct retrieval returned HTTP 403 in this run. These are issue-supplied terminology pointers, not evidence for fitted material constants.
+- IUPAC stable terms [fluorescence F02453](https://goldbook.iupac.org/terms/view/F02453), [phosphorescence P04569](https://goldbook.iupac.org/terms/view/P04569), and [excitation-emission spectrum E02249](https://goldbook.iupac.org/terms/view/E02249). Direct retrieval returned HTTP 403 in this run; official indexed term text was then retrieved through search. IUPAC distinguishes phosphorescence mechanistically by a change in spin multiplicity. Its [molecular luminescence terms](https://publications.iupac.org/analytical_compendium/Cha11sec2.pdf) define fluorescence with unchanged multiplicity. The models assume those mechanisms without simulating quantum states. These sources do not supply fitted material constants.
 
 ## Excitation and emission
 
@@ -57,3 +57,37 @@ python -m tools.materials.validate_emission --output docs/research/materials/evi
 ```
 
 The independent references count photons with Planck's relation and integrate the causal excitation convolution with Simpson quadrature. RK4 tests check the population ODE. The report retains separate spectral components, nonexciting-band controls, repeated pulses, lifetime and cadence sweeps, energy budgets, and material-reset checks. `prototype/tests/material_gpu_tests.gd` adds actual GLSL probes for both mechanisms. Its `--report=<path>` or `--output=<path>` user argument exports JSON after a genuine GPU run.
+
+## Spatial subsurface transport
+
+`DiffusionSlab(mu_a_m_inv, mu_s_reduced_m_inv, thickness_m, stripe_halfwidth_m)` solves a restricted steady diffusion problem. A uniform entrance stripe deposits power per unit length in the invariant y direction. The declared depth injection is `q(x,z)=P_dep(x)*(pi/(2H))*sin(pi*z/H)`. Integrating that source through the thickness recovers `P_dep(x)`. The depth profile approximates already multiply scattered illumination. It is not a collimated surface-source solution.
+
+The PDE is `-D*Laplacian(Phi)+mu_a*Phi=q`, with `D=1/[3*(mu_a+mu_s_reduced)]`. Fluence is zero at both planar faces and tends to zero laterally. Separating the fundamental depth mode gives `k=pi/H` and `kappa=sqrt(mu_a/D+k^2)`. The opposite-face exit-flux kernel for a line source is `k^2*exp(-kappa*abs(x))/(4*kappa)`. The implementation integrates this kernel over the finite entrance stripe. `radiance(x, P_line)` divides the resulting exit flux by pi for a Lambertian exit. The two faces together emit the fraction `k^2/kappa^2` of deposited power. The remainder is absorption.
+
+Require `mu_s_reduced>=10*mu_a`, `H*(mu_a+mu_s_reduced)>=10`, and a stripe halfwidth of at least three transport mean free paths. Thin or weakly scattering samples fail validation. These numerical regime guards are conservative model restrictions, not empirical calibration. There is no screen-space blur, temporal afterglow, arbitrary-shape BSSRDF, ballistic component, or Fresnel boundary correction. Temporal transport is instantaneous steady state. It requires source changes much slower than photon residence time.
+
+The independent reference uses finite-volume source deposition and a tridiagonal finite-difference solve of the separated PDE. Evidence includes lateral grid and boundary-extent convergence, thickness/scattering/absorption sweeps, both-face energy, a local surface-only control, and exit light outside the illuminated stripe. This validates the stated diffusion problem, not approximation error against the full radiative transfer equation.
+
+The runtime functions are `mat_subsurface_stripe(x_relative_m, stripe_halfwidth_m, deposited_power_per_length, mu_a_m_inv, mu_s_reduced_m_inv, thickness_m)` in GLSL and `subsurface_stripe(...)` in `transport_models.gd`. They return opposite-face linear radiance. Translate the entrance source by subtracting its x position from the observed material x coordinate. The source and receiver must remain in the slab's material coordinates when the camera moves.
+
+## Indirect diffuse transport
+
+`indirect_receiver(E_reflector, rho_reflector, rho_receiver, F12, F21, bounces)` returns receiver radiance from two uniform diffuse patches. Only patch 1 receives direct illumination. Both patches are Lambertian. `Fij` is the fraction of outgoing power from patch i reaching patch j. Reciprocity requires `A1*F12=A2*F21`; the irradiance received at patch 2 is `F21*B1`. The distinction matters for unequal areas. All unused view factor escapes to black surroundings. The receiver has no ambient term.
+
+The bounce series starts with `B1=rho1*E1`. Zero bounces disable indirect transport. One bounce includes the reflector-to-receiver path. The default 16 bounces include repeated exchange, and the evidence compares additional bounces with a Gaussian elimination solve of the 2x2 radiosity system. Reflectances are limited to 0.95.
+
+`square_view_factor(side_m,gap_m,samples)` computes reciprocal factors for equal aligned parallel facing squares. The quadrature integrates the geometric cosine/distance kernel over patch separations. An independent four-dimensional quadrature integrates over both physical faces. The supported gap is at least half the side length. Uniform patch radiosity is an approximation; the test does not establish a spatially resolved solution on either patch. Occlusion of the external source at the receiver is a prescribed scene condition. The path between the two patches must remain unoccluded. To demonstrate this in a stage, place an explicit baffle on the direct source-to-receiver path, without blocking the patch-to-patch path.
+
+`transport_models.gd` provides matching pure methods. GLSL uses `mat_square_view_factor` and `mat_indirect_receiver`. Compute the view factor once per geometry change on the host, rather than per pixel. Vary the source, reflectance, or square gap for prescribed experiments. Zero-reflectance and zero-bounce controls remove receiver illumination.
+
+```powershell
+python -m unittest tools.materials.test_transport -v
+python -m tools.materials.validate_transport --output docs/research/materials/evidence/transport.json
+& 'C:/Godot_v4.7.2-stable_win64.exe/Godot_v4.7.2-stable_win64_console.exe' --headless --path prototype --script materials/transport_tests.gd
+```
+
+## Evidence provenance and integration limits
+
+`source_commit` identifies HEAD when a report starts. A report generated before its implementation commit can therefore name the previous base. `source_sha256` identifies the exact files measured. New reports also record `source_worktree_dirty` and explain this distinction. Historical reports are retained without claiming their old include hashes match later model additions.
+
+All nine models have isolated optical and ideal-event evidence. Genuine GPU probes are executed by the coordinator in a serialized hidden graphics context. Parent-run evidence is retained separately. The three standalone groups do not satisfy the stage demonstration, event-only usefulness, full renderer sampling, or camera-fidelity acceptance gates. Those require composed geometry, explicit source/camera/material trajectories, and a separate integrated run. CPU cost records are five repeated scalar workloads, not FPS or GPU-cost claims.

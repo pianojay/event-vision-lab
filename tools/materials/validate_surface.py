@@ -91,7 +91,8 @@ def trace(fn,hz=240):
             'events':[asdict(e) for e in events]},events
 
 
-def evaluate(name,fn,reference,control,parameters):
+def evaluate(name,fn,reference,control,parameters,*,tolerances=(2e-6,2e-5,1e-6)):
+    linear_tolerance,log_tolerance,event_tolerance=tolerances
     data,events=trace(fn)
     refdata,refevents=trace(reference)
     controls,_=trace(control)
@@ -111,9 +112,9 @@ def evaluate(name,fn,reference,control,parameters):
         values=[fn(k/240) for k in range(241)]
         timings.append(time.perf_counter()-start)
         checksum+=sum(values)
-    comparison=compare(refevents,events,1e-6)
-    passed=(error<2e-6 and log_error<2e-5 and comparison['missing']==0 and comparison['extra']==0 and not static_events)
-    return {'name':name,'parameters':parameters,'reference_tolerances':{'linear_abs':2e-6,'log_abs':2e-5,'event_time_s':1e-6,'missing_extra':0},
+    comparison=compare(refevents,events,event_tolerance)
+    passed=(error<linear_tolerance and log_error<log_tolerance and comparison['missing']==0 and comparison['extra']==0 and not static_events)
+    return {'name':name,'parameters':parameters,'reference_tolerances':{'linear_abs':linear_tolerance,'log_abs':log_tolerance,'event_time_s':event_tolerance,'missing_extra':0},
             'passed':passed,'linear_abs_max':error,'log_abs_max':log_error,'event_comparison':comparison,
             'trace':data,'independent_reference':refdata,'isolated_control':controls,
             'sampling_convergence_against_3840_hz':convergence,'static_events':len(static_events),
@@ -123,6 +124,8 @@ def evaluate(name,fn,reference,control,parameters):
 def evidence(models):
     source_files=sorted(list((ROOT/'tools/materials').glob('*.py'))+list((ROOT/'prototype/materials').glob('*'))+[ROOT/'prototype/shaders/material_models.glsl'])
     return {'schema':'event-lab-material-evidence-v1','source_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
+            'source_commit_semantics':'HEAD at generation start; may be the base of uncommitted work; exact measured source is identified by source_sha256',
+            'source_worktree_dirty':bool(subprocess.check_output(['git','status','--porcelain'],cwd=ROOT,text=True).strip()),
             'source_sha256':{str(f.relative_to(ROOT)).replace(chr(92),'/'):hashlib.sha256(f.read_bytes()).hexdigest() for f in source_files if f.is_file()},
             'host':{'platform':platform.platform(),'processor':platform.processor(),'python':platform.python_version()},
             'scope':'isolated deterministic CPU optical models and existing ideal SampledPixel; no integrated 3D stage or real camera validation',
