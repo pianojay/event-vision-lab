@@ -15,12 +15,10 @@ $ErrorActionPreference = 'Stop'
 if ($ValidateControls -and ($Editor -or $Validate -or $ProfileSeconds -ne 0)) {
     throw '-ValidateControls cannot be combined with -Editor, -Validate, or -ProfileSeconds.'
 }
-if (($AcquisitionConfig -or $EventCaptureDirectory) -and ($Editor -or $Validate -or $ValidateControls -or $ProfileSeconds -ne 0)) {
-    throw 'Live acquisition cannot be combined with editor, baseline validation, or profiling.'
+if (($AcquisitionConfig -or $EventCaptureDirectory) -and ($Editor -or $Validate -or $ValidateControls)) {
+    throw 'Live acquisition cannot be combined with editor or baseline validation.'
 }
-if (($AcquisitionConfig -and -not $EventCaptureDirectory) -or ($EventCaptureDirectory -and -not $AcquisitionConfig)) {
-    throw 'Supply both -AcquisitionConfig and -EventCaptureDirectory.'
-}
+if ($EventCaptureDirectory -and -not $AcquisitionConfig) { throw 'EventCaptureDirectory requires AcquisitionConfig.' }
 $projectPath = Join-Path $PSScriptRoot 'prototype'
 # Explicit settings must resolve as given; do not silently fall back after a typo.
 if (-not $GodotDirectory) { $GodotDirectory = $env:EVENT_LAB_GODOT_DIR }
@@ -59,7 +57,10 @@ if ($ValidateControls) {
     $godotArguments += @('--headless', '--script', 'res://tests/controls_tests.gd', '--log-file', (Join-Path $evidencePath 'controls-tests.log'))
 } elseif ($AcquisitionConfig) {
     $revision = git -C $PSScriptRoot rev-parse HEAD
-    $godotArguments += @('--log-file', (Join-Path $evidencePath 'acquisition.log'), '--', ('--acquisition-config=' + [System.IO.Path]::GetFullPath($AcquisitionConfig)), ('--event-capture=' + [System.IO.Path]::GetFullPath($EventCaptureDirectory)), ('--source-revision=' + $revision))
+    $godotArguments += @('--log-file', (Join-Path $evidencePath 'acquisition.log'), '--', ('--acquisition-config=' + [System.IO.Path]::GetFullPath($AcquisitionConfig)), ('--source-revision=' + $revision), ('--report=' + (Join-Path $evidencePath 'acquisition-report.json')), ('--view=' + $View))
+    if ($EventCaptureDirectory) { $godotArguments += '--event-capture=' + [System.IO.Path]::GetFullPath($EventCaptureDirectory) }
+    if ($ProfileSeconds -gt 0) { $godotArguments += '--duration=' + $ProfileSeconds }
+    if ($CapturePath) { $godotArguments += '--capture=' + [System.IO.Path]::GetFullPath($CapturePath) }
 } elseif ($Editor) {
     $godotArguments += '--editor'
 } elseif ($Validate) {

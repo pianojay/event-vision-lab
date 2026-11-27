@@ -4,6 +4,8 @@ Current implementation: November 22, 2026. A controllable event-vision laborator
 
 November 28 update: the [configurable CPU pipeline](pipeline-prototype.md) now generates stage-labelled event captures and replays them in Godot. This guide describes the original live GPU path, whose ideal sensor behavior and limits remain unchanged. The CPU generic nonideal model is not live GPU acquisition.
 
+The default application now uses the [nine-station interaction stage and bounded live event profile](development/interaction-stage.md). The historical sphere/room path and validation commands below remain available. The new guide describes the new controls, profiles, state boundaries, and pending integrated checks.
+
 ## Run on Windows
 
 ```powershell

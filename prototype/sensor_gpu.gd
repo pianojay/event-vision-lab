@@ -15,6 +15,7 @@ var optical_pipeline := RID()
 var optical_uniforms := RID()
 var diagnostics := RID()
 var anchors := RID()
+var stage_buffer := RID()
 
 func initialize(device: RenderingDevice, sensor_size: Vector2i) -> bool:
 	rd = device
@@ -66,6 +67,8 @@ func initialize(device: RenderingDevice, sensor_size: Vector2i) -> bool:
 	anchor_uniform.add_id(anchors)
 	uniforms = rd.uniform_set_create([state_uniform, radiance_uniform, event_uniform, activity_uniform, diagnostic_uniform, anchor_uniform], shader, 0)
 	source.source_compute = FileAccess.get_file_as_string("res://shaders/optical.glsl").replace("#[compute]", "")
+	for include in ["material_models.glsl", "interaction_stage.glsl"]:
+		source.source_compute = source.source_compute.replace('#include "' + include + '"', FileAccess.get_file_as_string("res://shaders/"+include))
 	spirv = rd.shader_compile_spirv_from_source(source)
 	error = spirv.get_stage_compile_error(RenderingDevice.SHADER_STAGE_COMPUTE)
 	if not error.is_empty():
@@ -76,7 +79,14 @@ func initialize(device: RenderingDevice, sensor_size: Vector2i) -> bool:
 	optical_uniform.uniform_type = RenderingDevice.UNIFORM_TYPE_IMAGE
 	optical_uniform.binding = 0
 	optical_uniform.add_id(radiance)
-	optical_uniforms = rd.uniform_set_create([optical_uniform], optical_shader, 0)
+	var stage_bytes := PackedByteArray()
+	stage_bytes.resize(48*4)
+	stage_buffer = rd.storage_buffer_create(stage_bytes.size(),stage_bytes)
+	var stage_uniform := RDUniform.new()
+	stage_uniform.uniform_type = RenderingDevice.UNIFORM_TYPE_STORAGE_BUFFER
+	stage_uniform.binding = 1
+	stage_uniform.add_id(stage_buffer)
+	optical_uniforms = rd.uniform_set_create([optical_uniform,stage_uniform], optical_shader, 0)
 	return pipeline.is_valid() and uniforms.is_valid() and optical_pipeline.is_valid() and optical_uniforms.is_valid()
 
 func _make_texture() -> RID:
@@ -88,16 +98,20 @@ func _make_texture() -> RID:
 	return rd.texture_create(format, RDTextureView.new())
 
 func dispatch(parameters: Array) -> void:
-	var commands := rd.compute_list_begin()
 	for values: PackedFloat32Array in parameters:
-		var bytes := values.to_byte_array()
+		var stage_values := PackedFloat32Array()
+		stage_values.resize(48)
+		if values.size() > 28: stage_values = values.slice(28)
+		rd.buffer_update(stage_buffer,0,192,stage_values.to_byte_array())
+		var commands := rd.compute_list_begin()
+		var bytes := values.slice(0,28).to_byte_array()
 		for pass_data in [[optical_pipeline, optical_uniforms], [pipeline, uniforms]]:
 			rd.compute_list_bind_compute_pipeline(commands, pass_data[0])
 			rd.compute_list_bind_uniform_set(commands, pass_data[1], 0)
 			rd.compute_list_set_push_constant(commands, bytes, bytes.size())
 			rd.compute_list_dispatch(commands, ceili(size.x / 8.0), ceili(size.y / 8.0), 1)
 			rd.compute_list_add_barrier(commands)
-	rd.compute_list_end()
+		rd.compute_list_end()
 
 func read_events() -> PackedFloat32Array:
 	return rd.texture_get_data(events, 0).to_float32_array()
@@ -123,6 +137,6 @@ func read_intensity() -> PackedFloat32Array:
 	return values
 
 func cleanup() -> void:
-	for resource in [optical_uniforms, optical_pipeline, optical_shader, uniforms, pipeline, shader, buffer, diagnostics, anchors, radiance, events, activity]:
+	for resource in [optical_uniforms, optical_pipeline, optical_shader, uniforms, pipeline, shader, buffer, diagnostics, anchors, stage_buffer, radiance, events, activity]:
 		if resource.is_valid():
 			rd.free_rid(resource)

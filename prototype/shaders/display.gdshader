@@ -4,6 +4,7 @@ uniform sampler2D event_texture : filter_nearest, repeat_disable;
 uniform sampler2D scene_texture : filter_nearest, repeat_disable;
 uniform sampler2D activity_texture : filter_nearest, repeat_disable;
 uniform bool polarity_color=false;
+uniform bool reduced_flashes=true;
 uniform float sample_time=0.0;
 uniform float persistence=0.15;
 uniform int representation=0;
@@ -28,5 +29,6 @@ void fragment() {
         vec3 linear=texture(scene_texture,UV).rgb;
         value=pow(max(linear/(linear+vec3(1.0)),vec3(0.0)),vec3(1.0/2.2));
     }
+    if (reduced_flashes) value=vec3(clamp(dot(value,vec3(0.2126,0.7152,0.0722)),0.0,1.0)*0.08);
     COLOR=vec4(value,1.0);
 }

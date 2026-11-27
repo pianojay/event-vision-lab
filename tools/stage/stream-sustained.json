@@ -1,0 +1,11 @@
+{
+  "archive_mode": "stream",
+  "scene": "interaction-stage",
+  "station": 1,
+  "stage_action": "tour",
+  "duration_ns": 600000000000,
+  "sample_period_ns": 16666667,
+  "wall_paced": true,
+  "reconstruction_enabled": true,
+  "capture_capacity": 500000
+}

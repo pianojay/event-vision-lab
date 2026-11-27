@@ -6,6 +6,8 @@ Assessment date: **2026-11-22, Asia/Seoul**.
 
 **A Windows Godot prototype now runs on this laptop.** Godot 4.7.2 Mobile/Vulkan drives a shader-rendered room and a persistent FP32 ideal event sensor at 240×180, targeting 120 Hz, with a 60 FPS display cap. The active-lighting extension adds fixed, camera-mounted and orbiting lights, a matte sphere control and per-substep count integration. Twenty-five GPU checks passed; see the prototype guide for current measurements. Strobing is off by default. This validates the small analytic scene, not the eventual real-world fidelity target or learned reconstruction.
 
+The November 28 integration adds a [nine-station interaction stage and bounded live processing](development/interaction-stage.md). Its final integrated experiment gates remain under validation.
+
 Start with **[the Godot prototype guide](godot-prototype.md)**. Launch from the workspace with `./run-lab.ps1`, or double-click `Run Event Vision Lab.cmd`.
 
 **A configurable CPU pipeline is also available as of November 28.** It connects controlled optical fixtures, explicit timing choices, ideal or generic nonideal sensor behavior, stage-labelled event export, and Godot event replay. Start with [the pipeline guide](pipeline-prototype.md). This is a separate offline path; the live GPU sensor is unchanged.
