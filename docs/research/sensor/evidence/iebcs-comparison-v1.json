@@ -1,0 +1,1046 @@
+{
+  "schema": "event-lab-pinned-sensor-comparison-v1",
+  "repository": "https://github.com/neuromorphicsystems/IEBCS",
+  "commit": "8fdab5c3d078435d091fa8a94ad657e1fedf0c59",
+  "license": "upstream GPL-3.0 license file; external experiment input, not vendored/runtime dependency",
+  "sources": [
+    {
+      "path": "src/dvs_sensor.py",
+      "url": "https://raw.githubusercontent.com/neuromorphicsystems/IEBCS/8fdab5c3d078435d091fa8a94ad657e1fedf0c59/src/dvs_sensor.py",
+      "sha256": "bc8ed3f97b2a1c70591dc2d9db2e84155671147323287ce4fbebf1355ad04c03",
+      "git_blob_sha1": "d26799fdd4d0dd241a6f969b7829caecc28422e8"
+    },
+    {
+      "path": "src/arbiter.py",
+      "url": "https://raw.githubusercontent.com/neuromorphicsystems/IEBCS/8fdab5c3d078435d091fa8a94ad657e1fedf0c59/src/arbiter.py",
+      "sha256": "4e73cdd51ccd857ae168b01cd22f39f5b06e3d702360bad5b9352deebab66483",
+      "git_blob_sha1": "b9599b23eaa69add1ab217844bbf98a4789e738c"
+    },
+    {
+      "path": "src/event_buffer.py",
+      "url": "https://raw.githubusercontent.com/neuromorphicsystems/IEBCS/8fdab5c3d078435d091fa8a94ad657e1fedf0c59/src/event_buffer.py",
+      "sha256": "728d1c932cb68b4a9408a0f286d6aaa471ae6834104d845fd2bdecabfbf8cdb9",
+      "git_blob_sha1": "de93828a2ed980012e9e9f41655755a658c64be0"
+    },
+    {
+      "path": "src/dat_files.py",
+      "url": "https://raw.githubusercontent.com/neuromorphicsystems/IEBCS/8fdab5c3d078435d091fa8a94ad657e1fedf0c59/src/dat_files.py",
+      "sha256": "e1d790514cacb4734a6d1559533dee9079512f857d1cb011593f6eae1c9a341f",
+      "git_blob_sha1": "2758ed9db07203eb57fbe6138967efec4c591ae0"
+    },
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/neuromorphicsystems/IEBCS/8fdab5c3d078435d091fa8a94ad657e1fedf0c59/LICENSE",
+      "sha256": "e57f1c320b8cf8798a7d2ff83a6f9e06a33a03585f6e065fea97f1d86db84052",
+      "git_blob_sha1": "53d1f3d01864c35841739c55aeba9700657627b7"
+    }
+  ],
+  "environment": {
+    "python": "3.14.8",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 126 Stepping 5, GenuineIntel",
+    "logical_cpus": 8
+  },
+  "comparison": {
+    "dependencies": {
+      "numpy": "2.5.5",
+      "tqdm": "4.70.1"
+    },
+    "upstream_effective": {
+      "seed": 17,
+      "latency_us": 0,
+      "jitter_us": 0,
+      "tau_parameter_us": 100,
+      "threshold_on": 0.2,
+      "threshold_off_magnitude": 0.2,
+      "threshold_noise": "0 except initial-map comparison .03",
+      "background_rate_hz": "0.001 per polarity for step cases; 8 for noise cases",
+      "radiometry": "identical raw flux; both use log(flux+1)",
+      "response_alignment": "local constant tau chosen to match each held target's IEBCS tau; not a global bandwidth-law match"
+    },
+    "steps": [
+      {
+        "input": {
+          "initial_flux": 10.0,
+          "held_flux": 20.0,
+          "duration_us": 20000,
+          "step_us": 1000
+        },
+        "local_pixel": {
+          "on_threshold": 0.2,
+          "off_threshold": 0.2,
+          "threshold_sigma": 0.0,
+          "minimum_threshold": 0.01,
+          "bandwidth_white_hz": 33.422538049298026,
+          "white_intensity": 1.0,
+          "minimum_bandwidth_fraction": 1,
+          "dark_offset": 1,
+          "refractory_s": 0.0,
+          "seed": 1
+        },
+        "upstream_refractory_us": 0,
+        "upstream_min_scheduled_noise_us": 191834735,
+        "effective_tau_us": 4761.9047619047615,
+        "analytic_first_us": 1762.1224415472054,
+        "upstream_times_us": [
+          1762,
+          4589,
+          12516
+        ],
+        "upstream_polarities": [
+          1,
+          1,
+          1
+        ],
+        "local_times_us": [
+          1762.1224415472077,
+          4589.962542122874,
+          12521.840794100712
+        ],
+        "local_polarities": [
+          1,
+          1,
+          1
+        ],
+        "first_error_us": 0.12244154720769984
+      },
+      {
+        "input": {
+          "initial_flux": 10.0,
+          "held_flux": 20.0,
+          "duration_us": 20000,
+          "step_us": 20000
+        },
+        "local_pixel": {
+          "on_threshold": 0.2,
+          "off_threshold": 0.2,
+          "threshold_sigma": 0.0,
+          "minimum_threshold": 0.01,
+          "bandwidth_white_hz": 33.422538049298026,
+          "white_intensity": 1.0,
+          "minimum_bandwidth_fraction": 1,
+          "dark_offset": 1,
+          "refractory_s": 0.0,
+          "seed": 1
+        },
+        "upstream_refractory_us": 0,
+        "upstream_min_scheduled_noise_us": 191834735,
+        "effective_tau_us": 4761.9047619047615,
+        "analytic_first_us": 1762.1224415472054,
+        "upstream_times_us": [
+          1762,
+          4589,
+          12516
+        ],
+        "upstream_polarities": [
+          1,
+          1,
+          1
+        ],
+        "local_times_us": [
+          1762.1224415472072,
+          4589.962542122869,
+          12521.840794100639
+        ],
+        "local_polarities": [
+          1,
+          1,
+          1
+        ],
+        "first_error_us": 0.1224415472072451
+      },
+      {
+        "input": {
+          "initial_flux": 10.0,
+          "held_flux": 20.0,
+          "duration_us": 20000,
+          "step_us": 1000
+        },
+        "local_pixel": {
+          "on_threshold": 0.2,
+          "off_threshold": 0.2,
+          "threshold_sigma": 0.0,
+          "minimum_threshold": 0.01,
+          "bandwidth_white_hz": 33.422538049298026,
+          "white_intensity": 1.0,
+          "minimum_bandwidth_fraction": 1,
+          "dark_offset": 1,
+          "refractory_s": 0.002,
+          "seed": 1
+        },
+        "upstream_refractory_us": 2000,
+        "upstream_min_scheduled_noise_us": 191834735,
+        "effective_tau_us": 4761.9047619047615,
+        "analytic_first_us": 1762.1224415472054,
+        "upstream_times_us": [
+          1762,
+          9210
+        ],
+        "upstream_polarities": [
+          1,
+          1
+        ],
+        "local_times_us": [
+          1762.1224415472077,
+          4589.962542122874,
+          12521.840794100712
+        ],
+        "local_polarities": [
+          1,
+          1,
+          1
+        ],
+        "first_error_us": 0.12244154720769984
+      },
+      {
+        "input": {
+          "initial_flux": 10.0,
+          "held_flux": 20.0,
+          "duration_us": 20000,
+          "step_us": 20000
+        },
+        "local_pixel": {
+          "on_threshold": 0.2,
+          "off_threshold": 0.2,
+          "threshold_sigma": 0.0,
+          "minimum_threshold": 0.01,
+          "bandwidth_white_hz": 33.422538049298026,
+          "white_intensity": 1.0,
+          "minimum_bandwidth_fraction": 1,
+          "dark_offset": 1,
+          "refractory_s": 0.002,
+          "seed": 1
+        },
+        "upstream_refractory_us": 2000,
+        "upstream_min_scheduled_noise_us": 191834735,
+        "effective_tau_us": 4761.9047619047615,
+        "analytic_first_us": 1762.1224415472054,
+        "upstream_times_us": [
+          1762,
+          9210
+        ],
+        "upstream_polarities": [
+          1,
+          1
+        ],
+        "local_times_us": [
+          1762.1224415472072,
+          4589.962542122869,
+          12521.840794100639
+        ],
+        "local_polarities": [
+          1,
+          1,
+          1
+        ],
+        "first_error_us": 0.1224415472072451
+      },
+      {
+        "input": {
+          "initial_flux": 20.0,
+          "held_flux": 10.0,
+          "duration_us": 20000,
+          "step_us": 1000
+        },
+        "local_pixel": {
+          "on_threshold": 0.2,
+          "off_threshold": 0.2,
+          "threshold_sigma": 0.0,
+          "minimum_threshold": 0.01,
+          "bandwidth_white_hz": 17.50704374010849,
+          "white_intensity": 1.0,
+          "minimum_bandwidth_fraction": 1,
+          "dark_offset": 1,
+          "refractory_s": 0.0,
+          "seed": 1
+        },
+        "upstream_refractory_us": 0,
+        "upstream_min_scheduled_noise_us": 191834735,
+        "effective_tau_us": 9090.90909090909,
+        "analytic_first_us": 3364.0519338628465,
+        "upstream_times_us": [
+          3364,
+          8762
+        ],
+        "upstream_polarities": [
+          -1,
+          -1
+        ],
+        "local_times_us": [
+          3364.051933862845,
+          8762.655762234574
+        ],
+        "local_polarities": [
+          -1,
+          -1
+        ],
+        "first_error_us": 0.05193386284508961
+      },
+      {
+        "input": {
+          "initial_flux": 20.0,
+          "held_flux": 10.0,
+          "duration_us": 20000,
+          "step_us": 20000
+        },
+        "local_pixel": {
+          "on_threshold": 0.2,
+          "off_threshold": 0.2,
+          "threshold_sigma": 0.0,
+          "minimum_threshold": 0.01,
+          "bandwidth_white_hz": 17.50704374010849,
+          "white_intensity": 1.0,
+          "minimum_bandwidth_fraction": 1,
+          "dark_offset": 1,
+          "refractory_s": 0.0,
+          "seed": 1
+        },
+        "upstream_refractory_us": 0,
+        "upstream_min_scheduled_noise_us": 191834735,
+        "effective_tau_us": 9090.90909090909,
+        "analytic_first_us": 3364.0519338628465,
+        "upstream_times_us": [
+          3364,
+          8762
+        ],
+        "upstream_polarities": [
+          -1,
+          -1
+        ],
+        "local_times_us": [
+          3364.05193386285,
+          8762.65576223457
+        ],
+        "local_polarities": [
+          -1,
+          -1
+        ],
+        "first_error_us": 0.05193386285009183
+      },
+      {
+        "input": {
+          "initial_flux": 20.0,
+          "held_flux": 10.0,
+          "duration_us": 20000,
+          "step_us": 1000
+        },
+        "local_pixel": {
+          "on_threshold": 0.2,
+          "off_threshold": 0.2,
+          "threshold_sigma": 0.0,
+          "minimum_threshold": 0.01,
+          "bandwidth_white_hz": 17.50704374010849,
+          "white_intensity": 1.0,
+          "minimum_bandwidth_fraction": 1,
+          "dark_offset": 1,
+          "refractory_s": 0.002,
+          "seed": 1
+        },
+        "upstream_refractory_us": 2000,
+        "upstream_min_scheduled_noise_us": 191834735,
+        "effective_tau_us": 9090.90909090909,
+        "analytic_first_us": 3364.0519338628465,
+        "upstream_times_us": [
+          3364,
+          12786
+        ],
+        "upstream_polarities": [
+          -1,
+          -1
+        ],
+        "local_times_us": [
+          3364.051933862845,
+          8762.655762234574
+        ],
+        "local_polarities": [
+          -1,
+          -1
+        ],
+        "first_error_us": 0.05193386284508961
+      },
+      {
+        "input": {
+          "initial_flux": 20.0,
+          "held_flux": 10.0,
+          "duration_us": 20000,
+          "step_us": 20000
+        },
+        "local_pixel": {
+          "on_threshold": 0.2,
+          "off_threshold": 0.2,
+          "threshold_sigma": 0.0,
+          "minimum_threshold": 0.01,
+          "bandwidth_white_hz": 17.50704374010849,
+          "white_intensity": 1.0,
+          "minimum_bandwidth_fraction": 1,
+          "dark_offset": 1,
+          "refractory_s": 0.002,
+          "seed": 1
+        },
+        "upstream_refractory_us": 2000,
+        "upstream_min_scheduled_noise_us": 191834735,
+        "effective_tau_us": 9090.90909090909,
+        "analytic_first_us": 3364.0519338628465,
+        "upstream_times_us": [
+          3364,
+          12786
+        ],
+        "upstream_polarities": [
+          -1,
+          -1
+        ],
+        "local_times_us": [
+          3364.05193386285,
+          8762.65576223457
+        ],
+        "local_polarities": [
+          -1,
+          -1
+        ],
+        "first_error_us": 0.05193386285009183
+      },
+      {
+        "input": {
+          "initial_flux": 1000.0,
+          "held_flux": 2000.0,
+          "duration_us": 20000,
+          "step_us": 1000
+        },
+        "local_pixel": {
+          "on_threshold": 0.2,
+          "off_threshold": 0.2,
+          "threshold_sigma": 0.0,
+          "minimum_threshold": 0.01,
+          "bandwidth_white_hz": 3184.6904112688258,
+          "white_intensity": 1.0,
+          "minimum_bandwidth_fraction": 1,
+          "dark_offset": 1,
+          "refractory_s": 0.0,
+          "seed": 1
+        },
+        "upstream_refractory_us": 0,
+        "upstream_min_scheduled_noise_us": 191834735,
+        "effective_tau_us": 49.97501249375313,
+        "analytic_first_us": 17.027849636093915,
+        "upstream_times_us": [
+          17,
+          43,
+          100
+        ],
+        "upstream_polarities": [
+          1,
+          1,
+          1
+        ],
+        "local_times_us": [
+          17.02784963609393,
+          43.05608643848311,
+          100.53566846182146
+        ],
+        "local_polarities": [
+          1,
+          1,
+          1
+        ],
+        "first_error_us": 0.02784963609392932
+      },
+      {
+        "input": {
+          "initial_flux": 1000.0,
+          "held_flux": 2000.0,
+          "duration_us": 20000,
+          "step_us": 20000
+        },
+        "local_pixel": {
+          "on_threshold": 0.2,
+          "off_threshold": 0.2,
+          "threshold_sigma": 0.0,
+          "minimum_threshold": 0.01,
+          "bandwidth_white_hz": 3184.6904112688258,
+          "white_intensity": 1.0,
+          "minimum_bandwidth_fraction": 1,
+          "dark_offset": 1,
+          "refractory_s": 0.0,
+          "seed": 1
+        },
+        "upstream_refractory_us": 0,
+        "upstream_min_scheduled_noise_us": 191834735,
+        "effective_tau_us": 49.97501249375313,
+        "analytic_first_us": 17.027849636093915,
+        "upstream_times_us": [
+          17,
+          43,
+          100
+        ],
+        "upstream_polarities": [
+          1,
+          1,
+          1
+        ],
+        "local_times_us": [
+          17.02784963609393,
+          43.05608643848311,
+          100.53566846182146
+        ],
+        "local_polarities": [
+          1,
+          1,
+          1
+        ],
+        "first_error_us": 0.02784963609392932
+      },
+      {
+        "input": {
+          "initial_flux": 1000.0,
+          "held_flux": 2000.0,
+          "duration_us": 20000,
+          "step_us": 1000
+        },
+        "local_pixel": {
+          "on_threshold": 0.2,
+          "off_threshold": 0.2,
+          "threshold_sigma": 0.0,
+          "minimum_threshold": 0.01,
+          "bandwidth_white_hz": 3184.6904112688258,
+          "white_intensity": 1.0,
+          "minimum_bandwidth_fraction": 1,
+          "dark_offset": 1,
+          "refractory_s": 0.002,
+          "seed": 1
+        },
+        "upstream_refractory_us": 2000,
+        "upstream_min_scheduled_noise_us": 191834735,
+        "effective_tau_us": 49.97501249375313,
+        "analytic_first_us": 17.027849636093915,
+        "upstream_times_us": [
+          17
+        ],
+        "upstream_polarities": [
+          1
+        ],
+        "local_times_us": [
+          17.02784963609393
+        ],
+        "local_polarities": [
+          1
+        ],
+        "first_error_us": 0.02784963609392932
+      },
+      {
+        "input": {
+          "initial_flux": 1000.0,
+          "held_flux": 2000.0,
+          "duration_us": 20000,
+          "step_us": 20000
+        },
+        "local_pixel": {
+          "on_threshold": 0.2,
+          "off_threshold": 0.2,
+          "threshold_sigma": 0.0,
+          "minimum_threshold": 0.01,
+          "bandwidth_white_hz": 3184.6904112688258,
+          "white_intensity": 1.0,
+          "minimum_bandwidth_fraction": 1,
+          "dark_offset": 1,
+          "refractory_s": 0.002,
+          "seed": 1
+        },
+        "upstream_refractory_us": 2000,
+        "upstream_min_scheduled_noise_us": 191834735,
+        "effective_tau_us": 49.97501249375313,
+        "analytic_first_us": 17.027849636093915,
+        "upstream_times_us": [
+          17
+        ],
+        "upstream_polarities": [
+          1
+        ],
+        "local_times_us": [
+          17.02784963609393
+        ],
+        "local_polarities": [
+          1
+        ],
+        "first_error_us": 0.02784963609392932
+      },
+      {
+        "input": {
+          "initial_flux": 2000.0,
+          "held_flux": 1000.0,
+          "duration_us": 20000,
+          "step_us": 1000
+        },
+        "local_pixel": {
+          "on_threshold": 0.2,
+          "off_threshold": 0.2,
+          "threshold_sigma": 0.0,
+          "minimum_threshold": 0.01,
+          "bandwidth_white_hz": 1593.1409803498723,
+          "white_intensity": 1.0,
+          "minimum_bandwidth_fraction": 1,
+          "dark_offset": 1,
+          "refractory_s": 0.0,
+          "seed": 1
+        },
+        "upstream_refractory_us": 0,
+        "upstream_min_scheduled_noise_us": 191834735,
+        "effective_tau_us": 99.9000999000999,
+        "analytic_first_us": 34.03868843339053,
+        "upstream_times_us": [
+          34,
+          86,
+          200
+        ],
+        "upstream_polarities": [
+          -1,
+          -1,
+          -1
+        ],
+        "local_times_us": [
+          34.03868843339057,
+          86.06915980360112,
+          200.97090169041437
+        ],
+        "local_polarities": [
+          -1,
+          -1,
+          -1
+        ],
+        "first_error_us": 0.03868843339056838
+      },
+      {
+        "input": {
+          "initial_flux": 2000.0,
+          "held_flux": 1000.0,
+          "duration_us": 20000,
+          "step_us": 20000
+        },
+        "local_pixel": {
+          "on_threshold": 0.2,
+          "off_threshold": 0.2,
+          "threshold_sigma": 0.0,
+          "minimum_threshold": 0.01,
+          "bandwidth_white_hz": 1593.1409803498723,
+          "white_intensity": 1.0,
+          "minimum_bandwidth_fraction": 1,
+          "dark_offset": 1,
+          "refractory_s": 0.0,
+          "seed": 1
+        },
+        "upstream_refractory_us": 0,
+        "upstream_min_scheduled_noise_us": 191834735,
+        "effective_tau_us": 99.9000999000999,
+        "analytic_first_us": 34.03868843339053,
+        "upstream_times_us": [
+          34,
+          86,
+          200
+        ],
+        "upstream_polarities": [
+          -1,
+          -1,
+          -1
+        ],
+        "local_times_us": [
+          34.03868843339057,
+          86.06915980360112,
+          200.97090169041437
+        ],
+        "local_polarities": [
+          -1,
+          -1,
+          -1
+        ],
+        "first_error_us": 0.03868843339056838
+      },
+      {
+        "input": {
+          "initial_flux": 2000.0,
+          "held_flux": 1000.0,
+          "duration_us": 20000,
+          "step_us": 1000
+        },
+        "local_pixel": {
+          "on_threshold": 0.2,
+          "off_threshold": 0.2,
+          "threshold_sigma": 0.0,
+          "minimum_threshold": 0.01,
+          "bandwidth_white_hz": 1593.1409803498723,
+          "white_intensity": 1.0,
+          "minimum_bandwidth_fraction": 1,
+          "dark_offset": 1,
+          "refractory_s": 0.002,
+          "seed": 1
+        },
+        "upstream_refractory_us": 2000,
+        "upstream_min_scheduled_noise_us": 191834735,
+        "effective_tau_us": 99.9000999000999,
+        "analytic_first_us": 34.03868843339053,
+        "upstream_times_us": [
+          34
+        ],
+        "upstream_polarities": [
+          -1
+        ],
+        "local_times_us": [
+          34.03868843339057
+        ],
+        "local_polarities": [
+          -1
+        ],
+        "first_error_us": 0.03868843339056838
+      },
+      {
+        "input": {
+          "initial_flux": 2000.0,
+          "held_flux": 1000.0,
+          "duration_us": 20000,
+          "step_us": 20000
+        },
+        "local_pixel": {
+          "on_threshold": 0.2,
+          "off_threshold": 0.2,
+          "threshold_sigma": 0.0,
+          "minimum_threshold": 0.01,
+          "bandwidth_white_hz": 1593.1409803498723,
+          "white_intensity": 1.0,
+          "minimum_bandwidth_fraction": 1,
+          "dark_offset": 1,
+          "refractory_s": 0.002,
+          "seed": 1
+        },
+        "upstream_refractory_us": 2000,
+        "upstream_min_scheduled_noise_us": 191834735,
+        "effective_tau_us": 99.9000999000999,
+        "analytic_first_us": 34.03868843339053,
+        "upstream_times_us": [
+          34
+        ],
+        "upstream_polarities": [
+          -1
+        ],
+        "local_times_us": [
+          34.03868843339057
+        ],
+        "local_polarities": [
+          -1
+        ],
+        "first_error_us": 0.03868843339056838
+      }
+    ],
+    "noise": {
+      "pixels": 256,
+      "flux": 100,
+      "rate_per_polarity_hz": 8,
+      "duration_us": 1000000,
+      "cases": [
+        {
+          "step_us": 1000000,
+          "upstream": {
+            "off": {
+              "total": 256,
+              "mean": 1,
+              "variance": 0
+            },
+            "on": {
+              "total": 256,
+              "mean": 1,
+              "variance": 0
+            }
+          },
+          "local": {
+            "off": {
+              "total": 2040,
+              "mean": 7.96875,
+              "variance": 7.0849609375
+            },
+            "on": {
+              "total": 2103,
+              "mean": 8.21484375,
+              "variance": 7.7702484130859375
+            }
+          },
+          "local_event_digest": "d5f95f113f38fb1b97bb38054b8bc9e7591a9e270550b851ba97db44831f1aa2"
+        },
+        {
+          "step_us": 50000,
+          "upstream": {
+            "off": {
+              "total": 2048,
+              "mean": 8,
+              "variance": 0
+            },
+            "on": {
+              "total": 2048,
+              "mean": 8,
+              "variance": 0
+            }
+          },
+          "local": {
+            "off": {
+              "total": 2040,
+              "mean": 7.96875,
+              "variance": 7.0849609375
+            },
+            "on": {
+              "total": 2103,
+              "mean": 8.21484375,
+              "variance": 7.7702484130859375
+            }
+          },
+          "local_event_digest": "d5f95f113f38fb1b97bb38054b8bc9e7591a9e270550b851ba97db44831f1aa2"
+        },
+        {
+          "step_us": 10000,
+          "upstream": {
+            "off": {
+              "total": 2048,
+              "mean": 8,
+              "variance": 0
+            },
+            "on": {
+              "total": 2048,
+              "mean": 8,
+              "variance": 0
+            }
+          },
+          "local": {
+            "off": {
+              "total": 2040,
+              "mean": 7.96875,
+              "variance": 7.0849609375
+            },
+            "on": {
+              "total": 2103,
+              "mean": 8.21484375,
+              "variance": 7.7702484130859375
+            }
+          },
+          "local_event_digest": "d5f95f113f38fb1b97bb38054b8bc9e7591a9e270550b851ba97db44831f1aa2"
+        }
+      ],
+      "local_effective": {
+        "model": "generic-composed-held-v1",
+        "calibration": "none",
+        "width": 256,
+        "height": 1,
+        "pixel": {
+          "on_threshold": 0.2,
+          "off_threshold": 0.2,
+          "threshold_sigma": 0.0,
+          "minimum_threshold": 0.01,
+          "bandwidth_white_hz": 0.0,
+          "white_intensity": 1.0,
+          "minimum_bandwidth_fraction": 0.1,
+          "dark_offset": 1,
+          "refractory_s": 0.0,
+          "seed": 1
+        },
+        "activity": {
+          "leak_log_per_s": 0.0,
+          "temporal_on_hz": 8,
+          "temporal_off_hz": 8,
+          "seed": 17
+        },
+        "max_candidates_per_step": 1000000,
+        "trajectory": "left-sample held, exact RC optical crossings",
+        "leak": "periodic ON candidates; period=C_on/leak_log_per_s; phase zero at reset",
+        "temporal": "independent per-pixel/polarity homogeneous Poisson candidates",
+        "noise_insertion": "candidate boundary; no analog or threshold-noise addition",
+        "refractory": "shared event gate; optical reference consumes suppressed crossings",
+        "synthetic_reference_effect": "none",
+        "reset": "retain threshold map; restart activity seeds/phase and gate",
+        "ordering": "time,y,x,p,origin(optical,leak,temporal); stable ties"
+      },
+      "interpretation": "IEBCS fixed-period random-phase background is not Poisson. Large updates check only one noise event per polarity per pixel; local continuous schedules preserve all arrivals."
+    },
+    "initial_threshold_maps": {
+      "pixels": 4096,
+      "nominal": 0.2,
+      "sigma": 0.03,
+      "moments": {
+        "on": {
+          "upstream_mean": 0.19968498893905146,
+          "upstream_std": 0.03045880168915537,
+          "local_mean": 0.1995224657209676,
+          "local_std": 0.030068758182399118
+        },
+        "off": {
+          "upstream_mean": 0.19909870772016441,
+          "upstream_std": 0.02990650413793201,
+          "local_mean": 0.20039935405105314,
+          "local_std": 0.02952685623602487
+        }
+      },
+      "interpretation": "Initial distribution moments only; IEBCS redraws thresholds after events, local map remains fixed. RNGs and clipping floors differ."
+    },
+    "readout": {
+      "input": {
+        "count": 4,
+        "timestamp_us": 0,
+        "service_parameter_us": 10,
+        "advance_us": 100
+      },
+      "upstream": {
+        "returned_times_us": [
+          0,
+          40
+        ],
+        "returned_count": 2,
+        "pending_count": 2,
+        "capacity": "unbounded; no drop counter"
+      },
+      "local": {
+        "effective": {
+          "model": "bounded-fifo-readout-v1",
+          "capacity_events": 2,
+          "service_ns": 10000,
+          "latency_ns": 0,
+          "overflow": "drop-newest",
+          "capacity_scope": "accepted but not delivered",
+          "tie_rule": "deliver completed events before admitting arrivals at the same time",
+          "timestamp": "preserve pixel event time; retain separate delivered_ns"
+        },
+        "readout_input": 4,
+        "readout_accepted": 2,
+        "readout_dropped": 2,
+        "readout_delivered": 2,
+        "readout_peak_occupancy": 2,
+        "readout_pending": 0,
+        "watermark_ns": 100000,
+        "original_times_ns": [
+          0,
+          0
+        ],
+        "delivered_ns": [
+          10000,
+          20000
+        ]
+      },
+      "interpretation": "Different queue laws. IEBCS mock scales processing time by backlog and rewrites timestamps; local bounded FIFO has per-event service and drops."
+    }
+  },
+  "cost": {
+    "scope": "entire in-memory held-frame adapter including generation, readout, capture arrays and metadata; no disk serialization",
+    "settings": {
+      "width": 8,
+      "height": 8,
+      "duration_ns": 100000000,
+      "sample_period_ns": 10000000,
+      "frames": "alternating 1 and 2",
+      "repetitions_per_configuration": 5,
+      "pixel": {
+        "on_threshold": 0.2,
+        "off_threshold": 0.2,
+        "threshold_sigma": 0.0,
+        "minimum_threshold": 0.01,
+        "bandwidth_white_hz": 0.0,
+        "white_intensity": 1.0,
+        "minimum_bandwidth_fraction": 0.1,
+        "dark_offset": 0.0,
+        "refractory_s": 0.0,
+        "seed": 1
+      },
+      "readout": {
+        "capacity_events": 32,
+        "service_ns": 10000,
+        "latency_ns": 0
+      },
+      "disabled_activity": {
+        "leak_log_per_s": 0.0,
+        "temporal_on_hz": 0.0,
+        "temporal_off_hz": 0.0,
+        "seed": 1
+      },
+      "enabled_activity": {
+        "leak_log_per_s": 4,
+        "temporal_on_hz": 8,
+        "temporal_off_hz": 8,
+        "seed": 1
+      },
+      "capture_capacity_per_stage": 1000000,
+      "candidate_limit_per_step": 1000000,
+      "source_loss_count": 0,
+      "drain_readout": true
+    },
+    "seconds": {
+      "disabled_activity": {
+        "runs": [
+          0.24690259999624686,
+          0.19890270000178134,
+          0.1807124000042677,
+          0.17529819999617757,
+          0.3949378999968758
+        ],
+        "median": 0.19890270000178134,
+        "min": 0.17529819999617757,
+        "max": 0.3949378999968758
+      },
+      "enabled_activity": {
+        "runs": [
+          0.21085429999948246,
+          0.19262670000171056,
+          0.17544199999974808,
+          0.17774709999503102,
+          0.23050489999877755
+        ],
+        "median": 0.19262670000171056,
+        "min": 0.17544199999974808,
+        "max": 0.23050489999877755
+      }
+    },
+    "counters": {
+      "disabled_activity": {
+        "optical_candidates": 1728,
+        "leak_candidates": 0,
+        "temporal_candidates": 0,
+        "sensor_candidates": 1728,
+        "pixel_emitted": 1728,
+        "refractory_suppressed": 0,
+        "readout_input": 1728,
+        "readout_accepted": 288,
+        "readout_dropped": 1440,
+        "readout_delivered": 288,
+        "readout_peak_occupancy": 32,
+        "readout_pending": 0,
+        "watermark_ns": 100000000
+      },
+      "enabled_activity": {
+        "optical_candidates": 1728,
+        "leak_candidates": 128,
+        "temporal_candidates": 107,
+        "sensor_candidates": 1963,
+        "pixel_emitted": 1963,
+        "refractory_suppressed": 0,
+        "readout_input": 1963,
+        "readout_accepted": 426,
+        "readout_dropped": 1537,
+        "readout_delivered": 426,
+        "readout_peak_occupancy": 32,
+        "readout_pending": 0,
+        "watermark_ns": 100320000
+      }
+    },
+    "profile_separate_untimed_run": "         1018816 function calls (182091 primitive calls) in 0.544 seconds\n\n   Ordered by: cumulative time\n   List reduced from 106 to 10 due to restriction <10>\n\n   ncalls  tottime  percall  cumtime  percall filename:lineno(function)\n        1    0.000    0.000    0.549    0.549 compare_iebcs.py:193(workload)\n        1    0.001    0.001    0.549    0.549 held_frame_adapter.py:16(simulate_frames)\n       10    0.000    0.000    0.507    0.051 generic_sensor.py:85(advance)\n819090/10    0.185    0.000    0.482    0.048 copy.py:110(deepcopy)\n  1970/10    0.006    0.000    0.482    0.048 copy.py:228(_reconstruct)\n   700/10    0.002    0.000    0.482    0.048 copy.py:198(_deepcopy_dict)\n  1320/40    0.013    0.000    0.464    0.012 copy.py:172(_deepcopy_list)\n3220/1300    0.226    0.000    0.410    0.000 copy.py:181(_deepcopy_tuple)\n       10    0.005    0.000    0.024    0.002 generic_sensor.py:92(_advance)\n     1966    0.001    0.000    0.021    0.000 dataclasses.py:1484(asdict)\n\n\n",
+    "limitation": "Small offline workload, untuned Python, concurrent machine load uncontrolled. No adoption/speedup or real-time/GPU claim."
+  },
+  "unresolved": [
+    "No calibrated real-camera validation",
+    "No physical leak-current model or matching upstream leak law",
+    "Poisson and periodic-background noise laws differ",
+    "Pixel reset/blind semantics differ",
+    "No whole-model IEBCS/v2e parity",
+    "No GPU implementation or live-runtime cost measurement"
+  ],
+  "local_source_sha256_lf": {
+    "compare_iebcs.py": "2167b295f088080566d0f87f5994867abd3a84c6de61135312763ee62ebb19a5",
+    "generic_sensor.py": "bd29c6caf0912d078bcdd9cd4edcff840b894b041ef2349acc7b454466653fb6",
+    "held_frame_adapter.py": "3f2f6355a29109ce3c61d720566e256708ca9c6ffb024d187dbc7ff540b5c3d7",
+    "readout.py": "e214f73b11cf16d7e277a2cb478fd08ea4c182b39367866eb43d30336717754a",
+    "reference_sensor.py": "bff638f315742a5073c70e6317eb7b59934a871a66b6f8bcef415a5b77eedcca",
+    "run_experiments.py": "0cad24625a449fe69e06a8d247e6eff8974c77cfd15c4a24f8498cce4544a6bc",
+    "test_generic_sensor.py": "4491a96f58529dfccc9b8bfbd877471e3a2c1c73129bf929892520d515377120",
+    "test_held_frame_adapter.py": "31ae22e55f1ac93cbfcba2f003c4fd694460a705aad1b623e792087d3116a538",
+    "test_reference_sensor.py": "2af3051330bcd4916f1d25a9221d08108986eb57fee11804124731aabdb53420"
+  }
+}

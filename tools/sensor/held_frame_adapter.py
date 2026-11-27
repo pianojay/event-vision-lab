@@ -6,6 +6,7 @@ from dataclasses import asdict
 import hashlib
 import json
 from pathlib import Path
+import platform
 
 from generic_sensor import ActivityProfile, GenericSensor
 from readout import ReadoutEvent, ReadoutProfile, ReadoutQueue
@@ -59,6 +60,7 @@ def simulate_frames(width, height, times_ns, frames, *, pixel=SensorProfile(),
     payload = {"times_ns": times_ns, "frames": frames}
     result = {
         "schema": "event-lab-generic-held-report-v1",
+        "software": {"python": platform.python_version(), "rng": "stdlib random.Random/expovariate"},
         "effective": {"sensor": sensor.effective(), "readout": queue.effective(),
                       "capture_capacity_per_stage": capture_capacity, "drain_readout": drain_readout,
                       "duration_ns": times_ns[-1], "timestamp_origin": "reset at relative zero",
@@ -68,6 +70,7 @@ def simulate_frames(width, height, times_ns, frames, *, pixel=SensorProfile(),
         "input": {"sha256": hashlib.sha256(json.dumps(payload, allow_nan=False,
                     separators=(",", ":")).encode()).hexdigest(), "frame_count": len(frames),
                   "source_loss_count": source_loss_count,
+                  "source_loss_unit": "caller-declared missing optical frames; not inferred by adapter",
                   "complete_relative_to_declared_source": source_loss_count == 0,
                   "intensity": "linear relative units; supplied values used without rescaling/floor",
                   "trajectory": "left-sample hold; final frame is endpoint only"},
