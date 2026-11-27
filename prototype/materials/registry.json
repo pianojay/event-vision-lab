@@ -1,0 +1,204 @@
+{
+  "schema": "event-lab-materials-v1",
+  "boundary": {
+    "geometry": "metre",
+    "time": "second",
+    "intensity": "scene-linear relative radiance; physically consistent ratios, arbitrary common radiometric scale",
+    "precision": "CPU binary64; runtime shader FP32",
+    "sensor_floor": "none in models; evidence sensor alone uses max(I,1e-6)",
+    "state_owner": "optical material; sensor reset does not reset material"
+  },
+  "models": [
+    {
+      "id": "absorption",
+      "issue": 17,
+      "parameters": {
+        "mu_a_m_inv": [
+          0,
+          10000
+        ],
+        "path_m": [
+          0,
+          10000
+        ]
+      },
+      "model": "homogeneous non-scattering Beer-Lambert attenuation",
+      "missing": "volume scattering, calibrated spectrum"
+    },
+    {
+      "id": "diffuse",
+      "issue": 18,
+      "parameters": {
+        "rho_d": [
+          0,
+          1
+        ],
+        "point_light_power_per_sr": [
+          0,
+          1e+20
+        ]
+      },
+      "model": "Lambert rho_d/pi, cosine and physical inverse square point irradiance",
+      "missing": "ambient, grazing-angle material physics"
+    },
+    {
+      "id": "glossy",
+      "issue": 19,
+      "parameters": {
+        "rho_s": [
+          0,
+          1
+        ],
+        "roughness": [
+          0.1,
+          1
+        ]
+      },
+      "constraint": "rho_d+rho_s<=1",
+      "model": "reciprocal cosine-power BRDF, exponent 2/r^2-2, conservative normalization (s+1)/(2*pi)",
+      "missing": "microfacet multiple scattering, Fresnel in glossy lobe, exact mirror delta"
+    },
+    {
+      "id": "transmission",
+      "issue": 20,
+      "parameters": {
+        "reflection": [
+          0,
+          1
+        ],
+        "transmission": [
+          0,
+          1
+        ]
+      },
+      "constraint": "R+T<=1; A=1-R-T",
+      "model": "nonbending infinitesimal pane radiance T*background+R*reflected_environment",
+      "missing": "refraction, thickness, volume attenuation"
+    },
+    {
+      "id": "refraction",
+      "issue": 21,
+      "parameters": {
+        "eta": [
+          0.8,
+          2.5
+        ],
+        "eta_outside": [
+          0.8,
+          2.5
+        ],
+        "thickness_m": [
+          1e-06,
+          100
+        ],
+        "radius_m": [
+          1e-06,
+          100
+        ],
+        "mu_a_m_inv": [
+          0,
+          10000
+        ]
+      },
+      "model": "smooth parallel slab and sphere, vector Snell, exact unpolarized Fresnel, first transmitted branch",
+      "constraint": "external sphere ray; slab front point and normal against ray; normalized directions",
+      "missing": "internal reflected branches are accounted but not traced; no caustics, dispersion, polarization state or lens model"
+    },
+    {
+      "id": "fluorescence",
+      "issue": 22,
+      "parameters": {
+        "excitation_nm": [
+          300,
+          700
+        ],
+        "emission_nm": [
+          400,
+          900
+        ],
+        "absorption_fraction": [
+          0,
+          1
+        ],
+        "quantum_yield": [
+          0,
+          1
+        ],
+        "detector_excitation": [
+          0,
+          1
+        ],
+        "detector_emission": [
+          0,
+          1
+        ]
+      },
+      "constraint": "emission_nm>=excitation_nm",
+      "model": "two narrow spectral bands; prompt Stokes conversion; excitation absorption is band-selective",
+      "missing": "full spectra, saturation, resolved singlet lifetime, calibrated dye"
+    },
+    {
+      "id": "phosphorescence",
+      "issue": 24,
+      "parameters": {
+        "lifetime_s": [
+          0.0001,
+          1000
+        ],
+        "storage_yield": [
+          0,
+          1
+        ],
+        "radiative_yield": [
+          0,
+          1
+        ]
+      },
+      "model": "metastable stored energy dU/dt=storage_yield*absorbed_power-U/tau; emission=radiative_yield*U/tau",
+      "constraint": "piecewise-constant absorbed excitation per step; U>=0; independent material reset",
+      "missing": "multi-state kinetics, saturation, quenching, calibrated material"
+    },
+    {
+      "id": "subsurface",
+      "issue": 23,
+      "parameters": {
+        "mu_a_m_inv": [
+          0.01,
+          1000
+        ],
+        "mu_s_reduced_m_inv": [
+          1,
+          10000
+        ],
+        "thickness_m": [
+          0.001,
+          10
+        ]
+      },
+      "constraint": "mu_s_reduced>=10*mu_a and thickness*(mu_a+mu_s_reduced)>=10",
+      "model": "steady 2D slab diffusion, infinite lateral dimension, zero-fluence boundaries, nonnegative fundamental-depth source q(x,z)=Q(x)sin(pi*z/H)",
+      "missing": "arbitrary shapes, ballistic near-field, Fresnel boundary correction; source is an interior multiple-scattering proxy, not collimated surface illumination"
+    },
+    {
+      "id": "interreflection",
+      "issue": 25,
+      "parameters": {
+        "reflectance": [
+          0,
+          0.95
+        ],
+        "view_factor": [
+          0,
+          1
+        ],
+        "bounce_count": [
+          0,
+          64
+        ]
+      },
+      "constraint": "reciprocal A_i*F_ij=A_j*F_ji and row sums<=1",
+      "model": "two uniform diffuse patches; exact multiple-reflection series given view factors; only reflector directly lit",
+      "missing": "spatial variation within each patch, specular paths, participating media"
+    }
+  ]
+}
