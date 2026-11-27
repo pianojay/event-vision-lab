@@ -77,4 +77,23 @@ bool mat_sphere(vec3 origin, vec3 incident, vec3 center, float radius_m,
         (1.0-front_r)*(1.0-attenuation),(1.0-front_r)*attenuation*back_r);
     return mat_refract(inside,exit_normal,eta,eta_outside,exit_direction);
 }
+// Return (direct detector radiance, converted detector radiance, absorbed power).
+vec3 mat_fluorescence(float excitation_irradiance, float emission_band_irradiance,
+        float absorption_fraction, float quantum_yield, float excitation_nm, float emission_nm,
+        float detector_excitation, float detector_emission) {
+    float absorbed=absorption_fraction*excitation_irradiance;
+    float converted=absorbed*quantum_yield*excitation_nm/emission_nm;
+    return vec3((detector_excitation*(excitation_irradiance-absorbed)
+        +detector_emission*emission_band_irradiance)/MAT_PI,
+        detector_emission*converted/MAT_PI,absorbed);
+}
+float mat_population_step(float stored_energy, float absorbed_power, float dt_s,
+        float lifetime_s, float storage_yield) {
+    float x=dt_s/lifetime_s;
+    float uptake=x<0.001 ? x*(1.0-x*0.5+x*x/6.0) : 1.0-exp(-x);
+    return stored_energy*exp(-x)+storage_yield*absorbed_power*lifetime_s*uptake;
+}
+float mat_afterglow_power(float stored_energy, float lifetime_s, float radiative_yield) {
+    return radiative_yield*stored_energy/lifetime_s;
+}
 #endif

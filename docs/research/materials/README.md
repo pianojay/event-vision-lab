@@ -39,3 +39,21 @@ The equation and terminology references were accessed on 2026-11-28. They are ed
 - [PBRT third edition, subsurface diffusion](https://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/Subsurface_Scattering_Using_the_Diffusion_Equation), diffusion assumptions and reduced scattering. The finite-slab source and boundary solution here differ from PBRT's semi-infinite photon-beam diffusion.
 - [PBRT fourth edition, light transport equation](https://www.pbr-book.org/4ed/Light_Transport_I_Surface_Reflection/The_Light_Transport_Equation), energy balance, geometric coupling, and the multiple-reflection series.
 - IUPAC stable terms [fluorescence F02453](https://goldbook.iupac.org/terms/view/F02453), [phosphorescence P04569](https://goldbook.iupac.org/terms/view/P04569), and [excitation-emission spectrum E02249](https://goldbook.iupac.org/terms/view/E02249). Direct retrieval returned HTTP 403 in this run. These are issue-supplied terminology pointers, not evidence for fitted material constants.
+
+## Excitation and emission
+
+`Fluorophore` describes two narrow bands, by default 405 nm excitation and 550 nm emission. `evaluate(E_excitation, E_emission_band)` returns separate absorbed, converted, direct, heat, and detector components. Nonabsorbed illumination is reflected diffusely from the one-sided sheet. Conversion uses photon yield times `lambda_excitation/lambda_emission`; the wavelength ratio keeps the radiant-energy budget bounded. The detector has an explicit sensitivity for each band. Emission-band illumination does not excite the material. Response is instantaneous at the simulation cadence. No artificial visible delay or material calibration is implied.
+
+`Population(Phosphor(lifetime_s, storage_yield, radiative_yield))` owns stored energy per area. `advance(dt_s, absorbed_power)` integrates constant absorbed excitation exactly over that interval. Its equation is `dU/dt=storage_yield*P_abs-U/tau`; emitted power is `radiative_yield*U/tau`. The model assumes a metastable reservoir and omits saturation and multistate kinetics. The fluorescence/phosphorescence distinction is an assumed physical mechanism, not a numerical lifetime cutoff.
+
+The GDScript state owner is `res://materials/emission_state.gd`. Its APIs are `configure(Dictionary)->bool`, `advance(dt_s, absorbed_power)->Dictionary`, `emitted_power()->float`, and `reset_material(initial_energy=0)->bool`. Configure preserves energy. A scene reset calls `reset_material`; a sensor reset does not. Pause either skips advancement or uses zero dt. Static-scene evidence uses the equilibrium reservoir under constant excitation. Decaying emission after source shutdown is real model activity.
+
+GLSL exposes `mat_fluorescence(E_exc, E_em, absorption_fraction, quantum_yield, excitation_nm, emission_nm, detector_excitation, detector_emission)->vec3(direct_detector, converted_detector, absorbed_power)`. `mat_population_step(U, P_abs, dt_s, tau, storage_yield)` and `mat_afterglow_power(U,tau,radiative_yield)` are stateless helpers. The host owns persistent energy and passes the emission to the optical stage. Shader inputs obey the registry bounds.
+
+```powershell
+python -m unittest tools.materials.test_emission -v
+python -m tools.materials.validate_emission --output docs/research/materials/evidence/emission.json
+& 'C:/Godot_v4.7.2-stable_win64.exe/Godot_v4.7.2-stable_win64_console.exe' --headless --path prototype --script materials/emission_state_tests.gd
+```
+
+The independent references count photons with Planck's relation and integrate the causal excitation convolution with Simpson quadrature. RK4 tests check the population ODE. The report retains separate spectral components, nonexciting-band controls, repeated pulses, lifetime and cadence sweeps, energy budgets, and material-reset checks. `prototype/tests/material_gpu_tests.gd` adds actual GLSL probes for both mechanisms. Its `--report=<path>` or `--output=<path>` user argument exports JSON after a genuine GPU run.
