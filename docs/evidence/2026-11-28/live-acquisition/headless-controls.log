@@ -1,0 +1,73 @@
+COMMAND C:\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable_win64_console.exe --headless --path prototype --script res://tests/controls_tests.gd
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS V cycles view 1 [1, 1]
+PASS V cycles view 2 [2, 2]
+PASS V cycles view 3 [3, 3]
+PASS V cycles view 0 [0, 0]
+PASS logical V cycles view [1, 1]
+PASS Ctrl+V leaves view unchanged 1
+PASS V autorepeat leaves view unchanged 1
+PASS open observation popup owns V [1, 1]
+PASS observation UI selects view 0 [0, 0]
+PASS V continues after UI view 0 [1, 1]
+PASS observation UI selects view 1 [1, 1]
+PASS V continues after UI view 1 [2, 2]
+PASS observation UI selects view 2 [2, 2]
+PASS V continues after UI view 2 [3, 3]
+PASS observation UI selects view 3 [3, 3]
+PASS V continues after UI view 3 [0, 0]
+PASS scene key 1 applies every preset flag [false, true, false, false, true, 0, true]
+PASS scene button 1 matches keyboard [false, true, false, false, true, 0, true]
+PASS scene preset preserves observation and pause <null>
+PASS scene key 2 applies every preset flag [false, true, false, false, true, 2, true]
+PASS scene button 2 matches keyboard [false, true, false, false, true, 2, true]
+PASS scene preset preserves observation and pause <null>
+PASS scene key 3 applies every preset flag [true, true, false, false, false, 0, true]
+PASS scene button 3 matches keyboard [true, true, false, false, false, 0, true]
+PASS scene preset preserves observation and pause <null>
+PASS L cycles light mode 0 1
+PASS L cycles light mode 1 2
+PASS L cycles light mode 2 0
+PASS direction key Light from left <null>
+PASS direction button matches Light from left <null>
+PASS direction key Light from right <null>
+PASS direction button matches Light from right <null>
+PASS direction key Light from above <null>
+PASS direction button matches Light from above <null>
+PASS toggle on Pause acquisition [P] <null>
+PASS toggle off Pause acquisition [P] <null>
+PASS autorepeat ignored Pause acquisition [P] <null>
+PASS toggle on Strobe illumination [T] (opt-in) <null>
+PASS toggle off Strobe illumination [T] (opt-in) <null>
+PASS autorepeat ignored Strobe illumination [T] (opt-in) <null>
+PASS toggle on Polarity colors [C] (optional) <null>
+PASS toggle off Polarity colors [C] (optional) <null>
+PASS autorepeat ignored Polarity colors [C] (optional) <null>
+PASS toggle on Matte sphere control scene [F] <null>
+PASS toggle off Matte sphere control scene [F] <null>
+PASS autorepeat ignored Matte sphere control scene [F] <null>
+PASS toggle on Moving object [M] (room scene) <null>
+PASS toggle off Moving object [M] (room scene) <null>
+PASS autorepeat ignored Moving object [M] (room scene) <null>
+PASS toggle on Lamp powered [B] <null>
+PASS toggle off Lamp powered [B] <null>
+PASS autorepeat ignored Lamp powered [B] <null>
+PASS toggle on Changing emissive panel [N] <null>
+PASS toggle off Changing emissive panel [N] <null>
+PASS autorepeat ignored Changing emissive panel [N] <null>
+PASS C updates shader colors <null>
+PASS color UI updates shader <null>
+PASS R requests reset without resuming or changing time <null>
+PASS V preserves scene, pause and sensor reference <null>
+PASS modified shortcuts ignored ctrl_pressed <null>
+PASS modified shortcuts ignored alt_pressed <null>
+PASS modified shortcuts ignored shift_pressed <null>
+PASS modified shortcuts ignored meta_pressed <null>
+PASS handled shortcut press and release do not propagate 0
+PASS unbound keys still propagate 2
+PASS popup is open before keyboard test <null>
+PASS open popup owns scene and mode keys <null>
+PASS popup is open before keyboard test <null>
+PASS open popup owns scene and mode keys <null>
+CONTROL_TESTS 69/69 passed

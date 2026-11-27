@@ -1,0 +1,40 @@
+COMMAND C:\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable_win64_console.exe --headless --path prototype --script res://tests/acquisition_tests.gd
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS all crossing levels retain large integer interval origin
+PASS OFF crossings and endpoint
+PASS resource guard fails whole interval
+PASS reset has no emissions
+PASS quantized ties retain spatial order
+PASS ties to even
+PASS invalid diagnostics rejected
+PASS unreached threshold from real camera counterexample rejected
+PASS nonfinite threshold rejected
+PASS invalid dimensions rejected
+PASS default named profile
+PASS incompatible config rejected { "sensor": "generic-nonideal" }
+PASS incompatible config rejected { "trajectory": "held" }
+PASS incompatible config rejected { "intensity_floor": 0 }
+PASS incompatible config rejected { "unknown": 1 }
+PASS incompatible config rejected { "width": true }
+PASS incompatible config rejected { "on_threshold": nan }
+PASS incompatible config rejected { "epoch_ns": "9223372036854775808" }
+PASS incompatible config rejected { "reset_times_ns": [5, 4] }
+PASS incompatible config rejected { "sample_period_ns": 1 }
+PASS schedule includes end and reset exactly
+PASS threshold is effective GPU float
+PASS capture begins
+PASS initial sample is silent
+PASS all emissions available despite capture overflow
+PASS same-time reset after interval is silent
+PASS drop-newest separated from generation
+PASS overflow completeness false
+PASS integer epoch exported without float conversion
+PASS resource probe begins
+PASS total resource guard aborts before float counter precision loss
+PASS existing capture never overwritten
+PASS sphere remains fixed while light moves
+PASS camera path enables geometric occluder
+PASS pause freezes cursor and pending reset
+PASS paused optical edit reaches next input
+ACQUISITION_CHECKS 36 failures=0

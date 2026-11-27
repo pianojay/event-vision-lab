@@ -1,0 +1,26 @@
+[
+  {
+    "suite": "timing",
+    "exit_code": 0
+  },
+  {
+    "suite": "sensor",
+    "exit_code": 0
+  },
+  {
+    "suite": "rendering",
+    "exit_code": 0
+  },
+  {
+    "suite": "coordination",
+    "exit_code": 0
+  },
+  {
+    "suite": "pipeline",
+    "exit_code": 0
+  },
+  {
+    "suite": "acquisition",
+    "exit_code": 0
+  }
+]

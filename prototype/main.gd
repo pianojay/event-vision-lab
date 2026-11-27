@@ -1,10 +1,24 @@
 extends Control
 
 const SensorKernel = preload("res://sensor_gpu.gd")
+const RunConfig = preload("res://acquisition/run_config.gd")
+const CaptureWriter = preload("res://acquisition/capture_writer.gd")
+const StageController = preload("res://stage/stage_controller.gd")
+signal event_batch(events: Array, cursor_ns: int)
+signal acquisition_reset(cursor_ns: int)
 const SENSOR_SIZE := Vector2i(240, 180)
 const SAMPLE_HZ := 120.0
 const MAX_STEPS := 8
 
+var sensor_size := SENSOR_SIZE
+var live_config: Dictionary = {}
+var capture_writer: RefCounted
+var capture_schedule: Array = []
+var capture_index := 0
+var capture_busy := false
+var event_capture_directory := ""
+var acquisition_config_path := ""
+var latest_event_batch: Array = []
 var kernel: RefCounted
 var event_texture: Texture2DRD
 var scene_texture: Texture2DRD
@@ -71,10 +85,126 @@ func _ready() -> void:
 			report_path = arg.trim_prefix("--report=")
 		elif arg.begins_with("--capture="):
 			capture_path = arg.trim_prefix("--capture=")
+		elif arg.begins_with("--acquisition-config="):
+			acquisition_config_path = arg.trim_prefix("--acquisition-config=")
+		elif arg.begins_with("--event-capture="):
+			event_capture_directory = arg.trim_prefix("--event-capture=")
 		elif arg.begins_with("--view="):
 			initial_view = clampi(arg.trim_prefix("--view=").to_int(), 0, 3)
 	_set_mode(initial_view)
+	if not acquisition_config_path.is_empty() or not event_capture_directory.is_empty():
+		if not _configure_acquisition(): return
 	RenderingServer.call_on_render_thread(_initialize_gpu)
+
+func _configure_acquisition() -> bool:
+	var overrides: Variant = {}
+	if not acquisition_config_path.is_empty():
+		overrides = JSON.parse_string(FileAccess.get_file_as_string(acquisition_config_path))
+	if not overrides is Dictionary or event_capture_directory.is_empty():
+		_gpu_failed("Live capture requires a JSON config object and --event-capture directory")
+		get_tree().quit(1)
+		return false
+	var parsed := RunConfig.parse(overrides)
+	if parsed.has("error"):
+		_gpu_failed(parsed.error)
+		get_tree().quit(1)
+		return false
+	live_config = parsed.config
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--source-revision="):
+			live_config.source_revision = arg.trim_prefix("--source-revision=")
+	sensor_size = Vector2i(live_config.width,live_config.height)
+	threshold = live_config.on_threshold
+	capture_schedule = RunConfig.schedule(live_config)
+	capture_writer = CaptureWriter.new()
+	if not capture_writer.begin(event_capture_directory,live_config):
+		_gpu_failed(capture_writer.error)
+		get_tree().quit(1)
+		return false
+	if live_config.scene != "interactive":
+		# Prescribed trajectories own scene parameters; observation, pause, and reset remain available.
+		for control in find_children("*","BaseButton",true,false):
+			if control not in [mode_select,colors_check,pause_check]: control.disabled = true
+		for control in find_children("*","HSlider",true,false): control.editable = false
+	return true
+
+func _process_acquisition(delta: float) -> void:
+	status.text = "%s | %s | sample %d/%d | fidelity slowdown, no skipped samples" % [RunConfig.PROFILE,live_config.scene,capture_index,capture_schedule.size()]
+	if capture_busy or pause_check.button_pressed: return
+	if capture_index >= capture_schedule.size():
+		capture_busy = true
+		RenderingServer.call_on_render_thread(_finish_acquisition)
+		return
+	var t_ns := int(capture_schedule[capture_index])
+	var start_ns := int(capture_schedule[maxi(0,capture_index-1)])
+	var initial := capture_index == 0
+	var reset_after: bool = not initial and (needs_reset or live_config.reset_times_ns.has(t_ns))
+	var parameters: PackedFloat32Array
+	if live_config.scene == "interactive":
+		_move_camera(minf(delta,(t_ns-start_ns)*1e-9))
+		parameters = _interactive_capture_parameters(t_ns,start_ns,initial)
+	else:
+		parameters = StageController.parameters(live_config,t_ns,start_ns,initial)
+	needs_reset = false
+	capture_busy = true
+	simulation_time = t_ns * 1e-9
+	display_material.set_shader_parameter("sample_time",simulation_time)
+	display_material.set_shader_parameter("display_interval",live_config.sample_period_ns*1e-9+0.001)
+	RenderingServer.call_on_render_thread(_capture_sample.bind(t_ns,initial,reset_after,parameters))
+
+func _interactive_capture_parameters(t_ns: int, start_ns: int, reset: bool) -> PackedFloat32Array:
+	var dt := (t_ns-start_ns)*1e-9
+	if motion_check.button_pressed: motion_phase += dt
+	if panel_check.button_pressed: panel_phase += dt
+	var light := _light_position(camera_position,yaw,t_ns*1e-9)
+	return PackedFloat32Array([
+		t_ns*1e-9,dt,float(reset),0.0,
+		threshold,threshold*live_config.off_threshold/live_config.on_threshold,persistence,1.0,
+		camera_position.x,camera_position.y,camera_position.z,yaw,
+		pitch,sensor_size.x,sensor_size.y,tan(deg_to_rad(58.0)/2.0),
+		motion_phase,float(lamp_check.button_pressed),float(strobe_check.button_pressed),strength,
+		frequency,panel_phase,float(sphere_check.button_pressed),control_albedo,
+		light.x,light.y,light.z,0.0])
+
+func _capture_sample(t_ns: int, initial: bool, reset_after: bool, parameters: PackedFloat32Array) -> void:
+	kernel.dispatch([parameters])
+	var before := Time.get_ticks_usec()
+	var intensity: PackedFloat32Array = kernel.read_intensity()
+	var diagnostics: PackedFloat32Array = kernel.read_diagnostics()
+	capture_writer.readback_usec += Time.get_ticks_usec()-before
+	var result: Dictionary = capture_writer.append(t_ns,initial,parameters,intensity,diagnostics)
+	if not result.has("error") and reset_after:
+		var reset_parameters := parameters.duplicate()
+		reset_parameters[2] = 1.0
+		reset_parameters[1] = 0.0
+		kernel.dispatch([reset_parameters])
+		var reset_result: Dictionary = capture_writer.append(t_ns,true,reset_parameters,kernel.read_intensity(),kernel.read_diagnostics())
+		if reset_result.has("error"): result = reset_result
+	call_deferred("_capture_sample_done",result,t_ns,initial or reset_after)
+
+func _capture_sample_done(result: Dictionary, t_ns: int, reset: bool) -> void:
+	if result.has("error"):
+		_gpu_failed(result.error)
+		get_tree().quit(1)
+		return
+	latest_event_batch = result.events
+	event_batch.emit(latest_event_batch,t_ns)
+	if reset: acquisition_reset.emit(t_ns)
+	capture_index += 1
+	sample_count += 1
+	capture_busy = false
+
+func _finish_acquisition() -> void:
+	var result: Dictionary = capture_writer.finish(RenderingServer.get_video_adapter_name())
+	call_deferred("_acquisition_finished",result)
+
+func _acquisition_finished(result: Dictionary) -> void:
+	if result.has("error"):
+		_gpu_failed(result.error)
+		get_tree().quit(1)
+	else:
+		print("EVENT_LAB_ACQUISITION ",event_capture_directory," stored=",result.stages.capture_stored," emitted=",result.stages.pixel_emitted)
+		get_tree().quit()
 
 func _initialize_gpu() -> void:
 	var device := RenderingServer.get_rendering_device()
@@ -82,7 +212,7 @@ func _initialize_gpu() -> void:
 		call_deferred("_gpu_failed", "RenderingDevice unavailable. Use the Mobile renderer with Vulkan or D3D12.")
 		return
 	kernel = SensorKernel.new()
-	if not kernel.initialize(device, SENSOR_SIZE):
+	if not kernel.initialize(device, sensor_size):
 		call_deferred("_gpu_failed", kernel.error)
 		return
 	event_texture = Texture2DRD.new()
@@ -106,10 +236,13 @@ func _gpu_ready() -> void:
 	ready_gpu = true
 	wall_start_usec = Time.get_ticks_usec()
 	previous_frame_usec = wall_start_usec
-	print("EVENT_LAB_READY adapter=", RenderingServer.get_video_adapter_name(), " sensor=", SENSOR_SIZE, " target_hz=", SAMPLE_HZ)
+	print("EVENT_LAB_READY adapter=", RenderingServer.get_video_adapter_name(), " sensor=", sensor_size, " target_hz=", 1e9/live_config.sample_period_ns if not live_config.is_empty() else SAMPLE_HZ)
 
 func _process(delta: float) -> void:
 	if not ready_gpu:
+		return
+	if not live_config.is_empty():
+		_process_acquisition(delta)
 		return
 	var now_usec := Time.get_ticks_usec()
 	var frame_ms := (now_usec - previous_frame_usec) / 1000.0
@@ -204,6 +337,7 @@ func _input(event: InputEvent) -> void:
 			pitch = clampf(pitch - event.relative.y * 0.004, -0.9, 0.9)
 	if event is InputEventKey and not (event.ctrl_pressed or event.alt_pressed or event.shift_pressed or event.meta_pressed):
 		var key: Key = event.physical_keycode if event.physical_keycode != 0 else event.keycode
+		if not live_config.is_empty() and live_config.scene != "interactive" and key not in [KEY_P,KEY_R,KEY_V,KEY_C]: return
 		if shortcut_actions.has(key):
 			if event.pressed and not event.echo:
 				shortcut_actions[key].call()
