@@ -33,3 +33,31 @@ python -B -m unittest discover -s tools/sensor -p 'test_*.py' -v
 ```
 
 The checks retain every original analytical reference test. New checks cover disabled-source equivalence, leak units, exact schedule partitioning, independent random streams, reset reproducibility, Poisson count moments, the common refractory gate, atomic failure, queue bursts, boundary ties, delayed delivery, and batching invariance. These checks validate the declared model rather than a real camera.
+
+## Held-frame adapter
+
+[`held_frame_adapter.py`](../../../tools/sensor/held_frame_adapter.py) accepts frames from the CPU optical pipeline or a decoded optical archive. `simulate_frames(width, height, times_ns, frames, ...)` takes row-major linear intensity and relative integer times beginning at zero. It holds each left sample until the next timestamp. The final frame is validated but has no following interval. Use archived FP32 values as inputs when comparing a recorded optical sequence.
+
+The adapter writes a JSON report rather than changing the existing v1 replay reader. Its pixel and readout captures contain rows `[x,y,t_ns,p,sequence]`, diagnostic origins, stage counts, and capture-overflow counts. Readout captures also retain parallel `delivered_ns` values. The full effective pixel, activity, queue, capacity, and stage configuration travels with an input digest. The input file supplies the actual frames. A declared `source_loss_count` is retained separately from readout and capture loss.
+
+The default drains the queue after optical input ends and records the later readout watermark. Set `drain_readout=false` to retain pending work. Pending events are not counted as dropped or captured. Times are limited to one hour relative to reset; no absolute float64 clock guarantee is made.
+
+Example input:
+
+```json
+{
+  "width": 1, "height": 1,
+  "times_ns": [0, 10000000, 20000000],
+  "frames": [[1.0], [2.0], [2.0]],
+  "pixel": {"bandwidth_white_hz": 100.0},
+  "activity": {"leak_log_per_s": 0.2, "temporal_on_hz": 8.0, "temporal_off_hz": 8.0, "seed": 17},
+  "readout": {"capacity_events": 2, "service_ns": 1000000, "latency_ns": 100000},
+  "capture_capacity": 100
+}
+```
+
+```powershell
+python -B tools/sensor/held_frame_adapter.py runs/sensor-input.json --output runs/sensor-output.json
+```
+
+The adapter test connects actual moving-edge optical frames, FP32 archive rounding, both pixel mechanisms, a saturated readout queue, and capture truncation. It checks each stage's conservation counters. The live GPU pipeline and replay format remain unchanged.
