@@ -1,0 +1,93 @@
+{
+  "passed": true,
+  "runs": [
+    {
+      "id": "camera-treatment",
+      "comparison": {
+        "reference_count": 135982,
+        "actual_count": 135982,
+        "reference_polarity": {
+          "on": 68776,
+          "off": 67206
+        },
+        "actual_polarity": {
+          "on": 68776,
+          "off": 67206
+        },
+        "missing": 0,
+        "extra": 0,
+        "timestamp_max_error_ns": 14116,
+        "timestamp_mean_error_ns": 2.188451412686973,
+        "timestamp_outside_gate": 0,
+        "gate_ns": 100000,
+        "passed": true
+      }
+    },
+    {
+      "id": "camera-control",
+      "comparison": {
+        "reference_count": 133782,
+        "actual_count": 133782,
+        "reference_polarity": {
+          "on": 67681,
+          "off": 66101
+        },
+        "actual_polarity": {
+          "on": 67681,
+          "off": 66101
+        },
+        "missing": 0,
+        "extra": 0,
+        "timestamp_max_error_ns": 14116,
+        "timestamp_mean_error_ns": 2.127550791586312,
+        "timestamp_outside_gate": 0,
+        "gate_ns": 100000,
+        "passed": true
+      }
+    },
+    {
+      "id": "camera-temporal",
+      "comparison": {
+        "reference_count": 138118,
+        "actual_count": 138118,
+        "reference_polarity": {
+          "on": 69843,
+          "off": 68275
+        },
+        "actual_polarity": {
+          "on": 69843,
+          "off": 68275
+        },
+        "missing": 0,
+        "extra": 0,
+        "timestamp_max_error_ns": 10107,
+        "timestamp_mean_error_ns": 1.87163150349701,
+        "timestamp_outside_gate": 0,
+        "gate_ns": 100000,
+        "passed": true
+      }
+    },
+    {
+      "id": "camera-spatial",
+      "comparison": {
+        "reference_count": 536648,
+        "actual_count": 536648,
+        "reference_polarity": {
+          "on": 271877,
+          "off": 264771
+        },
+        "actual_polarity": {
+          "on": 271877,
+          "off": 264771
+        },
+        "missing": 0,
+        "extra": 0,
+        "timestamp_max_error_ns": 6102,
+        "timestamp_mean_error_ns": 2.040855458326501,
+        "timestamp_outside_gate": 0,
+        "gate_ns": 100000,
+        "passed": true
+      }
+    }
+  ]
+}

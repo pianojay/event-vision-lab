@@ -1,0 +1,1027 @@
+{
+  "schema": "event-lab-reconstruction-evaluation-v1",
+  "source": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\1-diffuse-treatment\\manifest.json",
+  "source_sha256": "80fd756196d9368ce0eba049ae2ffa9de8a6c0a9833f7fa875981bbe958fe8bf",
+  "config": {
+    "initial_log_intensity": 0.0,
+    "on_threshold": 0.200000002980232,
+    "off_threshold": 0.200000002980232
+  },
+  "method": "constant-prior contrast integration",
+  "inference_inputs": [
+    "pixel-emitted events",
+    "dimensions",
+    "nominal ON/OFF thresholds",
+    "constant prior"
+  ],
+  "initial_intensity_observed": false,
+  "truth_used_for_inference": false,
+  "truth_used_for_evaluation": "archived FP32 optical samples; separately read after all inference",
+  "evaluation_intensity_floor": 1e-06,
+  "evaluation_intensity_floor_sources": [
+    "optical_input",
+    "effective_config"
+  ],
+  "evaluation_log_transform": "log(max(archived_intensity, declared_sensor_floor))",
+  "evaluation_context": {
+    "scene": "interaction-stage",
+    "station": "diffuse",
+    "treatment": true,
+    "effective_config": {
+      "archive_mode": "diagnostic",
+      "candidate_limit_per_step": 1000000,
+      "capture_capacity": 2000000,
+      "duration_ns": 1000000000,
+      "epoch_ns": "0",
+      "height": 60,
+      "intensity_floor": 1e-06,
+      "off_threshold": 0.200000002980232,
+      "on_threshold": 0.200000002980232,
+      "processing_enabled": true,
+      "profile_name": "gpu-ideal-log-linear-v1",
+      "reconstruction_enabled": true,
+      "reset_times_ns": [],
+      "sample_period_ns": 16666667,
+      "scene": "interaction-stage",
+      "sensor": "ideal",
+      "source_revision": "53dcfdce8f48f3a1f1fecab9e20907efcecfdfff",
+      "stage_action": "light",
+      "station": 1,
+      "stream_id": "live-3d",
+      "trajectory": "log-linear",
+      "treatment": true,
+      "wall_paced": false,
+      "width": 80
+    },
+    "interaction_stage": {
+      "enabled": true,
+      "excitation_overlap": 1.0,
+      "geometry": "3 by 3 stations, centres x=(-3,0,3), y=(6,3.5,1), z=-3 metres; background z=-5; finite rear emitters behind transmission/refraction, 1.8m squares, radiance=0.44+0.36*sin(2pi*(local_x-source_offset)/0.5m), source_offset=stripe_offset only for selected panel else zero; interreflection equal horizontal 1m squares gap1.2m",
+      "material_clock_ns": 1000000000,
+      "object_offset_m": 0.0,
+      "parameters": [
+        [
+          2.0,
+          0.3,
+          0.0,
+          0.0
+        ],
+        [
+          0.55,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.15,
+          0.65,
+          0.3,
+          0.0
+        ],
+        [
+          0.15,
+          0.7,
+          0.0,
+          0.0
+        ],
+        [
+          1.5,
+          0.2,
+          0.1,
+          0.0
+        ],
+        [
+          0.8,
+          0.7,
+          450.0,
+          550.0
+        ],
+        [
+          0.4,
+          0.6,
+          0.8,
+          0.8
+        ],
+        [
+          0.1,
+          100.0,
+          0.2,
+          0.04
+        ],
+        [
+          0.7,
+          0.6,
+          1.2,
+          16.0
+        ]
+      ],
+      "population_energy": 0.881198401321057,
+      "registry": {
+        "boundary": {
+          "geometry": "metre",
+          "intensity": "scene-linear relative radiance; physically consistent ratios, arbitrary common radiometric scale",
+          "precision": "CPU binary64; runtime shader FP32",
+          "sensor_floor": "none in models; evidence sensor alone uses max(I,1e-6)",
+          "state_owner": "optical material; sensor reset does not reset material",
+          "time": "second"
+        },
+        "models": [
+          {
+            "id": "absorption",
+            "issue": 17.0,
+            "missing": "volume scattering, calibrated spectrum",
+            "model": "homogeneous non-scattering Beer-Lambert attenuation",
+            "parameters": {
+              "mu_a_m_inv": [
+                0.0,
+                10000.0
+              ],
+              "path_m": [
+                0.0,
+                10000.0
+              ]
+            }
+          },
+          {
+            "id": "diffuse",
+            "issue": 18.0,
+            "missing": "ambient, grazing-angle material physics",
+            "model": "Lambert rho_d/pi, cosine and physical inverse square point irradiance",
+            "parameters": {
+              "point_light_power_per_sr": [
+                0.0,
+                1e+20
+              ],
+              "rho_d": [
+                0.0,
+                1.0
+              ]
+            }
+          },
+          {
+            "constraint": "rho_d+rho_s<=1",
+            "id": "glossy",
+            "issue": 19.0,
+            "missing": "microfacet multiple scattering, Fresnel in glossy lobe, exact mirror delta",
+            "model": "reciprocal cosine-power BRDF, exponent 2/r^2-2, conservative normalization (s+1)/(2*pi)",
+            "parameters": {
+              "rho_s": [
+                0.0,
+                1.0
+              ],
+              "roughness": [
+                0.1,
+                1.0
+              ]
+            }
+          },
+          {
+            "constraint": "R+T<=1; A=1-R-T",
+            "id": "transmission",
+            "issue": 20.0,
+            "missing": "refraction, thickness, volume attenuation",
+            "model": "nonbending infinitesimal pane radiance T*background+R*reflected_environment",
+            "parameters": {
+              "reflection": [
+                0.0,
+                1.0
+              ],
+              "transmission": [
+                0.0,
+                1.0
+              ]
+            }
+          },
+          {
+            "constraint": "external sphere ray; slab front point and normal against ray; normalized directions",
+            "id": "refraction",
+            "issue": 21.0,
+            "missing": "internal reflected branches are accounted but not traced; no caustics, dispersion, polarization state or lens model",
+            "model": "smooth parallel slab and sphere, vector Snell, exact unpolarized Fresnel, first transmitted branch",
+            "parameters": {
+              "eta": [
+                0.8,
+                2.5
+              ],
+              "eta_outside": [
+                0.8,
+                2.5
+              ],
+              "mu_a_m_inv": [
+                0.0,
+                10000.0
+              ],
+              "radius_m": [
+                1e-06,
+                100.0
+              ],
+              "thickness_m": [
+                1e-06,
+                100.0
+              ]
+            }
+          },
+          {
+            "constraint": "emission_nm>=excitation_nm",
+            "id": "fluorescence",
+            "issue": 22.0,
+            "missing": "full spectra, saturation, resolved singlet lifetime, calibrated dye",
+            "model": "two narrow spectral bands; prompt Stokes conversion; excitation absorption is band-selective",
+            "parameters": {
+              "absorption_fraction": [
+                0.0,
+                1.0
+              ],
+              "detector_emission": [
+                0.0,
+                1.0
+              ],
+              "detector_excitation": [
+                0.0,
+                1.0
+              ],
+              "emission_nm": [
+                400.0,
+                900.0
+              ],
+              "excitation_nm": [
+                300.0,
+                700.0
+              ],
+              "quantum_yield": [
+                0.0,
+                1.0
+              ]
+            }
+          },
+          {
+            "constraint": "piecewise-constant absorbed excitation per step; U>=0; independent material reset",
+            "id": "phosphorescence",
+            "issue": 24.0,
+            "missing": "multi-state kinetics, saturation, quenching, calibrated material",
+            "model": "metastable stored energy dU/dt=storage_yield*absorbed_power-U/tau; emission=radiative_yield*U/tau",
+            "parameters": {
+              "lifetime_s": [
+                0.0001,
+                1000.0
+              ],
+              "radiative_yield": [
+                0.0,
+                1.0
+              ],
+              "storage_yield": [
+                0.0,
+                1.0
+              ]
+            }
+          },
+          {
+            "constraint": "mu_s_reduced>=10*mu_a and thickness*(mu_a+mu_s_reduced)>=10; stripe_halfwidth*(mu_a+mu_s_reduced)>=3",
+            "id": "subsurface",
+            "issue": 23.0,
+            "missing": "arbitrary shapes, ballistic near-field, Fresnel boundary correction; depth injection is a declared multiple-scattering proxy, not collimated-light calibration; optical transit time neglected",
+            "model": "steady 2D slab diffusion, infinite lateral dimension, zero-fluence boundaries, localized entrance deposition with declared source q(x,z)=P_dep(x)*pi/(2H)*sin(pi*z/H); opposite-face Lambert exit",
+            "parameters": {
+              "mu_a_m_inv": [
+                0.01,
+                1000.0
+              ],
+              "mu_s_reduced_m_inv": [
+                1.0,
+                10000.0
+              ],
+              "stripe_halfwidth_m": [
+                1e-06,
+                10.0
+              ],
+              "thickness_m": [
+                0.001,
+                10.0
+              ]
+            }
+          },
+          {
+            "constraint": "reciprocal A_i*F_ij=A_j*F_ji and row sums<=1; geometric helper supports equal aligned parallel facing squares only, with unobstructed mutual path",
+            "id": "interreflection",
+            "issue": 25.0,
+            "missing": "spatial variation within each patch, specular paths, participating media",
+            "model": "two uniform diffuse patches; exact multiple-reflection series given view factors; only reflector directly lit",
+            "parameters": {
+              "bounce_count": [
+                0.0,
+                64.0
+              ],
+              "gap_over_side": [
+                0.5,
+                100.0
+              ],
+              "quadrature_axis_samples": [
+                2.0,
+                128.0
+              ],
+              "reflectance": [
+                0.0,
+                0.95
+              ],
+              "square_side_m": [
+                0.0001,
+                100.0
+              ],
+              "view_factor": [
+                0.0,
+                1.0
+              ]
+            }
+          }
+        ],
+        "schema": "event-lab-materials-v1"
+      },
+      "reset_policy": "sensor reset preserves material; material reset clears population and restores station parameters",
+      "schema": "event-lab-interaction-stage-v1",
+      "station": "diffuse",
+      "stripe_offset_m": 0.0,
+      "treatment": true,
+      "truth_component": 0,
+      "view_factor": 0.155344982477589
+    },
+    "capture_source": {
+      "commit": "53dcfdce8f48f3a1f1fecab9e20907efcecfdfff",
+      "godot": {
+        "build": "official",
+        "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+        "hex": 263938,
+        "major": 4,
+        "minor": 7,
+        "patch": 2,
+        "status": "stable",
+        "string": "4.7.2-stable (official)",
+        "timestamp": 0
+      },
+      "os": "Windows",
+      "source_sha256_lf": {
+        "prototype/acquisition/capture_writer.gd": "81b514d66df05e4680b7c03b6830f6962432a55ee09e1966b422082225b3bcf5",
+        "prototype/acquisition/crossings.gd": "fe9c714217cb113ae31ff3662e793c0eea64c9e2e536dd536fce66d4e038cf11",
+        "prototype/acquisition/run_config.gd": "ffab95c297c0623e705715826c28034a62b9c0e35368934da3d5e079e42d3f23",
+        "prototype/main.gd": "5f4b39fe26aea0c36ce34760d5e24cb698a02e20817374f4aec90ba2d2c8d540",
+        "prototype/materials/emission_state.gd": "895308cec381ea85059f05a0fd655aca9fc79988a3a04c4f256e4c57d5cb51dd",
+        "prototype/materials/registry.json": "ec5b3ad991137392b5c4093a3c473230d23164c3fc7003836f4b8d44d00db314",
+        "prototype/materials/transport_models.gd": "8b0a25bd8714f8e4bde3486dc88d953bae59449161207e2fbb4a269cba6faae2",
+        "prototype/sensor_gpu.gd": "974ff22bd0a3e95fe6952e967f8495d8462ada9cb0e736c050512e1a1e7d5c35",
+        "prototype/shaders/interaction_stage.glsl": "7c5e624e00a952eca5d78fc9387c452a439ea3ec5a348c4dfe3935f737b5f3dc",
+        "prototype/shaders/material_models.glsl": "4e7a1d782527893676a06fe5a0b64bdc9c5c1a49423c92c948a3a410e245d552",
+        "prototype/shaders/optical.glsl": "c1b7f09f2bebfc02dbc1b21413a0c48aa57849b7fe5e1987a5acb0c89f009d3a",
+        "prototype/shaders/sensor.glsl": "7bddb89d58ecde346d1dc7f971bc2c1f9a994efbc9f9dbd2625c71b6e7116022",
+        "prototype/stage/interaction_stage.gd": "813253585d23c072bde4784218e1e96334533c5af33f70177f3f1b0a4035e7d7",
+        "prototype/stage/stage_controller.gd": "849a250a93d6cbfd76147df1c00440a860185c832f5fe3ac374dbc0522529acb"
+      }
+    }
+  },
+  "scale_alignment": "none for output; explicit global-log-offset fit reported separately for evaluation",
+  "capture_count": 14752,
+  "capture_loss": 0,
+  "frame_count": 61,
+  "frames": [
+    {
+      "cursor_ns": 0,
+      "integrated_count": 0,
+      "floor_applied_pixels": 138,
+      "observed_pixels": 0,
+      "latest_event_age_ns": null,
+      "log_rmse_no_alignment": 3.0409155952316214,
+      "global_log_offset_fitted_for_evaluation": 1.8953526208595646,
+      "log_rmse_after_explicit_global_alignment": 2.377983620617196
+    },
+    {
+      "cursor_ns": 16666667,
+      "integrated_count": 250,
+      "floor_applied_pixels": 134,
+      "observed_pixels": 36,
+      "latest_event_age_ns": 43,
+      "log_rmse_no_alignment": 3.0360442467476214,
+      "global_log_offset_fitted_for_evaluation": 1.8904188367342234,
+      "log_rmse_after_explicit_global_alignment": 2.3756854358121062
+    },
+    {
+      "cursor_ns": 33333334,
+      "integrated_count": 495,
+      "floor_applied_pixels": 133,
+      "observed_pixels": 96,
+      "latest_event_age_ns": 81911,
+      "log_rmse_no_alignment": 3.0343072616655644,
+      "global_log_offset_fitted_for_evaluation": 1.8879163973141682,
+      "log_rmse_after_explicit_global_alignment": 2.3754562161716786
+    },
+    {
+      "cursor_ns": 50000001,
+      "integrated_count": 931,
+      "floor_applied_pixels": 127,
+      "observed_pixels": 204,
+      "latest_event_age_ns": 42308,
+      "log_rmse_no_alignment": 3.03419507254201,
+      "global_log_offset_fitted_for_evaluation": 1.8880228824581946,
+      "log_rmse_after_explicit_global_alignment": 2.3752282697779736
+    },
+    {
+      "cursor_ns": 66666668,
+      "integrated_count": 1305,
+      "floor_applied_pixels": 128,
+      "observed_pixels": 286,
+      "latest_event_age_ns": 13537,
+      "log_rmse_no_alignment": 3.033772116658148,
+      "global_log_offset_fitted_for_evaluation": 1.8882428260608353,
+      "log_rmse_after_explicit_global_alignment": 2.37451306284936
+    },
+    {
+      "cursor_ns": 83333335,
+      "integrated_count": 1763,
+      "floor_applied_pixels": 124,
+      "observed_pixels": 341,
+      "latest_event_age_ns": 5020,
+      "log_rmse_no_alignment": 3.0329590100581187,
+      "global_log_offset_fitted_for_evaluation": 1.887962438161446,
+      "log_rmse_after_explicit_global_alignment": 2.3736971560804068
+    },
+    {
+      "cursor_ns": 100000002,
+      "integrated_count": 2081,
+      "floor_applied_pixels": 121,
+      "observed_pixels": 380,
+      "latest_event_age_ns": 32087,
+      "log_rmse_no_alignment": 3.0332916930670097,
+      "global_log_offset_fitted_for_evaluation": 1.888259898941249,
+      "log_rmse_after_explicit_global_alignment": 2.3738856436820437
+    },
+    {
+      "cursor_ns": 116666669,
+      "integrated_count": 2426,
+      "floor_applied_pixels": 120,
+      "observed_pixels": 413,
+      "latest_event_age_ns": 67470,
+      "log_rmse_no_alignment": 3.0334147770246753,
+      "global_log_offset_fitted_for_evaluation": 1.8888520200713905,
+      "log_rmse_after_explicit_global_alignment": 2.3735718349660053
+    },
+    {
+      "cursor_ns": 133333336,
+      "integrated_count": 2835,
+      "floor_applied_pixels": 123,
+      "observed_pixels": 433,
+      "latest_event_age_ns": 38174,
+      "log_rmse_no_alignment": 3.0328356376715955,
+      "global_log_offset_fitted_for_evaluation": 1.8888043492704079,
+      "log_rmse_after_explicit_global_alignment": 2.372869599305462
+    },
+    {
+      "cursor_ns": 150000003,
+      "integrated_count": 3249,
+      "floor_applied_pixels": 121,
+      "observed_pixels": 455,
+      "latest_event_age_ns": 83315,
+      "log_rmse_no_alignment": 3.0321547589919438,
+      "global_log_offset_fitted_for_evaluation": 1.8887417921370941,
+      "log_rmse_after_explicit_global_alignment": 2.3720490983772344
+    },
+    {
+      "cursor_ns": 166666670,
+      "integrated_count": 3631,
+      "floor_applied_pixels": 118,
+      "observed_pixels": 473,
+      "latest_event_age_ns": 52510,
+      "log_rmse_no_alignment": 3.032580955660098,
+      "global_log_offset_fitted_for_evaluation": 1.8893364727036517,
+      "log_rmse_after_explicit_global_alignment": 2.3721203480312787
+    },
+    {
+      "cursor_ns": 183333337,
+      "integrated_count": 4029,
+      "floor_applied_pixels": 119,
+      "observed_pixels": 490,
+      "latest_event_age_ns": 9036,
+      "log_rmse_no_alignment": 3.032689346475386,
+      "global_log_offset_fitted_for_evaluation": 1.8891842397111385,
+      "log_rmse_after_explicit_global_alignment": 2.372380150956493
+    },
+    {
+      "cursor_ns": 200000004,
+      "integrated_count": 4411,
+      "floor_applied_pixels": 119,
+      "observed_pixels": 504,
+      "latest_event_age_ns": 22852,
+      "log_rmse_no_alignment": 3.0327163299772124,
+      "global_log_offset_fitted_for_evaluation": 1.889929480406697,
+      "log_rmse_after_explicit_global_alignment": 2.371821008676693
+    },
+    {
+      "cursor_ns": 216666671,
+      "integrated_count": 4763,
+      "floor_applied_pixels": 118,
+      "observed_pixels": 518,
+      "latest_event_age_ns": 21055,
+      "log_rmse_no_alignment": 3.0325444254281244,
+      "global_log_offset_fitted_for_evaluation": 1.8900374812332321,
+      "log_rmse_after_explicit_global_alignment": 2.371515129980986
+    },
+    {
+      "cursor_ns": 233333338,
+      "integrated_count": 5101,
+      "floor_applied_pixels": 119,
+      "observed_pixels": 528,
+      "latest_event_age_ns": 72616,
+      "log_rmse_no_alignment": 3.032981789413612,
+      "global_log_offset_fitted_for_evaluation": 1.8905708469402605,
+      "log_rmse_after_explicit_global_alignment": 2.3716493011434436
+    },
+    {
+      "cursor_ns": 250000005,
+      "integrated_count": 5322,
+      "floor_applied_pixels": 119,
+      "observed_pixels": 542,
+      "latest_event_age_ns": 41778,
+      "log_rmse_no_alignment": 3.032684776508481,
+      "global_log_offset_fitted_for_evaluation": 1.8908670053693781,
+      "log_rmse_after_explicit_global_alignment": 2.3710333025227075
+    },
+    {
+      "cursor_ns": 266666672,
+      "integrated_count": 5578,
+      "floor_applied_pixels": 118,
+      "observed_pixels": 552,
+      "latest_event_age_ns": 13473,
+      "log_rmse_no_alignment": 3.033532359249214,
+      "global_log_offset_fitted_for_evaluation": 1.891872642995262,
+      "log_rmse_after_explicit_global_alignment": 2.3713153475019353
+    },
+    {
+      "cursor_ns": 283333339,
+      "integrated_count": 5894,
+      "floor_applied_pixels": 117,
+      "observed_pixels": 561,
+      "latest_event_age_ns": 28638,
+      "log_rmse_no_alignment": 3.0335191098060097,
+      "global_log_offset_fitted_for_evaluation": 1.8921562581929565,
+      "log_rmse_after_explicit_global_alignment": 2.371072095938771
+    },
+    {
+      "cursor_ns": 300000006,
+      "integrated_count": 6205,
+      "floor_applied_pixels": 120,
+      "observed_pixels": 572,
+      "latest_event_age_ns": 123694,
+      "log_rmse_no_alignment": 3.0340112482698243,
+      "global_log_offset_fitted_for_evaluation": 1.892557676400887,
+      "log_rmse_after_explicit_global_alignment": 2.371381389849362
+    },
+    {
+      "cursor_ns": 316666673,
+      "integrated_count": 6420,
+      "floor_applied_pixels": 119,
+      "observed_pixels": 579,
+      "latest_event_age_ns": 1564,
+      "log_rmse_no_alignment": 3.0334019160035903,
+      "global_log_offset_fitted_for_evaluation": 1.8927992276773367,
+      "log_rmse_after_explicit_global_alignment": 2.37040888196917
+    },
+    {
+      "cursor_ns": 333333340,
+      "integrated_count": 6707,
+      "floor_applied_pixels": 119,
+      "observed_pixels": 589,
+      "latest_event_age_ns": 53397,
+      "log_rmse_no_alignment": 3.0328985631219054,
+      "global_log_offset_fitted_for_evaluation": 1.8928724534747656,
+      "log_rmse_after_explicit_global_alignment": 2.3697062199908534
+    },
+    {
+      "cursor_ns": 350000007,
+      "integrated_count": 6890,
+      "floor_applied_pixels": 118,
+      "observed_pixels": 599,
+      "latest_event_age_ns": 62523,
+      "log_rmse_no_alignment": 3.0340023122001853,
+      "global_log_offset_fitted_for_evaluation": 1.8934801609684913,
+      "log_rmse_after_explicit_global_alignment": 2.370633440761099
+    },
+    {
+      "cursor_ns": 366666674,
+      "integrated_count": 7117,
+      "floor_applied_pixels": 122,
+      "observed_pixels": 602,
+      "latest_event_age_ns": 20425,
+      "log_rmse_no_alignment": 3.0341280442359566,
+      "global_log_offset_fitted_for_evaluation": 1.894065995686863,
+      "log_rmse_after_explicit_global_alignment": 2.3703263473205207
+    },
+    {
+      "cursor_ns": 383333341,
+      "integrated_count": 7301,
+      "floor_applied_pixels": 121,
+      "observed_pixels": 607,
+      "latest_event_age_ns": 23195,
+      "log_rmse_no_alignment": 3.0346816513368267,
+      "global_log_offset_fitted_for_evaluation": 1.8945460131817227,
+      "log_rmse_after_explicit_global_alignment": 2.37065141446347
+    },
+    {
+      "cursor_ns": 400000008,
+      "integrated_count": 7489,
+      "floor_applied_pixels": 122,
+      "observed_pixels": 612,
+      "latest_event_age_ns": 103489,
+      "log_rmse_no_alignment": 3.0337336344952344,
+      "global_log_offset_fitted_for_evaluation": 1.8943932520429694,
+      "log_rmse_after_explicit_global_alignment": 2.3695598687692465
+    },
+    {
+      "cursor_ns": 416666675,
+      "integrated_count": 7628,
+      "floor_applied_pixels": 124,
+      "observed_pixels": 616,
+      "latest_event_age_ns": 103497,
+      "log_rmse_no_alignment": 3.034096609751204,
+      "global_log_offset_fitted_for_evaluation": 1.894596188693527,
+      "log_rmse_after_explicit_global_alignment": 2.369862341802096
+    },
+    {
+      "cursor_ns": 433333342,
+      "integrated_count": 7744,
+      "floor_applied_pixels": 124,
+      "observed_pixels": 622,
+      "latest_event_age_ns": 17227,
+      "log_rmse_no_alignment": 3.0337836533447313,
+      "global_log_offset_fitted_for_evaluation": 1.8945924104567147,
+      "log_rmse_after_explicit_global_alignment": 2.3694646765760243
+    },
+    {
+      "cursor_ns": 450000009,
+      "integrated_count": 7851,
+      "floor_applied_pixels": 122,
+      "observed_pixels": 626,
+      "latest_event_age_ns": 219334,
+      "log_rmse_no_alignment": 3.0343112046649554,
+      "global_log_offset_fitted_for_evaluation": 1.895251658470655,
+      "log_rmse_after_explicit_global_alignment": 2.369612972158012
+    },
+    {
+      "cursor_ns": 466666676,
+      "integrated_count": 7927,
+      "floor_applied_pixels": 121,
+      "observed_pixels": 628,
+      "latest_event_age_ns": 161548,
+      "log_rmse_no_alignment": 3.034222344151533,
+      "global_log_offset_fitted_for_evaluation": 1.8953562091261233,
+      "log_rmse_after_explicit_global_alignment": 2.3694155554219427
+    },
+    {
+      "cursor_ns": 483333343,
+      "integrated_count": 8005,
+      "floor_applied_pixels": 120,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 533392,
+      "log_rmse_no_alignment": 3.033933015306491,
+      "global_log_offset_fitted_for_evaluation": 1.895144320603279,
+      "log_rmse_after_explicit_global_alignment": 2.3692145418792006
+    },
+    {
+      "cursor_ns": 500000010,
+      "integrated_count": 8028,
+      "floor_applied_pixels": 120,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 31195,
+      "log_rmse_no_alignment": 3.0345559433943015,
+      "global_log_offset_fitted_for_evaluation": 1.895466164456228,
+      "log_rmse_after_explicit_global_alignment": 2.369754795963345
+    },
+    {
+      "cursor_ns": 516666677,
+      "integrated_count": 8043,
+      "floor_applied_pixels": 120,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 612286,
+      "log_rmse_no_alignment": 3.034576654956987,
+      "global_log_offset_fitted_for_evaluation": 1.8954791372214208,
+      "log_rmse_after_explicit_global_alignment": 2.369770941497991
+    },
+    {
+      "cursor_ns": 533333344,
+      "integrated_count": 8043,
+      "floor_applied_pixels": 120,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 17278953,
+      "log_rmse_no_alignment": 3.034626370604842,
+      "global_log_offset_fitted_for_evaluation": 1.895465483869305,
+      "log_rmse_after_explicit_global_alignment": 2.369845524212584
+    },
+    {
+      "cursor_ns": 550000011,
+      "integrated_count": 8043,
+      "floor_applied_pixels": 120,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 33945620,
+      "log_rmse_no_alignment": 3.035328520989197,
+      "global_log_offset_fitted_for_evaluation": 1.8953075229752392,
+      "log_rmse_after_explicit_global_alignment": 2.370870857656302
+    },
+    {
+      "cursor_ns": 566666678,
+      "integrated_count": 8051,
+      "floor_applied_pixels": 120,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 32367,
+      "log_rmse_no_alignment": 3.0360489629877696,
+      "global_log_offset_fitted_for_evaluation": 1.8949583453337686,
+      "log_rmse_after_explicit_global_alignment": 2.3720721268774723
+    },
+    {
+      "cursor_ns": 583333345,
+      "integrated_count": 8096,
+      "floor_applied_pixels": 121,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 3.03691990857781,
+      "global_log_offset_fitted_for_evaluation": 1.894534988621839,
+      "log_rmse_after_explicit_global_alignment": 2.3735247434994022
+    },
+    {
+      "cursor_ns": 600000012,
+      "integrated_count": 8144,
+      "floor_applied_pixels": 122,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 3.037685697015226,
+      "global_log_offset_fitted_for_evaluation": 1.8939294575893533,
+      "log_rmse_after_explicit_global_alignment": 2.374987495446277
+    },
+    {
+      "cursor_ns": 616666679,
+      "integrated_count": 8225,
+      "floor_applied_pixels": 124,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 3.0384544051074345,
+      "global_log_offset_fitted_for_evaluation": 1.8932187651708683,
+      "log_rmse_after_explicit_global_alignment": 2.376536950927056
+    },
+    {
+      "cursor_ns": 633333346,
+      "integrated_count": 8303,
+      "floor_applied_pixels": 124,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 3.038700412190386,
+      "global_log_offset_fitted_for_evaluation": 1.8922771732566284,
+      "log_rmse_after_explicit_global_alignment": 2.3776011639082624
+    },
+    {
+      "cursor_ns": 650000013,
+      "integrated_count": 8403,
+      "floor_applied_pixels": 122,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 85689,
+      "log_rmse_no_alignment": 3.039900595599407,
+      "global_log_offset_fitted_for_evaluation": 1.8916573317232497,
+      "log_rmse_after_explicit_global_alignment": 2.3796277377907886
+    },
+    {
+      "cursor_ns": 666666680,
+      "integrated_count": 8563,
+      "floor_applied_pixels": 121,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 3.0407047621536605,
+      "global_log_offset_fitted_for_evaluation": 1.8910263578356592,
+      "log_rmse_after_explicit_global_alignment": 2.3811561823103395
+    },
+    {
+      "cursor_ns": 683333347,
+      "integrated_count": 8717,
+      "floor_applied_pixels": 122,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 3.041052228108743,
+      "global_log_offset_fitted_for_evaluation": 1.8904895732600948,
+      "log_rmse_after_explicit_global_alignment": 2.3820259921923634
+    },
+    {
+      "cursor_ns": 700000014,
+      "integrated_count": 8918,
+      "floor_applied_pixels": 118,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 87524,
+      "log_rmse_no_alignment": 3.0421809485385536,
+      "global_log_offset_fitted_for_evaluation": 1.8901478561586802,
+      "log_rmse_after_explicit_global_alignment": 2.383737822309677
+    },
+    {
+      "cursor_ns": 716666681,
+      "integrated_count": 9092,
+      "floor_applied_pixels": 120,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 3.041647213531499,
+      "global_log_offset_fitted_for_evaluation": 1.8897084028711075,
+      "log_rmse_after_explicit_global_alignment": 2.38340511111776
+    },
+    {
+      "cursor_ns": 733333348,
+      "integrated_count": 9353,
+      "floor_applied_pixels": 119,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 3.042140161013162,
+      "global_log_offset_fitted_for_evaluation": 1.8899609347412762,
+      "log_rmse_after_explicit_global_alignment": 2.3838339758466964
+    },
+    {
+      "cursor_ns": 750000015,
+      "integrated_count": 9599,
+      "floor_applied_pixels": 119,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 3.042800909198435,
+      "global_log_offset_fitted_for_evaluation": 1.8899042725090347,
+      "log_rmse_after_explicit_global_alignment": 2.384722041197028
+    },
+    {
+      "cursor_ns": 766666682,
+      "integrated_count": 9888,
+      "floor_applied_pixels": 118,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 3.0416069352186903,
+      "global_log_offset_fitted_for_evaluation": 1.8896674346326348,
+      "log_rmse_after_explicit_global_alignment": 2.383386190876198
+    },
+    {
+      "cursor_ns": 783333349,
+      "integrated_count": 10200,
+      "floor_applied_pixels": 119,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 3.0424102751285447,
+      "global_log_offset_fitted_for_evaluation": 1.8902387667800944,
+      "log_rmse_after_explicit_global_alignment": 2.3839584070971997
+    },
+    {
+      "cursor_ns": 800000016,
+      "integrated_count": 10421,
+      "floor_applied_pixels": 119,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 3.0432963394079797,
+      "global_log_offset_fitted_for_evaluation": 1.8907904067372132,
+      "log_rmse_after_explicit_global_alignment": 2.3846518083872397
+    },
+    {
+      "cursor_ns": 816666683,
+      "integrated_count": 10661,
+      "floor_applied_pixels": 118,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 3.0434185668465084,
+      "global_log_offset_fitted_for_evaluation": 1.891231085832305,
+      "log_rmse_after_explicit_global_alignment": 2.384458335347384
+    },
+    {
+      "cursor_ns": 833333350,
+      "integrated_count": 11019,
+      "floor_applied_pixels": 118,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 3.043510798121961,
+      "global_log_offset_fitted_for_evaluation": 1.8916774993746246,
+      "log_rmse_after_explicit_global_alignment": 2.3842219310803987
+    },
+    {
+      "cursor_ns": 850000017,
+      "integrated_count": 11327,
+      "floor_applied_pixels": 119,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 3.0436421316841438,
+      "global_log_offset_fitted_for_evaluation": 1.892186680946833,
+      "log_rmse_after_explicit_global_alignment": 2.3839855264263257
+    },
+    {
+      "cursor_ns": 866666684,
+      "integrated_count": 11697,
+      "floor_applied_pixels": 119,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 3.043672626499614,
+      "global_log_offset_fitted_for_evaluation": 1.8923937908933885,
+      "log_rmse_after_explicit_global_alignment": 2.3838600624808515
+    },
+    {
+      "cursor_ns": 883333351,
+      "integrated_count": 12080,
+      "floor_applied_pixels": 118,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 3.044166500269971,
+      "global_log_offset_fitted_for_evaluation": 1.8933241374561434,
+      "log_rmse_after_explicit_global_alignment": 2.383751956872165
+    },
+    {
+      "cursor_ns": 900000018,
+      "integrated_count": 12474,
+      "floor_applied_pixels": 122,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 3.0436928622247703,
+      "global_log_offset_fitted_for_evaluation": 1.8936221072041974,
+      "log_rmse_after_explicit_global_alignment": 2.382910311922283
+    },
+    {
+      "cursor_ns": 916666685,
+      "integrated_count": 12866,
+      "floor_applied_pixels": 124,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 3.0444210579380964,
+      "global_log_offset_fitted_for_evaluation": 1.89464511981331,
+      "log_rmse_after_explicit_global_alignment": 2.3830273703809044
+    },
+    {
+      "cursor_ns": 933333352,
+      "integrated_count": 13264,
+      "floor_applied_pixels": 120,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 3.0439901985429607,
+      "global_log_offset_fitted_for_evaluation": 1.89480843841462,
+      "log_rmse_after_explicit_global_alignment": 2.3823470172370698
+    },
+    {
+      "cursor_ns": 950000019,
+      "integrated_count": 13615,
+      "floor_applied_pixels": 122,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 3.0440670823490557,
+      "global_log_offset_fitted_for_evaluation": 1.8953669204328139,
+      "log_rmse_after_explicit_global_alignment": 2.382000973713093
+    },
+    {
+      "cursor_ns": 966666686,
+      "integrated_count": 13930,
+      "floor_applied_pixels": 125,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 3.0445974873611634,
+      "global_log_offset_fitted_for_evaluation": 1.8965249978130423,
+      "log_rmse_after_explicit_global_alignment": 2.3817570809627395
+    },
+    {
+      "cursor_ns": 983333353,
+      "integrated_count": 14346,
+      "floor_applied_pixels": 128,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 3.044743832461746,
+      "global_log_offset_fitted_for_evaluation": 1.8971620818068693,
+      "log_rmse_after_explicit_global_alignment": 2.3814367597456934
+    },
+    {
+      "cursor_ns": 1000000000,
+      "integrated_count": 14752,
+      "floor_applied_pixels": 127,
+      "observed_pixels": 632,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 3.0442520429104296,
+      "global_log_offset_fitted_for_evaluation": 1.8968830295081902,
+      "log_rmse_after_explicit_global_alignment": 2.381030296558226
+    }
+  ],
+  "offline_latency": {
+    "repeats": 5,
+    "sequence_ms": [
+      200.3357,
+      247.6203,
+      200.6714,
+      214.2921,
+      212.222
+    ],
+    "median_sequence_ms": 212.222,
+    "median_snapshot_ms": 3.479049180327869,
+    "snapshot_range_ms": [
+      3.2841918032786888,
+      4.059349180327868
+    ],
+    "integrated_events_counted_across_snapshots": 459509,
+    "failures": 0,
+    "timing_scope": "full-history snapshots including log, intensity, support arrays; excludes load, render, and truth evaluation",
+    "allocation_peak_bytes_separate_tracemalloc_run": 16411808,
+    "limitation": "offline single-process CPU measurements during concurrent project development; no live backlog guarantee"
+  },
+  "sustained_live_backlog": null,
+  "host": {
+    "python": "3.14.8",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 126 Stepping 5, GenuineIntel",
+    "logical_cpus": 8
+  },
+  "missing_evaluations": [
+    "sustained concurrent live acquisition"
+  ],
+  "evaluation_scope": "this recorded capture only; no inference about unrecorded stations or live throughput"
+}

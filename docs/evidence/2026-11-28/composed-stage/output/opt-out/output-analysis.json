@@ -1,0 +1,352 @@
+{
+  "method": "whole-clip per-channel extrema sufficient area bound",
+  "source": "https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html",
+  "colorspace": "8-bit SDR sRGB",
+  "reference_scale": "one captured pixel per reference CSS pixel; no resizing",
+  "general_capable_pixels": 176722,
+  "red_capable_pixels": 0,
+  "union_capable_pixels": 176722,
+  "maximum_hot_area": {
+    "pixels": 62438,
+    "fraction": 0.7152446847507331,
+    "top_left_xy": [
+      153,
+      270
+    ],
+    "window_wh": [
+      341,
+      256
+    ]
+  },
+  "verdict": "inconclusive",
+  "limits": [
+    "Only the recorded SDR viewport at the declared scale is covered.",
+    "All changed potentially saturated-red pixels count, without a chromaticity exemption.",
+    "Extrema can combine channels from different times and overestimate area.",
+    "An inconclusive bound is not an unsafe verdict or a WCAG failure.",
+    "No flash-rate, human usability, HDR, zoom, display calibration, or viewing-distance claim."
+  ],
+  "frames": 72,
+  "missed_rendered_frames": 0,
+  "completed": true,
+  "frame_times": [
+    {
+      "wall_s": 0.020334,
+      "draw_frame": 110
+    },
+    {
+      "wall_s": 0.043516,
+      "draw_frame": 111
+    },
+    {
+      "wall_s": 0.066287,
+      "draw_frame": 112
+    },
+    {
+      "wall_s": 0.163656,
+      "draw_frame": 113
+    },
+    {
+      "wall_s": 0.40738,
+      "draw_frame": 114
+    },
+    {
+      "wall_s": 0.579887,
+      "draw_frame": 115
+    },
+    {
+      "wall_s": 0.700076,
+      "draw_frame": 116
+    },
+    {
+      "wall_s": 0.819498,
+      "draw_frame": 117
+    },
+    {
+      "wall_s": 0.929066,
+      "draw_frame": 118
+    },
+    {
+      "wall_s": 1.038006,
+      "draw_frame": 119
+    },
+    {
+      "wall_s": 1.156275,
+      "draw_frame": 120
+    },
+    {
+      "wall_s": 1.271712,
+      "draw_frame": 121
+    },
+    {
+      "wall_s": 1.375066,
+      "draw_frame": 122
+    },
+    {
+      "wall_s": 1.491655,
+      "draw_frame": 123
+    },
+    {
+      "wall_s": 1.602577,
+      "draw_frame": 124
+    },
+    {
+      "wall_s": 1.718583,
+      "draw_frame": 125
+    },
+    {
+      "wall_s": 1.833637,
+      "draw_frame": 126
+    },
+    {
+      "wall_s": 1.946133,
+      "draw_frame": 127
+    },
+    {
+      "wall_s": 2.056144,
+      "draw_frame": 128
+    },
+    {
+      "wall_s": 2.180793,
+      "draw_frame": 129
+    },
+    {
+      "wall_s": 2.289287,
+      "draw_frame": 130
+    },
+    {
+      "wall_s": 2.406356,
+      "draw_frame": 131
+    },
+    {
+      "wall_s": 2.532212,
+      "draw_frame": 132
+    },
+    {
+      "wall_s": 2.645951,
+      "draw_frame": 133
+    },
+    {
+      "wall_s": 2.757647,
+      "draw_frame": 134
+    },
+    {
+      "wall_s": 2.880053,
+      "draw_frame": 135
+    },
+    {
+      "wall_s": 2.990913,
+      "draw_frame": 136
+    },
+    {
+      "wall_s": 3.110198,
+      "draw_frame": 137
+    },
+    {
+      "wall_s": 3.219435,
+      "draw_frame": 138
+    },
+    {
+      "wall_s": 3.328279,
+      "draw_frame": 139
+    },
+    {
+      "wall_s": 3.434207,
+      "draw_frame": 140
+    },
+    {
+      "wall_s": 3.552777,
+      "draw_frame": 141
+    },
+    {
+      "wall_s": 4.339304,
+      "draw_frame": 142
+    },
+    {
+      "wall_s": 4.386013,
+      "draw_frame": 143
+    },
+    {
+      "wall_s": 4.406823,
+      "draw_frame": 144
+    },
+    {
+      "wall_s": 5.094509,
+      "draw_frame": 145
+    },
+    {
+      "wall_s": 5.126158,
+      "draw_frame": 146
+    },
+    {
+      "wall_s": 5.797414,
+      "draw_frame": 147
+    },
+    {
+      "wall_s": 5.83569,
+      "draw_frame": 148
+    },
+    {
+      "wall_s": 5.855662,
+      "draw_frame": 149
+    },
+    {
+      "wall_s": 6.566912,
+      "draw_frame": 150
+    },
+    {
+      "wall_s": 6.621504,
+      "draw_frame": 151
+    },
+    {
+      "wall_s": 7.378316,
+      "draw_frame": 152
+    },
+    {
+      "wall_s": 7.431747,
+      "draw_frame": 153
+    },
+    {
+      "wall_s": 7.457441,
+      "draw_frame": 154
+    },
+    {
+      "wall_s": 8.264791,
+      "draw_frame": 155
+    },
+    {
+      "wall_s": 8.323575,
+      "draw_frame": 156
+    },
+    {
+      "wall_s": 8.994773,
+      "draw_frame": 157
+    },
+    {
+      "wall_s": 9.675744,
+      "draw_frame": 158
+    },
+    {
+      "wall_s": 9.70017,
+      "draw_frame": 159
+    },
+    {
+      "wall_s": 9.72359,
+      "draw_frame": 160
+    },
+    {
+      "wall_s": 9.818884,
+      "draw_frame": 161
+    },
+    {
+      "wall_s": 9.92275,
+      "draw_frame": 162
+    },
+    {
+      "wall_s": 10.045068,
+      "draw_frame": 163
+    },
+    {
+      "wall_s": 10.154573,
+      "draw_frame": 164
+    },
+    {
+      "wall_s": 10.250478,
+      "draw_frame": 165
+    },
+    {
+      "wall_s": 10.363653,
+      "draw_frame": 166
+    },
+    {
+      "wall_s": 10.471296,
+      "draw_frame": 167
+    },
+    {
+      "wall_s": 10.581793,
+      "draw_frame": 168
+    },
+    {
+      "wall_s": 10.694861,
+      "draw_frame": 169
+    },
+    {
+      "wall_s": 10.800979,
+      "draw_frame": 170
+    },
+    {
+      "wall_s": 10.91193,
+      "draw_frame": 171
+    },
+    {
+      "wall_s": 11.025087,
+      "draw_frame": 172
+    },
+    {
+      "wall_s": 11.152002,
+      "draw_frame": 173
+    },
+    {
+      "wall_s": 11.275481,
+      "draw_frame": 174
+    },
+    {
+      "wall_s": 11.390656,
+      "draw_frame": 175
+    },
+    {
+      "wall_s": 11.50673,
+      "draw_frame": 176
+    },
+    {
+      "wall_s": 11.627585,
+      "draw_frame": 177
+    },
+    {
+      "wall_s": 11.751675,
+      "draw_frame": 178
+    },
+    {
+      "wall_s": 11.88113,
+      "draw_frame": 179
+    },
+    {
+      "wall_s": 11.990556,
+      "draw_frame": 180
+    },
+    {
+      "wall_s": 12.098248,
+      "draw_frame": 181
+    }
+  ],
+  "bounds_sha256": "041550110b96bb58f7954d05bcf089cdabec0fc97cef58911bf3c72fcef42ab2",
+  "capture_role": "actual full Godot root viewport after frame_post_draw, RGB8",
+  "clip_start_wall_s": 0.020334,
+  "clip_end_wall_s": 12.098248,
+  "images": {
+    "first": {
+      "file": "first.png",
+      "sha256": "6fc094c7514e14402bf9409672ab7710b52ec4ba56405b51d59f3751898ea58e",
+      "draw_frame": 110,
+      "height": 800,
+      "wall_s": 0.020334,
+      "width": 1097
+    },
+    "middle": {
+      "file": "middle.png",
+      "sha256": "c3ec6a974e9b30b6c5e1040fd72bbaf7262689bbf3044ebd5f8120f568809d0c",
+      "draw_frame": 149,
+      "height": 800,
+      "wall_s": 5.855662,
+      "width": 1097
+    },
+    "last": {
+      "file": "last.png",
+      "sha256": "032b1e40934073bf172bf4e63838dbeb335dc08ee60b93fb3388b4c90cb0ecd6",
+      "draw_frame": 181,
+      "height": 800,
+      "wall_s": 12.098248,
+      "width": 1097
+    }
+  }
+}

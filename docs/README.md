@@ -14,6 +14,7 @@ Start with **[the Godot prototype guide](godot-prototype.md)**. Launch from the 
 
 | Material | Purpose |
 | --- | --- |
+| [Next-version result](development/next-version-report.md) | Grouped PRs, final measurements, observation records and retained failures |
 | [Interaction stage](development/interaction-stage.md) | Current default, nine stations, independent controls, streaming and restricted models |
 | [Processing tools](event-processing.md) | ROI, binning, polarity and time representations on immutable events |
 | [Relative reconstruction](event-reconstruction.md) | Constant-prior inference, raw comparison, quality failures and reset behavior |

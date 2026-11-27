@@ -1,0 +1,83 @@
+[
+  {
+    "trial": "trial-01",
+    "station": 0,
+    "source_name": "absorption",
+    "rows": [
+      "control",
+      "treatment"
+    ]
+  },
+  {
+    "trial": "trial-02",
+    "station": 1,
+    "source_name": "diffuse",
+    "rows": [
+      "treatment",
+      "control"
+    ]
+  },
+  {
+    "trial": "trial-03",
+    "station": 2,
+    "source_name": "glossy",
+    "rows": [
+      "treatment",
+      "control"
+    ]
+  },
+  {
+    "trial": "trial-04",
+    "station": 3,
+    "source_name": "transmission",
+    "rows": [
+      "control",
+      "treatment"
+    ]
+  },
+  {
+    "trial": "trial-05",
+    "station": 4,
+    "source_name": "refraction",
+    "rows": [
+      "treatment",
+      "control"
+    ]
+  },
+  {
+    "trial": "trial-06",
+    "station": 5,
+    "source_name": "fluorescence",
+    "rows": [
+      "treatment",
+      "control"
+    ]
+  },
+  {
+    "trial": "trial-07",
+    "station": 6,
+    "source_name": "phosphorescence",
+    "rows": [
+      "treatment",
+      "control"
+    ]
+  },
+  {
+    "trial": "trial-08",
+    "station": 7,
+    "source_name": "subsurface",
+    "rows": [
+      "treatment",
+      "control"
+    ]
+  },
+  {
+    "trial": "trial-09",
+    "station": 8,
+    "source_name": "interreflection",
+    "rows": [
+      "control",
+      "treatment"
+    ]
+  }
+]

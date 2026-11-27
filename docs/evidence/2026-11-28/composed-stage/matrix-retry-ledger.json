@@ -1,0 +1,12 @@
+{
+  "case": "3-transmission-control",
+  "initial_attempt": "Timed out after 90 seconds with READY but no committed samples; owned renderer was killed by launcher.",
+  "retained_initial_data": "3-transmission-control-timeout",
+  "retained_initial_logs": "3-transmission-control-launcher",
+  "invalid_retry": "retry1 split an unquoted Windows path at a space and exited 1; not an experiment result.",
+  "successful_retry_logs": "3-transmission-control-retry2-launcher",
+  "successful_retry_seconds": 3.6377317,
+  "artifact_move": "Successful retry2 capture moved to the protocol's canonical 3-transmission-control directory without changing its bytes. Initial partial capture moved to the retained timeout directory.",
+  "settings": "Exact same predeclared config, source and gates; no outcome selection or tolerance changes.",
+  "interpretation": "One unexplained initial-start stall remains recorded. A successful retry does not establish that all startup attempts are reliable."
+}

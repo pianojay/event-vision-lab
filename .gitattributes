@@ -13,3 +13,4 @@ docs/evidence/2026-11-28/pipeline-prototype/**/*.csv -text whitespace=blank-at-e
 "ChatGPT-Event Vision Game-20261122-0816.md" -whitespace
 *.log -whitespace
 *.import -whitespace
+docs/evidence/2026-11-28/composed-stage/** -text
