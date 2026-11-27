@@ -61,6 +61,19 @@ func _initialize() -> void:
 	bounded.generated = 1999999
 	result = bounded.append(1000,false,Stage.parameters(config,1000,0,false),PackedFloat32Array([exp(1.0)]),PackedFloat32Array([0,0,1,4]))
 	check("total resource guard aborts before float counter precision loss",result.has("error") and not FileAccess.file_exists((path+"-limit").path_join("manifest.json")))
+	var transitions := Writer.new()
+	check("threshold capture begins",transitions.begin(path+"-threshold",config))
+	transitions.append(0,true,Stage.parameters(config,0,0,true),PackedFloat32Array([1]),PackedFloat32Array([0,0,0,0]))
+	params = Stage.parameters(config,500,0,false)
+	params[4] = 0.125
+	transitions.append(500,false,params,PackedFloat32Array([exp(0.3)]),PackedFloat32Array([0,0,0.3,2,0,0,0.125,0.25]))
+	params = Stage.parameters(config,1000,500,false)
+	params[4] = 0.5
+	transitions.append(1000,false,params,PackedFloat32Array([exp(0.3)]),PackedFloat32Array([0,0,0,0,0,0,0.5,0.25]))
+	var changed := transitions.finish("headless threshold contract; no GPU")
+	check("threshold lifecycle records effective interval start",changed.lifecycle.records.size()==3 and changed.lifecycle.records[1].kind=="threshold-change" and changed.lifecycle.records[1].time_ns==0 and changed.lifecycle.records[1].effective_frame_time_ns==500)
+	check("per-frame threshold values remain explicit",changed.optical_input.frames[1].get("sensor_thresholds",{})=={"on":0.125,"off":0.25})
+	check("threshold edits preserve already captured events",changed.captures.events.input_count==2 and changed.captures.events.stored_count==2)
 	var second := Writer.new()
 	check("existing capture never overwritten",not second.begin(path,config))
 	var sphere0 := Stage.parameters(config,0,0,false)
@@ -81,6 +94,16 @@ func _initialize() -> void:
 	lab.live_config.scene = "interactive"
 	params = lab._interactive_capture_parameters(1000,0,false)
 	check("paused optical edit reaches next input",params[17]==0 and lab.needs_reset)
+	lab.needs_reset = false
+	var threshold_slider: HSlider
+	for slider in lab.find_children("*","HSlider",true,false):
+		if slider.min_value == 0.02 and slider.max_value == 0.6: threshold_slider = slider
+	threshold_slider.value = 0.1
+	lab._process_acquisition(100.0)
+	check("paused threshold edit dispatches nothing and requests no full reset",lab.capture_index==0 and lab.simulation_time==0 and not lab.needs_reset)
+	lab.pause_check.button_pressed = false
+	params = lab._interactive_capture_parameters(1000,0,false)
+	check("resume parameters carry edited asymmetric thresholds",params[4]==PackedFloat32Array([0.1])[0] and params[5]==PackedFloat32Array([0.1*config.off_threshold/config.on_threshold])[0])
 	lab.free()
 	print("ACQUISITION_CHECKS ", checks, " failures=", failures)
 	quit(1 if failures else 0)
