@@ -90,7 +90,7 @@ def evaluate(manifest_path, output):
         missing_evaluations=['representative reflective/transmissive station','sustained concurrent live acquisition'])
     output.mkdir(parents=True,exist_ok=True)
     (output/'evaluation.json').write_text(json.dumps(report,indent=2)+'\n')
-    (output/'profile.txt').write_text(profile_output.getvalue())
+    (output/'profile.txt').write_text(profile_output.getvalue().rstrip()+'\n')
     write_pgm(output/'final-relative-intensity.pgm',snapshots[-1])
     svg=['<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650">',
          '<rect width="1000" height="650" fill="#142030"/>']

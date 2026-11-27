@@ -46,7 +46,7 @@ ON and OFF values remain separate. Opposite events in one bin never cancel. `rec
 
 Time surfaces take the last timestamp after binning, separately for each polarity. A burst increases decaying counts but does not increase a time surface. Colors mix the two nonnegative channels. Monochrome brightness uses their sum. Display gain maps activity with `1-exp(-gain*activity)`. Optional bin-area division occurs only in display and does not create additional information.
 
-Snapshots recompute from retained event history. This supports deterministic pause, backward scrub, and configuration comparisons. Its work grows with capture length. It is an offline replay baseline, not a measured bounded live processing implementation. Post-event ROI does not save completed rendering or sensor-generation work.
+Snapshots recompute from retained event history. This supports deterministic pause, backward scrub, and configuration comparisons. Its work grows with capture length. It is an offline replay baseline. A [separate bounded streaming class](streaming-processing.md) supports the live acquisition boundary without backward scrub. Post-event ROI does not save completed rendering or sensor-generation work.
 
 ## Recorded comparisons
 
