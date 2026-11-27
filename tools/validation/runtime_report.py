@@ -15,6 +15,8 @@ def assess(runtime, launcher, telemetry):
         missing.append("owned Godot process did not complete successfully")
     if not runtime.get("success") or runtime.get("errors"):
         missing.append("runtime scenario assertions failed")
+    if not runtime.get("stream_finalization", {}).get("finalized"):
+        missing.append("stream was not cleanly finalized at wall stop")
     if runtime.get("measured_wall_seconds", 0) < 600:
         missing.append("less than 600 measured wall seconds after warmup")
     if not launcher.get("ac_power_all_samples"):

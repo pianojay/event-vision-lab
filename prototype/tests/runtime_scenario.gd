@@ -133,7 +133,7 @@ func _run() -> void:
 			next_telemetry_s = measured_s + 5.0
 		if measuring and measured_s >= float(scenario.measure_seconds):
 			await RenderingServer.frame_post_draw
-			_finish()
+			await _finish()
 			return
 
 func _apply(config: Dictionary, name: String) -> bool:
@@ -236,10 +236,15 @@ func _finish() -> void:
 	if tcp:
 		tcp.put_data("{\"end\":true}\n".to_utf8_buffer())
 		tcp.disconnect_from_host()
+	var finalization := {"finalized":false,"reason":"validation_finish hook absent"}
+	if lab.has_method("validation_finish"):
+		finalization = await lab.validation_finish()
+		if not finalization.get("finalized",false): errors.append("Stream finalization failed")
 	var measured_s := (Time.get_ticks_usec()-measured_usec)*1e-6
 	var report := {"schema":"event-lab-runtime-validation-v1","scenario":scenario,"errors":errors,
 		"termination_reason":"validation wall duration reached","configured_simulation_completed":false,
-		"archive_finalized":false,"capture_scope":"recording disabled in supplied sustained profiles; no CSV throughput claim",
+		"stream_finalization":finalization,"archive_finalized":finalization.get("finalized",false) and not lab.event_capture_directory.is_empty(),
+		"capture_scope":"recording disabled in supplied sustained profiles; no CSV throughput claim",
 		"measured_wall_seconds":measured_s,"simulated_seconds":(latest_cursor_ns-warmup_cursor_ns)*1e-9,
 		"warmup_seconds":scenario.warmup_seconds,"event_count":event_count,"sample_batches":batch_count,"resets":reset_count,
 		"frame_intervals":_stats(frame_usec),"event_batch_intervals":_stats(batch_interval_usec),

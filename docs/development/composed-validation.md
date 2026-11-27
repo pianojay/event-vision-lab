@@ -22,6 +22,8 @@ $godot = 'C:\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable_win64_console.exe
 
 The runtime continues for the requested wall duration even if simulated time advances slowly. It requires event batches and emitted events. A scenario acknowledgement must contain every requested effective value. Scripted V and R events must change the selected observation and emit the reset signal, respectively, before a subsequent rendered-frame acknowledgement. An ignored reset fails the run.
 
+At the wall limit, `validation_finish()` stops dispatch, drains the in-flight sample, and finalizes the streaming writer at its actual cursor. The report retains that finalization result and does not mark the configured one-hour simulation complete. Supplied sustained profiles disable recording; their stream can finalize without producing an event CSV archive.
+
 Use `runtime.jsonl`, `process.jsonl`, and `launcher.log` to inspect progress without blocking on the whole run. The final files contain:
 
 - `runtime-report.json` records actual event/sample counts, wall and simulated duration, median/p95/p99 frame intervals, batch intervals, sample-dispatch service time, inference observation age, scenario acknowledgements, and effective stage settings.
