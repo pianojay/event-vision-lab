@@ -1,0 +1,28 @@
+test_decay_weights_every_event_at_its_time (test_event_processor.ProcessingTests.test_decay_weights_every_event_at_its_time) ... ok
+test_full_and_empty_roi (test_event_processor.ProcessingTests.test_full_and_empty_roi) ... ok
+test_godot_matches_python_all_configurations_and_resets (test_event_processor.ProcessingTests.test_godot_matches_python_all_configurations_and_resets) ... ok
+test_invalid_boundary_inputs (test_event_processor.ProcessingTests.test_invalid_boundary_inputs) ... ok
+test_large_integer_clock_and_future_events (test_event_processor.ProcessingTests.test_large_integer_clock_and_future_events) ... ok
+test_partial_bins_conserve_opposite_polarities (test_event_processor.ProcessingTests.test_partial_bins_conserve_opposite_polarities) ... ok
+test_polarity_selection_changes_counts (test_event_processor.ProcessingTests.test_polarity_selection_changes_counts) ... ok
+test_raw_rows_and_config_are_owned_and_preserved (test_event_processor.ProcessingTests.test_raw_rows_and_config_are_owned_and_preserved) ... ok
+test_reset_and_batch_equivalence (test_event_processor.ProcessingTests.test_reset_and_batch_equivalence) ... ok
+test_roi_boundary_and_original_origin (test_event_processor.ProcessingTests.test_roi_boundary_and_original_origin) ... ok
+test_saved_config_and_existing_capture (test_event_processor.ProcessingTests.test_saved_config_and_existing_capture) ... ok
+test_snapshot_pause_scrub_and_configuration_are_deterministic (test_event_processor.ProcessingTests.test_snapshot_pause_scrub_and_configuration_are_deterministic) ... ok
+test_time_surface_uses_last_event_per_bin_and_polarity (test_event_processor.ProcessingTests.test_time_surface_uses_last_event_per_bin_and_polarity) ... ok
+test_window_lower_exclusive_upper_inclusive_and_ties (test_event_processor.ProcessingTests.test_window_lower_exclusive_upper_inclusive_and_ties) ... ok
+test_batching_and_idle_expiration (test_streaming_processor.StreamingTests.test_batching_and_idle_expiration) ... ok
+test_display_changes_retain_state_processing_changes_clear_only_processor (test_streaming_processor.StreamingTests.test_display_changes_retain_state_processing_changes_clear_only_processor) ... ok
+test_drop_newest_overflow_is_counted_and_expires_without_cancellation (test_streaming_processor.StreamingTests.test_drop_newest_overflow_is_counted_and_expires_without_cancellation) ... ok
+test_exponential_modes_keep_no_event_queue (test_streaming_processor.StreamingTests.test_exponential_modes_keep_no_event_queue) ... ok
+test_forward_stream_matches_offline_reference_across_all_settings (test_streaming_processor.StreamingTests.test_forward_stream_matches_offline_reference_across_all_settings) ... ok
+test_godot_matches_reference_including_overflow_reset_and_long_stream (test_streaming_processor.StreamingTests.test_godot_matches_reference_including_overflow_reset_and_long_stream) ... ok
+test_invalid_batches_do_not_partially_mutate_state (test_streaming_processor.StreamingTests.test_invalid_batches_do_not_partially_mutate_state) ... ok
+test_late_events_and_backward_scrub_require_offline_reference (test_streaming_processor.StreamingTests.test_late_events_and_backward_scrub_require_offline_reference) ... ok
+test_window_memory_remains_bounded_during_long_stream (test_streaming_processor.StreamingTests.test_window_memory_remains_bounded_during_long_stream) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 1.989s
+
+OK

@@ -1,0 +1,103 @@
+{
+  "schema": "event-lab-reconstruction-evaluation-v1",
+  "source": "docs\\evidence\\2026-11-28\\pipeline-prototype\\runs\\pulse-known-boundaries\\manifest.json",
+  "source_sha256": "d34572154297e552653b755f80f0b10282ec3f58744c9a459748b726ccee1a8d",
+  "config": {
+    "initial_log_intensity": 0.0,
+    "on_threshold": 0.2,
+    "off_threshold": 0.2
+  },
+  "method": "constant-prior contrast integration",
+  "inference_inputs": [
+    "pixel-emitted events",
+    "dimensions",
+    "nominal ON/OFF thresholds",
+    "constant prior"
+  ],
+  "initial_intensity_observed": false,
+  "truth_used_for_inference": false,
+  "truth_used_for_evaluation": "archived FP32 optical samples; separately read after all inference",
+  "scale_alignment": "none for output; explicit global-log-offset fit reported separately for evaluation",
+  "capture_count": 6,
+  "capture_loss": 0,
+  "frame_count": 5,
+  "frames": [
+    {
+      "cursor_ns": 0,
+      "integrated_count": 0,
+      "observed_pixels": 0,
+      "latest_event_age_ns": null,
+      "log_rmse_no_alignment": 0.0,
+      "global_log_offset_fitted_for_evaluation": 0.0,
+      "log_rmse_after_explicit_global_alignment": 0.0
+    },
+    {
+      "cursor_ns": 3000000,
+      "integrated_count": 0,
+      "observed_pixels": 0,
+      "latest_event_age_ns": null,
+      "log_rmse_no_alignment": 0.0,
+      "global_log_offset_fitted_for_evaluation": 0.0,
+      "log_rmse_after_explicit_global_alignment": 0.0
+    },
+    {
+      "cursor_ns": 4000000,
+      "integrated_count": 3,
+      "observed_pixels": 1,
+      "latest_event_age_ns": 134383,
+      "log_rmse_no_alignment": 0.0931471805599452,
+      "global_log_offset_fitted_for_evaluation": -0.0931471805599452,
+      "log_rmse_after_explicit_global_alignment": 0.0
+    },
+    {
+      "cursor_ns": 5000000,
+      "integrated_count": 6,
+      "observed_pixels": 1,
+      "latest_event_age_ns": 0,
+      "log_rmse_no_alignment": 5.551115123125783e-17,
+      "global_log_offset_fitted_for_evaluation": 5.551115123125783e-17,
+      "log_rmse_after_explicit_global_alignment": 0.0
+    },
+    {
+      "cursor_ns": 10000000,
+      "integrated_count": 6,
+      "observed_pixels": 1,
+      "latest_event_age_ns": 5000000,
+      "log_rmse_no_alignment": 5.551115123125783e-17,
+      "global_log_offset_fitted_for_evaluation": 5.551115123125783e-17,
+      "log_rmse_after_explicit_global_alignment": 0.0
+    }
+  ],
+  "offline_latency": {
+    "repeats": 5,
+    "sequence_ms": [
+      0.0211,
+      0.0196,
+      0.017,
+      0.017,
+      0.016
+    ],
+    "median_sequence_ms": 0.017,
+    "median_snapshot_ms": 0.0034000000000000002,
+    "snapshot_range_ms": [
+      0.0032,
+      0.00422
+    ],
+    "integrated_events_counted_across_snapshots": 15,
+    "failures": 0,
+    "timing_scope": "full-history snapshots including log, intensity, support arrays; excludes load, render, and truth evaluation",
+    "allocation_peak_bytes_separate_tracemalloc_run": 4848,
+    "limitation": "offline single-process CPU measurements during concurrent project development; no live backlog guarantee"
+  },
+  "sustained_live_backlog": null,
+  "host": {
+    "python": "3.14.8",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 126 Stepping 5, GenuineIntel",
+    "logical_cpus": 8
+  },
+  "missing_evaluations": [
+    "representative reflective/transmissive station",
+    "sustained concurrent live acquisition"
+  ]
+}
