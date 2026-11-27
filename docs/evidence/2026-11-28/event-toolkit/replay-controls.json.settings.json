@@ -1,0 +1,15 @@
+{
+  "bin_size": 4,
+  "gain": 0.5,
+  "normalization": "count",
+  "polarity": "off",
+  "representation": "time-surface",
+  "roi": [
+    1,
+    0,
+    32,
+    16
+  ],
+  "tau_ns": 25000000,
+  "window_ns": 12500000
+}

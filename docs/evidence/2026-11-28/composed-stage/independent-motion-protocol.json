@@ -1,0 +1,54 @@
+{
+  "source_revision": "446417c4007bffe8ddf87157e12778403a42a6e9",
+  "runs": [
+    {
+      "id": "diffuse-camera",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\independent-motion-final\\diffuse-camera.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\independent-motion-final\\diffuse-camera"
+    },
+    {
+      "id": "diffuse-object",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\independent-motion-final\\diffuse-object.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\independent-motion-final\\diffuse-object"
+    },
+    {
+      "id": "glossy-camera",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\independent-motion-final\\glossy-camera.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\independent-motion-final\\glossy-camera"
+    },
+    {
+      "id": "glossy-camera-control",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\independent-motion-final\\glossy-camera-control.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\independent-motion-final\\glossy-camera-control"
+    },
+    {
+      "id": "glossy-camera-temporal",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\independent-motion-final\\glossy-camera-temporal.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\independent-motion-final\\glossy-camera-temporal"
+    },
+    {
+      "id": "glossy-camera-spatial",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\independent-motion-final\\glossy-camera-spatial.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\independent-motion-final\\glossy-camera-spatial"
+    },
+    {
+      "id": "refraction-object",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\independent-motion-final\\refraction-object.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\independent-motion-final\\refraction-object"
+    },
+    {
+      "id": "refraction-light",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\independent-motion-final\\refraction-light.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\independent-motion-final\\refraction-light"
+    }
+  ],
+  "gates": {
+    "sensor_count_error": 0,
+    "sensor_polarity_error": 0,
+    "sensor_timestamp_max_ns": 100000,
+    "temporal_count_relative": 0.35,
+    "spatial_count_density_relative": 0.5,
+    "refraction_light_events": 0
+  },
+  "scope": "Separate camera/object changes from the existing light-only matrix; matched glossy ablation and refinement. Refraction sees emissive sources and has no diffuse point-lamp term, so lamp-only is a declared negative control."
+}

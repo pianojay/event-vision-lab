@@ -1,0 +1,132 @@
+{
+  "command": [
+    "C:\\Godot_v4.7.2-stable_win64.exe\\Godot_v4.7.2-stable_win64.exe",
+    "--path",
+    "D:\\ChatGPT\\Event Game\\runs\\composed-final-source\\prototype",
+    "--display-driver",
+    "windows",
+    "--rendering-method",
+    "mobile",
+    "--rendering-driver",
+    "vulkan",
+    "--position",
+    "-32000,-32000",
+    "--resolution",
+    "1280x800",
+    "--single-window",
+    "--script",
+    "res://tests/runtime_scenario.gd",
+    "--log-file",
+    "D:\\ChatGPT\\Event Game\\runs\\runtime-validation\\final-output-allmodes-v2\\godot.log",
+    "--",
+    "--validation-scenario=D:\\ChatGPT\\Event Game\\runs\\runtime-validation\\output-limited-allmodes-v2.json",
+    "--validation-output=D:\\ChatGPT\\Event Game\\runs\\runtime-validation\\final-output-allmodes-v2",
+    "--capture-port=2329",
+    "--source-revision=446417c4007bffe8ddf87157e12778403a42a6e9"
+  ],
+  "source": {
+    "commit": "446417c4007bffe8ddf87157e12778403a42a6e9",
+    "provenance": "declared snapshot revision plus actual file hashes",
+    "sha256": {
+      "prototype/acquisition/capture_writer.gd": "81b514d66df05e4680b7c03b6830f6962432a55ee09e1966b422082225b3bcf5",
+      "prototype/acquisition/crossings.gd": "fe9c714217cb113ae31ff3662e793c0eea64c9e2e536dd536fce66d4e038cf11",
+      "prototype/acquisition/run_config.gd": "ffab95c297c0623e705715826c28034a62b9c0e35368934da3d5e079e42d3f23",
+      "prototype/acquisition/stream_writer.gd": "c073b73ef4a8de5f77b52b94e974f6414e0af3162f2dfac7aa19ebf4f5435420",
+      "prototype/main.gd": "5f4b39fe26aea0c36ce34760d5e24cb698a02e20817374f4aec90ba2d2c8d540",
+      "prototype/main.tscn": "783bce66dc33519832f16209f9155c2780390ea793b97de1bdf2ae6c26ae9fa7",
+      "prototype/materials/emission_state.gd": "895308cec381ea85059f05a0fd655aca9fc79988a3a04c4f256e4c57d5cb51dd",
+      "prototype/materials/emission_state_tests.gd": "8e0e87bfa7ef9bb96bd2fd1e71c94b23a2a27bd6829bc31be423c6c85d0775f3",
+      "prototype/materials/registry.json": "ec5b3ad991137392b5c4093a3c473230d23164c3fc7003836f4b8d44d00db314",
+      "prototype/materials/transport_models.gd": "8b0a25bd8714f8e4bde3486dc88d953bae59449161207e2fbb4a269cba6faae2",
+      "prototype/materials/transport_tests.gd": "01689992a9183731f5ef847cdf8805dad300e88ea9d70b9f11a0026c7766b4d9",
+      "prototype/processing/check_processing.gd": "f2f7f5b209dde0fcbe6ee0a510285ada65b800b6b0870e2a1989912411730842",
+      "prototype/processing/check_reconstruction.gd": "466d7aa8a97fd526bb066bd926c0c14d3e30099dd05d1b059ae502e7cfa532b2",
+      "prototype/processing/check_streaming.gd": "137b25d5b2372a3cfefc9fbf1aa8b00d71528d6a2331eb7af0bf15466891da86",
+      "prototype/processing/contrast_integrator.gd": "eba57f2be1e061de43de7c7270a56e3e330d49a692d28fe30e730709fa63e70d",
+      "prototype/processing/event_processor.gd": "fafb1d214bdb8251280d85bbcbe71f2577f926f56b84542958edc6c6488c5dab",
+      "prototype/processing/streaming_processor.gd": "69f1cef9b7f37dd798a9e1246e9270c51a278ab550e67b035b338351d4cd3257",
+      "prototype/project.godot": "1fdd905f43e2674c68c6d9ee651b3160517d66ac433dc3bd76539964d7a74404",
+      "prototype/replay.gd": "37cd84b68dde73c545da401e7a9bd1c9257c79f4db481a0d50dae81555161fae",
+      "prototype/sensor_gpu.gd": "974ff22bd0a3e95fe6952e967f8495d8462ada9cb0e736c050512e1a1e7d5c35",
+      "prototype/shaders/display.gdshader": "3a35351ddadb17fb88cda20a36671d5c251a9618d05d5585219e0927a577417b",
+      "prototype/shaders/interaction_stage.glsl": "7c5e624e00a952eca5d78fc9387c452a439ea3ec5a348c4dfe3935f737b5f3dc",
+      "prototype/shaders/material_models.glsl": "4e7a1d782527893676a06fe5a0b64bdc9c5c1a49423c92c948a3a410e245d552",
+      "prototype/shaders/optical.glsl": "c1b7f09f2bebfc02dbc1b21413a0c48aa57849b7fe5e1987a5acb0c89f009d3a",
+      "prototype/shaders/reduced_flashes.gdshader": "54a5e06f72330e4f88f0c029dbf82bf3fa77e473f50173d16982c3735a38b9a1",
+      "prototype/shaders/sensor.glsl": "7bddb89d58ecde346d1dc7f971bc2c1f9a994efbc9f9dbd2625c71b6e7116022",
+      "prototype/stage/interaction_stage.gd": "813253585d23c072bde4784218e1e96334533c5af33f70177f3f1b0a4035e7d7",
+      "prototype/stage/live_perception.gd": "e8bc60d193cdd59e7e59e115baeb438fd1cf89e7edc0014de1254633dbf5a11e",
+      "prototype/stage/stage_controller.gd": "849a250a93d6cbfd76147df1c00440a860185c832f5fe3ac374dbc0522529acb",
+      "prototype/tests/acquisition_gpu_tests.gd": "7da2fa6815527a8cf69d2592f197c4fc64ce0d73aa7fe1d11510ed52a62afba5",
+      "prototype/tests/acquisition_tests.gd": "7e3342dcd92f30d510d18f8509baaa27bf84bf6e5eb3788a84a895236a7b0e03",
+      "prototype/tests/controls_tests.gd": "e6ee92c0bd3733302c2dd19e29217c1fe92bac6606095a76c596d3b9d3c1c497",
+      "prototype/tests/interaction_stage_tests.gd": "8861630d449295ff30b9ef57407fd5d5d44bf8953838c494c14f3aa1a415a7a3",
+      "prototype/tests/material_endpoint_tests.gd": "60600808f24eecf890a157edc2a818418f208cb3095a5d375023242489f00e78",
+      "prototype/tests/material_gpu_tests.gd": "4efcc8644cbe3cbe713017781b768c39448b36d52c4c2da6a66ff2e504d53257",
+      "prototype/tests/runtime_adapter_tests.gd": "d219cfb0544a7cb32d12c167db3e6dac7c556325a2d9f77ccc9a21f1d86398d8",
+      "prototype/tests/runtime_layout.gd": "c79d249430cf12171208c92b3ff14137f31849890f2504e9672294a512b49da6",
+      "prototype/tests/runtime_layout_tests.gd": "5f6e91c0ef766841a5c194ed868c0a840d60821dc4dfcc843c830370cd9cf0d0",
+      "prototype/tests/runtime_scenario.gd": "56388e3b3fcc0bd8f1f786d52a5ce755f3ad60b24f48c195d96fcef8cc901ca3",
+      "prototype/tests/sensor_tests.gd": "bb68c6df5c7f8e7971aed6570158d3bffa1f0b36267f43830881858ce6e20e1c",
+      "tools/validation/__init__.py": "a0289c2fd69b2cb469d42b9c76a392c2630a3bd91d4186e72bf66efb6605fb48",
+      "tools/validation/make_scenarios.py": "a46665466d81fd69ede7fe9086e8aeff309243d3869fc5f0f30b9496d3e9cfff",
+      "tools/validation/observations.py": "39c31c75cc98241691916e70d048866f73a9435a54d58d78138aed3043c3f577",
+      "tools/validation/output_bounds.py": "fb6f11a1a477756d3a5c5613cb7cdff5bc3cbd1892a8e87b2be8740096b84bb5",
+      "tools/validation/run_hidden.py": "ee964997f8217115bfec373a7ea05633ed5dfefb8f8ff536fb84f7dab3f394fa",
+      "tools/validation/runtime_report.py": "64a5e49db356bcd902f48fbd476f3760966ae57db16a2ed03d29c838c96b1f0d",
+      "tools/validation/test_engine_ownership.py": "360c055c7b971c56c2be2dcdec67fc14743f42c6d3ac83cddde824910c4204cd",
+      "tools/validation/test_validation.py": "3c475ff5018581a26afe17479389156a7a070934adb459ddaf0addad5dd8bf96"
+    }
+  },
+  "platform": "Windows-11-10.0.26300-SP0",
+  "engine": {
+    "requested_path": "C:\\Godot_v4.7.2-stable_win64.exe\\Godot_v4.7.2-stable_win64.exe",
+    "resolved_path": "C:\\Godot_v4.7.2-stable_win64.exe\\Godot_v4.7.2-stable_win64.exe",
+    "resolved_sha256": "ab1824f85bfd8e0e4128182c000c4003a3e042245b2967848d089b2a04b22424"
+  },
+  "processor": "Intel64 Family 6 Model 126 Stepping 5, GenuineIntel",
+  "logical_cpus": 8,
+  "headless": false,
+  "windows_hardware": {
+    "power_scheme": "\uc804\uc6d0 \uad6c\uc131\ud45c GUID: 381b4222-f694-41f0-9685-ff5bb260df2e  (\uade0\ud615 \uc870\uc815)",
+    "physical_memory_bytes": 25465364480,
+    "cpu": [
+      {
+        "Name": "Intel(R) Core(TM) i7-1065G7 CPU @ 1.30GHz",
+        "NumberOfCores": 4,
+        "NumberOfLogicalProcessors": 8
+      }
+    ],
+    "graphics": [
+      {
+        "Name": "Intel(R) Iris(R) Plus Graphics",
+        "DriverVersion": "30.0.100.9836",
+        "DriverDate": "/Date(1628208000000)/"
+      }
+    ]
+  },
+  "startup_show_window": "SW_HIDE",
+  "requested_backend": "windows/vulkan/mobile",
+  "capture_instrumentation": true,
+  "computer_use": false,
+  "process_id": 25964,
+  "process_image": {
+    "path": "C:\\Godot_v4.7.2-stable_win64.exe\\Godot_v4.7.2-stable_win64.exe",
+    "sha256": "ab1824f85bfd8e0e4128182c000c4003a3e042245b2967848d089b2a04b22424",
+    "matches_resolved_engine": true
+  },
+  "exit_code": 0,
+  "timeout": false,
+  "wall_seconds": 15.834854000000632,
+  "owned_windows": 3,
+  "memory": {
+    "samples": 16,
+    "first_private_bytes": 123645952,
+    "last_private_bytes": 409862144,
+    "peak_private_bytes": 416075776,
+    "least_squares_private_bytes_per_second": 6965122.275852977,
+    "scope": "whole owned process including warmup and validation instrumentation"
+  },
+  "ac_power_all_samples": true,
+  "output_analysis": "sufficient-bound-pass"
+}

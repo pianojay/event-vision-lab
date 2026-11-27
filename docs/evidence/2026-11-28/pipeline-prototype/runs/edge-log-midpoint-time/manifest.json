@@ -1,0 +1,253 @@
+{
+  "schema": "event-lab-pipeline-v1",
+  "effective_config": {
+    "schema": "event-lab-pipeline-v1",
+    "profile_name": "edge-log-midpoint-time-v1",
+    "stream_id": "edge-log-midpoint-time",
+    "width": 1,
+    "height": 1,
+    "duration_ns": 10000000,
+    "sample_period_ns": 5000000,
+    "epoch_ns": "0",
+    "scene": "edge",
+    "dark": 1.0,
+    "bright": 2.0,
+    "edge_start_px": 1.0,
+    "edge_speed_px_s": -100.0,
+    "pulse_knots": [
+      [
+        0,
+        1.0
+      ],
+      [
+        3000000,
+        1.0
+      ],
+      [
+        4000000,
+        2.0
+      ],
+      [
+        5000000,
+        1.0
+      ],
+      [
+        10000000,
+        1.0
+      ]
+    ],
+    "spatial": "exact-area",
+    "samples_per_axis": 4,
+    "trajectory": "log-linear",
+    "sampling": "uniform",
+    "sensor": "ideal",
+    "sensor_parameters": {
+      "on_threshold": 0.5,
+      "off_threshold": 0.5,
+      "threshold_sigma": 0.0,
+      "minimum_threshold": 0.01,
+      "bandwidth_white_hz": 0.0,
+      "white_intensity": 1.0,
+      "minimum_bandwidth_fraction": 0.1,
+      "dark_offset": 0.0,
+      "refractory_s": 0.0,
+      "seed": 1
+    },
+    "reset_times_ns": [],
+    "capture_capacity": 1000000,
+    "candidate_limit_per_step": 1000000,
+    "comparison_gate_ns": 2000000
+  },
+  "source": {
+    "commit": "dcb26450906f8c749846a9ff5c1e3a480855bb4c",
+    "worktree_dirty": true,
+    "source_sha256_lf": {
+      "tools/pipeline/pipeline.py": "1da6d040b9268214bcea90fd3f715a78b63f4902e3f73bf7c2185c9f2b1e53fe",
+      "tools/timing/timing_reference.py": "154d6de84dfb9085e7958e5c1f0527f9f151a4debb994823bd1dd4257578f47f",
+      "tools/sensor/reference_sensor.py": "bff638f315742a5073c70e6317eb7b59934a871a66b6f8bcef415a5b77eedcca",
+      "tools/rendering/optical_fixture.py": "fc30d89bf8aa216708576fa7dfb6c2edd51763cdab78e0cf8b834a982439f05d",
+      "tools/pipeline/test_pipeline.py": "1b903fa28e25b1b08f7f4a0619248b59fac9c53bef194393076b7e97d4bcdbae",
+      "tools/pipeline/validate_pipeline.py": "187c34672af699a9282c03b4638820434fce6e8c14fa47342204fd39a04faf12",
+      "tools/pipeline/validate_replay.py": "0b2804080d1e29961b739e0d4bf22bdc1cae8d2db81b0ee7cda54e11cd698831",
+      "prototype/replay.gd": "2b524156cafd66be35167dfe4efe6cf227e0fb689012cc6bf5aaee5c65eb0e00",
+      "run-pipeline.ps1": "53edac1684620701206250aee60864fb7cfad9f7a2f53d1f2ae61355125ca926"
+    },
+    "python": "3.14.8 (tags/v3.14.8:8e6e75d, Sep 30 2026, 18:19:33) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 126 Stepping 5, GenuineIntel"
+  },
+  "optical_input": {
+    "shape": [
+      1,
+      1
+    ],
+    "axes": "y,x; top-left origin",
+    "units": "positive relative scene-linear intensity",
+    "exposure_duration_ns": 0,
+    "archive_dtype": "little-endian float32",
+    "solver_dtype": "binary64",
+    "archive_role": "diagnostic rounded samples; solver uses unrounded analytic samples",
+    "spatial": "exact-area",
+    "trajectory": "log-linear",
+    "frames": [
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 0,
+        "length_bytes": 4,
+        "time_ns": 0,
+        "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 4,
+        "length_bytes": 4,
+        "time_ns": 5000000,
+        "sha256": "c0e336a5f371ef22cd534e094269f2c1a9635cd080b71ffa671086832d3b60b7"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 8,
+        "length_bytes": 4,
+        "time_ns": 10000000,
+        "sha256": "d88c86f15bbea365d658ad95a81d45367c465f7af6f7264fb077f01747ddc77d"
+      }
+    ],
+    "sample_count": 3,
+    "skipped_scheduled_samples": 0,
+    "unobserved_between_sample_changes": "not generally bounded; compare declared fixture truth"
+  },
+  "lifecycle": {
+    "records": [
+      {
+        "time_ns": 0,
+        "kind": "new-stream",
+        "stream_id": "edge-log-midpoint-time"
+      }
+    ],
+    "reset_policy": "finish prior interval, then initialize reference/filter without events; retain threshold map and cumulative run counters",
+    "new_stream_policy": "new sensor state and counters; seed regenerates threshold map; caller supplies stream_id and epoch"
+  },
+  "stages": {
+    "sensor_candidates": 1,
+    "pixel_emitted": 1,
+    "refractory_suppressed": 0,
+    "readout": "not modeled",
+    "capture_stored": 1,
+    "capture_overflow": 0,
+    "candidate_resource_guard": "abort run on limit; no truncated successful run",
+    "complete_relative_to_pixel_emissions": true,
+    "complete_relative_to_physical_camera": "not claimed"
+  },
+  "captures": {
+    "events": {
+      "schema": "event-lab-capture-v1",
+      "stage": "pixel-emitted",
+      "file": "events.csv",
+      "width": 1,
+      "height": 1,
+      "epoch_ns": "0",
+      "duration_ns": 10000000,
+      "stream_id": "edge-log-midpoint-time",
+      "input_count": 1,
+      "stored_count": 1,
+      "capacity": 1000000,
+      "overflow_count": 0,
+      "complete_relative_to_stage_input": true,
+      "overflow_policy": "drop-newest; sensor generation continues",
+      "timestamp": "signed int64 nanoseconds; integer epoch + rounded run-relative ns",
+      "quantization": "nearest ties-to-even; at most 0.5 ns plus binary64 solver roundoff",
+      "ordering": "unquantized (t,y,x,p), stable ties; sequence preserves order after quantization",
+      "polarity": {
+        "on": 1,
+        "off": -1
+      },
+      "sha256": "0c28891cf16fb78b184c82657a23f7f115623d0cec138129cf1209d8245415d2"
+    },
+    "candidates": {
+      "schema": "event-lab-capture-v1",
+      "stage": "sensor-candidate",
+      "file": "candidates.csv",
+      "width": 1,
+      "height": 1,
+      "epoch_ns": "0",
+      "duration_ns": 10000000,
+      "stream_id": "edge-log-midpoint-time",
+      "input_count": 1,
+      "stored_count": 1,
+      "capacity": 1,
+      "overflow_count": 0,
+      "complete_relative_to_stage_input": true,
+      "overflow_policy": "drop-newest; sensor generation continues",
+      "timestamp": "signed int64 nanoseconds; integer epoch + rounded run-relative ns",
+      "quantization": "nearest ties-to-even; at most 0.5 ns plus binary64 solver roundoff",
+      "ordering": "unquantized (t,y,x,p), stable ties; sequence preserves order after quantization",
+      "polarity": {
+        "on": 1,
+        "off": -1
+      },
+      "sha256": "0c28891cf16fb78b184c82657a23f7f115623d0cec138129cf1209d8245415d2"
+    },
+    "truth": {
+      "schema": "event-lab-capture-v1",
+      "stage": "ideal-optical-truth",
+      "file": "truth.csv",
+      "width": 1,
+      "height": 1,
+      "epoch_ns": "0",
+      "duration_ns": 10000000,
+      "stream_id": "edge-log-midpoint-time",
+      "input_count": 1,
+      "stored_count": 1,
+      "capacity": 1,
+      "overflow_count": 0,
+      "complete_relative_to_stage_input": true,
+      "overflow_policy": "drop-newest; sensor generation continues",
+      "timestamp": "signed int64 nanoseconds; integer epoch + rounded run-relative ns",
+      "quantization": "nearest ties-to-even; at most 0.5 ns plus binary64 solver roundoff",
+      "ordering": "unquantized (t,y,x,p), stable ties; sequence preserves order after quantization",
+      "polarity": {
+        "on": 1,
+        "off": -1
+      },
+      "sha256": "afa4157bd779574eba79712f81850dbfa3c9fa9fbeb7aa6fe5708e7466ccc0d8"
+    }
+  },
+  "comparison": {
+    "reference": "same optical fixture, exact area and continuous trajectory, nominal ideal thresholds, same reset schedule",
+    "gate_ns": 2000000,
+    "pixel_emitted_vs_ideal_truth": {
+      "reference_events": 1,
+      "observed_events": 1,
+      "reference_on": 1,
+      "observed_on": 1,
+      "matched": 1,
+      "missing": 0,
+      "extra": 0,
+      "abs_error_median_s": 0.00015583183668819306,
+      "abs_error_p95_s": 0.00015583183668819306,
+      "abs_error_max_s": 0.00015583183668819306,
+      "signed_error_mean_s": 0.00015583183668819306
+    },
+    "stored_vs_ideal_truth": {
+      "reference_events": 1,
+      "observed_events": 1,
+      "reference_on": 1,
+      "observed_on": 1,
+      "matched": 1,
+      "missing": 0,
+      "extra": 0,
+      "abs_error_median_s": 0.00015583229299872062,
+      "abs_error_p95_s": 0.00015583229299872062,
+      "abs_error_max_s": 0.00015583229299872062,
+      "signed_error_mean_s": 0.00015583229299872062
+    }
+  },
+  "limits": [
+    "generic mathematical profiles, no camera calibration",
+    "no noise process, leak or readout arbiter",
+    "held nonideal input is a sampling approximation",
+    "analytic edge and finite-rise pulse only",
+    "offline CPU run, no realtime performance claim",
+    "viewer is event accumulation, not intensity reconstruction"
+  ]
+}

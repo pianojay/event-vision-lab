@@ -1,0 +1,85 @@
+{
+  "checks": [
+    {
+      "case": "ideal",
+      "exit_code": 0,
+      "expected_visible_events": 192,
+      "expected_active_pixels": 64,
+      "routed_keyboard_checks": 4,
+      "report": "ideal/replay-check.json"
+    },
+    {
+      "case": "nonideal",
+      "exit_code": 0,
+      "expected_visible_events": 193,
+      "expected_active_pixels": 78,
+      "routed_keyboard_checks": 4,
+      "report": "nonideal/replay-check.json"
+    },
+    {
+      "case": "large-epoch",
+      "exit_code": 0,
+      "expected_visible_events": 192,
+      "expected_active_pixels": 64,
+      "routed_keyboard_checks": 4,
+      "report": "large-epoch/replay-check.json"
+    },
+    {
+      "case": "empty-capacity",
+      "exit_code": 0,
+      "expected_visible_events": 0,
+      "expected_active_pixels": 0,
+      "routed_keyboard_checks": 4,
+      "report": "empty-capacity/replay-check.json"
+    },
+    {
+      "case": "bad-stage",
+      "exit_code": 1,
+      "expected": "rejected",
+      "log": "bad-stage/launcher.log"
+    },
+    {
+      "case": "bad-completeness",
+      "exit_code": 1,
+      "expected": "rejected",
+      "log": "bad-completeness/launcher.log"
+    },
+    {
+      "case": "bad-epoch",
+      "exit_code": 1,
+      "expected": "rejected",
+      "log": "bad-epoch/launcher.log"
+    },
+    {
+      "case": "bad-count",
+      "exit_code": 1,
+      "expected": "rejected",
+      "log": "bad-count/launcher.log"
+    },
+    {
+      "case": "bad-epoch-type",
+      "exit_code": 1,
+      "expected": "rejected",
+      "log": "bad-epoch-type/launcher.log"
+    },
+    {
+      "case": "bad-completeness-type",
+      "exit_code": 1,
+      "expected": "rejected",
+      "log": "bad-completeness-type/launcher.log"
+    },
+    {
+      "case": "bad-stream",
+      "exit_code": 1,
+      "expected": "rejected",
+      "log": "bad-stream/launcher.log"
+    },
+    {
+      "case": "bad-polarity",
+      "exit_code": 1,
+      "expected": "rejected",
+      "log": "bad-polarity/launcher.log"
+    }
+  ],
+  "scope": "Real Vulkan context; event-window counts and metadata rejection; interactive controls checked separately"
+}

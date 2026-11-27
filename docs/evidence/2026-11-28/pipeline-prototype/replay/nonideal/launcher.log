@@ -1,0 +1,5 @@
+Run artifact: D:\ChatGPT\Event Game\docs\evidence\2026-11-28\pipeline-prototype\replay\nonideal
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Vulkan 1.2.185 - Forward Mobile - Using Device #0: Intel - Intel(R) Iris(R) Plus Graphics
+
+{"control_checks":[{"action":"Space resumes with Play button focused","passed":true},{"action":"Space autorepeat does not toggle","passed":true},{"action":"Space pauses once and clock stays fixed","passed":true},{"action":"R restarts and resumes paused replay","passed":true}],"epoch_ns":"0","godot":"4.7.2-stable (official)","lit_pixels":78,"loaded_events":1526,"manifest":"D:\\ChatGPT\\Event Game\\docs\\evidence\\2026-11-28\\pipeline-prototype\\replay\\nonideal\\manifest.json","reads_ground_truth_intensity":false,"renderer":"Intel(R) Iris(R) Plus Graphics","schema":"event-lab-replay-check-v1","screenshot_saved":true,"stage":"pixel-emitted","time_s":0.16,"visible_events":193,"window_s":0.04}

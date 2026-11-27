@@ -1,0 +1,2427 @@
+{
+  "schema": "event-lab-processing-comparison-v1",
+  "source": "docs\\evidence\\2026-11-28\\pipeline-prototype\\runs\\viewer-nonideal\\manifest.json",
+  "source_sha256": "c41903c0dabea0dc77050608bda85cffd4af01b1d0867119abcae702ce6c4cfe",
+  "raw_unchanged": true,
+  "cursor_ns": 160000000,
+  "capture_count": 1526,
+  "capture_loss": 0,
+  "comparisons": [
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 1,
+        "polarity": "both",
+        "representation": "window",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          32,
+          16
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 1,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 50,
+        "cursor_ns": 160000000,
+        "representation": "window",
+        "normalization": "count",
+        "on_sum": 50,
+        "off_sum": 0,
+        "active_bins": 31
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 2,
+        "polarity": "both",
+        "representation": "window",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          16,
+          8
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 2,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 50,
+        "cursor_ns": 160000000,
+        "representation": "window",
+        "normalization": "count",
+        "on_sum": 50,
+        "off_sum": 0,
+        "active_bins": 8
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 4,
+        "polarity": "both",
+        "representation": "window",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          8,
+          4
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 4,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 50,
+        "cursor_ns": 160000000,
+        "representation": "window",
+        "normalization": "count",
+        "on_sum": 50,
+        "off_sum": 0,
+        "active_bins": 4
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 1,
+        "polarity": "on",
+        "representation": "window",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          32,
+          16
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 1,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 50,
+        "cursor_ns": 160000000,
+        "representation": "window",
+        "normalization": "count",
+        "on_sum": 50,
+        "off_sum": 0,
+        "active_bins": 31
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 2,
+        "polarity": "on",
+        "representation": "window",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          16,
+          8
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 2,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 50,
+        "cursor_ns": 160000000,
+        "representation": "window",
+        "normalization": "count",
+        "on_sum": 50,
+        "off_sum": 0,
+        "active_bins": 8
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 4,
+        "polarity": "on",
+        "representation": "window",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          8,
+          4
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 4,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 50,
+        "cursor_ns": 160000000,
+        "representation": "window",
+        "normalization": "count",
+        "on_sum": 50,
+        "off_sum": 0,
+        "active_bins": 4
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 1,
+        "polarity": "off",
+        "representation": "window",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          32,
+          16
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 1,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 0,
+        "selected_count": 0,
+        "visible_count": 0,
+        "cursor_ns": 160000000,
+        "representation": "window",
+        "normalization": "count",
+        "on_sum": 0,
+        "off_sum": 0,
+        "active_bins": 0
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 2,
+        "polarity": "off",
+        "representation": "window",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          16,
+          8
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 2,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 0,
+        "selected_count": 0,
+        "visible_count": 0,
+        "cursor_ns": 160000000,
+        "representation": "window",
+        "normalization": "count",
+        "on_sum": 0,
+        "off_sum": 0,
+        "active_bins": 0
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 4,
+        "polarity": "off",
+        "representation": "window",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          8,
+          4
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 4,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 0,
+        "selected_count": 0,
+        "visible_count": 0,
+        "cursor_ns": 160000000,
+        "representation": "window",
+        "normalization": "count",
+        "on_sum": 0,
+        "off_sum": 0,
+        "active_bins": 0
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 1,
+        "polarity": "both",
+        "representation": "decay",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          32,
+          16
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 1,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 755,
+        "cursor_ns": 160000000,
+        "representation": "decay",
+        "normalization": "count",
+        "on_sum": 45.89545193866933,
+        "off_sum": 0,
+        "active_bins": 256
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 2,
+        "polarity": "both",
+        "representation": "decay",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          16,
+          8
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 2,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 755,
+        "cursor_ns": 160000000,
+        "representation": "decay",
+        "normalization": "count",
+        "on_sum": 45.89545193866933,
+        "off_sum": 0,
+        "active_bins": 64
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 4,
+        "polarity": "both",
+        "representation": "decay",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          8,
+          4
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 4,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 755,
+        "cursor_ns": 160000000,
+        "representation": "decay",
+        "normalization": "count",
+        "on_sum": 45.89545193866933,
+        "off_sum": 0,
+        "active_bins": 16
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 1,
+        "polarity": "on",
+        "representation": "decay",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          32,
+          16
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 1,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 755,
+        "cursor_ns": 160000000,
+        "representation": "decay",
+        "normalization": "count",
+        "on_sum": 45.89545193866933,
+        "off_sum": 0,
+        "active_bins": 256
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 2,
+        "polarity": "on",
+        "representation": "decay",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          16,
+          8
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 2,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 755,
+        "cursor_ns": 160000000,
+        "representation": "decay",
+        "normalization": "count",
+        "on_sum": 45.89545193866933,
+        "off_sum": 0,
+        "active_bins": 64
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 4,
+        "polarity": "on",
+        "representation": "decay",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          8,
+          4
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 4,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 755,
+        "cursor_ns": 160000000,
+        "representation": "decay",
+        "normalization": "count",
+        "on_sum": 45.89545193866933,
+        "off_sum": 0,
+        "active_bins": 16
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 1,
+        "polarity": "off",
+        "representation": "decay",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          32,
+          16
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 1,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 0,
+        "selected_count": 0,
+        "visible_count": 0,
+        "cursor_ns": 160000000,
+        "representation": "decay",
+        "normalization": "count",
+        "on_sum": 0,
+        "off_sum": 0,
+        "active_bins": 0
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 2,
+        "polarity": "off",
+        "representation": "decay",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          16,
+          8
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 2,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 0,
+        "selected_count": 0,
+        "visible_count": 0,
+        "cursor_ns": 160000000,
+        "representation": "decay",
+        "normalization": "count",
+        "on_sum": 0,
+        "off_sum": 0,
+        "active_bins": 0
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 4,
+        "polarity": "off",
+        "representation": "decay",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          8,
+          4
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 4,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 0,
+        "selected_count": 0,
+        "visible_count": 0,
+        "cursor_ns": 160000000,
+        "representation": "decay",
+        "normalization": "count",
+        "on_sum": 0,
+        "off_sum": 0,
+        "active_bins": 0
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 1,
+        "polarity": "both",
+        "representation": "time-surface",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          32,
+          16
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 1,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 755,
+        "cursor_ns": 160000000,
+        "representation": "time-surface",
+        "normalization": "count",
+        "on_sum": 22.55288859459475,
+        "off_sum": 0,
+        "active_bins": 256
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 2,
+        "polarity": "both",
+        "representation": "time-surface",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          16,
+          8
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 2,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 755,
+        "cursor_ns": 160000000,
+        "representation": "time-surface",
+        "normalization": "count",
+        "on_sum": 7.965916984202359,
+        "off_sum": 0,
+        "active_bins": 64
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 4,
+        "polarity": "both",
+        "representation": "time-surface",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          8,
+          4
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 4,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 755,
+        "cursor_ns": 160000000,
+        "representation": "time-surface",
+        "normalization": "count",
+        "on_sum": 3.5615173082253304,
+        "off_sum": 0,
+        "active_bins": 16
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 1,
+        "polarity": "on",
+        "representation": "time-surface",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          32,
+          16
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 1,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 755,
+        "cursor_ns": 160000000,
+        "representation": "time-surface",
+        "normalization": "count",
+        "on_sum": 22.55288859459475,
+        "off_sum": 0,
+        "active_bins": 256
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 2,
+        "polarity": "on",
+        "representation": "time-surface",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          16,
+          8
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 2,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 755,
+        "cursor_ns": 160000000,
+        "representation": "time-surface",
+        "normalization": "count",
+        "on_sum": 7.965916984202359,
+        "off_sum": 0,
+        "active_bins": 64
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 4,
+        "polarity": "on",
+        "representation": "time-surface",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          8,
+          4
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 4,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 755,
+        "cursor_ns": 160000000,
+        "representation": "time-surface",
+        "normalization": "count",
+        "on_sum": 3.5615173082253304,
+        "off_sum": 0,
+        "active_bins": 16
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 1,
+        "polarity": "off",
+        "representation": "time-surface",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          32,
+          16
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 1,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 0,
+        "selected_count": 0,
+        "visible_count": 0,
+        "cursor_ns": 160000000,
+        "representation": "time-surface",
+        "normalization": "count",
+        "on_sum": 0,
+        "off_sum": 0,
+        "active_bins": 0
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 2,
+        "polarity": "off",
+        "representation": "time-surface",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          16,
+          8
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 2,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 0,
+        "selected_count": 0,
+        "visible_count": 0,
+        "cursor_ns": 160000000,
+        "representation": "time-surface",
+        "normalization": "count",
+        "on_sum": 0,
+        "off_sum": 0,
+        "active_bins": 0
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 4,
+        "polarity": "off",
+        "representation": "time-surface",
+        "window_ns": 10000000,
+        "tau_ns": 10000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          8,
+          4
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 4,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 0,
+        "selected_count": 0,
+        "visible_count": 0,
+        "cursor_ns": 160000000,
+        "representation": "time-surface",
+        "normalization": "count",
+        "on_sum": 0,
+        "off_sum": 0,
+        "active_bins": 0
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 1,
+        "polarity": "both",
+        "representation": "window",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          32,
+          16
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 1,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 193,
+        "cursor_ns": 160000000,
+        "representation": "window",
+        "normalization": "count",
+        "on_sum": 193,
+        "off_sum": 0,
+        "active_bins": 78
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 2,
+        "polarity": "both",
+        "representation": "window",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          16,
+          8
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 2,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 193,
+        "cursor_ns": 160000000,
+        "representation": "window",
+        "normalization": "count",
+        "on_sum": 193,
+        "off_sum": 0,
+        "active_bins": 24
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 4,
+        "polarity": "both",
+        "representation": "window",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          8,
+          4
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 4,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 193,
+        "cursor_ns": 160000000,
+        "representation": "window",
+        "normalization": "count",
+        "on_sum": 193,
+        "off_sum": 0,
+        "active_bins": 8
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 1,
+        "polarity": "on",
+        "representation": "window",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          32,
+          16
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 1,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 193,
+        "cursor_ns": 160000000,
+        "representation": "window",
+        "normalization": "count",
+        "on_sum": 193,
+        "off_sum": 0,
+        "active_bins": 78
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 2,
+        "polarity": "on",
+        "representation": "window",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          16,
+          8
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 2,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 193,
+        "cursor_ns": 160000000,
+        "representation": "window",
+        "normalization": "count",
+        "on_sum": 193,
+        "off_sum": 0,
+        "active_bins": 24
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 4,
+        "polarity": "on",
+        "representation": "window",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          8,
+          4
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 4,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 193,
+        "cursor_ns": 160000000,
+        "representation": "window",
+        "normalization": "count",
+        "on_sum": 193,
+        "off_sum": 0,
+        "active_bins": 8
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 1,
+        "polarity": "off",
+        "representation": "window",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          32,
+          16
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 1,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 0,
+        "selected_count": 0,
+        "visible_count": 0,
+        "cursor_ns": 160000000,
+        "representation": "window",
+        "normalization": "count",
+        "on_sum": 0,
+        "off_sum": 0,
+        "active_bins": 0
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 2,
+        "polarity": "off",
+        "representation": "window",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          16,
+          8
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 2,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 0,
+        "selected_count": 0,
+        "visible_count": 0,
+        "cursor_ns": 160000000,
+        "representation": "window",
+        "normalization": "count",
+        "on_sum": 0,
+        "off_sum": 0,
+        "active_bins": 0
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 4,
+        "polarity": "off",
+        "representation": "window",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          8,
+          4
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 4,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 0,
+        "selected_count": 0,
+        "visible_count": 0,
+        "cursor_ns": 160000000,
+        "representation": "window",
+        "normalization": "count",
+        "on_sum": 0,
+        "off_sum": 0,
+        "active_bins": 0
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 1,
+        "polarity": "both",
+        "representation": "decay",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          32,
+          16
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 1,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 755,
+        "cursor_ns": 160000000,
+        "representation": "decay",
+        "normalization": "count",
+        "on_sum": 186.34030303622336,
+        "off_sum": 0,
+        "active_bins": 256
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 2,
+        "polarity": "both",
+        "representation": "decay",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          16,
+          8
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 2,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 755,
+        "cursor_ns": 160000000,
+        "representation": "decay",
+        "normalization": "count",
+        "on_sum": 186.34030303622336,
+        "off_sum": 0,
+        "active_bins": 64
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 4,
+        "polarity": "both",
+        "representation": "decay",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          8,
+          4
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 4,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 755,
+        "cursor_ns": 160000000,
+        "representation": "decay",
+        "normalization": "count",
+        "on_sum": 186.34030303622336,
+        "off_sum": 0,
+        "active_bins": 16
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 1,
+        "polarity": "on",
+        "representation": "decay",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          32,
+          16
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 1,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 755,
+        "cursor_ns": 160000000,
+        "representation": "decay",
+        "normalization": "count",
+        "on_sum": 186.34030303622336,
+        "off_sum": 0,
+        "active_bins": 256
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 2,
+        "polarity": "on",
+        "representation": "decay",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          16,
+          8
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 2,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 755,
+        "cursor_ns": 160000000,
+        "representation": "decay",
+        "normalization": "count",
+        "on_sum": 186.34030303622336,
+        "off_sum": 0,
+        "active_bins": 64
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 4,
+        "polarity": "on",
+        "representation": "decay",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          8,
+          4
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 4,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 755,
+        "cursor_ns": 160000000,
+        "representation": "decay",
+        "normalization": "count",
+        "on_sum": 186.34030303622336,
+        "off_sum": 0,
+        "active_bins": 16
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 1,
+        "polarity": "off",
+        "representation": "decay",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          32,
+          16
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 1,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 0,
+        "selected_count": 0,
+        "visible_count": 0,
+        "cursor_ns": 160000000,
+        "representation": "decay",
+        "normalization": "count",
+        "on_sum": 0,
+        "off_sum": 0,
+        "active_bins": 0
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 2,
+        "polarity": "off",
+        "representation": "decay",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          16,
+          8
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 2,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 0,
+        "selected_count": 0,
+        "visible_count": 0,
+        "cursor_ns": 160000000,
+        "representation": "decay",
+        "normalization": "count",
+        "on_sum": 0,
+        "off_sum": 0,
+        "active_bins": 0
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 4,
+        "polarity": "off",
+        "representation": "decay",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          8,
+          4
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 4,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 0,
+        "selected_count": 0,
+        "visible_count": 0,
+        "cursor_ns": 160000000,
+        "representation": "decay",
+        "normalization": "count",
+        "on_sum": 0,
+        "off_sum": 0,
+        "active_bins": 0
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 1,
+        "polarity": "both",
+        "representation": "time-surface",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          32,
+          16
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 1,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 755,
+        "cursor_ns": 160000000,
+        "representation": "time-surface",
+        "normalization": "count",
+        "on_sum": 70.87678307786092,
+        "off_sum": 0,
+        "active_bins": 256
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 2,
+        "polarity": "both",
+        "representation": "time-surface",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          16,
+          8
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 2,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 755,
+        "cursor_ns": 160000000,
+        "representation": "time-surface",
+        "normalization": "count",
+        "on_sum": 19.84477847768408,
+        "off_sum": 0,
+        "active_bins": 64
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 4,
+        "polarity": "both",
+        "representation": "time-surface",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          8,
+          4
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 4,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 755,
+        "cursor_ns": 160000000,
+        "representation": "time-surface",
+        "normalization": "count",
+        "on_sum": 6.137920490446341,
+        "off_sum": 0,
+        "active_bins": 16
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 1,
+        "polarity": "on",
+        "representation": "time-surface",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          32,
+          16
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 1,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 755,
+        "cursor_ns": 160000000,
+        "representation": "time-surface",
+        "normalization": "count",
+        "on_sum": 70.87678307786092,
+        "off_sum": 0,
+        "active_bins": 256
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 2,
+        "polarity": "on",
+        "representation": "time-surface",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          16,
+          8
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 2,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 755,
+        "cursor_ns": 160000000,
+        "representation": "time-surface",
+        "normalization": "count",
+        "on_sum": 19.84477847768408,
+        "off_sum": 0,
+        "active_bins": 64
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 4,
+        "polarity": "on",
+        "representation": "time-surface",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          8,
+          4
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 4,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 755,
+        "selected_count": 755,
+        "visible_count": 755,
+        "cursor_ns": 160000000,
+        "representation": "time-surface",
+        "normalization": "count",
+        "on_sum": 6.137920490446341,
+        "off_sum": 0,
+        "active_bins": 16
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 1,
+        "polarity": "off",
+        "representation": "time-surface",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          32,
+          16
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 1,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 0,
+        "selected_count": 0,
+        "visible_count": 0,
+        "cursor_ns": 160000000,
+        "representation": "time-surface",
+        "normalization": "count",
+        "on_sum": 0,
+        "off_sum": 0,
+        "active_bins": 0
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 2,
+        "polarity": "off",
+        "representation": "time-surface",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          16,
+          8
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 2,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 0,
+        "selected_count": 0,
+        "visible_count": 0,
+        "cursor_ns": 160000000,
+        "representation": "time-surface",
+        "normalization": "count",
+        "on_sum": 0,
+        "off_sum": 0,
+        "active_bins": 0
+      }
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 4,
+        "polarity": "off",
+        "representation": "time-surface",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5
+      },
+      "snapshot": {
+        "dimensions": [
+          8,
+          4
+        ],
+        "origin": [
+          0,
+          0
+        ],
+        "bin_size": 4,
+        "received_count": 1526,
+        "incoming_count": 755,
+        "roi_count": 755,
+        "polarity_count": 0,
+        "selected_count": 0,
+        "visible_count": 0,
+        "cursor_ns": 160000000,
+        "representation": "time-surface",
+        "normalization": "count",
+        "on_sum": 0,
+        "off_sum": 0,
+        "active_bins": 0
+      }
+    }
+  ],
+  "declared_sparse_fixture": {
+    "size": [
+      7,
+      3
+    ],
+    "events": [
+      [
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        1,
+        -1
+      ],
+      [
+        4,
+        1,
+        1,
+        1
+      ],
+      [
+        4,
+        1,
+        2,
+        1
+      ]
+    ],
+    "comparisons": [
+      {
+        "config": {
+          "roi": [
+            0,
+            0,
+            7,
+            3
+          ],
+          "bin_size": 1,
+          "polarity": "both",
+          "representation": "window",
+          "window_ns": 10,
+          "tau_ns": 40000000,
+          "normalization": "count",
+          "gain": 0.5
+        },
+        "snapshot": {
+          "dimensions": [
+            7,
+            3
+          ],
+          "origin": [
+            0,
+            0
+          ],
+          "bin_size": 1,
+          "on": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "off": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "bin_areas": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "received_count": 4,
+          "incoming_count": 4,
+          "roi_count": 4,
+          "polarity_count": 4,
+          "selected_count": 4,
+          "visible_count": 4,
+          "cursor_ns": 2,
+          "representation": "window",
+          "normalization": "count"
+        }
+      },
+      {
+        "config": {
+          "roi": [
+            0,
+            0,
+            7,
+            3
+          ],
+          "bin_size": 2,
+          "polarity": "both",
+          "representation": "window",
+          "window_ns": 10,
+          "tau_ns": 40000000,
+          "normalization": "count",
+          "gain": 0.5
+        },
+        "snapshot": {
+          "dimensions": [
+            4,
+            2
+          ],
+          "origin": [
+            0,
+            0
+          ],
+          "bin_size": 2,
+          "on": [
+            1,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "off": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "bin_areas": [
+            4,
+            4,
+            4,
+            2,
+            2,
+            2,
+            2,
+            1
+          ],
+          "received_count": 4,
+          "incoming_count": 4,
+          "roi_count": 4,
+          "polarity_count": 4,
+          "selected_count": 4,
+          "visible_count": 4,
+          "cursor_ns": 2,
+          "representation": "window",
+          "normalization": "count"
+        }
+      },
+      {
+        "config": {
+          "roi": [
+            0,
+            0,
+            7,
+            3
+          ],
+          "bin_size": 4,
+          "polarity": "both",
+          "representation": "window",
+          "window_ns": 10,
+          "tau_ns": 40000000,
+          "normalization": "count",
+          "gain": 0.5
+        },
+        "snapshot": {
+          "dimensions": [
+            2,
+            1
+          ],
+          "origin": [
+            0,
+            0
+          ],
+          "bin_size": 4,
+          "on": [
+            1,
+            2
+          ],
+          "off": [
+            1,
+            0
+          ],
+          "bin_areas": [
+            12,
+            9
+          ],
+          "received_count": 4,
+          "incoming_count": 4,
+          "roi_count": 4,
+          "polarity_count": 4,
+          "selected_count": 4,
+          "visible_count": 4,
+          "cursor_ns": 2,
+          "representation": "window",
+          "normalization": "count"
+        }
+      }
+    ]
+  }
+}

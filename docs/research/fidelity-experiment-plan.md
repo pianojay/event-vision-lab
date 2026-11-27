@@ -12,7 +12,7 @@
 
 [#1](https://github.com/pianojay/event-vision-lab/issues/1) retains the active-lighting/material observability question and user evaluation. [#2](https://github.com/pianojay/event-vision-lab/issues/2) retains display accessibility. These three new issues supply deeper measurement work; they do not close the existing feedback issues. A document being written is distinct from an experiment passing.
 
-Recommended order: signal contract and diagnostic export -> timing envelope -> generic sensor effects -> selected optical/material controls -> offline richer references -> real-device calibration if evidence becomes available. Source changes should remain incremental on `main`; an environment-specific implementation may justify a development fork later.
+Recommended order: signal contract and diagnostic export -> timing envelope -> generic sensor effects -> selected optical/material controls -> offline richer references -> real-device calibration if evidence becomes available. The user subsequently authorized a shared development fork, `codex/fidelity-integration`, for three coordinated component tracks; see [ownership and integration rules](../development/fidelity-coordination.md). Component worktrees now exist. Ordinary development outside this effort retains the `main` workflow.
 
 ## Define the measurement boundary
 

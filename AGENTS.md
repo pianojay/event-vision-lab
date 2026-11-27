@@ -17,6 +17,7 @@ Build a practical event-vision simulator without requiring an event camera. A sh
 - Branches represent development forks when work actually needs to diverge, such as the Windows notebook implementation versus a TITAN RTX/Ubuntu implementation. They are not mandatory review wrappers.
 - Working on a different machine does not by itself require a branch. Continue on the shared branch when the work remains compatible; create a descriptively named branch when an environment-specific implementation or experiment needs independent development.
 - Use PRs when requested or when integrating divergent work would benefit from an explicit review. Do not impose a branch-per-issue or mandatory-PR workflow.
+- The user authorized a coordinated parallel fidelity effort for #4–#6. Its shared root is `codex/fidelity-integration`; component branches use separate worktrees when created. Follow [the coordination document](docs/development/fidelity-coordination.md) for ownership, shared interfaces and serialized GPU validation. This is a scoped development fork; ordinary work still uses `main`.
 - Before changing shared history, inspect the current branch and working tree. Fetch and reconcile remote updates before pushing. Preserve uncommitted user changes; avoid simultaneous writers to the same checkout. Do not force-push or rewrite shared history without explicit authorization.
 
 # Validation and repository hygiene

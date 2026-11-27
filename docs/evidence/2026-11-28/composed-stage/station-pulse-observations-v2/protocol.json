@@ -1,0 +1,19 @@
+{
+  "task": "Locate principal event regions, compare paired conditions, describe time persistence and ambiguity; do not infer optical truth",
+  "input": "pixel-emitted integer events only",
+  "times_ns": [
+    300000000,
+    375000000,
+    900000000
+  ],
+  "window_ns": 120000000,
+  "gain": 0.25,
+  "display": "grayscale 1-exp(-gain*(ON+OFF)); nearest spatial scaling; identical across all panels",
+  "dimensions": [
+    80,
+    60
+  ],
+  "reviewer": "independent agent; no human performance claim",
+  "seed": 817,
+  "reason": "V1 fixed windows omitted the known source-off transition at 350000000 ns; new windows bracket that declared stimulus time without reading optical truth. Original failed observations remain retained."
+}

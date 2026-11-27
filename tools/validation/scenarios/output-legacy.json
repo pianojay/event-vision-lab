@@ -1,0 +1,64 @@
+{
+  "name": "output-legacy",
+  "warmup_seconds": 2,
+  "measure_seconds": 12,
+  "acquisition": {
+    "archive_mode": "stream",
+    "scene": "interaction-stage",
+    "station": 1,
+    "stage_action": "light",
+    "duration_ns": 3600000000000,
+    "width": 80,
+    "height": 60,
+    "sample_period_ns": 16666667,
+    "wall_paced": true,
+    "capture_capacity": 0
+  },
+  "initial": {
+    "processing": {
+      "roi": [
+        0,
+        0,
+        80,
+        60
+      ],
+      "bin_size": 2,
+      "polarity": "both",
+      "representation": "decay",
+      "window_ns": 100000000,
+      "tau_ns": 100000000,
+      "normalization": "count",
+      "gain": 0.5,
+      "window_capacity": 100000
+    },
+    "inference_enabled": false,
+    "reduced_flashes": false
+  },
+  "actions": [
+    {
+      "at_s": 1.2000000000000002,
+      "name": "observation-mode-input",
+      "key": "V"
+    },
+    {
+      "at_s": 2.4000000000000004,
+      "name": "explicit-sensor-reset",
+      "key": "R"
+    },
+    {
+      "at_s": 4.0,
+      "name": "dense-events",
+      "apply": {
+        "strobe_enabled": true,
+        "frequency": 12.0
+      }
+    },
+    {
+      "at_s": 8.0,
+      "name": "end-dense-events",
+      "apply": {
+        "strobe_enabled": false
+      }
+    }
+  ]
+}

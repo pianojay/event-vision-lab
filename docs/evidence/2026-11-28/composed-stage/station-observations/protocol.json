@@ -1,0 +1,17 @@
+{
+  "task": "Independent blinded visual observation of paired emitted-event traces; locate principal regions and compare time persistence, no optical truth or material classification",
+  "times_ns": [
+    250000000,
+    500000000,
+    900000000
+  ],
+  "window_ns": 120000000,
+  "gain": 0.25,
+  "display": "grayscale 1-exp(-gain*(ON+OFF)); identical across all panels",
+  "dimensions": [
+    80,
+    60
+  ],
+  "reviewer": "independent agent; no human performance claim",
+  "seed": 817
+}

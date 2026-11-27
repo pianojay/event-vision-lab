@@ -1,0 +1,14 @@
+{
+  "profile_name": "gpu-ideal-log-linear-v1",
+  "stream_id": "reset-overflow-v1",
+  "scene": "sphere-light",
+  "width": 32,
+  "height": 24,
+  "duration_ns": 200000000,
+  "sample_period_ns": 10000000,
+  "reset_times_ns": [
+    100000000
+  ],
+  "capture_capacity": 7,
+  "epoch_ns": "9000000000000000000"
+}

@@ -1,0 +1,349 @@
+{
+  "schema": "event-lab-stage-experiment-v2",
+  "gates": {
+    "static_event_count": 0,
+    "optical_difference_min": 1e-05,
+    "event_task_min_events": 1,
+    "central_event_fraction_min": 0.35,
+    "temporal_count_relative_tolerance": 0.35,
+    "spatial_count_density_relative_tolerance": 0.5,
+    "sensor_count_error": 0,
+    "sensor_polarity_error": 0,
+    "sensor_timestamp_max_ns": 100000,
+    "intensity_negative_count": 0,
+    "intensity_nonfinite_count": 0
+  },
+  "runs": [
+    {
+      "id": "0-absorption-treatment",
+      "station": 0,
+      "variant": "treatment",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\0-absorption-treatment.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\0-absorption-treatment"
+    },
+    {
+      "id": "0-absorption-control",
+      "station": 0,
+      "variant": "control",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\0-absorption-control.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\0-absorption-control"
+    },
+    {
+      "id": "0-absorption-static",
+      "station": 0,
+      "variant": "static",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\0-absorption-static.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\0-absorption-static"
+    },
+    {
+      "id": "0-absorption-temporal",
+      "station": 0,
+      "variant": "temporal",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\0-absorption-temporal.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\0-absorption-temporal"
+    },
+    {
+      "id": "0-absorption-spatial",
+      "station": 0,
+      "variant": "spatial",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\0-absorption-spatial.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\0-absorption-spatial"
+    },
+    {
+      "id": "1-diffuse-treatment",
+      "station": 1,
+      "variant": "treatment",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\1-diffuse-treatment.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\1-diffuse-treatment"
+    },
+    {
+      "id": "1-diffuse-control",
+      "station": 1,
+      "variant": "control",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\1-diffuse-control.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\1-diffuse-control"
+    },
+    {
+      "id": "1-diffuse-static",
+      "station": 1,
+      "variant": "static",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\1-diffuse-static.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\1-diffuse-static"
+    },
+    {
+      "id": "1-diffuse-temporal",
+      "station": 1,
+      "variant": "temporal",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\1-diffuse-temporal.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\1-diffuse-temporal"
+    },
+    {
+      "id": "1-diffuse-spatial",
+      "station": 1,
+      "variant": "spatial",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\1-diffuse-spatial.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\1-diffuse-spatial"
+    },
+    {
+      "id": "2-glossy-treatment",
+      "station": 2,
+      "variant": "treatment",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\2-glossy-treatment.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\2-glossy-treatment"
+    },
+    {
+      "id": "2-glossy-control",
+      "station": 2,
+      "variant": "control",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\2-glossy-control.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\2-glossy-control"
+    },
+    {
+      "id": "2-glossy-static",
+      "station": 2,
+      "variant": "static",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\2-glossy-static.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\2-glossy-static"
+    },
+    {
+      "id": "2-glossy-temporal",
+      "station": 2,
+      "variant": "temporal",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\2-glossy-temporal.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\2-glossy-temporal"
+    },
+    {
+      "id": "2-glossy-spatial",
+      "station": 2,
+      "variant": "spatial",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\2-glossy-spatial.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\2-glossy-spatial"
+    },
+    {
+      "id": "3-transmission-treatment",
+      "station": 3,
+      "variant": "treatment",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\3-transmission-treatment.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\3-transmission-treatment"
+    },
+    {
+      "id": "3-transmission-control",
+      "station": 3,
+      "variant": "control",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\3-transmission-control.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\3-transmission-control"
+    },
+    {
+      "id": "3-transmission-static",
+      "station": 3,
+      "variant": "static",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\3-transmission-static.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\3-transmission-static"
+    },
+    {
+      "id": "3-transmission-temporal",
+      "station": 3,
+      "variant": "temporal",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\3-transmission-temporal.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\3-transmission-temporal"
+    },
+    {
+      "id": "3-transmission-spatial",
+      "station": 3,
+      "variant": "spatial",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\3-transmission-spatial.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\3-transmission-spatial"
+    },
+    {
+      "id": "4-refraction-treatment",
+      "station": 4,
+      "variant": "treatment",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\4-refraction-treatment.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\4-refraction-treatment"
+    },
+    {
+      "id": "4-refraction-control",
+      "station": 4,
+      "variant": "control",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\4-refraction-control.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\4-refraction-control"
+    },
+    {
+      "id": "4-refraction-static",
+      "station": 4,
+      "variant": "static",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\4-refraction-static.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\4-refraction-static"
+    },
+    {
+      "id": "4-refraction-temporal",
+      "station": 4,
+      "variant": "temporal",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\4-refraction-temporal.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\4-refraction-temporal"
+    },
+    {
+      "id": "4-refraction-spatial",
+      "station": 4,
+      "variant": "spatial",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\4-refraction-spatial.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\4-refraction-spatial"
+    },
+    {
+      "id": "5-fluorescence-treatment",
+      "station": 5,
+      "variant": "treatment",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\5-fluorescence-treatment.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\5-fluorescence-treatment"
+    },
+    {
+      "id": "5-fluorescence-control",
+      "station": 5,
+      "variant": "control",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\5-fluorescence-control.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\5-fluorescence-control"
+    },
+    {
+      "id": "5-fluorescence-static",
+      "station": 5,
+      "variant": "static",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\5-fluorescence-static.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\5-fluorescence-static"
+    },
+    {
+      "id": "5-fluorescence-temporal",
+      "station": 5,
+      "variant": "temporal",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\5-fluorescence-temporal.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\5-fluorescence-temporal"
+    },
+    {
+      "id": "5-fluorescence-spatial",
+      "station": 5,
+      "variant": "spatial",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\5-fluorescence-spatial.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\5-fluorescence-spatial"
+    },
+    {
+      "id": "6-phosphorescence-treatment",
+      "station": 6,
+      "variant": "treatment",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\6-phosphorescence-treatment.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\6-phosphorescence-treatment"
+    },
+    {
+      "id": "6-phosphorescence-control",
+      "station": 6,
+      "variant": "control",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\6-phosphorescence-control.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\6-phosphorescence-control"
+    },
+    {
+      "id": "6-phosphorescence-static",
+      "station": 6,
+      "variant": "static",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\6-phosphorescence-static.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\6-phosphorescence-static"
+    },
+    {
+      "id": "6-phosphorescence-temporal",
+      "station": 6,
+      "variant": "temporal",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\6-phosphorescence-temporal.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\6-phosphorescence-temporal"
+    },
+    {
+      "id": "6-phosphorescence-spatial",
+      "station": 6,
+      "variant": "spatial",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\6-phosphorescence-spatial.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\6-phosphorescence-spatial"
+    },
+    {
+      "id": "7-subsurface-treatment",
+      "station": 7,
+      "variant": "treatment",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\7-subsurface-treatment.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\7-subsurface-treatment"
+    },
+    {
+      "id": "7-subsurface-control",
+      "station": 7,
+      "variant": "control",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\7-subsurface-control.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\7-subsurface-control"
+    },
+    {
+      "id": "7-subsurface-static",
+      "station": 7,
+      "variant": "static",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\7-subsurface-static.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\7-subsurface-static"
+    },
+    {
+      "id": "7-subsurface-temporal",
+      "station": 7,
+      "variant": "temporal",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\7-subsurface-temporal.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\7-subsurface-temporal"
+    },
+    {
+      "id": "7-subsurface-spatial",
+      "station": 7,
+      "variant": "spatial",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\7-subsurface-spatial.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\7-subsurface-spatial"
+    },
+    {
+      "id": "8-interreflection-treatment",
+      "station": 8,
+      "variant": "treatment",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\8-interreflection-treatment.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\8-interreflection-treatment"
+    },
+    {
+      "id": "8-interreflection-control",
+      "station": 8,
+      "variant": "control",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\8-interreflection-control.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\8-interreflection-control"
+    },
+    {
+      "id": "8-interreflection-static",
+      "station": 8,
+      "variant": "static",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\8-interreflection-static.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\8-interreflection-static"
+    },
+    {
+      "id": "8-interreflection-temporal",
+      "station": 8,
+      "variant": "temporal",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\8-interreflection-temporal.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\8-interreflection-temporal"
+    },
+    {
+      "id": "8-interreflection-spatial",
+      "station": 8,
+      "variant": "spatial",
+      "config": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\configs\\8-interreflection-spatial.json",
+      "output": "D:\\ChatGPT\\Event Game\\runs\\stage-matrix-v3\\8-interreflection-spatial"
+    }
+  ],
+  "source_sha256": {
+    "prototype\\shaders\\interaction_stage.glsl": "7c5e624e00a952eca5d78fc9387c452a439ea3ec5a348c4dfe3935f737b5f3dc",
+    "prototype\\shaders\\material_models.glsl": "4e7a1d782527893676a06fe5a0b64bdc9c5c1a49423c92c948a3a410e245d552",
+    "prototype\\stage\\interaction_stage.gd": "813253585d23c072bde4784218e1e96334533c5af33f70177f3f1b0a4035e7d7",
+    "prototype\\stage\\stage_controller.gd": "849a250a93d6cbfd76147df1c00440a860185c832f5fe3ac374dbc0522529acb",
+    "prototype\\materials\\registry.json": "ec5b3ad991137392b5c4093a3c473230d23164c3fc7003836f4b8d44d00db314",
+    "tools\\stage\\experiment.py": "7ed6e6e50d6f7f372ff6ff410c2e255213e67ff5b85ea239a18dc4acd86f00cb"
+  },
+  "revision_reason": "v1 transmission/object and refraction/camera trials produced peripheral activity; v2 uses finite rear emitter stripe motion at fixed camera/object/light; gates and ROI unchanged",
+  "optical_stimulus": "At z=-5 m, two 1.8 m square emitters centred behind stations 3 and 4; radiance 0.44+0.36*sin(2*pi*(local_x-offset)/0.5 m), offset=0.2*sin(3*t) m for stripe action; front plane and other background stay fixed",
+  "scope": "Actual combined nine-station shader, focused camera; ideal sensor; restricted analytic models",
+  "event_task": "Locate changed region from emitted events alone; compare count/polarity/spatial histogram with paired control",
+  "central_region": "middle 60% of pixel width and height; predeclared from focused station layout",
+  "comparisons": "static silence; treatment/control optical difference; temporal and spatial normalized event counts",
+  "independent_sensor_reference": "tools/acquisition/recorded_input.py reads only archived FP32 intensity; strict count/polarity,100us timestamps",
+  "caveat": "Spatial/temporal event-count convergence does not prove every optical approximation. Failures are retained."
+}

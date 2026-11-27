@@ -1,0 +1,34 @@
+{
+  "profile": "gpu-ideal-log-linear-v1",
+  "reference": "binary64 log-linear solver consuming archived FP32 pre-floor optical input and FP32 thresholds",
+  "comparison": {
+    "reference_count": 5787,
+    "actual_count": 5786,
+    "reference_polarity": {
+      "on": 2563,
+      "off": 3224
+    },
+    "actual_polarity": {
+      "on": 2563,
+      "off": 3223
+    },
+    "missing": 1,
+    "extra": 0,
+    "timestamp_max_error_ns": 1731,
+    "timestamp_mean_error_ns": 4.11838921534739,
+    "timestamp_outside_gate": 0,
+    "gate_ns": 100000,
+    "passed": false
+  },
+  "capture": {
+    "stored": 5786,
+    "overflow": 0,
+    "prefix_exact": true
+  },
+  "sampling": {
+    "skipped_scheduled_samples": 0,
+    "unseen_between_sample_changes": "not bounded"
+  },
+  "sensor_suppressed": 0,
+  "input_sha256": "bb8a58be97bcdfc864fbe5a72c089a19b2c8578d7729bc2c1d7b8ae3e26c6826"
+}

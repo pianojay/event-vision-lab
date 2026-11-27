@@ -1,0 +1,35 @@
+{
+  "schema": "event-lab-motion-negative-control-explanation-v1",
+  "original_full_frame_prediction": "zero events",
+  "original_result": "failed prediction; retained unchanged in protocol/results",
+  "full_frame_events": 1090,
+  "original_fixed_central_roi": [
+    16,
+    12,
+    64,
+    48
+  ],
+  "central_events": 0,
+  "central_maximum_optical_change": 0.0,
+  "analysis_scope": "Post-result localization using the same central region predefined by the main matrix, not a replacement for the failed full-frame gate",
+  "ray_assignment": "Analytical intersections at z=-3 using recorded fixed camera and FOV. The two peripheral planes are in front of no other object at these edge rays; this is source attribution, not an independent complete renderer.",
+  "event_sources": [
+    {
+      "station": "fluorescence plane at (3,3.5,-3)",
+      "polarity": -1,
+      "events": 296
+    },
+    {
+      "station": "fluorescence plane at (3,3.5,-3)",
+      "polarity": 1,
+      "events": 398
+    },
+    {
+      "station": "phosphorescence plane at (-3,1,-3)",
+      "polarity": 1,
+      "events": 396
+    }
+  ],
+  "conclusion": "The selected refractive region is unchanged. Other visible materials respond to the shared moving point lamp and to their initial optical population. Full-frame counts cannot be attributed only to the selected station. Post-event ROI changes observation, not generation cost.",
+  "missing_assignment": 0
+}

@@ -1,0 +1,327 @@
+{
+  "passed": false,
+  "checks": [
+    {
+      "name": "diffuse-camera sensor parity",
+      "passed": true
+    },
+    {
+      "name": "diffuse-object sensor parity",
+      "passed": true
+    },
+    {
+      "name": "glossy-camera sensor parity",
+      "passed": true
+    },
+    {
+      "name": "glossy-camera-control sensor parity",
+      "passed": true
+    },
+    {
+      "name": "glossy-camera-temporal sensor parity",
+      "passed": true
+    },
+    {
+      "name": "glossy-camera-spatial sensor parity",
+      "passed": true
+    },
+    {
+      "name": "refraction-object sensor parity",
+      "passed": true
+    },
+    {
+      "name": "refraction-light sensor parity",
+      "passed": true
+    },
+    {
+      "name": "glossy-camera-temporal count convergence",
+      "passed": true,
+      "observed": 0.008624413971870649,
+      "gate": 0.35
+    },
+    {
+      "name": "glossy-camera-spatial count convergence",
+      "passed": true,
+      "observed": 0.012542602044898155,
+      "gate": 0.5
+    },
+    {
+      "name": "refraction point-lamp negative control",
+      "passed": false
+    }
+  ],
+  "runs": {
+    "diffuse-camera": {
+      "profile": "gpu-ideal-log-linear-v1",
+      "reference": "binary64 log-linear solver consuming archived FP32 pre-floor optical input and FP32 thresholds",
+      "comparison": {
+        "reference_count": 123020,
+        "actual_count": 123020,
+        "reference_polarity": {
+          "on": 60809,
+          "off": 62211
+        },
+        "actual_polarity": {
+          "on": 60809,
+          "off": 62211
+        },
+        "missing": 0,
+        "extra": 0,
+        "timestamp_max_error_ns": 6313,
+        "timestamp_mean_error_ns": 2.6132986506259144,
+        "timestamp_outside_gate": 0,
+        "gate_ns": 100000,
+        "passed": true
+      },
+      "capture": {
+        "stored": 123020,
+        "overflow": 0,
+        "prefix_exact": true
+      },
+      "sampling": {
+        "skipped_scheduled_samples": 0,
+        "unseen_between_sample_changes": "not bounded"
+      },
+      "sensor_suppressed": 0,
+      "input_sha256": "d7d6f48f1c509652fe39918f6a88bfb1f5016d90246752237d538d99001bd9fc"
+    },
+    "diffuse-object": {
+      "profile": "gpu-ideal-log-linear-v1",
+      "reference": "binary64 log-linear solver consuming archived FP32 pre-floor optical input and FP32 thresholds",
+      "comparison": {
+        "reference_count": 34087,
+        "actual_count": 34087,
+        "reference_polarity": {
+          "on": 17071,
+          "off": 17016
+        },
+        "actual_polarity": {
+          "on": 17071,
+          "off": 17016
+        },
+        "missing": 0,
+        "extra": 0,
+        "timestamp_max_error_ns": 2940,
+        "timestamp_mean_error_ns": 6.408572182943645,
+        "timestamp_outside_gate": 0,
+        "gate_ns": 100000,
+        "passed": true
+      },
+      "capture": {
+        "stored": 34087,
+        "overflow": 0,
+        "prefix_exact": true
+      },
+      "sampling": {
+        "skipped_scheduled_samples": 0,
+        "unseen_between_sample_changes": "not bounded"
+      },
+      "sensor_suppressed": 0,
+      "input_sha256": "08df7ed6154206133c3a3ed3329a0945b6bb61c420711359258141b986990cd9"
+    },
+    "glossy-camera": {
+      "profile": "gpu-ideal-log-linear-v1",
+      "reference": "binary64 log-linear solver consuming archived FP32 pre-floor optical input and FP32 thresholds",
+      "comparison": {
+        "reference_count": 124994,
+        "actual_count": 124994,
+        "reference_polarity": {
+          "on": 61044,
+          "off": 63950
+        },
+        "actual_polarity": {
+          "on": 61044,
+          "off": 63950
+        },
+        "missing": 0,
+        "extra": 0,
+        "timestamp_max_error_ns": 3174,
+        "timestamp_mean_error_ns": 2.6806486711362147,
+        "timestamp_outside_gate": 0,
+        "gate_ns": 100000,
+        "passed": true
+      },
+      "capture": {
+        "stored": 124994,
+        "overflow": 0,
+        "prefix_exact": true
+      },
+      "sampling": {
+        "skipped_scheduled_samples": 0,
+        "unseen_between_sample_changes": "not bounded"
+      },
+      "sensor_suppressed": 0,
+      "input_sha256": "cb78f9ced4cba6d15edc0d0ec8b050ab5e211c66cc0f6f391f1ddfff26d40da6"
+    },
+    "glossy-camera-control": {
+      "profile": "gpu-ideal-log-linear-v1",
+      "reference": "binary64 log-linear solver consuming archived FP32 pre-floor optical input and FP32 thresholds",
+      "comparison": {
+        "reference_count": 124763,
+        "actual_count": 124763,
+        "reference_polarity": {
+          "on": 60959,
+          "off": 63804
+        },
+        "actual_polarity": {
+          "on": 60959,
+          "off": 63804
+        },
+        "missing": 0,
+        "extra": 0,
+        "timestamp_max_error_ns": 3454,
+        "timestamp_mean_error_ns": 2.663321657863309,
+        "timestamp_outside_gate": 0,
+        "gate_ns": 100000,
+        "passed": true
+      },
+      "capture": {
+        "stored": 124763,
+        "overflow": 0,
+        "prefix_exact": true
+      },
+      "sampling": {
+        "skipped_scheduled_samples": 0,
+        "unseen_between_sample_changes": "not bounded"
+      },
+      "sensor_suppressed": 0,
+      "input_sha256": "3962630f36a04636cdc46d85dc597d5587fc086a008064621529ac078125e8bc"
+    },
+    "glossy-camera-temporal": {
+      "profile": "gpu-ideal-log-linear-v1",
+      "reference": "binary64 log-linear solver consuming archived FP32 pre-floor optical input and FP32 thresholds",
+      "comparison": {
+        "reference_count": 126072,
+        "actual_count": 126072,
+        "reference_polarity": {
+          "on": 61583,
+          "off": 64489
+        },
+        "actual_polarity": {
+          "on": 61583,
+          "off": 64489
+        },
+        "missing": 0,
+        "extra": 0,
+        "timestamp_max_error_ns": 4261,
+        "timestamp_mean_error_ns": 2.528110920743702,
+        "timestamp_outside_gate": 0,
+        "gate_ns": 100000,
+        "passed": true
+      },
+      "capture": {
+        "stored": 126072,
+        "overflow": 0,
+        "prefix_exact": true
+      },
+      "sampling": {
+        "skipped_scheduled_samples": 0,
+        "unseen_between_sample_changes": "not bounded"
+      },
+      "sensor_suppressed": 0,
+      "input_sha256": "b0581ac36aa161cf4ef90dfcee9bd6694580d266e11f03bc4854f7ad6c077789"
+    },
+    "glossy-camera-spatial": {
+      "profile": "gpu-ideal-log-linear-v1",
+      "reference": "binary64 log-linear solver consuming archived FP32 pre-floor optical input and FP32 thresholds",
+      "comparison": {
+        "reference_count": 493705,
+        "actual_count": 493705,
+        "reference_polarity": {
+          "on": 241170,
+          "off": 252535
+        },
+        "actual_polarity": {
+          "on": 241170,
+          "off": 252535
+        },
+        "missing": 0,
+        "extra": 0,
+        "timestamp_max_error_ns": 6871,
+        "timestamp_mean_error_ns": 2.7463728339798057,
+        "timestamp_outside_gate": 0,
+        "gate_ns": 100000,
+        "passed": true
+      },
+      "capture": {
+        "stored": 493705,
+        "overflow": 0,
+        "prefix_exact": true
+      },
+      "sampling": {
+        "skipped_scheduled_samples": 0,
+        "unseen_between_sample_changes": "not bounded"
+      },
+      "sensor_suppressed": 0,
+      "input_sha256": "d8d5da3c4c53d03bada670e83f4e4da61a90e92f5e3edd22af8c0fe66e9d4117"
+    },
+    "refraction-object": {
+      "profile": "gpu-ideal-log-linear-v1",
+      "reference": "binary64 log-linear solver consuming archived FP32 pre-floor optical input and FP32 thresholds",
+      "comparison": {
+        "reference_count": 39181,
+        "actual_count": 39181,
+        "reference_polarity": {
+          "on": 19832,
+          "off": 19349
+        },
+        "actual_polarity": {
+          "on": 19832,
+          "off": 19349
+        },
+        "missing": 0,
+        "extra": 0,
+        "timestamp_max_error_ns": 2642,
+        "timestamp_mean_error_ns": 5.4817641203644625,
+        "timestamp_outside_gate": 0,
+        "gate_ns": 100000,
+        "passed": true
+      },
+      "capture": {
+        "stored": 39181,
+        "overflow": 0,
+        "prefix_exact": true
+      },
+      "sampling": {
+        "skipped_scheduled_samples": 0,
+        "unseen_between_sample_changes": "not bounded"
+      },
+      "sensor_suppressed": 0,
+      "input_sha256": "0fc5acd830af72f1658b6433aa058db76c5e26bafbc22b518196d7452c87585a"
+    },
+    "refraction-light": {
+      "profile": "gpu-ideal-log-linear-v1",
+      "reference": "binary64 log-linear solver consuming archived FP32 pre-floor optical input and FP32 thresholds",
+      "comparison": {
+        "reference_count": 1090,
+        "actual_count": 1090,
+        "reference_polarity": {
+          "on": 794,
+          "off": 296
+        },
+        "actual_polarity": {
+          "on": 794,
+          "off": 296
+        },
+        "missing": 0,
+        "extra": 0,
+        "timestamp_max_error_ns": 2642,
+        "timestamp_mean_error_ns": 65.11926605504587,
+        "timestamp_outside_gate": 0,
+        "gate_ns": 100000,
+        "passed": true
+      },
+      "capture": {
+        "stored": 1090,
+        "overflow": 0,
+        "prefix_exact": true
+      },
+      "sampling": {
+        "skipped_scheduled_samples": 0,
+        "unseen_between_sample_changes": "not bounded"
+      },
+      "sensor_suppressed": 0,
+      "input_sha256": "be463743262d8ef671a4f9429fb371364db77021fbcdfd5c2273e67d7560a030"
+    }
+  }
+}

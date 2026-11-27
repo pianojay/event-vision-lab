@@ -1,0 +1,442 @@
+{
+  "schema": "event-lab-stream-comparison-v1",
+  "source": "docs\\evidence\\2026-11-28\\pipeline-prototype\\runs\\viewer-nonideal\\manifest.json",
+  "source_sha256": "c41903c0dabea0dc77050608bda85cffd4af01b1d0867119abcae702ce6c4cfe",
+  "events": 1526,
+  "comparisons": [
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 1,
+        "polarity": "both",
+        "representation": "window",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5,
+        "window_capacity": 100000
+      },
+      "snapshots": 321,
+      "max_absolute_activity_error": 0.0,
+      "peak_resident_events": 198,
+      "final_selected_count": 1526,
+      "window_overflow_count": 0,
+      "state_cells": 2048
+    },
+    {
+      "config": {
+        "roi": [
+          16,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 1,
+        "polarity": "both",
+        "representation": "window",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5,
+        "window_capacity": 100000
+      },
+      "snapshots": 321,
+      "max_absolute_activity_error": 0.0,
+      "peak_resident_events": 198,
+      "final_selected_count": 769,
+      "window_overflow_count": 0,
+      "state_cells": 1024
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 2,
+        "polarity": "both",
+        "representation": "window",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5,
+        "window_capacity": 100000
+      },
+      "snapshots": 321,
+      "max_absolute_activity_error": 0.0,
+      "peak_resident_events": 198,
+      "final_selected_count": 1526,
+      "window_overflow_count": 0,
+      "state_cells": 512
+    },
+    {
+      "config": {
+        "roi": [
+          16,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 2,
+        "polarity": "both",
+        "representation": "window",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5,
+        "window_capacity": 100000
+      },
+      "snapshots": 321,
+      "max_absolute_activity_error": 0.0,
+      "peak_resident_events": 198,
+      "final_selected_count": 769,
+      "window_overflow_count": 0,
+      "state_cells": 256
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 4,
+        "polarity": "both",
+        "representation": "window",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5,
+        "window_capacity": 100000
+      },
+      "snapshots": 321,
+      "max_absolute_activity_error": 0.0,
+      "peak_resident_events": 198,
+      "final_selected_count": 1526,
+      "window_overflow_count": 0,
+      "state_cells": 128
+    },
+    {
+      "config": {
+        "roi": [
+          16,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 4,
+        "polarity": "both",
+        "representation": "window",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5,
+        "window_capacity": 100000
+      },
+      "snapshots": 321,
+      "max_absolute_activity_error": 0.0,
+      "peak_resident_events": 198,
+      "final_selected_count": 769,
+      "window_overflow_count": 0,
+      "state_cells": 64
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 1,
+        "polarity": "both",
+        "representation": "decay",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5,
+        "window_capacity": 100000
+      },
+      "snapshots": 321,
+      "max_absolute_activity_error": 8.881784197001252e-16,
+      "peak_resident_events": 0,
+      "final_selected_count": 1526,
+      "window_overflow_count": 0,
+      "state_cells": 2048
+    },
+    {
+      "config": {
+        "roi": [
+          16,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 1,
+        "polarity": "both",
+        "representation": "decay",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5,
+        "window_capacity": 100000
+      },
+      "snapshots": 321,
+      "max_absolute_activity_error": 8.881784197001252e-16,
+      "peak_resident_events": 0,
+      "final_selected_count": 769,
+      "window_overflow_count": 0,
+      "state_cells": 1024
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 2,
+        "polarity": "both",
+        "representation": "decay",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5,
+        "window_capacity": 100000
+      },
+      "snapshots": 321,
+      "max_absolute_activity_error": 3.552713678800501e-15,
+      "peak_resident_events": 0,
+      "final_selected_count": 1526,
+      "window_overflow_count": 0,
+      "state_cells": 512
+    },
+    {
+      "config": {
+        "roi": [
+          16,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 2,
+        "polarity": "both",
+        "representation": "decay",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5,
+        "window_capacity": 100000
+      },
+      "snapshots": 321,
+      "max_absolute_activity_error": 3.552713678800501e-15,
+      "peak_resident_events": 0,
+      "final_selected_count": 769,
+      "window_overflow_count": 0,
+      "state_cells": 256
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 4,
+        "polarity": "both",
+        "representation": "decay",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5,
+        "window_capacity": 100000
+      },
+      "snapshots": 321,
+      "max_absolute_activity_error": 2.4868995751603507e-14,
+      "peak_resident_events": 0,
+      "final_selected_count": 1526,
+      "window_overflow_count": 0,
+      "state_cells": 128
+    },
+    {
+      "config": {
+        "roi": [
+          16,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 4,
+        "polarity": "both",
+        "representation": "decay",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5,
+        "window_capacity": 100000
+      },
+      "snapshots": 321,
+      "max_absolute_activity_error": 1.7763568394002505e-14,
+      "peak_resident_events": 0,
+      "final_selected_count": 769,
+      "window_overflow_count": 0,
+      "state_cells": 64
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 1,
+        "polarity": "both",
+        "representation": "time-surface",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5,
+        "window_capacity": 100000
+      },
+      "snapshots": 321,
+      "max_absolute_activity_error": 0.0,
+      "peak_resident_events": 0,
+      "final_selected_count": 1526,
+      "window_overflow_count": 0,
+      "state_cells": 2048
+    },
+    {
+      "config": {
+        "roi": [
+          16,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 1,
+        "polarity": "both",
+        "representation": "time-surface",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5,
+        "window_capacity": 100000
+      },
+      "snapshots": 321,
+      "max_absolute_activity_error": 0.0,
+      "peak_resident_events": 0,
+      "final_selected_count": 769,
+      "window_overflow_count": 0,
+      "state_cells": 1024
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 2,
+        "polarity": "both",
+        "representation": "time-surface",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5,
+        "window_capacity": 100000
+      },
+      "snapshots": 321,
+      "max_absolute_activity_error": 0.0,
+      "peak_resident_events": 0,
+      "final_selected_count": 1526,
+      "window_overflow_count": 0,
+      "state_cells": 512
+    },
+    {
+      "config": {
+        "roi": [
+          16,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 2,
+        "polarity": "both",
+        "representation": "time-surface",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5,
+        "window_capacity": 100000
+      },
+      "snapshots": 321,
+      "max_absolute_activity_error": 0.0,
+      "peak_resident_events": 0,
+      "final_selected_count": 769,
+      "window_overflow_count": 0,
+      "state_cells": 256
+    },
+    {
+      "config": {
+        "roi": [
+          0,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 4,
+        "polarity": "both",
+        "representation": "time-surface",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5,
+        "window_capacity": 100000
+      },
+      "snapshots": 321,
+      "max_absolute_activity_error": 0.0,
+      "peak_resident_events": 0,
+      "final_selected_count": 1526,
+      "window_overflow_count": 0,
+      "state_cells": 128
+    },
+    {
+      "config": {
+        "roi": [
+          16,
+          0,
+          32,
+          16
+        ],
+        "bin_size": 4,
+        "polarity": "both",
+        "representation": "time-surface",
+        "window_ns": 40000000,
+        "tau_ns": 40000000,
+        "normalization": "count",
+        "gain": 0.5,
+        "window_capacity": 100000
+      },
+      "snapshots": 321,
+      "max_absolute_activity_error": 0.0,
+      "peak_resident_events": 0,
+      "final_selected_count": 769,
+      "window_overflow_count": 0,
+      "state_cells": 64
+    }
+  ],
+  "passed": true,
+  "reads_optical_intensity": false
+}
