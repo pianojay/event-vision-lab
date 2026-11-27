@@ -51,6 +51,22 @@ class RecordedReferenceTests(unittest.TestCase):
             self.assertEqual([(f[0], f[1]) for f in frames],
                              [(0, True), (500, False), (500, True), (1000, False)])
 
+    def test_stage_optical_parameters_preserve_sensor_reference(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = self.reset_archive(directory, True)
+            baseline = load_sequence(path)[1]
+            manifest = json.loads(path.read_text(encoding="utf-8"))
+            for entry in manifest["optical_input"]["frames"]:
+                entry["parameters"] += [0.125] * 48
+            path.write_text(json.dumps(manifest), encoding="utf-8")
+            expanded = load_sequence(path)[1]
+            self.assertTrue(all(len(frame[3]) == 76 for frame in expanded))
+            self.assertEqual(simulate_frames(baseline, 1), simulate_frames(expanded, 1))
+            manifest["optical_input"]["frames"][0]["parameters"].append(0)
+            path.write_text(json.dumps(manifest), encoding="utf-8")
+            with self.assertRaises(ValueError):
+                load_sequence(path)
+
     def test_all_crossings_from_actual_rounded_values(self):
         frames=[frame(0,[1],True),frame(1000,[math.exp(1.1)])]
         events=simulate_frames(frames,1)

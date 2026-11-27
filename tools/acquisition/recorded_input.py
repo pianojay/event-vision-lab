@@ -53,9 +53,10 @@ def load_sequence(manifest_path):
         if any(not math.isfinite(v) or v < 0 for v in values):
             raise ValueError("invalid pre-floor intensity")
         params = entry["parameters"]
-        if len(params) != 28 or any(not math.isfinite(v) for v in params) or params[4] <= 0 or params[5] <= 0:
+        if len(params) not in (28,76) or any(not math.isfinite(v) for v in params) or params[4] <= 0 or params[5] <= 0:
             raise ValueError("invalid archived parameters")
-        params = list(struct.unpack("<28f",struct.pack("<28f",*params)))
+        layout = f"<{len(params)}f"
+        params = list(struct.unpack(layout,struct.pack(layout,*params)))
         frames.append((t_ns, reset, values, params))
         offset += length
         last_ns = t_ns
