@@ -1,0 +1,290 @@
+{
+  "schema": "event-lab.sensor-cpu-reference.v1",
+  "scope": "CPU-only closed-form generic pixel model for explicitly held optical inputs. No Godot integration, real camera calibration, upstream simulator execution, or GPU/real-time performance measurement.",
+  "environment": {
+    "python": "3.14.8",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "machine": "AMD64",
+    "processor": "Intel64 Family 6 Model 126 Stepping 5, GenuineIntel"
+  },
+  "source_sha256_lf_utf8": {
+    "reference_sensor.py": "bff638f315742a5073c70e6317eb7b59934a871a66b6f8bcef415a5b77eedcca",
+    "test_reference_sensor.py": "2af3051330bcd4916f1d25a9221d08108986eb57fee11804124731aabdb53420",
+    "run_experiments.py": "0cad24625a449fe69e06a8d247e6eff8974c77cfd15c4a24f8498cce4544a6bc"
+  },
+  "tests": {
+    "run": 21,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": true
+  },
+  "diagnostics": {
+    "mismatch": {
+      "pixels": 8192,
+      "profile": {
+        "on_threshold": 0.2,
+        "off_threshold": 0.2,
+        "threshold_sigma": 0.03,
+        "minimum_threshold": 0.01,
+        "bandwidth_white_hz": 0.0,
+        "white_intensity": 1.0,
+        "minimum_bandwidth_fraction": 0.1,
+        "dark_offset": 0.0,
+        "refractory_s": 0.0,
+        "seed": 17
+      },
+      "moments": {
+        "ON": {
+          "mean": 0.19973548868671434,
+          "sample_stddev": 0.030231399582367136,
+          "min": 0.06685310666484473,
+          "max": 0.3078892067228328,
+          "floor_count": 0
+        },
+        "OFF": {
+          "mean": 0.20041918391050012,
+          "sample_stddev": 0.02975508748489808,
+          "min": 0.08113894262116082,
+          "max": 0.31335855942547225,
+          "floor_count": 0
+        }
+      },
+      "ON_OFF_correlation": 0.019184332346137197
+    },
+    "ideal_step": {
+      "profile": {
+        "on_threshold": 0.2,
+        "off_threshold": 0.2,
+        "threshold_sigma": 0.0,
+        "minimum_threshold": 0.01,
+        "bandwidth_white_hz": 0.0,
+        "white_intensity": 1.0,
+        "minimum_bandwidth_fraction": 0.1,
+        "dark_offset": 0.0,
+        "refractory_s": 0.0,
+        "seed": 1
+      },
+      "initial_intensity": 1,
+      "held_intensity": 2.0137527074704766,
+      "hold_seconds": 0.1,
+      "candidates": 3,
+      "emitted": 3,
+      "refractory_suppressed": 0,
+      "crossings": [
+        {
+          "x": 0,
+          "y": 0,
+          "t_s": 0.0,
+          "p": 1,
+          "emitted": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "t_s": 0.0,
+          "p": 1,
+          "emitted": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "t_s": 0.0,
+          "p": 1,
+          "emitted": true
+        }
+      ]
+    },
+    "bright_step": {
+      "profile": {
+        "on_threshold": 0.2,
+        "off_threshold": 0.2,
+        "threshold_sigma": 0.0,
+        "minimum_threshold": 0.01,
+        "bandwidth_white_hz": 100,
+        "white_intensity": 1.0,
+        "minimum_bandwidth_fraction": 0.1,
+        "dark_offset": 0.0,
+        "refractory_s": 0.0,
+        "seed": 1
+      },
+      "initial_intensity": 1,
+      "held_intensity": 2.0137527074704766,
+      "hold_seconds": 0.1,
+      "candidates": 3,
+      "emitted": 3,
+      "refractory_suppressed": 0,
+      "crossings": [
+        {
+          "x": 0,
+          "y": 0,
+          "t_s": 0.0005355121967145188,
+          "p": 1,
+          "emitted": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "t_s": 0.0013485164275181007,
+          "p": 1,
+          "emitted": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "t_s": 0.003097012190348401,
+          "p": 1,
+          "emitted": true
+        }
+      ]
+    },
+    "dark_step": {
+      "profile": {
+        "on_threshold": 0.2,
+        "off_threshold": 0.2,
+        "threshold_sigma": 0.0,
+        "minimum_threshold": 0.01,
+        "bandwidth_white_hz": 100,
+        "white_intensity": 1.0,
+        "minimum_bandwidth_fraction": 0.1,
+        "dark_offset": 0.0,
+        "refractory_s": 0.0,
+        "seed": 1
+      },
+      "initial_intensity": 0.01,
+      "held_intensity": 0.020137527074704765,
+      "hold_seconds": 0.1,
+      "candidates": 3,
+      "emitted": 3,
+      "refractory_suppressed": 0,
+      "crossings": [
+        {
+          "x": 0,
+          "y": 0,
+          "t_s": 0.004533483624131997,
+          "p": 1,
+          "emitted": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "t_s": 0.011416130535464511,
+          "p": 1,
+          "emitted": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "t_s": 0.02621836465130321,
+          "p": 1,
+          "emitted": true
+        }
+      ]
+    },
+    "refractory_step": {
+      "profile": {
+        "on_threshold": 0.1,
+        "off_threshold": 0.1,
+        "threshold_sigma": 0.0,
+        "minimum_threshold": 0.01,
+        "bandwidth_white_hz": 100,
+        "white_intensity": 1.0,
+        "minimum_bandwidth_fraction": 0.1,
+        "dark_offset": 0.0,
+        "refractory_s": 0.002,
+        "seed": 1
+      },
+      "initial_intensity": 1,
+      "held_intensity": 2.0137527074704766,
+      "hold_seconds": 0.1,
+      "candidates": 6,
+      "emitted": 2,
+      "refractory_suppressed": 4,
+      "crossings": [
+        {
+          "x": 0,
+          "y": 0,
+          "t_s": 0.00024533842675484273,
+          "p": 1,
+          "emitted": true
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "t_s": 0.0005355121967145188,
+          "p": 1,
+          "emitted": false
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "t_s": 0.0008906561888218839,
+          "p": 1,
+          "emitted": false
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "t_s": 0.0013485164275181007,
+          "p": 1,
+          "emitted": false
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "t_s": 0.0019938341895851413,
+          "p": 1,
+          "emitted": false
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "t_s": 0.003097012190348401,
+          "p": 1,
+          "emitted": true
+        }
+      ]
+    },
+    "dark_offset_step": {
+      "profile": {
+        "on_threshold": 0.2,
+        "off_threshold": 0.2,
+        "threshold_sigma": 0.0,
+        "minimum_threshold": 0.01,
+        "bandwidth_white_hz": 0.0,
+        "white_intensity": 1.0,
+        "minimum_bandwidth_fraction": 0.1,
+        "dark_offset": 0.1,
+        "refractory_s": 0.0,
+        "seed": 1
+      },
+      "initial_intensity": 0.001,
+      "held_intensity": 0.0020137527074704765,
+      "hold_seconds": 0.1,
+      "candidates": 0,
+      "emitted": 0,
+      "refractory_suppressed": 0,
+      "crossings": []
+    },
+    "hold_partition": {
+      "duration_s": 0.02,
+      "subdivisions": 200,
+      "profile": {
+        "on_threshold": 0.1,
+        "off_threshold": 0.1,
+        "threshold_sigma": 0.0,
+        "minimum_threshold": 0.01,
+        "bandwidth_white_hz": 100,
+        "white_intensity": 1.0,
+        "minimum_bandwidth_fraction": 0.1,
+        "dark_offset": 0.0,
+        "refractory_s": 0.002,
+        "seed": 1
+      },
+      "whole_candidates": 6,
+      "split_candidates": 6,
+      "same_polarity_and_gate": true,
+      "max_timestamp_difference_s": 8.673617379884035e-19
+    }
+  }
+}

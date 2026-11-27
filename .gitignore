@@ -3,4 +3,5 @@ prototype/.godot/
 docs/evidence/*/build/
 *.tmp
 __pycache__/
+/runs/
 docs/evidence/*/godot-interactive.log

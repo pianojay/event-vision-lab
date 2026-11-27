@@ -2,6 +2,8 @@
 
 Current implementation: November 22, 2026. A controllable event-vision laboratory without a physical camera. The active-lighting extension addresses [#1](https://github.com/pianojay/event-vision-lab/issues/1) and provides initial display changes for [#2](https://github.com/pianojay/event-vision-lab/issues/2). Neither issue is considered fully resolved.
 
+November 28 update: the [configurable CPU pipeline](pipeline-prototype.md) now generates stage-labelled event captures and replays them in Godot. This guide describes the original live GPU path, whose ideal sensor behavior and limits remain unchanged. The CPU generic nonideal model is not live GPU acquisition.
+
 ## Run on Windows
 
 ```powershell

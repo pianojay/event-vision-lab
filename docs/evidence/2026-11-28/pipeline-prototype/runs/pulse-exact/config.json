@@ -1,0 +1,58 @@
+{
+  "schema": "event-lab-pipeline-v1",
+  "profile_name": "pulse-exact-v1",
+  "stream_id": "pulse-exact",
+  "width": 1,
+  "height": 1,
+  "duration_ns": 10000000,
+  "sample_period_ns": 10000000,
+  "epoch_ns": "0",
+  "scene": "pulse",
+  "dark": 1.0,
+  "bright": 2.0,
+  "edge_start_px": 1.0,
+  "edge_speed_px_s": -100.0,
+  "pulse_knots": [
+    [
+      0,
+      1.0
+    ],
+    [
+      3000000,
+      1.0
+    ],
+    [
+      4000000,
+      2.0
+    ],
+    [
+      5000000,
+      1.0
+    ],
+    [
+      10000000,
+      1.0
+    ]
+  ],
+  "spatial": "exact-area",
+  "samples_per_axis": 4,
+  "trajectory": "exact",
+  "sampling": "uniform",
+  "sensor": "ideal",
+  "sensor_parameters": {
+    "on_threshold": 0.2,
+    "off_threshold": 0.2,
+    "threshold_sigma": 0.0,
+    "minimum_threshold": 0.01,
+    "bandwidth_white_hz": 0.0,
+    "white_intensity": 1.0,
+    "minimum_bandwidth_fraction": 0.1,
+    "dark_offset": 0.0,
+    "refractory_s": 0.0,
+    "seed": 1
+  },
+  "reset_times_ns": [],
+  "capture_capacity": 1000000,
+  "candidate_limit_per_step": 1000000,
+  "comparison_gate_ns": 2000000
+}

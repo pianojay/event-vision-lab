@@ -1,0 +1,11 @@
+{
+  "scene": "edge",
+  "width": 64,
+  "height": 48,
+  "samples_per_axis": 1,
+  "sample_times_ns": [0, 8333333, 16666667],
+  "edge_x_px": 32.37,
+  "edge_speed_px_s": 30.0,
+  "dark": 0.1,
+  "bright": 1.0
+}

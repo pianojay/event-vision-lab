@@ -1,0 +1,2479 @@
+{
+  "schema": "event-lab-pipeline-v1",
+  "effective_config": {
+    "schema": "event-lab-pipeline-v1",
+    "profile_name": "viewer-nonideal-v1",
+    "stream_id": "viewer-nonideal",
+    "width": 32,
+    "height": 16,
+    "duration_ns": 320000000,
+    "sample_period_ns": 1000000,
+    "epoch_ns": "0",
+    "scene": "edge",
+    "dark": 1.0,
+    "bright": 2.0,
+    "edge_start_px": 32.0,
+    "edge_speed_px_s": -100.0,
+    "pulse_knots": [
+      [
+        0,
+        1.0
+      ],
+      [
+        3000000,
+        1.0
+      ],
+      [
+        4000000,
+        2.0
+      ],
+      [
+        5000000,
+        1.0
+      ],
+      [
+        10000000,
+        1.0
+      ]
+    ],
+    "spatial": "exact-area",
+    "samples_per_axis": 4,
+    "trajectory": "held",
+    "sampling": "uniform",
+    "sensor": "generic-nonideal",
+    "sensor_parameters": {
+      "on_threshold": 0.2,
+      "off_threshold": 0.2,
+      "threshold_sigma": 0.01,
+      "minimum_threshold": 0.01,
+      "bandwidth_white_hz": 100.0,
+      "white_intensity": 1.0,
+      "minimum_bandwidth_fraction": 0.1,
+      "dark_offset": 0.01,
+      "refractory_s": 0.001,
+      "seed": 17
+    },
+    "reset_times_ns": [],
+    "capture_capacity": 1000000,
+    "candidate_limit_per_step": 1000000,
+    "comparison_gate_ns": 2000000
+  },
+  "source": {
+    "commit": "dcb26450906f8c749846a9ff5c1e3a480855bb4c",
+    "worktree_dirty": true,
+    "source_sha256_lf": {
+      "tools/pipeline/pipeline.py": "1da6d040b9268214bcea90fd3f715a78b63f4902e3f73bf7c2185c9f2b1e53fe",
+      "tools/timing/timing_reference.py": "154d6de84dfb9085e7958e5c1f0527f9f151a4debb994823bd1dd4257578f47f",
+      "tools/sensor/reference_sensor.py": "bff638f315742a5073c70e6317eb7b59934a871a66b6f8bcef415a5b77eedcca",
+      "tools/rendering/optical_fixture.py": "fc30d89bf8aa216708576fa7dfb6c2edd51763cdab78e0cf8b834a982439f05d",
+      "tools/pipeline/test_pipeline.py": "1b903fa28e25b1b08f7f4a0619248b59fac9c53bef194393076b7e97d4bcdbae",
+      "tools/pipeline/validate_pipeline.py": "187c34672af699a9282c03b4638820434fce6e8c14fa47342204fd39a04faf12",
+      "tools/pipeline/validate_replay.py": "0b2804080d1e29961b739e0d4bf22bdc1cae8d2db81b0ee7cda54e11cd698831",
+      "prototype/replay.gd": "2b524156cafd66be35167dfe4efe6cf227e0fb689012cc6bf5aaee5c65eb0e00",
+      "run-pipeline.ps1": "53edac1684620701206250aee60864fb7cfad9f7a2f53d1f2ae61355125ca926"
+    },
+    "python": "3.14.8 (tags/v3.14.8:8e6e75d, Sep 30 2026, 18:19:33) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 126 Stepping 5, GenuineIntel"
+  },
+  "optical_input": {
+    "shape": [
+      16,
+      32
+    ],
+    "axes": "y,x; top-left origin",
+    "units": "positive relative scene-linear intensity",
+    "exposure_duration_ns": 0,
+    "archive_dtype": "little-endian float32",
+    "solver_dtype": "binary64",
+    "archive_role": "diagnostic rounded samples; solver uses unrounded analytic samples",
+    "spatial": "exact-area",
+    "trajectory": "held",
+    "frames": [
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 0,
+        "length_bytes": 2048,
+        "time_ns": 0,
+        "sha256": "fef951e6c76ad6a01b208af650ca6d95769bec840e009981c5ae1316a42c90b1"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 2048,
+        "length_bytes": 2048,
+        "time_ns": 1000000,
+        "sha256": "a5db82e89cb81c49c16667c986e726f07897a11423bac4d46be88f356cca3acf"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 4096,
+        "length_bytes": 2048,
+        "time_ns": 2000000,
+        "sha256": "009c3929b98c4c90ef17d997132f764b8122d8dfa597af7ff21d5d5f67819651"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 6144,
+        "length_bytes": 2048,
+        "time_ns": 3000000,
+        "sha256": "4b470064260b1ff926011db63d2af401344b3ac792c8c9e4f84eb6e76416e74c"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 8192,
+        "length_bytes": 2048,
+        "time_ns": 4000000,
+        "sha256": "141cbbb4f71310e2eb2e9a1dad32cf0165d5fca3f8006f0e2f9869a5615f497e"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 10240,
+        "length_bytes": 2048,
+        "time_ns": 5000000,
+        "sha256": "295d69bb9e1f8e9cc364aed069c8557e4599acae033be2b0bd7520bc75d9dd05"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 12288,
+        "length_bytes": 2048,
+        "time_ns": 6000000,
+        "sha256": "39b43a7b6916851f1838120e4246d92bfa36ac62a34d5562bd3476ceca121917"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 14336,
+        "length_bytes": 2048,
+        "time_ns": 7000000,
+        "sha256": "f95ddb50aa2b7f63855e87e4dbf94502131998581843d5842ba0ef77c8673549"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 16384,
+        "length_bytes": 2048,
+        "time_ns": 8000000,
+        "sha256": "dc2af3a9d4c4c01de93a254164b9b20eac7fcd00f694255e61b9b8b2cc991128"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 18432,
+        "length_bytes": 2048,
+        "time_ns": 9000000,
+        "sha256": "711a1a9b68be01ce28493831819be64e7b78edfb98a54e8492211544ca451960"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 20480,
+        "length_bytes": 2048,
+        "time_ns": 10000000,
+        "sha256": "0b4f417a408902fdb840eb52726d15b7826ece17c6691aa8ae984d5f0b9d75c7"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 22528,
+        "length_bytes": 2048,
+        "time_ns": 11000000,
+        "sha256": "fe9466d7ba3b0c100a7212b394987491e29d1eda7f02d988bdb3e39dd3688845"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 24576,
+        "length_bytes": 2048,
+        "time_ns": 12000000,
+        "sha256": "0cbfb8e895851bf27d1b2b7d2c27962a9bf2657357be09c69e72b38ae15b6eb6"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 26624,
+        "length_bytes": 2048,
+        "time_ns": 13000000,
+        "sha256": "b35102ecf0ad17cda9da1a48743774cfac9cb1a73597ac3460941e44be6e43a2"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 28672,
+        "length_bytes": 2048,
+        "time_ns": 14000000,
+        "sha256": "2d1303d8089fc0ff65d2dd70698b27817af745c5284cc5df8cf85b29dea7a417"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 30720,
+        "length_bytes": 2048,
+        "time_ns": 15000000,
+        "sha256": "1ae2e47f34a2311338a22e5179aed05afc58cab75616c2e6153944b28e39b262"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 32768,
+        "length_bytes": 2048,
+        "time_ns": 16000000,
+        "sha256": "df80a8ff2cb293933abb26273c91a95f626392819bc22b7a3d3a385405e60dbd"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 34816,
+        "length_bytes": 2048,
+        "time_ns": 17000000,
+        "sha256": "ddde266064499fa0cd1b1b0b1de9b4340daab57f5ec8f4dd6d91853d3680d818"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 36864,
+        "length_bytes": 2048,
+        "time_ns": 18000000,
+        "sha256": "1d6773c8bac09449f1ffd4bf58cfab0e1856873d4392599748e656aa36ff0a0f"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 38912,
+        "length_bytes": 2048,
+        "time_ns": 19000000,
+        "sha256": "4e0164f44a6f5879e460c9b20796720779150ce2856e8d03215b6589d6630d83"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 40960,
+        "length_bytes": 2048,
+        "time_ns": 20000000,
+        "sha256": "f01e9a02a857a1143964e59a617c25f8854b73e971c112447cbb96eac1a838a6"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 43008,
+        "length_bytes": 2048,
+        "time_ns": 21000000,
+        "sha256": "21e78665d28790eb092ac3560e682b21c9a2ab5a6a293060b742e10e3e937f5c"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 45056,
+        "length_bytes": 2048,
+        "time_ns": 22000000,
+        "sha256": "f0b18f20017e6a2e0d8653315ea72112490f89f9cea495c45ee52da85ecadb68"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 47104,
+        "length_bytes": 2048,
+        "time_ns": 23000000,
+        "sha256": "aa9fa3baff65f4bfbc8689b4d352c0cebeb6984da748adbf6c460bc794b5e88c"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 49152,
+        "length_bytes": 2048,
+        "time_ns": 24000000,
+        "sha256": "d30be07bd28c32ac3b994dd3c10e52e05628acc7d39117abf7538555007f64fc"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 51200,
+        "length_bytes": 2048,
+        "time_ns": 25000000,
+        "sha256": "f92217852a71b04d7d94c763243d7be01e1f17f020fa1cc642af5f9f9e5bcf5e"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 53248,
+        "length_bytes": 2048,
+        "time_ns": 26000000,
+        "sha256": "5107a4b3b5223697c37e7be07ee4bf14c3831de6004e6abb7b5a6b48c27ed481"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 55296,
+        "length_bytes": 2048,
+        "time_ns": 27000000,
+        "sha256": "287461794edf3f8d4165acbfd02ae96e0896be72b65f1368aac71b3184599d25"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 57344,
+        "length_bytes": 2048,
+        "time_ns": 28000000,
+        "sha256": "1998930d83821a077d3e9633b996f5930e021b47fb6cb3b70c972197133d5541"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 59392,
+        "length_bytes": 2048,
+        "time_ns": 29000000,
+        "sha256": "5302c912195873f58854d7db0285df87cb6de822385fe2494bb6ca703174a1a7"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 61440,
+        "length_bytes": 2048,
+        "time_ns": 30000000,
+        "sha256": "e3edfbb6f3cde95a053a9d6f0b7113729e700016e2b4253bea9833daec7b6aa7"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 63488,
+        "length_bytes": 2048,
+        "time_ns": 31000000,
+        "sha256": "3137f31fc6b9286fb1b1b6e3bde93ddde8c7035b5e1940369d007c6caae048c4"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 65536,
+        "length_bytes": 2048,
+        "time_ns": 32000000,
+        "sha256": "b36c2f366613e2a728b7d39f7f9cf709f06a91edd24f930c9ca3b277acf0599a"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 67584,
+        "length_bytes": 2048,
+        "time_ns": 33000000,
+        "sha256": "cb89460ee9efbaf4057941a2b5aff2b4b31c99fa52e8abb31e0e2402976191da"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 69632,
+        "length_bytes": 2048,
+        "time_ns": 34000000,
+        "sha256": "35decd41acce7f83ff736d5ef0c63d8c29abe7ecb480c68cbd10c7af06336c13"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 71680,
+        "length_bytes": 2048,
+        "time_ns": 35000000,
+        "sha256": "1c12370feb1835264a5b453e0fadf629fc9dc2fd1d04be3ded051fa1166faa37"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 73728,
+        "length_bytes": 2048,
+        "time_ns": 36000000,
+        "sha256": "dab196427c503f03dbe38be781bed9bdc2fba2bcbcd68df5b35cf2d161a77061"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 75776,
+        "length_bytes": 2048,
+        "time_ns": 37000000,
+        "sha256": "d16c3de3e030b56d7eafbb7682bf576e2c49571a6b9492e2a42d6167946dd0b0"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 77824,
+        "length_bytes": 2048,
+        "time_ns": 38000000,
+        "sha256": "e43a7b13ae0e7a0dfff0d9bb205b0ae1e97f1d58eeb033dbc6cc4642a9629e18"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 79872,
+        "length_bytes": 2048,
+        "time_ns": 39000000,
+        "sha256": "ff3c7dc9c14225142ac961657b437483cd88a8f2a50a0e641a3b0503498f179b"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 81920,
+        "length_bytes": 2048,
+        "time_ns": 40000000,
+        "sha256": "0c6aeaabaa1ad5d31ef8055c5cb854ca16f46d90aac27412fc8e14165d8a76b2"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 83968,
+        "length_bytes": 2048,
+        "time_ns": 41000000,
+        "sha256": "5f4b84455350e8d5f08cd1fd95e9c5485eaef4dfa33693b6b63baa973c1bf20b"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 86016,
+        "length_bytes": 2048,
+        "time_ns": 42000000,
+        "sha256": "2c54cc29aaceb18fbac5ba5cb6ac55fbc7325dd94d205e377080c55aebffe532"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 88064,
+        "length_bytes": 2048,
+        "time_ns": 43000000,
+        "sha256": "e9f47719140c5b8993d3c32e0fc5da3fccbb64c54d27a4b1f46327319cce2353"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 90112,
+        "length_bytes": 2048,
+        "time_ns": 44000000,
+        "sha256": "6d979fbc6b33e484d807ea3fd57f76453aff723f29a278dde8408aab63ebe859"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 92160,
+        "length_bytes": 2048,
+        "time_ns": 45000000,
+        "sha256": "48a6cb63dfe6516a193bf825b2a92db47b00d163daa6baa8b08c2d77fd8b0228"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 94208,
+        "length_bytes": 2048,
+        "time_ns": 46000000,
+        "sha256": "dd1c73320892f4f3d05e1687ec4deef8e0c05aa4580c418d0e69f97a778bba25"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 96256,
+        "length_bytes": 2048,
+        "time_ns": 47000000,
+        "sha256": "b73b7fca1bbcfa4435b1cf3cbb542cab165f3d039b87a3731e5a34ea0f64f3ef"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 98304,
+        "length_bytes": 2048,
+        "time_ns": 48000000,
+        "sha256": "19511fe820a74794b78960fda4d185733c4ca1bd38db82b41ab31bc07d4d7e58"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 100352,
+        "length_bytes": 2048,
+        "time_ns": 49000000,
+        "sha256": "e483b41b82bbc55dc9d6e82106bf0d8984c45c34f9cf172be38a295876210586"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 102400,
+        "length_bytes": 2048,
+        "time_ns": 50000000,
+        "sha256": "015a95ee00d6fb29eb7edc2890f16dea6acb5770b429a5a37d97648129d40bca"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 104448,
+        "length_bytes": 2048,
+        "time_ns": 51000000,
+        "sha256": "2fa1885cc51a2b53cf8244f1b27a280203b8c1bb78f4ee3128c0902f56dd575e"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 106496,
+        "length_bytes": 2048,
+        "time_ns": 52000000,
+        "sha256": "5ff27662958f6df7dac324be1cb97773bb768a3f86dc3b532ec8743e34096dc5"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 108544,
+        "length_bytes": 2048,
+        "time_ns": 53000000,
+        "sha256": "3501f29ad07a37e0bfac72006a073d0be15a753f1a420de9544fc0bb9274484b"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 110592,
+        "length_bytes": 2048,
+        "time_ns": 54000000,
+        "sha256": "8c895f5ca5a447eb066b4e6fdba674d79f60aed01a60990ba6d06534ccf66a8c"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 112640,
+        "length_bytes": 2048,
+        "time_ns": 55000000,
+        "sha256": "4cba46b2acaeb03c503363fc6333adb5f6dc76b117a16c837c68d817ce21d48b"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 114688,
+        "length_bytes": 2048,
+        "time_ns": 56000000,
+        "sha256": "08fcbc825204aa366754b9165d1fc3016bed553ed444c02ed126efe59dbde008"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 116736,
+        "length_bytes": 2048,
+        "time_ns": 57000000,
+        "sha256": "abc63125e0bd021489af920610397681e6159a61a4cb7ab2d2f9528fec37ac38"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 118784,
+        "length_bytes": 2048,
+        "time_ns": 58000000,
+        "sha256": "55d2b66e96f7686f2911e46c7b7d82b85c9385ef2ecd63fd9fb99c93fb1be6e6"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 120832,
+        "length_bytes": 2048,
+        "time_ns": 59000000,
+        "sha256": "40884df6b1eede65ca391b12db0e8ba5da2443fca7e192f78b817937db5aa1db"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 122880,
+        "length_bytes": 2048,
+        "time_ns": 60000000,
+        "sha256": "7bb56550f715a1c12d3b4b0f1139aca422da08855904b76d3276abb0093e8f8f"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 124928,
+        "length_bytes": 2048,
+        "time_ns": 61000000,
+        "sha256": "33bf3e6cb65cb2600fef5ac855855ce0beca578648386b778dcef7c534cd66a1"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 126976,
+        "length_bytes": 2048,
+        "time_ns": 62000000,
+        "sha256": "683ade7d29fe402f13c593a806bcd2ffd180a7f48a9b09121d1cfce58a3d6df1"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 129024,
+        "length_bytes": 2048,
+        "time_ns": 63000000,
+        "sha256": "a2b1b6230b6748bea64a22527b43fc2c1b2d401e89f0c0d09ff83086293e5d34"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 131072,
+        "length_bytes": 2048,
+        "time_ns": 64000000,
+        "sha256": "083a9335ee555cc447d9e9ee6e52215f0ad77ae099ef129b3c8b9f6e4cbf3f96"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 133120,
+        "length_bytes": 2048,
+        "time_ns": 65000000,
+        "sha256": "1c9cd2d2dd6a5cda1f8c19dfedc433b0c892b6844aaddde42ce3a25707f69ed5"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 135168,
+        "length_bytes": 2048,
+        "time_ns": 66000000,
+        "sha256": "c867b0c44707a8f7d3d8e17842fc0a80af208441da786ddd34b3dcafb4e8bbdf"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 137216,
+        "length_bytes": 2048,
+        "time_ns": 67000000,
+        "sha256": "0141969ebbf40229a7247f330cfe6e7562048a34cc9a787686289c74527ecaaf"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 139264,
+        "length_bytes": 2048,
+        "time_ns": 68000000,
+        "sha256": "9058bd1fd034ebe2120606925bedf014a1aa6a31783a645fdd758c693453ccb9"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 141312,
+        "length_bytes": 2048,
+        "time_ns": 69000000,
+        "sha256": "773d81ca72dcd02c501c1322f9488dd0f67d1aa7c61f6d54373d3ac544a0bf30"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 143360,
+        "length_bytes": 2048,
+        "time_ns": 70000000,
+        "sha256": "47c5375794accba5d0c6431ef97f20bc54df205110b5f61c6023b07594b922f2"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 145408,
+        "length_bytes": 2048,
+        "time_ns": 71000000,
+        "sha256": "3f0d1c3faf58a7eef79639eec55930c45466584fd3c3ebf9cda062235c4853c2"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 147456,
+        "length_bytes": 2048,
+        "time_ns": 72000000,
+        "sha256": "6ae377d203c2ea10a5dcb8f6132e68ffc1b1dc8825d980a8d5bc893108847db7"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 149504,
+        "length_bytes": 2048,
+        "time_ns": 73000000,
+        "sha256": "0bee11f7dad8a2d49fc87032d2aaabe11b10bc8d2020ef7aca0bf1f8d763d6a2"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 151552,
+        "length_bytes": 2048,
+        "time_ns": 74000000,
+        "sha256": "893cb15714dafef0e258d3b02c91fbc33ae3ae71a2584bdb8a459f7b740d290c"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 153600,
+        "length_bytes": 2048,
+        "time_ns": 75000000,
+        "sha256": "fc44ead5b3b9d1bc5fe94934f2b97ebf8da517050b1f74589cf14180b7db9d17"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 155648,
+        "length_bytes": 2048,
+        "time_ns": 76000000,
+        "sha256": "40f83efa20e9b155b3b2b327e0809ba783c3389d3c9fb2167b5d1381d2c23add"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 157696,
+        "length_bytes": 2048,
+        "time_ns": 77000000,
+        "sha256": "69bdfc04297d990f3968784c604e24113c996d6827f3f4c8325353b68a2a4707"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 159744,
+        "length_bytes": 2048,
+        "time_ns": 78000000,
+        "sha256": "80bee6b524e53b331c74c8408ba9b1a09c2501cbc5e1cc816ba2c09dc655dae7"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 161792,
+        "length_bytes": 2048,
+        "time_ns": 79000000,
+        "sha256": "589b5a958094d22e98fd3659bbc01597bec49218473fe052538dd16811d21509"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 163840,
+        "length_bytes": 2048,
+        "time_ns": 80000000,
+        "sha256": "1f6ef621971d5e3a1e5f2114e664366340b06d97162329bca067b9b162309d56"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 165888,
+        "length_bytes": 2048,
+        "time_ns": 81000000,
+        "sha256": "4bf494318d3cb07aa955413e581e77a596bf30c709949890b7f5ba92339c3c74"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 167936,
+        "length_bytes": 2048,
+        "time_ns": 82000000,
+        "sha256": "ee306a4299006e8d0f970b4e093096c214ac03464d11963150223659045c6bc9"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 169984,
+        "length_bytes": 2048,
+        "time_ns": 83000000,
+        "sha256": "34938cc31f594da8c5b838eac3fd460aaf13e9ef288b11d589e10acef6ea3768"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 172032,
+        "length_bytes": 2048,
+        "time_ns": 84000000,
+        "sha256": "e50f1e8922f80048a01391d82fd238cab5ce6f4a61d226622b6e02233b477915"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 174080,
+        "length_bytes": 2048,
+        "time_ns": 85000000,
+        "sha256": "b99095bdf84ef64e3ef725d77dff51aeca9b4661f05649a5be7e3435d4f2916e"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 176128,
+        "length_bytes": 2048,
+        "time_ns": 86000000,
+        "sha256": "253387166e68850bd91c78a663b4cf1394f75e1ff5cbdee17a6fb8626410a08e"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 178176,
+        "length_bytes": 2048,
+        "time_ns": 87000000,
+        "sha256": "4c5305450ee493a5556b49fee430479b1b9eeca3daf69514748bf246b8abbd97"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 180224,
+        "length_bytes": 2048,
+        "time_ns": 88000000,
+        "sha256": "d4179a0c202020c6e4c1432dbff89a6c104d31baf331849fb4599dafe4b68435"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 182272,
+        "length_bytes": 2048,
+        "time_ns": 89000000,
+        "sha256": "4ba9ebc5f0214e329d9026c8a30ba2286b2e7df49b31655565aafd1a3097669c"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 184320,
+        "length_bytes": 2048,
+        "time_ns": 90000000,
+        "sha256": "b41dbcaab4986197d43c6057d44940cf712fe59ed6854bbce371d2b2376cbe3d"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 186368,
+        "length_bytes": 2048,
+        "time_ns": 91000000,
+        "sha256": "9e56bf7053bdf4cd8c959f19af00f2a72e4d3b50b403954585844f3966ba85c5"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 188416,
+        "length_bytes": 2048,
+        "time_ns": 92000000,
+        "sha256": "489d52c4fc8680fe9966964d3d5c66a6817e20ffc98286222b3559c269889dbb"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 190464,
+        "length_bytes": 2048,
+        "time_ns": 93000000,
+        "sha256": "3daa5e886bdb031c0e035b07a09770c2263681dbbf62bd0db3a689a406912bc4"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 192512,
+        "length_bytes": 2048,
+        "time_ns": 94000000,
+        "sha256": "3644214c63a4a5e52fc98fe66a8391ebe0636a33e735d5cb35d2c56f80d55713"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 194560,
+        "length_bytes": 2048,
+        "time_ns": 95000000,
+        "sha256": "970980f84706339c6a5b2c4550eba8c10479486c84e08d31ba101bea16a1fa64"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 196608,
+        "length_bytes": 2048,
+        "time_ns": 96000000,
+        "sha256": "6f27706327bf4e1c63909b0aa66a0c217f78e76e83648bf26fa26804cd0f0624"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 198656,
+        "length_bytes": 2048,
+        "time_ns": 97000000,
+        "sha256": "f811daeb8c4b5f6eeabc39ae4691cd8788cf98e32a9c1be07291422ff0519796"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 200704,
+        "length_bytes": 2048,
+        "time_ns": 98000000,
+        "sha256": "2ad7b8707ace4244c7c5772751203c472e920acbc13a905f42ab9db39240fbe0"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 202752,
+        "length_bytes": 2048,
+        "time_ns": 99000000,
+        "sha256": "1e8074d8909db498c962f7dacb8fdb6eb17b3412185da2cea310d7b4c0be219b"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 204800,
+        "length_bytes": 2048,
+        "time_ns": 100000000,
+        "sha256": "d0b7c9859d11e9287ed2388fe520503ae16d8684f2bdde0aa4cefaaf9a0e8dab"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 206848,
+        "length_bytes": 2048,
+        "time_ns": 101000000,
+        "sha256": "885de9acea43eb7a9eaa324c69c371f19a65dee7addd6ccce964831f6b8ab08c"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 208896,
+        "length_bytes": 2048,
+        "time_ns": 102000000,
+        "sha256": "f9bbac0eb08f94a4b879027ed2ced6a8e84bbb4fdf56d061cec1f8e55ba8be45"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 210944,
+        "length_bytes": 2048,
+        "time_ns": 103000000,
+        "sha256": "49d91281c017bfaec450ee4ea0c7f0a2cdb0836e1c8d6b51be0adb8d1df7da5b"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 212992,
+        "length_bytes": 2048,
+        "time_ns": 104000000,
+        "sha256": "a58da9ea661e1bcaefa89308848f53f1c19ad0b457dfa5c9276851eac581921c"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 215040,
+        "length_bytes": 2048,
+        "time_ns": 105000000,
+        "sha256": "99412d3cb722e8919bd68cdf751dddb847e86f7851680d24450cd8e67ab13dee"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 217088,
+        "length_bytes": 2048,
+        "time_ns": 106000000,
+        "sha256": "829de637303bf84374380d14bb92172a3152bff30cc15c57fd7e5a84fc2485c4"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 219136,
+        "length_bytes": 2048,
+        "time_ns": 107000000,
+        "sha256": "33b457ac1ae29759797fbccbfec6f8316c4ce8aa201d7b84d415af735dd031c9"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 221184,
+        "length_bytes": 2048,
+        "time_ns": 108000000,
+        "sha256": "90891a74600cb2b0d3d609b56a1d9cbf0be02a956ce997e459fea755b942f392"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 223232,
+        "length_bytes": 2048,
+        "time_ns": 109000000,
+        "sha256": "fb3d00a1474b285abf8cd085e375cdcb5f41e52f27ca2d9a12d415b70897bf6a"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 225280,
+        "length_bytes": 2048,
+        "time_ns": 110000000,
+        "sha256": "3ea01d686dfbef0eb17481b32cec7d2139a3a17e5632e542caba10f15bddd99b"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 227328,
+        "length_bytes": 2048,
+        "time_ns": 111000000,
+        "sha256": "7bcbdfc78ac02be7cd10784db51100f797d105cc69f8f2e29f1506cd864e7491"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 229376,
+        "length_bytes": 2048,
+        "time_ns": 112000000,
+        "sha256": "f9c4e3bd286689d90124966620a889f83d4de6971366abcad2e733f804e27384"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 231424,
+        "length_bytes": 2048,
+        "time_ns": 113000000,
+        "sha256": "c9163d7fae02c12e9f06e25c7834523c206b59b22517ad92dc09e5696e3bac71"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 233472,
+        "length_bytes": 2048,
+        "time_ns": 114000000,
+        "sha256": "112f3f1a1ff1788532e62fe1a2f9282cf2d62848877e87e0e32d44b50db42976"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 235520,
+        "length_bytes": 2048,
+        "time_ns": 115000000,
+        "sha256": "8178a1076e4f1630b8d418657a0302a3cb8e4e8c269d21afa570e0819dfde524"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 237568,
+        "length_bytes": 2048,
+        "time_ns": 116000000,
+        "sha256": "8f7113083ad369dee158f4417715a7431561bf027e3ce2b8e4b11b42d5e8c630"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 239616,
+        "length_bytes": 2048,
+        "time_ns": 117000000,
+        "sha256": "f864dfe5262944c9cd68fee6078424df2462cacb824911923a6b4b9151272969"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 241664,
+        "length_bytes": 2048,
+        "time_ns": 118000000,
+        "sha256": "77c2e8bede82be0d0539aa75449760a55f54a4319a13c150d7b3ddbfb9621a44"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 243712,
+        "length_bytes": 2048,
+        "time_ns": 119000000,
+        "sha256": "aa9f974ef2120a128e2057b33f79fb229ac64a340dc5741d7d6513d85257cfb6"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 245760,
+        "length_bytes": 2048,
+        "time_ns": 120000000,
+        "sha256": "21890e458f37f2b1b01cc63e2f737f84458d64f67d8e89e77d7918b0bb84ba7a"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 247808,
+        "length_bytes": 2048,
+        "time_ns": 121000000,
+        "sha256": "801a72c969ac66b4387c58fa94e647b227d92d207e56edf62858eaa32f9581d1"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 249856,
+        "length_bytes": 2048,
+        "time_ns": 122000000,
+        "sha256": "3223cfa2a03eee0e5fbcc26075e709ed8d0fa8096f4e4b04a60165d9571c3f1f"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 251904,
+        "length_bytes": 2048,
+        "time_ns": 123000000,
+        "sha256": "82be33285d95bc5586add0333132f71071daa57f6b9f6381d082506a23046e8b"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 253952,
+        "length_bytes": 2048,
+        "time_ns": 124000000,
+        "sha256": "87bd40c436bddeae295d8fb5336781e13375ec3513142900595538567c528266"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 256000,
+        "length_bytes": 2048,
+        "time_ns": 125000000,
+        "sha256": "c9b6fdcb9d52082937631a08b7c822d5332c9a088cb1764d1d6baacc43ae1496"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 258048,
+        "length_bytes": 2048,
+        "time_ns": 126000000,
+        "sha256": "ad8389f9ce1062a8520572e9580abf2bb9db93997392600bb2602d3aba60738a"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 260096,
+        "length_bytes": 2048,
+        "time_ns": 127000000,
+        "sha256": "8136ef93e56e80717d2ddc32cfdf91b9a1682fe190ae9d32adaef8cedc82caf2"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 262144,
+        "length_bytes": 2048,
+        "time_ns": 128000000,
+        "sha256": "5606b820689a3963a37b8ab16468033ea2d18c797afd16b6641757aa47aa5597"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 264192,
+        "length_bytes": 2048,
+        "time_ns": 129000000,
+        "sha256": "5264d9cfe98de9bb405ee5a5cd069d5f3109ff69aac2a37204f7a2eb6c3342dd"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 266240,
+        "length_bytes": 2048,
+        "time_ns": 130000000,
+        "sha256": "9825b18a82d5065b7ac06ba20cfb08da577d3e507b9c17b002591a9771abd3b7"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 268288,
+        "length_bytes": 2048,
+        "time_ns": 131000000,
+        "sha256": "7db23396b4cbdf4e43d6b5342738461193534632eca2196d74ef1a11ddbe7b4c"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 270336,
+        "length_bytes": 2048,
+        "time_ns": 132000000,
+        "sha256": "8307d71d3214f97f4997789124dd7e22e55c8cc10b2f88d68a8dc2dc88ba358f"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 272384,
+        "length_bytes": 2048,
+        "time_ns": 133000000,
+        "sha256": "74076d3e08905a027246e8e02a126b4fb813ffb9c5b05d13ce16de1a9907d35e"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 274432,
+        "length_bytes": 2048,
+        "time_ns": 134000000,
+        "sha256": "bbc40e9c99651808a4d6543bf06d0d2e4b36c58f18f219eb7ab2559bf1cd6f5b"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 276480,
+        "length_bytes": 2048,
+        "time_ns": 135000000,
+        "sha256": "0200b25323c5b838f03ab8e187ea0d914e516ce92e8c72e57bfafb6d8db0ba08"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 278528,
+        "length_bytes": 2048,
+        "time_ns": 136000000,
+        "sha256": "f329beec14234661a54defcfdb2d752acab746ad8e7dcd50340fb290b316ee09"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 280576,
+        "length_bytes": 2048,
+        "time_ns": 137000000,
+        "sha256": "8b2be2357046664428c1440f20f608855520f62824e371ac593c787a304f95be"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 282624,
+        "length_bytes": 2048,
+        "time_ns": 138000000,
+        "sha256": "aebba136dd2829881db5cf5ab93b215386c45a33a84f02a02bbd13ee30c845f9"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 284672,
+        "length_bytes": 2048,
+        "time_ns": 139000000,
+        "sha256": "26b2e46937e371537b2fad6ce526d7cd0c5b818ae65ef437f0695075cca84dff"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 286720,
+        "length_bytes": 2048,
+        "time_ns": 140000000,
+        "sha256": "c71c2f37099becb4fa715bb161ce533b9359d7dbeae860cf0a8d390704815a0c"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 288768,
+        "length_bytes": 2048,
+        "time_ns": 141000000,
+        "sha256": "42c5bd84641f9b4dea64b020e76017dae1417a9439270e46e939db25c322d7f0"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 290816,
+        "length_bytes": 2048,
+        "time_ns": 142000000,
+        "sha256": "9405bf0826e64b3b9914735de106bfce4c47afa175f7904be58754de3b23eb16"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 292864,
+        "length_bytes": 2048,
+        "time_ns": 143000000,
+        "sha256": "0be451ec09b10a47a91c7178652fd52c58937ea169496827889afd940a75a348"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 294912,
+        "length_bytes": 2048,
+        "time_ns": 144000000,
+        "sha256": "ef4938e3f4a01db33dc9485e7019b084bf0d5a6aaa1a8dfbb7379c10fc10231e"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 296960,
+        "length_bytes": 2048,
+        "time_ns": 145000000,
+        "sha256": "783d723386f133e88d17375e6bb602e31d749d5d898cd40aa40943ede95f8060"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 299008,
+        "length_bytes": 2048,
+        "time_ns": 146000000,
+        "sha256": "eae35cbc0187cdf2d4134f142a2aaf34be3851c51ad44e282360d8852f4bd697"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 301056,
+        "length_bytes": 2048,
+        "time_ns": 147000000,
+        "sha256": "3713624b128d857315d7cc6d2545168adfb38a68c7aa07862f02c23f2fd8c803"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 303104,
+        "length_bytes": 2048,
+        "time_ns": 148000000,
+        "sha256": "96d4377608936badb107215b34f5c4fc2d1f9dc371d8a2a76ce91400a69846e9"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 305152,
+        "length_bytes": 2048,
+        "time_ns": 149000000,
+        "sha256": "3cfb79c33a4481d3cbeea1f173e0e42f4ce39c1659aaff9606d71c342c75aa30"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 307200,
+        "length_bytes": 2048,
+        "time_ns": 150000000,
+        "sha256": "023d0705daabd9941a55cffb40a7317fdc12df1ffc293ae816ec8d6984baa4cf"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 309248,
+        "length_bytes": 2048,
+        "time_ns": 151000000,
+        "sha256": "2c150551ef11afb1b398dd040bc01f372d9912ad7ec313605e92809303c28580"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 311296,
+        "length_bytes": 2048,
+        "time_ns": 152000000,
+        "sha256": "5659f2f981692f921a305f0478d2515d23dddd82d02214f43503bae26c6f534f"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 313344,
+        "length_bytes": 2048,
+        "time_ns": 153000000,
+        "sha256": "4c5ea63f912115ec4e3d425cae5608742c04a3b6cc964a8af52242d154b10f41"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 315392,
+        "length_bytes": 2048,
+        "time_ns": 154000000,
+        "sha256": "ff5e157e533b0c8f3541d3d23dfe87e37e16e67c58672635d5a8cce3602f3ac9"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 317440,
+        "length_bytes": 2048,
+        "time_ns": 155000000,
+        "sha256": "cd3226880bc0668dd03cc6e1934d3297456e8a9de910f30bacb2197c755f0e57"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 319488,
+        "length_bytes": 2048,
+        "time_ns": 156000000,
+        "sha256": "f35b5e1e5ef8290ae35401eee6a52ff0be54127513fd5aafcd73111e8b04f8c8"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 321536,
+        "length_bytes": 2048,
+        "time_ns": 157000000,
+        "sha256": "f368822e4eb25088f0ebb3e425cfc573ae4e36d4aeaaa5f506138aa8bf11b265"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 323584,
+        "length_bytes": 2048,
+        "time_ns": 158000000,
+        "sha256": "7c46a57e6dab1349abb289d5169a9c7933aac2eabf2430500eb013a407e589a0"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 325632,
+        "length_bytes": 2048,
+        "time_ns": 159000000,
+        "sha256": "6b3e8edb500587490f84fd5aa0c4b99ee901c3a8faefffea7bdd6c2576a44baa"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 327680,
+        "length_bytes": 2048,
+        "time_ns": 160000000,
+        "sha256": "df83a3fcd017e830c6e3059644cac70bb6fc95a0e60b18319e2fcd499b5fd390"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 329728,
+        "length_bytes": 2048,
+        "time_ns": 161000000,
+        "sha256": "e02c01ff15ca3631ca49bc792f0f4209b2f2fdef5ef543e946de648ffd149e5b"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 331776,
+        "length_bytes": 2048,
+        "time_ns": 162000000,
+        "sha256": "37a6130c8ccf1ef083f9db46fa76256ec40d6924bf94694ea8d788ee16095084"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 333824,
+        "length_bytes": 2048,
+        "time_ns": 163000000,
+        "sha256": "ae9d3321bf17ac49ffbac77fa9d2f1d7bcfa16c78f30bb70c8a42c7064aec421"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 335872,
+        "length_bytes": 2048,
+        "time_ns": 164000000,
+        "sha256": "1710b22acff6d7fd04a04363e572900ae5fd5f814b44173b41d573d34a580dc0"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 337920,
+        "length_bytes": 2048,
+        "time_ns": 165000000,
+        "sha256": "41b0d64671f318f57204fea61868bf41e1946e1f52cc719e6e5871f19d0a6eae"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 339968,
+        "length_bytes": 2048,
+        "time_ns": 166000000,
+        "sha256": "2c298713d92a1c1eb1dfc049d9dce95894b199f581e71c98c8836fc47b4b2c62"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 342016,
+        "length_bytes": 2048,
+        "time_ns": 167000000,
+        "sha256": "2bd7e2f15176f43bd8d34aa32719212c17f443e0205355aa442687b178a01170"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 344064,
+        "length_bytes": 2048,
+        "time_ns": 168000000,
+        "sha256": "c3e5a96115334c0e55839b5ce3ea4bd3070412b1ce5bfd1fdcc9e27f679d3ebe"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 346112,
+        "length_bytes": 2048,
+        "time_ns": 169000000,
+        "sha256": "268a4abae1aaff477134eb5b1f27543bae3584497d434753a4b8dc972512c32b"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 348160,
+        "length_bytes": 2048,
+        "time_ns": 170000000,
+        "sha256": "3cc7a5587adb75de684010f4ec7cd26f15148a076798b4609fbad7a1b538f850"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 350208,
+        "length_bytes": 2048,
+        "time_ns": 171000000,
+        "sha256": "be1eb430362e51e7112189f23a95c94bfd6d3dd865538ac5795aa87d15af95e8"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 352256,
+        "length_bytes": 2048,
+        "time_ns": 172000000,
+        "sha256": "8ba35c2b420820e7d72d41eb5fc88d5f99b6f73b0430db728e566c6a366fcedc"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 354304,
+        "length_bytes": 2048,
+        "time_ns": 173000000,
+        "sha256": "4286c752600d8ffc014062fa801e568791195fd2cf148166713792a5ef2250e6"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 356352,
+        "length_bytes": 2048,
+        "time_ns": 174000000,
+        "sha256": "cae9081fabf1b04d0ececfb135e64a2f53904af02bd1f4ec4737b1f9c2c2a2f7"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 358400,
+        "length_bytes": 2048,
+        "time_ns": 175000000,
+        "sha256": "51719e2efd536f7f690484a1fe9cc722e1ec67db3e5272b6c272583d42e015d9"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 360448,
+        "length_bytes": 2048,
+        "time_ns": 176000000,
+        "sha256": "9f7e0ecef9bdb733ccdaa7adfda8158b7defe0ac992a278c7624ed1abb36074c"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 362496,
+        "length_bytes": 2048,
+        "time_ns": 177000000,
+        "sha256": "abcc0d417160ae93cf5d48239af03088fbdc2d2e975ebc055bfc06ddff7bd708"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 364544,
+        "length_bytes": 2048,
+        "time_ns": 178000000,
+        "sha256": "2a6c5d3345bbf902eb89a9dbe5c3efccb366beee7a8f5da0c4466ef4b479b901"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 366592,
+        "length_bytes": 2048,
+        "time_ns": 179000000,
+        "sha256": "63b5423ef43611ecac9c467b853c568d57a1e06ac12a0e0ee6b7e2825e9cc859"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 368640,
+        "length_bytes": 2048,
+        "time_ns": 180000000,
+        "sha256": "c8c5b227537a5345fbc78ab3c73af12a1e694df3bd675e32684a5a771a2c8d4d"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 370688,
+        "length_bytes": 2048,
+        "time_ns": 181000000,
+        "sha256": "06a22b2ad71f439b8c6fe29d0c39b480c7bb8aa6eebdf6d076dd038dbad9e6de"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 372736,
+        "length_bytes": 2048,
+        "time_ns": 182000000,
+        "sha256": "f2c0e7e6913ef6d8e9bbd421119eb53c0cb7a42f1c517586654cb8975464fab3"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 374784,
+        "length_bytes": 2048,
+        "time_ns": 183000000,
+        "sha256": "74fcfd6c6545cd4d313e27705d6aa7d5d5be8551af799239f19cf9c05ac37614"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 376832,
+        "length_bytes": 2048,
+        "time_ns": 184000000,
+        "sha256": "26f723154e59ec1562e46ef0d77d1ef96da1f611ad89dcc3d7c7f46ea1e6cc6a"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 378880,
+        "length_bytes": 2048,
+        "time_ns": 185000000,
+        "sha256": "0e1030a0cabb2c5f801f8c817a8acda26da06f68f804eedb6163b9119cfe1b52"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 380928,
+        "length_bytes": 2048,
+        "time_ns": 186000000,
+        "sha256": "4c0d0a44ba4fe0749836b6027925fe076013351bdfae965685cca45d8437e5ba"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 382976,
+        "length_bytes": 2048,
+        "time_ns": 187000000,
+        "sha256": "3e21aab180fc69695da91aaa11fdf4b986c9b05590d76c65395178e96056a909"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 385024,
+        "length_bytes": 2048,
+        "time_ns": 188000000,
+        "sha256": "ba6bd611e59fda4c852e44cbf9c8b25dd1cc5df4f33f0bfc1f6ca1a10da0c13d"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 387072,
+        "length_bytes": 2048,
+        "time_ns": 189000000,
+        "sha256": "a67c1720b8f830e450c103024d2225e476d2ff028f7503a64cf698a653165f7a"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 389120,
+        "length_bytes": 2048,
+        "time_ns": 190000000,
+        "sha256": "b49b862331c66177487dc8d74b2da25dd55466a552c2dc7f935608395aadf3c4"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 391168,
+        "length_bytes": 2048,
+        "time_ns": 191000000,
+        "sha256": "47dfb96eaca181d1cf9a23a7ea8989d443e9a0373c02ab1a8f0ae37043bcf9ad"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 393216,
+        "length_bytes": 2048,
+        "time_ns": 192000000,
+        "sha256": "18592052b26d8ef4f7a7e6e17c85e3f7e21d9d5239b4b8f453ef74918ee711ce"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 395264,
+        "length_bytes": 2048,
+        "time_ns": 193000000,
+        "sha256": "5df3fd5d565838fbe93011d83c30cb6c2365bbe98d63912b79db7c9be0824a1c"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 397312,
+        "length_bytes": 2048,
+        "time_ns": 194000000,
+        "sha256": "e29d41e958d49c7c9d305710629f5b19252dcc9b7fef70e91eabdb9321e590fd"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 399360,
+        "length_bytes": 2048,
+        "time_ns": 195000000,
+        "sha256": "77c67d4d1ea34cddbfc3cf6ca6d072cd1151bc18880b3809291cb4f6df5bcd5a"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 401408,
+        "length_bytes": 2048,
+        "time_ns": 196000000,
+        "sha256": "cf678f07ad645ab6116395dc02f33049f40a3dfe8de889becc7a8e23fb7e9966"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 403456,
+        "length_bytes": 2048,
+        "time_ns": 197000000,
+        "sha256": "b21d1511e9e8eb663cd8047eb260d98a04b6e054d16b03a8f40fb19bd84aec9b"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 405504,
+        "length_bytes": 2048,
+        "time_ns": 198000000,
+        "sha256": "c84332216d40a16ec9699aab857b93fe44a1acf8237dfeda6b5db3b801129c67"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 407552,
+        "length_bytes": 2048,
+        "time_ns": 199000000,
+        "sha256": "8d73c6062b87f555b8b88eb737505e8de0d9c1180082bec6a3821858755ebb92"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 409600,
+        "length_bytes": 2048,
+        "time_ns": 200000000,
+        "sha256": "9e988f6b47bd985f0e09912ffbc128af4d55a63a536c5f9fb18f53f9919fe59e"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 411648,
+        "length_bytes": 2048,
+        "time_ns": 201000000,
+        "sha256": "d49e3b3126458447d2e198ef4f0bab1c5e64545a89241474952997b9e794f76d"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 413696,
+        "length_bytes": 2048,
+        "time_ns": 202000000,
+        "sha256": "088385cbe39cdaf1d2bd43e7e0c36e338ce06675dc9dc8333473ce2cf721507b"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 415744,
+        "length_bytes": 2048,
+        "time_ns": 203000000,
+        "sha256": "b0a6e4687240c3c4af8d03e26c558e101edd7fff7c6d614cd340372a03b0fe70"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 417792,
+        "length_bytes": 2048,
+        "time_ns": 204000000,
+        "sha256": "4c7a4b9470846e6f07abb3f43e6ef3f466f234d329e071b8014cf764161409de"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 419840,
+        "length_bytes": 2048,
+        "time_ns": 205000000,
+        "sha256": "466b49e8f539eeb92491d68b7af2a3cde3e6ef4f437ed7da9a06d834fde7c03d"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 421888,
+        "length_bytes": 2048,
+        "time_ns": 206000000,
+        "sha256": "8d4fcba404b19937fad5d694487a9fd63820d366ece95b127056fe57e5ecbaf2"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 423936,
+        "length_bytes": 2048,
+        "time_ns": 207000000,
+        "sha256": "7236032cb806c62c667beed8508ba9e70bef7c13d6bed461f715c7f5568e8f7c"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 425984,
+        "length_bytes": 2048,
+        "time_ns": 208000000,
+        "sha256": "f8358500f4df92eae24ee644df7236d5f0e09ed52e36a202b104268e90486a8a"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 428032,
+        "length_bytes": 2048,
+        "time_ns": 209000000,
+        "sha256": "f5ecd990360d1d5137cfafbe8a86809694e6d1484287a724ee25bf5426c8837e"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 430080,
+        "length_bytes": 2048,
+        "time_ns": 210000000,
+        "sha256": "615fb15c2d6d9a16c12420d8e49141cde427cf1c7fdf700e0e23e68b6d72c623"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 432128,
+        "length_bytes": 2048,
+        "time_ns": 211000000,
+        "sha256": "0ee29b51f1a93581c2646a0e6206e11b70a4ca93af5a5654c4aae74a9c6bde36"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 434176,
+        "length_bytes": 2048,
+        "time_ns": 212000000,
+        "sha256": "289d34a9799b4f05176be62a6c94f0329ce4d812948d0618edd8abb4b9a3ba6e"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 436224,
+        "length_bytes": 2048,
+        "time_ns": 213000000,
+        "sha256": "fd6c3dd782eeb15d79b6b5cec952b1d3cbfce294c3f0fe187690145a6dfff71a"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 438272,
+        "length_bytes": 2048,
+        "time_ns": 214000000,
+        "sha256": "183694f9314ef73c7f099c8cacdd57f832cd4c0b2d0c07f8f4579306c6609f90"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 440320,
+        "length_bytes": 2048,
+        "time_ns": 215000000,
+        "sha256": "52a5457afc8c321fab4d401f6017d8a4eaa6669d74e0ff5544e0e27401a2f6f1"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 442368,
+        "length_bytes": 2048,
+        "time_ns": 216000000,
+        "sha256": "95aa0d0ca2bfe71ff75453bd98ca1dd2876e8657d271f6bfa68f6f98a0b4528c"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 444416,
+        "length_bytes": 2048,
+        "time_ns": 217000000,
+        "sha256": "9c1b883046771f303889476e80d450296b1a21008eb540a09c8accf2a1e137b3"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 446464,
+        "length_bytes": 2048,
+        "time_ns": 218000000,
+        "sha256": "78f47d6935673b5f9fe6e3ab4076d0a024c9f14bb4149750fd7adac534cdfffc"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 448512,
+        "length_bytes": 2048,
+        "time_ns": 219000000,
+        "sha256": "6b6d0285bbda5b2ff5d21327de646cbfbf10b1615cbfd9e992ea506d1d8785f9"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 450560,
+        "length_bytes": 2048,
+        "time_ns": 220000000,
+        "sha256": "1c4220d39940b193004b7dccafc64790d00e6bb29a5ce5577e438a2e03d35b05"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 452608,
+        "length_bytes": 2048,
+        "time_ns": 221000000,
+        "sha256": "9fefb55bc1df436d057be683a7579c76097d27eb4500a65e3210ce0ddbab93e5"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 454656,
+        "length_bytes": 2048,
+        "time_ns": 222000000,
+        "sha256": "fce32baf1dce7f76c2f366ebb7c4f980b26913048b1f74ea4817831e2d3b9d5c"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 456704,
+        "length_bytes": 2048,
+        "time_ns": 223000000,
+        "sha256": "9ca9903bfb30e588d66652320c887a3295cd9b2d09df8ea4a56b6cdb4ad88632"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 458752,
+        "length_bytes": 2048,
+        "time_ns": 224000000,
+        "sha256": "296b184887b3dd4c5f1b1e43022ee8e45077c10b5cac7b0a7d57b7a86fd26ac3"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 460800,
+        "length_bytes": 2048,
+        "time_ns": 225000000,
+        "sha256": "b2d71a542a086b5c01da23ffcfdc814d60fb152ec62f28d5206ad660b8e787ca"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 462848,
+        "length_bytes": 2048,
+        "time_ns": 226000000,
+        "sha256": "60541ed8f2f65d80dbfeb9fbf0dbe7189814b1baf918e8ac6222ac9c40b62c86"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 464896,
+        "length_bytes": 2048,
+        "time_ns": 227000000,
+        "sha256": "c4163e3ba222efce95602fd15b4d26692f7d62974fd28ded0836ea05bea3fdc4"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 466944,
+        "length_bytes": 2048,
+        "time_ns": 228000000,
+        "sha256": "f3f5b07f26344aa9dff3e01fdf8e0a7d7973aa068a951c8ac98a80c2d42dd191"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 468992,
+        "length_bytes": 2048,
+        "time_ns": 229000000,
+        "sha256": "41205347d850a73a94df09f9a5e6a038f56afd75bca14a6f4293528c65ca5c2f"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 471040,
+        "length_bytes": 2048,
+        "time_ns": 230000000,
+        "sha256": "2aff8f5f9966c15de05130fc4488a98080c1e98432ed0fd7ddc3dffce36851d8"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 473088,
+        "length_bytes": 2048,
+        "time_ns": 231000000,
+        "sha256": "4223f3b84fca227443b4f5c70b6a09f0a15efd3e9bbac24a281eb6fd9874f56a"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 475136,
+        "length_bytes": 2048,
+        "time_ns": 232000000,
+        "sha256": "16447158683e7dc56bf5ce73d1dbc58d375c6ea4b962499950499bc7b7b1576b"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 477184,
+        "length_bytes": 2048,
+        "time_ns": 233000000,
+        "sha256": "c009bb3763c808bb3f0f3f80f8f274cd79b0e666fb982989a0f5ec614a0f9453"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 479232,
+        "length_bytes": 2048,
+        "time_ns": 234000000,
+        "sha256": "31624337f209d6baa5fb09fcb5fd55d704a8bdb5a262c830fcb746ddb25e8a0e"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 481280,
+        "length_bytes": 2048,
+        "time_ns": 235000000,
+        "sha256": "500eb24dfe7ae8693c800f05fff79d0581412c9dcd52005d339bcd129b7e595b"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 483328,
+        "length_bytes": 2048,
+        "time_ns": 236000000,
+        "sha256": "da8320d467aacd8b421493a9caed85595c0f4c3dd9eb582734010a9f4fe15918"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 485376,
+        "length_bytes": 2048,
+        "time_ns": 237000000,
+        "sha256": "f4cacdf4b65e5f28955747f39334a80265b2e3b52b6e3712fdddbbf054587be3"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 487424,
+        "length_bytes": 2048,
+        "time_ns": 238000000,
+        "sha256": "ef477d30da4e068dcf095d9acc552a46234a18ec3986c4bfc03c51ed42dfd862"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 489472,
+        "length_bytes": 2048,
+        "time_ns": 239000000,
+        "sha256": "c7ec53b0af12dc4162a7487250466d16b0272a30397bfa34404dfd8640a512e7"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 491520,
+        "length_bytes": 2048,
+        "time_ns": 240000000,
+        "sha256": "de3e003c908f6fcdef3c04bfa867bebe46ed92480b467d2a2d3c830b22635080"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 493568,
+        "length_bytes": 2048,
+        "time_ns": 241000000,
+        "sha256": "387688950518ca1a4b40f1c8bc7c6244f3d43ddf7db4d50eef330b9e80ab3947"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 495616,
+        "length_bytes": 2048,
+        "time_ns": 242000000,
+        "sha256": "c3c772e3ded9bba939aebe1b55fc8c424b683225280f0f9921415db1ea3b6551"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 497664,
+        "length_bytes": 2048,
+        "time_ns": 243000000,
+        "sha256": "3f45ae9409aceb0c67bef6f9519c089993c532c410e053b1ac96af5ec3345787"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 499712,
+        "length_bytes": 2048,
+        "time_ns": 244000000,
+        "sha256": "4bb104a04bdec0b8fe22feb45e59e66b5506c80d0585e55b9be355342441a452"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 501760,
+        "length_bytes": 2048,
+        "time_ns": 245000000,
+        "sha256": "aaaf809972b4deb07b0475b3d628f76fbf8cacf4124df9f56ce81bee11454882"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 503808,
+        "length_bytes": 2048,
+        "time_ns": 246000000,
+        "sha256": "b4b6962a3011ff8c041942f4403cfec80022c2a08bdede06a606f376b80f862c"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 505856,
+        "length_bytes": 2048,
+        "time_ns": 247000000,
+        "sha256": "b63cd564af2b0978ebc409a4e739970f90076f661b00cd1658d2745db422bee3"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 507904,
+        "length_bytes": 2048,
+        "time_ns": 248000000,
+        "sha256": "4b55dace03fc8d45e734a8b294e9d61a205c2e82bc9b7197cba8eb985f789c3a"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 509952,
+        "length_bytes": 2048,
+        "time_ns": 249000000,
+        "sha256": "263c5bfa3384018be7b6e0dc2e56c327de37d593f3201ca8b0cc67903735a211"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 512000,
+        "length_bytes": 2048,
+        "time_ns": 250000000,
+        "sha256": "763f9540d6f2ac404cbdd351c6c2e3f6376fb1368a0738e8ce76dd5125ed2fdc"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 514048,
+        "length_bytes": 2048,
+        "time_ns": 251000000,
+        "sha256": "22b0f8289ee47fa1e47eaa4f179af06fdfedbdbb68611993a86ac1c8f9d3e585"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 516096,
+        "length_bytes": 2048,
+        "time_ns": 252000000,
+        "sha256": "8728a6874ec11bcc39db292282c36e0a1d8a0b988a262df1935c29674770eee2"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 518144,
+        "length_bytes": 2048,
+        "time_ns": 253000000,
+        "sha256": "bb53e117ff4ee9cc42d8d9859b98550b186dffe9255f2938f98a1b6e29e72480"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 520192,
+        "length_bytes": 2048,
+        "time_ns": 254000000,
+        "sha256": "2943e89b85a1fd19977b2be994b836bf1f8541cd0ef35833e6b720e02d8fd75a"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 522240,
+        "length_bytes": 2048,
+        "time_ns": 255000000,
+        "sha256": "337f2ad6d5a40149fec5f832f41bee62c845dad5573997fe210f880046e85168"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 524288,
+        "length_bytes": 2048,
+        "time_ns": 256000000,
+        "sha256": "ce58ef374f783d06ce87f82d27be91368d993d35e2c8028bdb509c382d3f08c8"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 526336,
+        "length_bytes": 2048,
+        "time_ns": 257000000,
+        "sha256": "dda19388f6e9dee0b31e3c108ddf04ea4299957d460cfe0fc280d15e9690461a"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 528384,
+        "length_bytes": 2048,
+        "time_ns": 258000000,
+        "sha256": "b7274c2670be97d7be4a39106c3bcbc8a848547cb155f18b9a114e84099660b3"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 530432,
+        "length_bytes": 2048,
+        "time_ns": 259000000,
+        "sha256": "f8fcc0fdef9c37c40b636cc1a789048fd93f854ea15bd56d2a0a4f2ca18888c9"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 532480,
+        "length_bytes": 2048,
+        "time_ns": 260000000,
+        "sha256": "261ec815adb64db3887fc1f4cb3bb4f54321ff77f87170973c66d276929fdb54"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 534528,
+        "length_bytes": 2048,
+        "time_ns": 261000000,
+        "sha256": "95f83c88dffdaacaa2d6f733cc6e7c2ed200b0c4274cc6cda1f475a0ab47a853"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 536576,
+        "length_bytes": 2048,
+        "time_ns": 262000000,
+        "sha256": "700bf6c66c6addf0362a632522cc52266c778c964dc973a0a6336639dbdb0ca9"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 538624,
+        "length_bytes": 2048,
+        "time_ns": 263000000,
+        "sha256": "20437967b9954458f0e0a5c1a1c868acc5ff4c94e76983fdfdb3109c82ba754b"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 540672,
+        "length_bytes": 2048,
+        "time_ns": 264000000,
+        "sha256": "026e2a18e39a2a49f4cd2748716080c9e72e1fd286357c571cce63c7e3dfb83a"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 542720,
+        "length_bytes": 2048,
+        "time_ns": 265000000,
+        "sha256": "84f4b6aed0bc0d8f6eee6b376a8d2b10339d2f9d8d918ae9c43c4b6fdcb7fff6"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 544768,
+        "length_bytes": 2048,
+        "time_ns": 266000000,
+        "sha256": "5caadd09249920a6ed43dbe765b9badef33151c176c1cdf77cbb52c26150fa82"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 546816,
+        "length_bytes": 2048,
+        "time_ns": 267000000,
+        "sha256": "59a24ae34618c0bf771e1bf08c3c5bf2065fe8d426bac9aefa5b35b4df6b1032"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 548864,
+        "length_bytes": 2048,
+        "time_ns": 268000000,
+        "sha256": "df249f3aef15ca106a8ceea4799204271c568ae743694ada6c83725f20de4e94"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 550912,
+        "length_bytes": 2048,
+        "time_ns": 269000000,
+        "sha256": "20a868f0730431bf708dc54b739b0363ea4b963d2708bd0b90e9a03aeb95fa8c"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 552960,
+        "length_bytes": 2048,
+        "time_ns": 270000000,
+        "sha256": "a346cb9f91b9095e5c25cd868fad4fbc98cfb383234390130db400d6a7235641"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 555008,
+        "length_bytes": 2048,
+        "time_ns": 271000000,
+        "sha256": "928222351bfbad4c7a888b31710c42bda27b7ac5a81a8290cc49339aab563752"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 557056,
+        "length_bytes": 2048,
+        "time_ns": 272000000,
+        "sha256": "aa758d3042cf309d09ff68931ddbf4e9876fd46e3224af68201ad1dfb4a1a375"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 559104,
+        "length_bytes": 2048,
+        "time_ns": 273000000,
+        "sha256": "2c22073237605fc85fe9596a737274f941050f48fc1ebb5db56578e0f3531091"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 561152,
+        "length_bytes": 2048,
+        "time_ns": 274000000,
+        "sha256": "98c3e39c99b94e84716866fa37f7ea93f848fab6dab406de677aff821f1f1bf6"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 563200,
+        "length_bytes": 2048,
+        "time_ns": 275000000,
+        "sha256": "402e57f30cfb3624de1bbcf2d344dd873320c288b30ca6888f7a27d903cb965c"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 565248,
+        "length_bytes": 2048,
+        "time_ns": 276000000,
+        "sha256": "60bcc29bd5f7cdb6941819b0e13bd095536d57cc141d4f6927f66311e8669150"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 567296,
+        "length_bytes": 2048,
+        "time_ns": 277000000,
+        "sha256": "7321c2d3aaa971077554717028522ccdaebcee4086038a0c7119c305bbe3516c"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 569344,
+        "length_bytes": 2048,
+        "time_ns": 278000000,
+        "sha256": "211d0961febd0c8c7a775f28708340d86698fb44ceaefe88be2e5c7420476a6b"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 571392,
+        "length_bytes": 2048,
+        "time_ns": 279000000,
+        "sha256": "557245872b202c01ec97c63f6bb7fdd19334bda106e5046c5a5325006bd345da"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 573440,
+        "length_bytes": 2048,
+        "time_ns": 280000000,
+        "sha256": "72535ef49d00525e109cd1a45094eef82a7a5643974b1d4b971fd1c533ceeab1"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 575488,
+        "length_bytes": 2048,
+        "time_ns": 281000000,
+        "sha256": "6251d0856774b3c866201d1bdff97e2e03919c8b1ba5754a16e3923f8d0406bf"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 577536,
+        "length_bytes": 2048,
+        "time_ns": 282000000,
+        "sha256": "e4e1a36d7093cdad1fda6679eb60dc3c36cc2affa1185b7c406651f8faa21cbd"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 579584,
+        "length_bytes": 2048,
+        "time_ns": 283000000,
+        "sha256": "8151342020632fda8337cd29aa6759260ffad3d4e695d6f830baea3ff3955f1d"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 581632,
+        "length_bytes": 2048,
+        "time_ns": 284000000,
+        "sha256": "8fa9b95249616c36019097c988e6f12abc3f481283c4f0741c9c37c7e28a72fc"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 583680,
+        "length_bytes": 2048,
+        "time_ns": 285000000,
+        "sha256": "6d0f479164a8fbdf3470af163a5c5e85d3976d749d4c89c9542be1dc81af09fb"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 585728,
+        "length_bytes": 2048,
+        "time_ns": 286000000,
+        "sha256": "a92154617b2d9ccd68ec5f76c001e7b9af525fc38ece0edba42f79b308d03063"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 587776,
+        "length_bytes": 2048,
+        "time_ns": 287000000,
+        "sha256": "8134aaf502a0fd7002d18a6587f4a2c56b20d579eba2038d3888912f94a9f9c2"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 589824,
+        "length_bytes": 2048,
+        "time_ns": 288000000,
+        "sha256": "0d02e48b9b0166ca743bfe8bb196d9825315e1e3d2cfbf83c7ad9e6444597ea8"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 591872,
+        "length_bytes": 2048,
+        "time_ns": 289000000,
+        "sha256": "64515527de35e2dd141e783bfae559688231c4f01af5a0cabb05ba6529a43674"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 593920,
+        "length_bytes": 2048,
+        "time_ns": 290000000,
+        "sha256": "a91ebe83e40e22ba9ae73e27b60468644dd1c99aaead18269220131e386bb6a4"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 595968,
+        "length_bytes": 2048,
+        "time_ns": 291000000,
+        "sha256": "522bafea4ed4f44b94fac5377eb7f4bfda8d1187057d2015e8e4db02ad0cb2d0"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 598016,
+        "length_bytes": 2048,
+        "time_ns": 292000000,
+        "sha256": "5f67af3b6b9611d5378c2676933becec2562f27f170c7547a56b2af20358be96"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 600064,
+        "length_bytes": 2048,
+        "time_ns": 293000000,
+        "sha256": "1c8a03338cb38a85a5d5996ceea68e8fc7eda633b5ee6c6933643cce4c116557"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 602112,
+        "length_bytes": 2048,
+        "time_ns": 294000000,
+        "sha256": "dd8fceae364095eb628151606f60f60545ad1d33d1325881107f479ac0398511"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 604160,
+        "length_bytes": 2048,
+        "time_ns": 295000000,
+        "sha256": "b337c81d74691680826924490a45165b215d8296c868b29ce185efe6dde52c6a"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 606208,
+        "length_bytes": 2048,
+        "time_ns": 296000000,
+        "sha256": "8fa6ff61d21a34559c696ebe78777af3e4e1660adc2b859648c3c4d523194423"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 608256,
+        "length_bytes": 2048,
+        "time_ns": 297000000,
+        "sha256": "7b80f9f1d09c4c15226a20b92e5dc29ae35d77722e747afda6938ae8f9441f45"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 610304,
+        "length_bytes": 2048,
+        "time_ns": 298000000,
+        "sha256": "2c47c15dfdad46175a657034daf7c2dc7d84cada10cb46f905beee7448fd3dc8"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 612352,
+        "length_bytes": 2048,
+        "time_ns": 299000000,
+        "sha256": "ef8d9536b05e0dfca6cf11d091a2589f0238947e52f3b461e766bcad9f399610"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 614400,
+        "length_bytes": 2048,
+        "time_ns": 300000000,
+        "sha256": "edd0ab70906df6ff930eedb7ce5a7dcb580a9a5cb737676b929caa881fa3d0fe"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 616448,
+        "length_bytes": 2048,
+        "time_ns": 301000000,
+        "sha256": "50b3c377e722756d2ae5f5c3436f70cafd6783e1917e017de364b5c521ebaa63"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 618496,
+        "length_bytes": 2048,
+        "time_ns": 302000000,
+        "sha256": "ffd7d80b50e9d27a9be955a676cbad7aac07335f5fb688aa060f87f99bc812dd"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 620544,
+        "length_bytes": 2048,
+        "time_ns": 303000000,
+        "sha256": "60725c37905117e80b6aedca98481e65acf5b73e6344ea735c8f1daee7c8a36f"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 622592,
+        "length_bytes": 2048,
+        "time_ns": 304000000,
+        "sha256": "07c58b324a44eb5b9c68d6bca06ead07eababc36a5a3d9597d608b84ca0bb875"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 624640,
+        "length_bytes": 2048,
+        "time_ns": 305000000,
+        "sha256": "8b06018b418b735d46598f816d50bc5befd8953f5369262023ca7885724b9f46"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 626688,
+        "length_bytes": 2048,
+        "time_ns": 306000000,
+        "sha256": "568866b0128f2afe2ef406d020c9ee8def5565a53d521b7138f7bb9fae91cd9c"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 628736,
+        "length_bytes": 2048,
+        "time_ns": 307000000,
+        "sha256": "c6db74e5a7d6b69833c7d9634b49628fb27bc87fa5fbbf441628e58c7d695d26"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 630784,
+        "length_bytes": 2048,
+        "time_ns": 308000000,
+        "sha256": "e0420036831ae0d250352f90962999d094458c05dd520ed9f9a30ffeadfbeb90"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 632832,
+        "length_bytes": 2048,
+        "time_ns": 309000000,
+        "sha256": "6ebf3670ad6adecdf5104b5faa571bbef999f017924fbf92dd516d85397ba432"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 634880,
+        "length_bytes": 2048,
+        "time_ns": 310000000,
+        "sha256": "95dc893d95b99cae3df8a84f0d31cf795cc76f9866571ffa65aa4b16b8418a23"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 636928,
+        "length_bytes": 2048,
+        "time_ns": 311000000,
+        "sha256": "b9605dc928755fe267ac0db8c178b9cb0460a261391c22012486f048d3d81f06"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 638976,
+        "length_bytes": 2048,
+        "time_ns": 312000000,
+        "sha256": "5d37efcb9898408951b689ad31683bcc86a7cbd0a978e84bfffd86784e041670"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 641024,
+        "length_bytes": 2048,
+        "time_ns": 313000000,
+        "sha256": "02a8c43c979b288e93996314252223694a89891287769c6def9388d7fa4a6bbb"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 643072,
+        "length_bytes": 2048,
+        "time_ns": 314000000,
+        "sha256": "db9796b80419ac07881ac12de8d0fb716c56c6bbc05a840e2975c0fe1a30982e"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 645120,
+        "length_bytes": 2048,
+        "time_ns": 315000000,
+        "sha256": "bfe77ef79caf38a33d4fc53c7332b8f39b350b95c433cfac0229db27fe6d6e31"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 647168,
+        "length_bytes": 2048,
+        "time_ns": 316000000,
+        "sha256": "0289473772bf0bf8e5e5b65957138d0cfa1f200a98867b6ed2fee2662d048d3d"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 649216,
+        "length_bytes": 2048,
+        "time_ns": 317000000,
+        "sha256": "9c1197bb394ce98388721b99340500e734c3fa26957f85da63ab74b3295af7e2"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 651264,
+        "length_bytes": 2048,
+        "time_ns": 318000000,
+        "sha256": "20bb478bbcc6becab2fc34c31601b900a7b0f1b56698083a5c3b03a5e0942407"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 653312,
+        "length_bytes": 2048,
+        "time_ns": 319000000,
+        "sha256": "ecebc9b3cf99ac5948bc8a881a0897eee63b82ca492cbd41f50e463d38a02b7f"
+      },
+      {
+        "file": "intensity.f32",
+        "offset_bytes": 655360,
+        "length_bytes": 2048,
+        "time_ns": 320000000,
+        "sha256": "457f38e78203a5922031774ec1ea6a29e144a77ec1ce14723bee383afbc998c2"
+      }
+    ],
+    "sample_count": 321,
+    "skipped_scheduled_samples": 0,
+    "unobserved_between_sample_changes": "not generally bounded; compare declared fixture truth"
+  },
+  "lifecycle": {
+    "records": [
+      {
+        "time_ns": 0,
+        "kind": "new-stream",
+        "stream_id": "viewer-nonideal"
+      }
+    ],
+    "reset_policy": "finish prior interval, then initialize reference/filter without events; retain threshold map and cumulative run counters",
+    "new_stream_policy": "new sensor state and counters; seed regenerates threshold map; caller supplies stream_id and epoch"
+  },
+  "stages": {
+    "sensor_candidates": 1526,
+    "pixel_emitted": 1526,
+    "refractory_suppressed": 0,
+    "readout": "not modeled",
+    "capture_stored": 1526,
+    "capture_overflow": 0,
+    "candidate_resource_guard": "abort run on limit; no truncated successful run",
+    "complete_relative_to_pixel_emissions": true,
+    "complete_relative_to_physical_camera": "not claimed"
+  },
+  "captures": {
+    "events": {
+      "schema": "event-lab-capture-v1",
+      "stage": "pixel-emitted",
+      "file": "events.csv",
+      "width": 32,
+      "height": 16,
+      "epoch_ns": "0",
+      "duration_ns": 320000000,
+      "stream_id": "viewer-nonideal",
+      "input_count": 1526,
+      "stored_count": 1526,
+      "capacity": 1000000,
+      "overflow_count": 0,
+      "complete_relative_to_stage_input": true,
+      "overflow_policy": "drop-newest; sensor generation continues",
+      "timestamp": "signed int64 nanoseconds; integer epoch + rounded run-relative ns",
+      "quantization": "nearest ties-to-even; at most 0.5 ns plus binary64 solver roundoff",
+      "ordering": "unquantized (t,y,x,p), stable ties; sequence preserves order after quantization",
+      "polarity": {
+        "on": 1,
+        "off": -1
+      },
+      "sha256": "c41903c0dabea0dc77050608bda85cffd4af01b1d0867119abcae702ce6c4cfe"
+    },
+    "candidates": {
+      "schema": "event-lab-capture-v1",
+      "stage": "sensor-candidate",
+      "file": "candidates.csv",
+      "width": 32,
+      "height": 16,
+      "epoch_ns": "0",
+      "duration_ns": 320000000,
+      "stream_id": "viewer-nonideal",
+      "input_count": 1526,
+      "stored_count": 1526,
+      "capacity": 1526,
+      "overflow_count": 0,
+      "complete_relative_to_stage_input": true,
+      "overflow_policy": "drop-newest; sensor generation continues",
+      "timestamp": "signed int64 nanoseconds; integer epoch + rounded run-relative ns",
+      "quantization": "nearest ties-to-even; at most 0.5 ns plus binary64 solver roundoff",
+      "ordering": "unquantized (t,y,x,p), stable ties; sequence preserves order after quantization",
+      "polarity": {
+        "on": 1,
+        "off": -1
+      },
+      "sha256": "c41903c0dabea0dc77050608bda85cffd4af01b1d0867119abcae702ce6c4cfe"
+    },
+    "truth": {
+      "schema": "event-lab-capture-v1",
+      "stage": "ideal-optical-truth",
+      "file": "truth.csv",
+      "width": 32,
+      "height": 16,
+      "epoch_ns": "0",
+      "duration_ns": 320000000,
+      "stream_id": "viewer-nonideal",
+      "input_count": 1536,
+      "stored_count": 1536,
+      "capacity": 1536,
+      "overflow_count": 0,
+      "complete_relative_to_stage_input": true,
+      "overflow_policy": "drop-newest; sensor generation continues",
+      "timestamp": "signed int64 nanoseconds; integer epoch + rounded run-relative ns",
+      "quantization": "nearest ties-to-even; at most 0.5 ns plus binary64 solver roundoff",
+      "ordering": "unquantized (t,y,x,p), stable ties; sequence preserves order after quantization",
+      "polarity": {
+        "on": 1,
+        "off": -1
+      },
+      "sha256": "35c95c38abbbd86919e32baca8a03a7744b93e908f37709c31d939b17f61e0f9"
+    }
+  },
+  "comparison": {
+    "reference": "same optical fixture, exact area and continuous trajectory, nominal ideal thresholds, same reset schedule",
+    "gate_ns": 2000000,
+    "pixel_emitted_vs_ideal_truth": {
+      "reference_events": 1536,
+      "observed_events": 1526,
+      "reference_on": 1536,
+      "observed_on": 1526,
+      "matched": 1144,
+      "missing": 392,
+      "extra": 382,
+      "abs_error_median_s": 0.0011054441746057714,
+      "abs_error_p95_s": 0.001973064428142074,
+      "abs_error_max_s": 0.0019999238058916943,
+      "signed_error_mean_s": 0.00023686233440950726
+    },
+    "stored_vs_ideal_truth": {
+      "reference_events": 1536,
+      "observed_events": 1526,
+      "reference_on": 1536,
+      "observed_on": 1526,
+      "matched": 1144,
+      "missing": 392,
+      "extra": 382,
+      "abs_error_median_s": 0.0011054440039050678,
+      "abs_error_p95_s": 0.0019730644183983403,
+      "abs_error_max_s": 0.0019999240235873197,
+      "signed_error_mean_s": 0.0002368623421332678
+    }
+  },
+  "limits": [
+    "generic mathematical profiles, no camera calibration",
+    "no noise process, leak or readout arbiter",
+    "held nonideal input is a sampling approximation",
+    "analytic edge and finite-rise pulse only",
+    "offline CPU run, no realtime performance claim",
+    "viewer is event accumulation, not intensity reconstruction"
+  ]
+}

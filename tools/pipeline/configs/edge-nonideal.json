@@ -1,0 +1,8 @@
+{
+  "schema": "event-lab-pipeline-v1",
+  "profile_name": "edge-generic-held-v1",
+  "stream_id": "edge-nonideal",
+  "trajectory": "held",
+  "sensor": "generic-nonideal",
+  "sample_period_ns": 1000000
+}

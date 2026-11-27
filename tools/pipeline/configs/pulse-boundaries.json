@@ -1,0 +1,11 @@
+{
+  "schema": "event-lab-pipeline-v1",
+  "profile_name": "pulse-known-boundaries-v1",
+  "stream_id": "pulse-boundaries",
+  "scene": "pulse",
+  "width": 8,
+  "height": 8,
+  "duration_ns": 10000000,
+  "sample_period_ns": 10000000,
+  "sampling": "known-boundaries"
+}

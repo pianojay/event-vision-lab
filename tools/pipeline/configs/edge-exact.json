@@ -1,0 +1,6 @@
+{
+  "schema": "event-lab-pipeline-v1",
+  "profile_name": "edge-ideal-exact-v1",
+  "stream_id": "edge-exact",
+  "trajectory": "exact"
+}

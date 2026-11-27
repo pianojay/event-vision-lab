@@ -1,0 +1,5 @@
+{
+  "schema": "event-lab-pipeline-v1",
+  "profile_name": "edge-ideal-log-linear-v1",
+  "stream_id": "edge-demo"
+}

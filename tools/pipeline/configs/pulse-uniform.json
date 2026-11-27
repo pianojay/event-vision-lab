@@ -1,0 +1,10 @@
+{
+  "schema": "event-lab-pipeline-v1",
+  "profile_name": "pulse-missed-uniform-v1",
+  "stream_id": "pulse-uniform",
+  "scene": "pulse",
+  "width": 8,
+  "height": 8,
+  "duration_ns": 10000000,
+  "sample_period_ns": 10000000
+}
