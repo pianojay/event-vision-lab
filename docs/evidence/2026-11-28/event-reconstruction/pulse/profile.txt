@@ -1,0 +1,15 @@
+         61 function calls in 0.000 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        5    0.000    0.000    0.000    0.000 C:\Users\piano\.codex\worktrees\5219\Event Game\tools\reconstruction\contrast_integrator.py:42(snapshot)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+       10    0.000    0.000    0.000    0.000 {built-in method builtins.sum}
+       15    0.000    0.000    0.000    0.000 {built-in method builtins.max}
+       10    0.000    0.000    0.000    0.000 C:\Users\piano\.codex\worktrees\5219\Event Game\tools\reconstruction\contrast_integrator.py:60(<genexpr>)
+       10    0.000    0.000    0.000    0.000 C:\Users\piano\.codex\worktrees\5219\Event Game\tools\reconstruction\contrast_integrator.py:65(<genexpr>)
+        5    0.000    0.000    0.000    0.000 {built-in method math.exp}
+        5    0.000    0.000    0.000    0.000 {built-in method builtins.min}
+
+

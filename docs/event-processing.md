@@ -24,7 +24,7 @@ Run the existing replay launcher with a pipeline manifest. The replay window sho
 
 Every processing change recomputes captured history at the current cursor. It does not reset the sensor or change source rows. Numeric text fields own their input. Modified or repeated shortcut presses do not cycle tools.
 
-**Save settings** writes processing parameters to the displayed JSON path. **Load settings** validates that file and retains current settings if validation fails. The default path is Godot's `user://event-processing.json`. `--processing-config=<path>` selects a startup file. The saved JSON is also accepted by the Python CLI. Playback rate and polarity colors are display-session settings.
+**Save settings** writes processing parameters to the displayed JSON path. **Load settings** validates that file and retains current settings if validation fails. The default path is Godot's `user://event-processing.json`. `--processing-config=<path>` selects a startup file. The saved JSON is also accepted by the Python CLI. Playback rate and polarity colors are display-session settings. Reconstruction settings use a companion file described in [the reconstruction guide](event-reconstruction.md).
 
 ```powershell
 python -B tools/processing/event_processor.py --manifest docs/evidence/2026-11-28/pipeline-prototype/runs/viewer-demo/manifest.json --config docs/evidence/2026-11-28/event-toolkit/replay-controls.json.settings.json --cursor-ns 160000000 --output runs/processed.json

@@ -25,6 +25,18 @@ class ReplayKeyboard extends Node:
 				get_viewport().set_input_as_handled()
 
 const Processor = preload("res://processing/event_processor.gd")
+const Reconstructor = preload("res://processing/contrast_integrator.gd")
+
+var reconstructor = Reconstructor.new()
+var reconstruction_enabled := false
+var initial_reconstruction_enabled := false
+var reconstruction_image: Image
+var reconstruction_texture: ImageTexture
+var reconstruction_view: VBoxContainer
+var reconstruction_toggle: CheckBox
+var reconstruction_status: Label
+var reconstruction_controls: Dictionary = {}
+var reconstruction_snapshot: Dictionary = {}
 
 var processor = Processor.new()
 var raw_processor = Processor.new()
@@ -83,6 +95,8 @@ func _initialize() -> void:
 			report_path = arg.trim_prefix("--report=")
 		elif arg.begins_with("--processing-config="):
 			settings_path = arg.trim_prefix("--processing-config=")
+		elif arg == "--reconstruct":
+			initial_reconstruction_enabled = true
 		elif arg == "--verify":
 			verify = true
 	if manifest_path.is_empty():
@@ -172,6 +186,12 @@ func _initialize() -> void:
 	processor.consume(events)
 	raw_processor.configure(processor.config, Vector2i(width, height))
 	raw_processor.consume(events)
+	var sensor_parameters: Dictionary = manifest["effective_config"].get("sensor_parameters", manifest["effective_config"])
+	reconstructor.configure({"on_threshold": sensor_parameters.get("on_threshold", 0.2), "off_threshold": sensor_parameters.get("off_threshold", 0.2)}, Vector2i(width, height))
+	reconstructor.consume(events)
+	reconstruction_image = Image.create(width, height, false, Image.FORMAT_RGB8)
+	reconstruction_image.fill(Color(0.5, 0.5, 0.5))
+	reconstruction_texture = ImageTexture.create_from_image(reconstruction_image)
 	raw_image = Image.create(width, height, false, Image.FORMAT_RGB8)
 	raw_image.fill(Color.BLACK)
 	raw_texture = ImageTexture.create_from_image(raw_image)
@@ -196,11 +216,14 @@ func _initialize() -> void:
 	details.text = "%s | %s sensor | %s trajectory\nPixel-emitted capture. Post-event ROI → binning → polarity → temporal view. Controls retain sensor and raw capture state.\nStored %d / emitted %d | capture loss %d | refractory suppression %d | readout not modeled" % [config["profile_name"], config["sensor"], config["trajectory"], events.size(), meta["input_count"], meta["overflow_count"], manifest["stages"]["refractory_suppressed"]]
 	panel.add_child(details)
 	build_processing_controls(panel)
+	build_reconstruction_controls(panel)
 	var views := HBoxContainer.new()
 	views.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	panel.add_child(views)
 	add_event_view(views, "Raw full-frame event window", raw_texture)
 	add_event_view(views, "Processed events | ROI-local bins", texture)
+	reconstruction_view = add_event_view(views, "Inferred relative intensity", reconstruction_texture)
+	reconstruction_view.visible = reconstruction_enabled
 	status = Label.new()
 	panel.add_child(status)
 	scrub = HSlider.new()
@@ -238,6 +261,9 @@ func _initialize() -> void:
 	root.add_child(keyboard)
 	if FileAccess.file_exists(settings_path):
 		load_processing_settings()
+	if initial_reconstruction_enabled:
+		reconstruction_toggle.set_pressed_no_signal(true)
+		set_reconstruction_enabled(true)
 	if verify:
 		time_s = duration_s * 0.5
 		playing = false
@@ -268,6 +294,7 @@ func _process(delta: float) -> bool:
 	raw_processor.configure(raw_config, raw_image.get_size())
 	render_snapshot(raw_processor.snapshot(cursor_ns), raw_image, raw_config, polarity_color)
 	raw_texture.update(raw_image)
+	update_reconstruction(cursor_ns)
 	visible_events = processing_snapshot.visible_count
 	lit_pixels = 0
 	for index in processing_snapshot.on.size():
@@ -285,9 +312,14 @@ func finish_verification() -> void:
 	if not await verify_keyboard_controls():
 		fail("Routed replay keyboard behavior failed")
 		return
+	if not await verify_reconstruction_controls():
+		fail("Replay reconstruction controls failed")
+		return
 	if not await verify_processing_controls():
 		fail("Replay processing controls failed")
 		return
+	set_reconstruction_enabled(initial_reconstruction_enabled)
+	reconstruction_toggle.set_pressed_no_signal(initial_reconstruction_enabled)
 	time_s = duration_s * 0.5
 	playing = false
 	await process_frame
@@ -303,6 +335,7 @@ func finish_verification() -> void:
 		"reads_ground_truth_intensity": false, "screenshot_saved": not capture_path.is_empty() and screenshot_ok,
 		"control_checks": control_checks, "processing_config": processor.config,
 		"processing_snapshot": processing_snapshot,
+		"reconstruction_config": reconstructor.config, "reconstruction_enabled": reconstruction_enabled,
 		"renderer": RenderingServer.get_video_adapter_name(), "godot": Engine.get_version_info()["string"]}
 	if not report_path.is_empty():
 		var output := FileAccess.open(report_path, FileAccess.WRITE)
@@ -354,7 +387,7 @@ func verify_keyboard_controls() -> bool:
 			return false
 	return true
 
-func add_event_view(parent: Control, title: String, view_texture: ImageTexture) -> void:
+func add_event_view(parent: Control, title: String, view_texture: ImageTexture) -> VBoxContainer:
 	var column := VBoxContainer.new()
 	column.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	parent.add_child(column)
@@ -368,6 +401,7 @@ func add_event_view(parent: Control, title: String, view_texture: ImageTexture) 
 	view.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	view.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	column.add_child(view)
+	return column
 
 func build_processing_controls(panel: VBoxContainer) -> void:
 	var roi_row := HBoxContainer.new()
@@ -469,7 +503,12 @@ func save_processing_settings() -> void:
 		settings_status.text = "Could not save settings"
 		return
 	file.store_string(JSON.stringify(processor.config, "  ") + "\n")
-	settings_status.text = "Saved processing settings to " + settings_path
+	var reconstruction_file := FileAccess.open(settings_path + ".reconstruction.json", FileAccess.WRITE)
+	if reconstruction_file == null:
+		settings_status.text = "Processing saved; reconstruction settings could not be saved"
+		return
+	reconstruction_file.store_string(JSON.stringify({"config": reconstructor.config, "reset_ns": reconstructor.reset_ns, "enabled": reconstruction_enabled}, "  ") + "\n")
+	settings_status.text = "Saved processing and reconstruction settings to " + settings_path
 
 func load_processing_settings() -> void:
 	settings_path = settings_path_control.text
@@ -480,6 +519,7 @@ func load_processing_settings() -> void:
 	processor.configure(parsed, processor.sensor_size)
 	sync_processing_controls()
 	settings_status.text = "Loaded settings and recomputed captured history"
+	load_reconstruction_settings(settings_path + ".reconstruction.json")
 
 func valid_processing_settings(value: Variant) -> bool:
 	if not value is Dictionary:
@@ -572,6 +612,127 @@ func verify_processing_controls() -> bool:
 	processor.configure(original, processor.sensor_size)
 	sync_processing_controls()
 	speed = 0.1
+	for check in control_checks:
+		if not check.passed:
+			return false
+	return true
+
+func build_reconstruction_controls(panel: VBoxContainer) -> void:
+	var row := HBoxContainer.new()
+	panel.add_child(row)
+	reconstruction_toggle = CheckBox.new()
+	reconstruction_toggle.text = "Infer grayscale"
+	reconstruction_toggle.toggled.connect(set_reconstruction_enabled)
+	row.add_child(reconstruction_toggle)
+	for spec in [["initial_log_intensity", "Constant log prior"], ["on_threshold", "C ON"], ["off_threshold", "C OFF"]]:
+		var label := Label.new()
+		label.text = spec[1]
+		row.add_child(label)
+		var spin := SpinBox.new()
+		spin.min_value = -80 if spec[0] == "initial_log_intensity" else 0.000001
+		spin.max_value = 80
+		spin.step = 0.01 if spec[0] == "initial_log_intensity" else 0.000001
+		spin.value = reconstructor.config[spec[0]]
+		spin.custom_minimum_size.x = 100
+		spin.value_changed.connect(func(value): configure_reconstruction(spec[0], value))
+		reconstruction_controls[spec[0]] = spin
+		row.add_child(spin)
+	for from_start in [false, true]:
+		var button := Button.new()
+		button.text = "Warm from start" if from_start else "Reset prior here"
+		button.pressed.connect(func(): reset_reconstruction(-1 if from_start else roundi(time_s * 1e9)))
+		reconstruction_controls["warm" if from_start else "reset"] = button
+		row.add_child(button)
+	reconstruction_status = Label.new()
+	reconstruction_status.text = "Event-only inference. Constant prior, known thresholds, arbitrary intensity scale. Toggle retains reset and replays history."
+	panel.add_child(reconstruction_status)
+
+func configure_reconstruction(key: String, value: float) -> void:
+	var settings: Dictionary = reconstructor.config.duplicate(true)
+	settings[key] = value
+	reconstructor.configure(settings, processor.sensor_size)
+
+func set_reconstruction_enabled(value: bool) -> void:
+	reconstruction_enabled = value
+	if reconstruction_view != null:
+		reconstruction_view.visible = value
+
+func reset_reconstruction(cursor_ns: int) -> void:
+	reconstructor.reset(cursor_ns)
+	reconstructor.consume(events)
+
+func update_reconstruction(cursor_ns: int) -> void:
+	if not reconstruction_enabled:
+		return
+	reconstruction_snapshot = reconstructor.snapshot(cursor_ns)
+	for index in reconstruction_snapshot.relative_intensity.size():
+		var value: float = reconstruction_snapshot.relative_intensity[index]
+		var gray := value / (1.0 + value)
+		reconstruction_image.set_pixel(index % reconstruction_image.get_width(), index / reconstruction_image.get_width(), Color(gray, gray, gray))
+	reconstruction_texture.update(reconstruction_image)
+	reconstruction_status.text = "Inferred relative intensity | constant log prior %.3f | %d integrated events | %d observed pixels | reset %d ns | clipped %d | no truth input" % [reconstructor.config.initial_log_intensity, reconstruction_snapshot.integrated_count, reconstruction_snapshot.observed_pixels, reconstructor.reset_ns, reconstruction_snapshot.clipped_intensity_pixels]
+
+func load_reconstruction_settings(path: String) -> void:
+	if not FileAccess.file_exists(path):
+		return
+	var parsed = JSON.parse_string(FileAccess.get_file_as_string(path))
+	if not parsed is Dictionary or not parsed.get("config") is Dictionary or typeof(parsed.get("enabled")) != TYPE_BOOL:
+		settings_status.text = "Processing loaded; invalid reconstruction settings retained"
+		return
+	var settings: Dictionary = parsed.config
+	if settings.size() != 3:
+		settings_status.text = "Processing loaded; invalid reconstruction settings retained"
+		return
+	for key in ["initial_log_intensity", "on_threshold", "off_threshold"]:
+		if not settings.has(key) or typeof(settings[key]) not in [TYPE_INT, TYPE_FLOAT] or not is_finite(settings[key]) or abs(settings[key]) > 80 or (key != "initial_log_intensity" and settings[key] <= 0):
+			settings_status.text = "Processing loaded; invalid reconstruction settings retained"
+			return
+	var reset_time = parsed.get("reset_ns")
+	if typeof(reset_time) not in [TYPE_INT, TYPE_FLOAT] or not is_finite(reset_time) or floor(reset_time) != reset_time or reset_time < -1 or reset_time > roundi(duration_s * 1e9):
+		settings_status.text = "Processing loaded; invalid reconstruction reset retained"
+		return
+	reconstructor.configure(settings, processor.sensor_size)
+	reset_reconstruction(int(reset_time))
+	for key in settings:
+		reconstruction_controls[key].set_value_no_signal(settings[key])
+	reconstruction_toggle.set_pressed_no_signal(parsed.enabled)
+	set_reconstruction_enabled(parsed.enabled)
+
+func verify_reconstruction_controls() -> bool:
+	playing = false
+	var original: Dictionary = reconstructor.config.duplicate(true)
+	time_s = duration_s * 0.5
+	reconstruction_toggle.toggled.emit(true)
+	await process_frame
+	control_checks.append({"action": "Inference toggle shows independent relative-intensity view", "passed": reconstruction_view.visible and reconstruction_snapshot.get("reads_ground_truth") == false})
+	var reference: Dictionary = reconstructor.snapshot(roundi(time_s*1e9))
+	apply_processing("roi", [0, 0, 0, 0])
+	apply_processing("polarity", "off")
+	apply_processing("bin_size", 4)
+	await process_frame
+	control_checks.append({"action": "Inference ignores processed ROI bins and polarity", "passed": reconstruction_snapshot == reference})
+	reconstruction_toggle.toggled.emit(false)
+	time_s = duration_s
+	reconstruction_toggle.toggled.emit(true)
+	await process_frame
+	control_checks.append({"action": "Re-enable warms from retained raw history", "passed": reconstruction_snapshot.integrated_count == events.size()})
+	reconstruction_controls.reset.pressed.emit()
+	await process_frame
+	control_checks.append({"action": "Reset prior excludes all events through cursor", "passed": reconstruction_snapshot.integrated_count == 0 and reconstruction_snapshot.log_intensity.all(func(value): return value == reconstructor.config.initial_log_intensity)})
+	reconstruction_controls.warm.pressed.emit()
+	await process_frame
+	control_checks.append({"action": "Warm from start restores raw integration", "passed": reconstruction_snapshot.integrated_count == events.size()})
+	reconstruction_controls.on_threshold.value = 0.3
+	reconstruction_controls.off_threshold.value = 0.1
+	control_checks.append({"action": "Independent reconstruction thresholds", "passed": is_equal_approx(reconstructor.config.on_threshold, 0.3) and is_equal_approx(reconstructor.config.off_threshold, 0.1)})
+	reconstructor.configure(original, processor.sensor_size)
+	for key in original:
+		reconstruction_controls[key].set_value_no_signal(original[key])
+	set_reconstruction_enabled(false)
+	reconstruction_toggle.set_pressed_no_signal(false)
+	apply_processing("roi", [0, 0, processor.sensor_size.x, processor.sensor_size.y])
+	apply_processing("polarity", "both")
+	apply_processing("bin_size", 1)
 	for check in control_checks:
 		if not check.passed:
 			return false

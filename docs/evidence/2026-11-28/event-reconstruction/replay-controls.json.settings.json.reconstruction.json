@@ -1,0 +1,9 @@
+{
+  "config": {
+    "initial_log_intensity": 0.0,
+    "off_threshold": 0.2,
+    "on_threshold": 0.2
+  },
+  "enabled": false,
+  "reset_ns": -1
+}

@@ -113,6 +113,8 @@ def load_capture(manifest_path):
     if manifest.get('schema') != 'event-lab-pipeline-v1':
         raise ValueError("Unsupported pipeline manifest")
     meta = manifest['captures']['events']
+    if meta.get('stage') != 'pixel-emitted' or meta.get('file') != 'events.csv':
+        raise ValueError("Processing accepts only pixel-emitted events.csv")
     path = manifest_path.parent/meta['file']
     read_capture(path, meta)
     epoch = int(meta['epoch_ns'])
