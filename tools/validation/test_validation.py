@@ -138,6 +138,7 @@ class RuntimeEvidenceTests(unittest.TestCase):
         state = {key:0 for key in REQUIRED_COUNTERS}
         state.update(effective={"strobe_enabled":True},inference_cursor_ns=None)
         runtime = {"success":True,"stream_finalization":{"finalized":True},"measured_wall_seconds":600,
+                   "initial_layout":{"valid":True},"final_layout":{"valid":True},
                    "event_count":100,"sample_batches":2,"sample_service":{"count":2},"final_snapshot":state,
                    "actions":[{"requested":{"strobe_enabled":True}},{"key":"V","latency_usec":1000},
                               {"key":"R","latency_usec":1000}]}
@@ -150,6 +151,11 @@ class RuntimeEvidenceTests(unittest.TestCase):
         self.assertEqual(report["verdict"],"incomplete")
         self.assertIn("owned process image was not verified against the resolved engine", report["missing"])
         launcher["process_image"] = {"matches_resolved_engine":True}
+        runtime["final_layout"]["valid"] = False
+        report = assess(runtime,launcher,telemetry)
+        self.assertEqual(report["verdict"],"incomplete")
+        self.assertIn("full main scene layout was not verified",report["missing"])
+        runtime["final_layout"]["valid"] = True
         launcher["ac_power_all_samples"] = False
         self.assertEqual(assess(runtime,launcher,telemetry)["verdict"],"incomplete")
 

@@ -24,15 +24,19 @@ $godot = 'C:\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable_win64.exe'
 
 The runtime continues for the requested wall duration even if simulated time advances slowly. It requires event batches and emitted events. A scenario acknowledgement must contain every requested effective value. Scripted V and R events must change the selected observation and emit the reset signal, respectively, before a subsequent rendered-frame acknowledgement. An ignored reset fails the run.
 
+The runner instantiates the configured main scene, including `main.tscn`'s full-viewport anchors, and waits for layout and a rendered frame before warmup. It records logical viewport and panel rectangles before warmup and at the final measured draw. Every measured draw verifies the layout. The main observation must occupy at least 10% of the viewport and the sidebar at least 40% of its height. The observation, sidebar, selector, pause control, raw pane, and processed pane must be visible, have area, and fit inside the viewport. An enabled inference pane has the same requirements. These checks catch collapsed validation layouts; they do not define a new responsive product layout.
+
 At the wall limit, `validation_finish()` stops dispatch, drains the in-flight sample, and finalizes the streaming writer at its actual cursor. The report retains that finalization result and does not mark the configured one-hour simulation complete. Supplied sustained profiles disable recording; their stream can finalize without producing an event CSV archive.
 
 Use `runtime.jsonl`, `process.jsonl`, and `godot.log` to inspect progress without blocking on the whole run. Godot writes its engine output to `godot.log` through `--log-file`; the GUI executable can leave redirected `launcher.log` empty. The final files contain:
 
-- `runtime-report.json` records actual event/sample counts, wall and simulated duration, median/p95/p99 frame intervals, batch intervals, sample-dispatch service time, inference observation age, scenario acknowledgements, and effective stage settings.
+- `runtime-report.json` records actual event/sample counts, wall and simulated duration, median/p95/p99 frame intervals, batch intervals, sample-dispatch service time, inference observation age, scenario acknowledgements, effective stage settings, and `initial_layout`/`final_layout` panel rectangles.
 - `launcher.json` records source hashes and Git state, engine command and identity, actual process image, hardware/driver inventory, power scheme, sampled AC status, process outcome, and process-memory trend. `process.jsonl` retains one-second working-set/private-byte samples from Windows `GetProcessMemoryInfo`.
-- `sustained-report.json` reports evidence completeness. It cannot pass with a short run, unverified process ownership, missing sample timings, battery or unknown-power samples, missing dense-phase work, ignored inputs, or output-capture instrumentation.
+- `sustained-report.json` reports evidence completeness. It cannot pass with a short run, unverified process ownership or main-scene layout, missing sample timings, battery or unknown-power samples, missing dense-phase work, ignored inputs, or output-capture instrumentation.
 
 The historical `runs/runtime-validation/smoke-v2` run monitored the console wrapper. Its process-memory and owned-window observations do not describe the rendering engine. Preserve that evidence and rerun into a new directory; successful scenario assertions do not repair its process provenance.
+
+The historical `runs/runtime-validation/output-original-cap` capture loaded `main.gd` directly and omitted the scene's full-viewport anchors. Its main observation collapsed. Its output bound describes that incomplete layout and cannot support a claim about the full application view. Preserve the capture and rerun the corrected scene startup into a new directory.
 
 `sample_service` measures dispatch to the main-thread acquisition callback, before the processing work. Frame intervals include the composed application and validation callbacks. Batch intervals expose stalls separately. Processing overflow is accumulated across observed resets; raw and processed windows retain separate losses. Snapshot counters retain their original meanings. In particular, an omitted capture archive leaves events unretained; that count does not mean the live processor lost them. Readout loss is null because this profile has no readout model.
 
@@ -86,6 +90,9 @@ This baseline tests whether a selected process produces a detectable event-count
 ```powershell
 & $python -B -m unittest discover -s tools/validation -p 'test_*.py' -v
 & $godot --headless --path prototype --script res://tests/runtime_scenario.gd --check-only
+& $godot --headless --path prototype --script res://tests/runtime_layout_tests.gd --log-file "$PWD/runs/runtime-layout-tests.log"
 ```
 
 Synthetic tests include full-field flashes, slow fades whose adjacent changes remain small, saturated-red changes, a small flashing area, fixed bright output, missing frames, ROI/polarity/motion summaries, and short-run rejection. Engine-boundary tests cover wrapper resolution, missing counterparts, paths with spaces, case-insensitive suffixes, and unchanged direct executable paths. On Windows, a child Python process verifies process-image lookup and owned-process termination without a GPU or visible window. No real-context result is implied by those tests.
+
+The headless layout test instantiates the real main scene with only its GPU startup overridden. It verifies full-scene geometry and rejects the old script-only startup and collapsed or hidden observation panels. Composed-stage checks also reject hidden raw, processed, and enabled inference panes. Headless layout checks do not validate rendered pixels.

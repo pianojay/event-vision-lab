@@ -15,6 +15,8 @@ def assess(runtime, launcher, telemetry):
         missing.append("owned Godot process did not complete successfully")
     if launcher.get("process_image", {}).get("matches_resolved_engine") is not True:
         missing.append("owned process image was not verified against the resolved engine")
+    if not all(runtime.get(key, {}).get("valid") is True for key in ("initial_layout", "final_layout")):
+        missing.append("full main scene layout was not verified")
     if not runtime.get("success") or runtime.get("errors"):
         missing.append("runtime scenario assertions failed")
     if not runtime.get("stream_finalization", {}).get("finalized"):
@@ -69,6 +71,7 @@ def assess(runtime, launcher, telemetry):
             "memory": launcher.get("memory"), "hardware": runtime.get("hardware"),
             "engine": launcher.get("engine"), "process_id": launcher.get("process_id"),
             "process_image": launcher.get("process_image"),
+            "initial_layout": runtime.get("initial_layout"), "final_layout": runtime.get("final_layout"),
             "source": launcher.get("source"), "settings": final.get("effective"),
             "limits": ["Evidence completeness does not establish optical accuracy or real-time operation.",
                        "Scripted acknowledgement excludes physical input, OS, compositor, and display latency.",
