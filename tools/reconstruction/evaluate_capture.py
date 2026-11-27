@@ -23,6 +23,14 @@ def evaluate(manifest_path, output):
     manifest,events=load_capture(manifest_path)
     meta=manifest['captures']['events']
     parameters=manifest['effective_config'].get('sensor_parameters',manifest['effective_config'])
+    floors={name:section['intensity_floor'] for name,section in
+            [('optical_input',manifest['optical_input']),('effective_config',manifest['effective_config'])]
+            if 'intensity_floor' in section}
+    if any(type(value) not in (int,float) or not math.isfinite(value) or value<=0 for value in floors.values()):
+        raise ValueError('Declared intensity floor must be a finite positive number')
+    if len(set(floors.values()))>1:
+        raise ValueError('Optical archive and effective sensor intensity floors disagree')
+    intensity_floor=next(iter(floors.values()),None)
     config=dict(initial_log_intensity=0.0,on_threshold=parameters.get('on_threshold',.2),
                 off_threshold=parameters.get('off_threshold',.2))
     model=ContrastIntegrator(config,(meta['width'],meta['height']))
@@ -60,11 +68,16 @@ def evaluate(manifest_path, output):
         if hashlib.sha256(payload).hexdigest()!=frame['sha256']:
             raise ValueError('Optical evaluation archive hash mismatch')
         truth=struct.unpack('<'+'f'*(len(payload)//4),payload)
-        if len(truth)!=len(snapshot['log_intensity']) or any(x<=0 for x in truth):
-            raise ValueError('Evaluation expects positive scalar FP32 intensity per pixel')
-        errors=[prediction-math.log(value) for prediction,value in zip(snapshot['log_intensity'],truth)]
+        if len(truth)!=len(snapshot['log_intensity']) or any(not math.isfinite(x) or x<0 for x in truth):
+            raise ValueError('Evaluation expects finite nonnegative scalar FP32 intensity per pixel')
+        if intensity_floor is None and any(x==0 for x in truth):
+            raise ValueError('Zero optical intensity requires a declared sensor intensity floor')
+        log_truth=[math.log(max(value,intensity_floor)) if intensity_floor is not None else math.log(value)
+                   for value in truth]
+        errors=[prediction-value for prediction,value in zip(snapshot['log_intensity'],log_truth)]
         offset=sum(errors)/len(errors)
         evaluation.append(dict(cursor_ns=frame['time_ns'],integrated_count=snapshot['integrated_count'],
+            floor_applied_pixels=sum(value<intensity_floor for value in truth) if intensity_floor is not None else 0,
             observed_pixels=snapshot['observed_pixels'],latest_event_age_ns=snapshot['latest_event_age_ns'],
             log_rmse_no_alignment=math.sqrt(sum(e*e for e in errors)/len(errors)),
             global_log_offset_fitted_for_evaluation=offset,
@@ -76,6 +89,13 @@ def evaluate(manifest_path, output):
         inference_inputs=['pixel-emitted events','dimensions','nominal ON/OFF thresholds','constant prior'],
         initial_intensity_observed=False,truth_used_for_inference=False,
         truth_used_for_evaluation='archived FP32 optical samples; separately read after all inference',
+        evaluation_intensity_floor=intensity_floor,evaluation_intensity_floor_sources=list(floors),
+        evaluation_log_transform='log(max(archived_intensity, declared_sensor_floor))' if intensity_floor is not None
+            else 'log(archived_intensity); no floor declared',
+        evaluation_context=dict(scene=manifest['effective_config'].get('scene'),
+            station=manifest.get('interaction_stage',{}).get('station',manifest['effective_config'].get('station')),
+            treatment=manifest['effective_config'].get('treatment'),effective_config=manifest['effective_config'],
+            interaction_stage=manifest.get('interaction_stage'),capture_source=manifest.get('source')),
         scale_alignment='none for output; explicit global-log-offset fit reported separately for evaluation',
         capture_count=len(events),capture_loss=meta['overflow_count'],frame_count=len(frames),frames=evaluation,
         offline_latency=dict(repeats=5,sequence_ms=measurements,median_sequence_ms=statistics.median(measurements),
@@ -87,7 +107,8 @@ def evaluate(manifest_path, output):
             limitation='offline single-process CPU measurements during concurrent project development; no live backlog guarantee'),
         sustained_live_backlog=None,host=dict(python=platform.python_version(),platform=platform.platform(),
             processor=platform.processor(),logical_cpus=os.cpu_count()),
-        missing_evaluations=['representative reflective/transmissive station','sustained concurrent live acquisition'])
+        missing_evaluations=['sustained concurrent live acquisition'],
+        evaluation_scope='this recorded capture only; no inference about unrecorded stations or live throughput')
     output.mkdir(parents=True,exist_ok=True)
     (output/'evaluation.json').write_text(json.dumps(report,indent=2)+'\n')
     (output/'profile.txt').write_text(profile_output.getvalue().rstrip()+'\n')

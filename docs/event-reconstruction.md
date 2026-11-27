@@ -29,6 +29,8 @@ python -B tools/reconstruction/evaluate_capture.py --manifest docs/evidence/2026
 
 The first command writes a numerical JSON result and a PGM image from events only. It works when the input directory contains just `manifest.json` and `events.csv`. The second command evaluates completed inference against separately read FP32 optical samples. Output images use no fitted scale. Evaluation reports both unaligned log RMSE and a separately labeled global log-offset fit.
 
+Optical samples can be zero. When the capture declares a sensor `intensity_floor`, evaluation compares the estimate with `log(max(archived_intensity, intensity_floor))`. The report records the floor, its manifest sources, and the number of floored pixels per frame. Negative or nonfinite optical values fail validation. Zero without a declared positive floor also fails; positive legacy captures need no added floor. The raw truth image remains unchanged, and neither truth nor the evaluation floor enters reconstruction. Reports retain the actual scene, station, effective configuration, and capture source. An offline evaluation covers that capture and does not establish sustained live throughput.
+
 `--reset-ns` sets the exclusive integration start, and `--initial-log-intensity` changes the constant prior. The default reset time is -1, so time-zero events are included. Events are read in their recorded order. Splitting consumption into batches does not change the result. The loader rejects candidate and ideal-truth capture stages.
 
 ## Recorded outcomes and failures
