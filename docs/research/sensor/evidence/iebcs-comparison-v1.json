@@ -966,27 +966,27 @@
     "seconds": {
       "disabled_activity": {
         "runs": [
-          0.24690259999624686,
-          0.19890270000178134,
-          0.1807124000042677,
-          0.17529819999617757,
-          0.3949378999968758
+          0.2520435999977053,
+          0.27348280000296654,
+          0.2805053999982192,
+          0.22864400000253227,
+          0.18471979999594623
         ],
-        "median": 0.19890270000178134,
-        "min": 0.17529819999617757,
-        "max": 0.3949378999968758
+        "median": 0.2520435999977053,
+        "min": 0.18471979999594623,
+        "max": 0.2805053999982192
       },
       "enabled_activity": {
         "runs": [
-          0.21085429999948246,
-          0.19262670000171056,
-          0.17544199999974808,
-          0.17774709999503102,
-          0.23050489999877755
+          0.23767599999700906,
+          0.1767803000038839,
+          0.21413069999834988,
+          0.2103489000000991,
+          0.20098640000651358
         ],
-        "median": 0.19262670000171056,
-        "min": 0.17544199999974808,
-        "max": 0.23050489999877755
+        "median": 0.2103489000000991,
+        "min": 0.1767803000038839,
+        "max": 0.23767599999700906
       }
     },
     "counters": {
@@ -1021,7 +1021,7 @@
         "watermark_ns": 100320000
       }
     },
-    "profile_separate_untimed_run": "         1018816 function calls (182091 primitive calls) in 0.544 seconds\n\n   Ordered by: cumulative time\n   List reduced from 106 to 10 due to restriction <10>\n\n   ncalls  tottime  percall  cumtime  percall filename:lineno(function)\n        1    0.000    0.000    0.549    0.549 compare_iebcs.py:193(workload)\n        1    0.001    0.001    0.549    0.549 held_frame_adapter.py:16(simulate_frames)\n       10    0.000    0.000    0.507    0.051 generic_sensor.py:85(advance)\n819090/10    0.185    0.000    0.482    0.048 copy.py:110(deepcopy)\n  1970/10    0.006    0.000    0.482    0.048 copy.py:228(_reconstruct)\n   700/10    0.002    0.000    0.482    0.048 copy.py:198(_deepcopy_dict)\n  1320/40    0.013    0.000    0.464    0.012 copy.py:172(_deepcopy_list)\n3220/1300    0.226    0.000    0.410    0.000 copy.py:181(_deepcopy_tuple)\n       10    0.005    0.000    0.024    0.002 generic_sensor.py:92(_advance)\n     1966    0.001    0.000    0.021    0.000 dataclasses.py:1484(asdict)\n\n\n",
+    "profile_separate_untimed_run": "         1018816 function calls (182091 primitive calls) in 0.589 seconds\n\n   Ordered by: cumulative time\n   List reduced from 106 to 10 due to restriction <10>\n\n   ncalls  tottime  percall  cumtime  percall filename:lineno(function)\n        1    0.000    0.000    0.595    0.595 compare_iebcs.py:193(workload)\n        1    0.001    0.001    0.594    0.594 held_frame_adapter.py:16(simulate_frames)\n       10    0.000    0.000    0.549    0.055 generic_sensor.py:85(advance)\n819090/10    0.204    0.000    0.524    0.052 copy.py:110(deepcopy)\n  1970/10    0.006    0.000    0.524    0.052 copy.py:228(_reconstruct)\n   700/10    0.002    0.000    0.524    0.052 copy.py:198(_deepcopy_dict)\n  1320/40    0.014    0.000    0.506    0.013 copy.py:172(_deepcopy_list)\n3220/1300    0.243    0.000    0.446    0.000 copy.py:181(_deepcopy_tuple)\n       10    0.005    0.000    0.024    0.002 generic_sensor.py:92(_advance)\n     1966    0.001    0.000    0.023    0.000 dataclasses.py:1484(asdict)\n\n\n",
     "limitation": "Small offline workload, untuned Python, concurrent machine load uncontrolled. No adoption/speedup or real-time/GPU claim."
   },
   "unresolved": [
@@ -1033,7 +1033,7 @@
     "No GPU implementation or live-runtime cost measurement"
   ],
   "local_source_sha256_lf": {
-    "compare_iebcs.py": "2167b295f088080566d0f87f5994867abd3a84c6de61135312763ee62ebb19a5",
+    "compare_iebcs.py": "1d841c0f572849a3f7bbe8cdeb8ad359255e18af7f6818984756113ef71fc584",
     "generic_sensor.py": "bd29c6caf0912d078bcdd9cd4edcff840b894b041ef2349acc7b454466653fb6",
     "held_frame_adapter.py": "3f2f6355a29109ce3c61d720566e256708ca9c6ffb024d187dbc7ff540b5c3d7",
     "readout.py": "e214f73b11cf16d7e277a2cb478fd08ea4c182b39367866eb43d30336717754a",

@@ -60,4 +60,4 @@ Example input:
 python -B tools/sensor/held_frame_adapter.py runs/sensor-input.json --output runs/sensor-output.json
 ```
 
-The adapter test connects actual moving-edge optical frames, FP32 archive rounding, both pixel mechanisms, a saturated readout queue, and capture truncation. It checks each stage's conservation counters. The live GPU pipeline and replay format remain unchanged.
+The adapter test connects actual moving-edge optical frames, FP32 archive rounding, optical crossings, temporal activity, a saturated readout queue, and capture truncation. It checks each stage's conservation counters. The live GPU pipeline and replay format remain unchanged.

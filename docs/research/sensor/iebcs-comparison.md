@@ -55,7 +55,7 @@ These are different queue laws. Upstream labels this arbiter a mock; its process
 
 An 8 by 8 fixture contains 100 ms of alternating held intensity at 10 ms intervals. The enabled run produces 1728 optical, 128 leak, and 107 temporal candidates. The timed region includes sensor evolution, readout, capture arrays, and metadata; it excludes disk serialization. Five alternating runs per configuration check stage conservation and confirm that each mechanism runs.
 
-On the observed Intel Core i7-1065G7, with eight logical CPUs, the enabled configuration takes a median 192.63 ms, range 175.44 to 230.50 ms. Disabled activity takes a median 198.90 ms, range 175.30 to 394.94 ms. The ranges overlap, so this run does not establish a performance difference. A separate profile identifies interval-state copying as the dominant cost. Concurrent machine load was uncontrolled. This is an untuned small offline implementation, not a real-time or GPU throughput result.
+On the observed Intel Core i7-1065G7, with eight logical CPUs, the enabled configuration takes a median 210.35 ms, range 176.78 to 237.68 ms. Disabled activity takes a median 252.04 ms, range 184.72 to 280.51 ms. The ranges overlap, so this run does not establish a performance difference. A separate profile identifies interval-state copying as the dominant cost. Concurrent machine load was uncontrolled. This is an untuned small offline implementation, not a real-time or GPU throughput result.
 
 The 37 sensor tests and 15 existing CPU pipeline tests pass. The original held-reference implementation and all 21 original tests are unchanged. No GPU or GUI was launched.
 
