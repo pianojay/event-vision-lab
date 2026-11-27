@@ -173,11 +173,15 @@
         "thickness_m": [
           0.001,
           10
+        ],
+        "stripe_halfwidth_m": [
+          1e-06,
+          10
         ]
       },
-      "constraint": "mu_s_reduced>=10*mu_a and thickness*(mu_a+mu_s_reduced)>=10",
-      "model": "steady 2D slab diffusion, infinite lateral dimension, zero-fluence boundaries, nonnegative fundamental-depth source q(x,z)=Q(x)sin(pi*z/H)",
-      "missing": "arbitrary shapes, ballistic near-field, Fresnel boundary correction; source is an interior multiple-scattering proxy, not collimated surface illumination"
+      "constraint": "mu_s_reduced>=10*mu_a and thickness*(mu_a+mu_s_reduced)>=10; stripe_halfwidth*(mu_a+mu_s_reduced)>=3",
+      "model": "steady 2D slab diffusion, infinite lateral dimension, zero-fluence boundaries, localized entrance deposition with declared source q(x,z)=P_dep(x)*pi/(2H)*sin(pi*z/H); opposite-face Lambert exit",
+      "missing": "arbitrary shapes, ballistic near-field, Fresnel boundary correction; depth injection is a declared multiple-scattering proxy, not collimated-light calibration; optical transit time neglected"
     },
     {
       "id": "interreflection",
@@ -194,9 +198,21 @@
         "bounce_count": [
           0,
           64
+        ],
+        "square_side_m": [
+          0.0001,
+          100
+        ],
+        "gap_over_side": [
+          0.5,
+          100
+        ],
+        "quadrature_axis_samples": [
+          2,
+          128
         ]
       },
-      "constraint": "reciprocal A_i*F_ij=A_j*F_ji and row sums<=1",
+      "constraint": "reciprocal A_i*F_ij=A_j*F_ji and row sums<=1; geometric helper supports equal aligned parallel facing squares only, with unobstructed mutual path",
       "model": "two uniform diffuse patches; exact multiple-reflection series given view factors; only reflector directly lit",
       "missing": "spatial variation within each patch, specular paths, participating media"
     }

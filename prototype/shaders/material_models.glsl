@@ -96,4 +96,45 @@ float mat_population_step(float stored_energy, float absorbed_power, float dt_s,
 float mat_afterglow_power(float stored_energy, float lifetime_s, float radiative_yield) {
     return radiative_yield*stored_energy/lifetime_s;
 }
+float mat_subsurface_stripe(float x_m, float stripe_halfwidth_m,
+        float deposited_power_per_length, float mu_a_m_inv, float mu_s_reduced_m_inv,
+        float thickness_m) {
+    float D=1.0/(3.0*(mu_a_m_inv+mu_s_reduced_m_inv));
+    float k=MAT_PI/thickness_m;
+    float kappa=sqrt(mu_a_m_inv/D+k*k);
+    float a=stripe_halfwidth_m;
+    float x=abs(x_m);
+    float integral;
+    if (x>=a) integral=exp(-kappa*(x-a))*(1.0-exp(-2.0*kappa*a))/kappa;
+    else integral=(2.0-exp(-kappa*(a+x))-exp(-kappa*(a-x)))/kappa;
+    return deposited_power_per_length*k*k/(4.0*kappa)*integral/(2.0*a)/MAT_PI;
+}
+// Equal aligned facing squares only; compute once per geometry change on host.
+float mat_square_view_factor(float side_m, float gap_m, int samples) {
+    float h=side_m/float(samples);
+    float total=0.0;
+    for (int i=0;i<samples;i++) {
+        float x=(float(i)+0.5)*h;
+        for (int j=0;j<samples;j++) {
+            float y=(float(j)+0.5)*h;
+            float r2=gap_m*gap_m+x*x+y*y;
+            total+=(side_m-x)*(side_m-y)*gap_m*gap_m/(MAT_PI*r2*r2);
+        }
+    }
+    return 4.0*total*h*h/(side_m*side_m);
+}
+float mat_indirect_receiver(float direct_irradiance_reflector, float rho_reflector,
+        float rho_receiver, float f_reflector_to_receiver, float f_receiver_to_reflector,
+        int bounces) {
+    float first=rho_reflector*direct_irradiance_reflector;
+    float second=0.0;
+    float result=0.0;
+    for (int bounce=0;bounce<bounces;bounce++) {
+        float next_first=rho_reflector*f_reflector_to_receiver*second;
+        second=rho_receiver*f_receiver_to_reflector*first;
+        first=next_first;
+        result+=second;
+    }
+    return result/MAT_PI;
+}
 #endif
