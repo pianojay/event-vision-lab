@@ -9,7 +9,7 @@ layout(push_constant, std430) uniform Parameters {
     vec4 optics;     // pitch, width, height, tan(half vertical FOV)
     vec4 world;      // moving object phase, lamp on, strobe enabled, light strength
     vec4 stimulus;   // strobe Hz, panel phase, matte sphere control, control albedo
-    vec4 light;      // point source xyz, unused; independent from camera
+    vec4 light;      // point source xyz, occluder enabled
 } p;
 
 vec3 moving_center() {

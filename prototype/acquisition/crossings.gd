@@ -2,12 +2,13 @@ extends RefCounted
 
 # Rows are [x, y, relative_ns, polarity]. Fractions are sorted before rounding.
 static func expand(values: PackedFloat32Array, size: Vector2i, start_ns: int, end_ns: int, on: float, off: float, limit: int = 1000000) -> Dictionary:
-	if values.size() != size.x * size.y * 4 or start_ns < 0 or end_ns < start_ns or on <= 0 or off <= 0:
+	var stride := 8 if values.size() == size.x * size.y * 8 else 4
+	if size.x < 1 or size.y < 1 or values.size() != size.x * size.y * stride or start_ns < 0 or end_ns < start_ns or not is_finite(on) or not is_finite(off) or on <= 0 or off <= 0:
 		return {"error": "Invalid diagnostic interval"}
 	var crossings: Array = []
 	var count := 0
-	for i in range(0, values.size(), 4):
-		for j in 4:
+	for i in range(0, values.size(), stride):
+		for j in stride:
 			if not is_finite(values[i + j]):
 				return {"error": "Nonfinite diagnostic value"}
 		var signed_count := int(values[i + 3])
@@ -20,10 +21,16 @@ static func expand(values: PackedFloat32Array, size: Vector2i, start_ns: int, en
 		var threshold := on if polarity == 1 else off
 		var delta := float(values[i + 2]) - float(values[i + 1])
 		for level in range(1, absi(signed_count) + 1):
-			var fraction := (float(values[i]) + polarity * level * threshold - float(values[i + 1])) / delta if absf(delta) > 1e-10 else 1.0
-			if fraction < -0.0001 or fraction > 1.0001:
-				return {"error": "Crossing outside declared interval"}
-			crossings.append([clampf(fraction, 0.0, 1.0), (i / 4) % size.x, (i / 4) / size.x, polarity])
+			var level_delta := PackedFloat32Array([polarity * level * threshold])[0]
+			var crossing := PackedFloat32Array([float(values[i]) + level_delta])[0]
+			if stride == 8:
+				var on_level := PackedFloat32Array([(values[i+4]+(level if polarity>0 else 0))*values[i+6]])[0]
+				var off_level := PackedFloat32Array([(values[i+5]+(level if polarity<0 else 0))*values[i+7]])[0]
+				crossing = PackedFloat32Array([on_level-off_level])[0]
+			var fraction := (crossing - float(values[i + 1])) / delta if absf(delta) > 1e-10 else 1.0
+			if fraction < 0.0 or fraction > 1.0:
+				return {"error": "Crossing outside declared interval", "detail": {"pixel_index": i/stride, "reference":values[i], "previous":values[i+1], "current":values[i+2], "signed_count":signed_count, "threshold":threshold, "level":level, "fraction":fraction}}
+			crossings.append([clampf(fraction, 0.0, 1.0), (i / stride) % size.x, (i / stride) / size.x, polarity])
 	crossings.sort_custom(func(a, b):
 		if a[0] != b[0]: return a[0] < b[0]
 		if a[2] != b[2]: return a[2] < b[2]

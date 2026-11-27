@@ -14,6 +14,7 @@ var optical_shader := RID()
 var optical_pipeline := RID()
 var optical_uniforms := RID()
 var diagnostics := RID()
+var anchors := RID()
 
 func initialize(device: RenderingDevice, sensor_size: Vector2i) -> bool:
 	rd = device
@@ -32,7 +33,10 @@ func initialize(device: RenderingDevice, sensor_size: Vector2i) -> bool:
 	var initial := PackedByteArray()
 	initial.resize(size.x * size.y * 16)
 	buffer = rd.storage_buffer_create(initial.size(), initial)
-	diagnostics = rd.storage_buffer_create(initial.size(), initial)
+	var extended := PackedByteArray()
+	extended.resize(size.x * size.y * 32)
+	diagnostics = rd.storage_buffer_create(extended.size(), extended)
+	anchors = rd.storage_buffer_create(extended.size(), extended)
 	radiance = _make_texture()
 	events = _make_texture()
 	activity = _make_texture()
@@ -56,7 +60,11 @@ func initialize(device: RenderingDevice, sensor_size: Vector2i) -> bool:
 	diagnostic_uniform.uniform_type = RenderingDevice.UNIFORM_TYPE_STORAGE_BUFFER
 	diagnostic_uniform.binding = 4
 	diagnostic_uniform.add_id(diagnostics)
-	uniforms = rd.uniform_set_create([state_uniform, radiance_uniform, event_uniform, activity_uniform, diagnostic_uniform], shader, 0)
+	var anchor_uniform := RDUniform.new()
+	anchor_uniform.uniform_type = RenderingDevice.UNIFORM_TYPE_STORAGE_BUFFER
+	anchor_uniform.binding = 5
+	anchor_uniform.add_id(anchors)
+	uniforms = rd.uniform_set_create([state_uniform, radiance_uniform, event_uniform, activity_uniform, diagnostic_uniform, anchor_uniform], shader, 0)
 	source.source_compute = FileAccess.get_file_as_string("res://shaders/optical.glsl").replace("#[compute]", "")
 	spirv = rd.shader_compile_spirv_from_source(source)
 	error = spirv.get_stage_compile_error(RenderingDevice.SHADER_STAGE_COMPUTE)
@@ -115,6 +123,6 @@ func read_intensity() -> PackedFloat32Array:
 	return values
 
 func cleanup() -> void:
-	for resource in [optical_uniforms, optical_pipeline, optical_shader, uniforms, pipeline, shader, buffer, diagnostics, radiance, events, activity]:
+	for resource in [optical_uniforms, optical_pipeline, optical_shader, uniforms, pipeline, shader, buffer, diagnostics, anchors, radiance, events, activity]:
 		if resource.is_valid():
 			rd.free_rid(resource)
