@@ -1,0 +1,8 @@
+{
+  "profile_name": "gpu-ideal-log-linear-v1",
+  "stream_id": "static-v1",
+  "scene": "static",
+  "duration_ns": 1000000000,
+  "width": 80,
+  "height": 60
+}

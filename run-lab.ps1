@@ -2,6 +2,8 @@ param(
     [switch]$Editor,
     [switch]$Validate,
     [switch]$ValidateControls,
+    [string]$AcquisitionConfig = '',
+    [string]$EventCaptureDirectory = '',
     [ValidateSet('vulkan','d3d12')][string]$Driver = 'vulkan',
     [int]$ProfileSeconds = 0,
     [string]$CapturePath = '',
@@ -12,6 +14,12 @@ param(
 $ErrorActionPreference = 'Stop'
 if ($ValidateControls -and ($Editor -or $Validate -or $ProfileSeconds -ne 0)) {
     throw '-ValidateControls cannot be combined with -Editor, -Validate, or -ProfileSeconds.'
+}
+if (($AcquisitionConfig -or $EventCaptureDirectory) -and ($Editor -or $Validate -or $ValidateControls -or $ProfileSeconds -ne 0)) {
+    throw 'Live acquisition cannot be combined with editor, baseline validation, or profiling.'
+}
+if (($AcquisitionConfig -and -not $EventCaptureDirectory) -or ($EventCaptureDirectory -and -not $AcquisitionConfig)) {
+    throw 'Supply both -AcquisitionConfig and -EventCaptureDirectory.'
 }
 $projectPath = Join-Path $PSScriptRoot 'prototype'
 # Explicit settings must resolve as given; do not silently fall back after a typo.
@@ -49,6 +57,9 @@ if (-not $ValidateControls) {
 }
 if ($ValidateControls) {
     $godotArguments += @('--headless', '--script', 'res://tests/controls_tests.gd', '--log-file', (Join-Path $evidencePath 'controls-tests.log'))
+} elseif ($AcquisitionConfig) {
+    $revision = git -C $PSScriptRoot rev-parse HEAD
+    $godotArguments += @('--log-file', (Join-Path $evidencePath 'acquisition.log'), '--', ('--acquisition-config=' + [System.IO.Path]::GetFullPath($AcquisitionConfig)), ('--event-capture=' + [System.IO.Path]::GetFullPath($EventCaptureDirectory)), ('--source-revision=' + $revision))
 } elseif ($Editor) {
     $godotArguments += '--editor'
 } elseif ($Validate) {
@@ -60,6 +71,6 @@ if ($ValidateControls) {
 } else {
     $godotArguments += @('--log-file', (Join-Path $evidencePath 'godot-interactive.log'), '--', ('--view=' + $View))
 }
-if ($ValidateControls -or $Validate -or $ProfileSeconds -gt 0) { & $consoleExe @godotArguments }
+if ($ValidateControls -or $Validate -or $ProfileSeconds -gt 0 -or $AcquisitionConfig) { & $consoleExe @godotArguments }
 else { & $guiExe @godotArguments }
 if ($LASTEXITCODE) { exit $LASTEXITCODE }
