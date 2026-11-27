@@ -1,8 +1,8 @@
 # Godot shader prototype
 
-Current implementation: November 22, 2026. A controllable event-vision laboratory without a physical camera. The active-lighting extension addresses [#1](https://github.com/pianojay/event-vision-lab/issues/1) and provides initial display changes for [#2](https://github.com/pianojay/event-vision-lab/issues/2). Neither issue is considered fully resolved.
+Current entry point: November 28, 2026. The application opens the [nine-station interaction stage](development/interaction-stage.md), with bounded live acquisition and raw/processed/inferred views. This guide retains launcher setup and the original November 22 laboratory controls and measurements. Historical issue status and baseline measurements do not establish the new stage's validation outcome.
 
-November 28 update: the [configurable CPU pipeline](pipeline-prototype.md) now generates stage-labelled event captures and replays them in Godot. This guide describes the original live GPU path, whose ideal sensor behavior and limits remain unchanged. The CPU generic nonideal model is not live GPU acquisition.
+The [live acquisition contract](development/live-acquisition-v1.md) describes complete crossing export, integer interval clocks, reset rules, and CPU/GPU comparison. The [configurable CPU pipeline](pipeline-prototype.md) remains a separate offline generic-model path. The live sensor is ideal; the optional inferred image integrates events from a constant prior. See [composed validation](development/composed-validation.md) before interpreting performance or accessibility claims.
 
 The default application now uses the [nine-station interaction stage and bounded live event profile](development/interaction-stage.md). The historical sphere/room path and validation commands below remain available. The new guide describes the new controls, profiles, state boundaries, and pending integrated checks.
 
