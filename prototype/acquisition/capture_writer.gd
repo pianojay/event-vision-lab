@@ -1,5 +1,6 @@
 extends RefCounted
 const Crossings = preload("res://acquisition/crossings.gd")
+const THRESHOLD_CHANGE_POLICY := "reinitialize reference from previous sampled log intensity at interval start; discard prior residual; preserve history and optical state"
 var config: Dictionary
 var directory := ""
 var optical_file: FileAccess
@@ -67,6 +68,13 @@ func append(t_ns: int, reset: bool, parameters: PackedFloat32Array, intensity: P
 	context.start(HashingContext.HASH_SHA256)
 	context.update(bytes)
 	var entry := {"file": "intensity.f32", "offset_bytes": optical_file.get_position(), "length_bytes": bytes.size(), "time_ns": t_ns, "sha256": context.finish().hex_encode(), "reset": reset, "parameters": Array(parameters), "diagnostic_offset_bytes": diagnostic_file.get_position()}
+	entry["sensor_thresholds"] = {"on":parameters[4],"off":parameters[5]}
+	if not frames.is_empty():
+		var previous_parameters: Array = frames[-1].parameters
+		if parameters[4] != previous_parameters[4] or parameters[5] != previous_parameters[5]:
+			lifecycle.append({"time_ns":t_ns if reset else last_ns,"kind":"threshold-change","effective_frame_time_ns":t_ns,
+				"previous_thresholds":{"on":previous_parameters[4],"off":previous_parameters[5]},"thresholds":entry.sensor_thresholds,
+				"reference_policy":"explicit reset at current input" if reset else THRESHOLD_CHANGE_POLICY,"material_reset":false})
 	optical_file.store_buffer(bytes)
 	diagnostic_file.store_buffer(diagnostics.to_byte_array())
 	frames.append(entry)
@@ -95,7 +103,7 @@ func finish(adapter: String) -> Dictionary:
 	var manifest := {"schema":"event-lab-pipeline-v1","effective_config":config,"source":source,"hardware":{"adapter":adapter},"captures":{"events":meta},
 		"optical_input":{"shape":[config.height,config.width],"units":"nonnegative relative scene-linear detector intensity before numerical floor","archive_dtype":"little-endian float32","archive_role":"actual numerical input to GPU and recorded-input CPU adapter","trajectory":"log-linear after floor","intensity_floor":config.intensity_floor,"clamped_sample_values":clamped,"frames":frames,"sample_count":frames.size(),"skipped_scheduled_samples":0,"unobserved_between_sample_changes":"not bounded by endpoint samples"},
 		"diagnostics":{"file":"diagnostics.f32","layout":"per pixel 8 FP32 [reference_offset,previous_log_minus_anchor,current_log_minus_anchor,signed_count,prior_on_count,prior_off_count,on_threshold,off_threshold]","sha256":FileAccess.get_sha256(directory.path_join("diagnostics.f32"))},
-		"lifecycle":{"records":lifecycle,"reset_policy":"finish interval before same-time reset; preserve optical state and cumulative counters","pause_policy":"freeze acquisition clock; apply queued controls on resume","overload_policy":"one scheduled sample at a time; slow simulation without skipping"},
+		"lifecycle":{"records":lifecycle,"reset_policy":"finish interval before same-time reset; preserve optical state and cumulative counters","pause_policy":"freeze acquisition clock; apply queued controls on resume","threshold_change_policy":THRESHOLD_CHANGE_POLICY,"overload_policy":"one scheduled sample at a time; slow simulation without skipping"},
 		"stages":{"sensor_candidates":generated,"pixel_emitted":generated,"refractory_suppressed":0,"readout":"not modeled","capture_stored":stored,"capture_overflow":generated-stored,"diagnostic_failed_intervals":0,"complete_relative_to_pixel_emissions":generated==stored},
 		"cost":{"synchronous_readback_usec":readback_usec},"limits":["bounded synchronous diagnostic capture, no real-time claim","ideal sensor with numerical floor, no calibrated dark response","analytic matte sphere and hard occlusion; no lens, exposure integration, or indirect transport"]}
 	var file := FileAccess.open(directory.path_join("manifest.json"),FileAccess.WRITE)

@@ -87,8 +87,7 @@ def simulate_frames(frames, width, floor=1e-6, limit=2_000_000):
             if anchor is None or previous is None or t_ns <= start_ns:
                 raise ValueError("uninitialized or unordered reference input")
             if thresholds != previous_thresholds:
-                anchor = [a+n*previous_thresholds[0]-m*previous_thresholds[1]
-                          for a,n,m in zip(anchor,on_counts,off_counts)]
+                anchor = previous.copy()
                 on_counts = [0] * len(current)
                 off_counts = [0] * len(current)
             step = []
@@ -105,7 +104,9 @@ def simulate_frames(frames, width, floor=1e-6, limit=2_000_000):
                 for level in range(1,count+1):
                     crossing = (on_counts[index]+(level if polarity>0 else 0))*thresholds[0] - (off_counts[index]+(level if polarity<0 else 0))*thresholds[1]
                     fraction = (crossing-prev_relative)/(relative-prev_relative) if abs(relative-prev_relative)>1e-10 else 1.0
-                    step.append((min(1.0,max(0.0,fraction)),index//width,index%width,polarity))
+                    if not 0 <= fraction <= 1:
+                        raise ValueError("reference crossing outside interval")
+                    step.append((fraction,index//width,index%width,polarity))
                 if polarity>0: on_counts[index] += count
                 else: off_counts[index] += count
             step.sort()

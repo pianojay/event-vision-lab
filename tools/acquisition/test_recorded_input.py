@@ -88,6 +88,42 @@ class RecordedReferenceTests(unittest.TestCase):
         events=simulate_frames([frame(0,[initial],True,on=0.2,off=0.2),frame(1000,[math.exp(-2.10)],on=0.2,off=0.2),frame(2000,[initial],on=0.2,off=0.2)],1)
         self.assertEqual([e[3] for e in events],[1]*9+[-1]*9)
 
+    def test_lower_threshold_discards_old_residual_without_retroactive_crossing(self):
+        frames = [frame(0, [1], True, on=0.2, off=0.2),
+                  frame(1000, [math.exp(0.15)], on=0.2, off=0.2),
+                  frame(2000, [math.exp(0.16)], on=0.1, off=0.1)]
+        self.assertEqual(simulate_frames(frames, 1), [])
+        frames.append(frame(3000, [math.exp(0.37)], on=0.1, off=0.1))
+        events = simulate_frames(frames, 1)
+        self.assertEqual([e[3] for e in events], [1, 1])
+        self.assertTrue(all(2000 < e[2] <= 3000 for e in events))
+
+    def test_raise_threshold_reanchors_at_previous_sample(self):
+        frames = [frame(0, [1], True, on=0.2),
+                  frame(1000, [math.exp(0.15)], on=0.2),
+                  frame(2000, [math.exp(0.36)], on=0.3)]
+        self.assertEqual(simulate_frames(frames, 1), [])
+        frames.append(frame(3000, [math.exp(0.47)], on=0.3))
+        events = simulate_frames(frames, 1)
+        self.assertEqual(len(events), 1)
+        self.assertGreater(events[0][2], 2000)
+
+    def test_off_only_threshold_edit_reanchors_both_polarities(self):
+        frames = [frame(0, [1], True, on=0.2, off=0.2),
+                  frame(1000, [math.exp(-0.15)], on=0.2, off=0.2),
+                  frame(2000, [math.exp(-0.16)], on=0.2, off=0.1)]
+        self.assertEqual(simulate_frames(frames, 1), [])
+        frames.append(frame(3000, [math.exp(-0.37)], on=0.2, off=0.1))
+        events = simulate_frames(frames, 1)
+        self.assertEqual([e[3] for e in events], [-1, -1])
+        self.assertTrue(all(2000 < e[2] <= 3000 for e in events))
+
+    def test_edit_at_exact_interval_start_preserves_owned_endpoint(self):
+        frames = [frame(0, [1], True), frame(1000, [2]), frame(2000, [2], on=0.1)]
+        for prior in frames[:2]:
+            prior[3][4] = math.log(2)
+        self.assertEqual(simulate_frames(frames, 1), [(0, 0, 1000, 1)])
+
     def test_guard_aborts(self):
         with self.assertRaises(OverflowError):
             simulate_frames([frame(0,[1],True),frame(1000,[math.exp(1.1)])],1,limit=3)
