@@ -25,6 +25,7 @@ var initial_snapshot: Dictionary = {}
 var snapshot: Dictionary = {}
 var tcp: StreamPeerTCP
 var capture_port := 0
+var source_revision := ""
 var capture_frames := 0
 var pending_key: Dictionary = {}
 var reset_deadline_usec := 0
@@ -43,6 +44,8 @@ func _initialize() -> void:
 			directory = arg.trim_prefix("--validation-output=")
 		elif arg.begins_with("--capture-port="):
 			capture_port = arg.trim_prefix("--capture-port=").to_int()
+		elif arg.begins_with("--source-revision="):
+			source_revision = arg.trim_prefix("--source-revision=")
 	call_deferred("_run")
 
 func _run() -> void:
@@ -62,7 +65,9 @@ func _run() -> void:
 	if not lab.has_method("get_validation_snapshot") or not lab.has_method("validation_apply_scenario"):
 		_fail("Composed stage validation hooks are absent")
 		return
-	lab.set("validation_config", scenario.get("acquisition", {}))
+	var acquisition: Dictionary = scenario.get("acquisition", {}).duplicate(true)
+	if not source_revision.is_empty(): acquisition["source_revision"] = source_revision
+	lab.set("validation_config", acquisition)
 	lab.event_batch.connect(_on_batch)
 	lab.acquisition_reset.connect(_on_reset)
 	if lab.has_signal("validation_sample_completed"):
