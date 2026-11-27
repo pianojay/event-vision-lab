@@ -98,7 +98,8 @@ func _initialize() -> void:
 	var threshold_slider: HSlider
 	for slider in lab.find_children("*","HSlider",true,false):
 		if slider.min_value == 0.02 and slider.max_value == 0.6: threshold_slider = slider
-	threshold_slider.value = 0.1
+	lab.live_config.off_threshold = 0.5
+	threshold_slider.value_changed.emit(0.1)
 	lab._process_acquisition(100.0)
 	check("paused threshold edit dispatches nothing and requests no full reset",lab.capture_index==0 and lab.simulation_time==0 and not lab.needs_reset)
 	lab.pause_check.button_pressed = false

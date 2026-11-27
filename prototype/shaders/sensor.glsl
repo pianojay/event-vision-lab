@@ -32,8 +32,8 @@ void main() {
         old=vec4(current,-1000.0,-1000.0,current);
         counts=vec4(current,0,0,0);
     } else if (thresholds.x!=p.sensor.x || thresholds.y!=p.sensor.y) {
-        // A threshold edit retains the current reference, with a new anchor.
-        counts=vec4(old.x,0,0,0);
+        old.x=old.w;
+        counts=vec4(old.w,0,0,0);
     }
     precise float old_on=counts.y*p.sensor.x;
     precise float old_off=counts.z*p.sensor.y;

@@ -19,6 +19,56 @@ func step(values: PackedFloat32Array) -> PackedFloat32Array:
 	device.submit()
 	device.sync()
 	return kernel.read_diagnostics()
+func threshold_transition_checks() -> void:
+	for sample in [
+		["lower ON",0.15,0.16,0.37,0.1,0.1,2],
+		["raise ON",0.15,0.36,0.47,0.3,0.2,1],
+		["lower OFF only",-0.15,-0.16,-0.37,0.2,0.1,-2]]:
+		var input := params(1,true)
+		input[4] = 0.2
+		input[5] = 0.2
+		step(input)
+		input[2] = 0
+		input[7] = exp(sample[1])
+		step(input)
+		input[4] = sample[4]
+		input[5] = sample[5]
+		input[7] = exp(sample[2])
+		var values := step(input)
+		var expanded := Expand.expand(values,Vector2i(1,1),1000,2000,input[4],input[5])
+		check(sample[0]+" edit produces no retroactive crossings",not expanded.has("error") and expanded.events.is_empty(),expanded)
+		input[7] = exp(sample[3])
+		values = step(input)
+		expanded = Expand.expand(values,Vector2i(1,1),2000,3000,input[4],input[5])
+		check(sample[0]+" new interval emits expected crossings",not expanded.has("error") and values[3]==sample[6] and expanded.events[0][2]>2000,expanded)
+	var input := params(1,true)
+	input[4] = 0.2
+	input[5] = 0.2
+	step(input)
+	input[2] = 0
+	input[7] = exp(0.45)
+	step(input)
+	var old_state: PackedFloat32Array = kernel.read_state()
+	input[4] = 0.1
+	input[7] = exp(0.46)
+	var values := step(input)
+	var activity: PackedFloat32Array = kernel.read_activity()
+	check("threshold edit preserves event history and cumulative activity",values[3]==0 and kernel.read_state()[1]==old_state[1] and activity[2]==2)
+	step(params(1,true))
+	values = step(params(exp(0.5)))
+	var exact_threshold: float = values[2]/2
+	input = params(1,true)
+	input[4] = exact_threshold
+	step(input)
+	input[2] = 0
+	input[7] = exp(0.5)
+	values = step(input)
+	var expanded := Expand.expand(values,Vector2i(1,1),0,1000,input[4],input[5])
+	check("threshold edit fixture owns exact preceding endpoint",not expanded.has("error") and expanded.events[-1][2]==1000,expanded)
+	input[4] = exact_threshold/2
+	values = step(input)
+	expanded = Expand.expand(values,Vector2i(1,1),1000,2000,input[4],input[5])
+	check("threshold edit at exact start does not repeat endpoint",not expanded.has("error") and expanded.events.is_empty(),expanded)
 func run() -> void:
 	device=RenderingServer.create_local_rendering_device()
 	if device==null:
@@ -75,6 +125,7 @@ func run() -> void:
 	fall[5]=0.2
 	values=step(fall)
 	check("anchored counts retain exact return after nine levels",values[3]==-9,Array(values))
+	threshold_transition_checks()
 	var failed:=false
 	for item in checks:
 		if not item.passed: failed=true
