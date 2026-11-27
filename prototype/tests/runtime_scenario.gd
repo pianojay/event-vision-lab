@@ -1,5 +1,7 @@
 extends SceneTree
 
+const Layout = preload("res://tests/runtime_layout.gd")
+
 var lab: Control
 var scenario: Dictionary
 var directory := ""
@@ -35,6 +37,8 @@ var finishing := false
 var previous_losses: Dictionary = {}
 var observed_losses := {"processing_overflow":0,"raw_display_overflow":0}
 var inference_age_usec: Array[float] = []
+var initial_layout: Dictionary = {}
+var latest_layout: Dictionary = {}
 
 func _initialize() -> void:
 	for arg in OS.get_cmdline_user_args():
@@ -61,7 +65,7 @@ func _run() -> void:
 	if telemetry == null:
 		quit(1)
 		return
-	lab = load("res://main.gd").new()
+	lab = Layout.instantiate_lab()
 	if not lab.has_method("get_validation_snapshot") or not lab.has_method("validation_apply_scenario"):
 		_fail("Composed stage validation hooks are absent")
 		return
@@ -73,12 +77,20 @@ func _run() -> void:
 	if lab.has_signal("validation_sample_completed"):
 		lab.connect("validation_sample_completed", _on_sample)
 	root.add_child(lab)
+	current_scene = lab
 	var wait_started := Time.get_ticks_usec()
 	while not lab.ready_gpu:
 		await process_frame
 		if Time.get_ticks_usec() - wait_started > 30000000:
 			_fail("GPU readiness timed out")
 			return
+	await process_frame
+	await RenderingServer.frame_post_draw
+	initial_layout = Layout.snapshot(lab)
+	latest_layout = initial_layout
+	if not initial_layout.valid:
+		_fail("Main scene layout invalid: " + str(initial_layout.errors))
+		return
 	if capture_port:
 		tcp = StreamPeerTCP.new()
 		if tcp.connect_to_host("127.0.0.1", capture_port) != OK:
@@ -218,6 +230,10 @@ func _observe_losses(state: Dictionary) -> void:
 
 func _on_draw() -> void:
 	if not measuring or finishing: return
+	latest_layout = Layout.snapshot(lab)
+	if not latest_layout.valid:
+		_fail("Measured main scene layout invalid: " + str(latest_layout.errors))
+		return
 	var now := Time.get_ticks_usec()
 	if previous_draw_usec: frame_usec.append(float(now - previous_draw_usec))
 	previous_draw_usec = now
@@ -271,6 +287,7 @@ func _finish() -> void:
 		"sample_service":_stats(sample_service_usec),"sample_timing_coverage":sample_timing_coverage,
 		"inference_observation_age":_stats(inference_age_usec),"observed_processing_losses":observed_losses,
 		"initial_snapshot":initial_snapshot,"final_snapshot":lab.get_validation_snapshot(),
+		"initial_layout":initial_layout,"final_layout":latest_layout,
 		"actions":acknowledgements,"output_capture_frames":capture_frames,"output_capture_instrumented":tcp != null,
 		"hardware":{"adapter":RenderingServer.get_video_adapter_name(),"vendor":RenderingServer.get_video_adapter_vendor(),
 			"api":RenderingServer.get_current_rendering_driver_name(),"renderer":RenderingServer.get_current_rendering_method(),
@@ -289,6 +306,6 @@ func _fail(message: String) -> void:
 	push_error(message)
 	if not directory.is_empty():
 		var file := FileAccess.open(directory.path_join("validation-failure.json"),FileAccess.WRITE)
-		if file: file.store_string(JSON.stringify({"errors":errors,"actions":acknowledgements},"  "))
+		if file: file.store_string(JSON.stringify({"errors":errors,"actions":acknowledgements,"layout":latest_layout},"  "))
 	finishing = true
 	quit(1)
