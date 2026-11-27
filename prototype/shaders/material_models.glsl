@@ -1,4 +1,3 @@
-// Bounded optical models. SI geometry, scene-linear radiance, no sensor floor.
 #ifndef EVENT_LAB_MATERIAL_MODELS
 #define EVENT_LAB_MATERIAL_MODELS
 const float MAT_PI = 3.14159265358979323846;
@@ -11,8 +10,9 @@ float mat_diffuse(float rho_d, float irradiance) {
 float mat_glossy(float rho_s, float roughness, vec3 n, vec3 l, vec3 v) {
     if (dot(n,l) <= 0.0 || dot(n,v) <= 0.0) return 0.0;
     float exponent = 2.0 / (roughness * roughness) - 2.0;
-    return rho_s * (exponent + 1.0) / (2.0 * MAT_PI)
-        * pow(max(0.0, dot(reflect(-l,n),v)), exponent);
+    float lobe = exponent == 0.0 ? 1.0
+        : pow(max(0.0, dot(reflect(-l,n),v)), exponent);
+    return rho_s * (exponent + 1.0) / (2.0 * MAT_PI) * lobe;
 }
 vec3 mat_thin_weights(float reflection, float transmission) {
     return vec3(reflection, transmission, 1.0-reflection-transmission);
