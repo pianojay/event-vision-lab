@@ -29,6 +29,7 @@ def load_sequence(manifest_path):
         raise ValueError("invalid dimensions")
     if not 0 < config["intensity_floor"] == 1e-6:
         raise ValueError("unsupported floor")
+    config["intensity_floor"] = struct.unpack("<f",struct.pack("<f",config["intensity_floor"]))[0]
     data = (path.parent / "intensity.f32").read_bytes()
     frames = []
     offset = 0
@@ -54,6 +55,7 @@ def load_sequence(manifest_path):
         params = entry["parameters"]
         if len(params) != 28 or any(not math.isfinite(v) for v in params) or params[4] <= 0 or params[5] <= 0:
             raise ValueError("invalid archived parameters")
+        params = list(struct.unpack("<28f",struct.pack("<28f",*params)))
         frames.append((t_ns, reset, values, params))
         offset += length
         last_ns = t_ns

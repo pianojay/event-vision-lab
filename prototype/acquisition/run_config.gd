@@ -61,4 +61,3 @@ static func schedule(config: Dictionary) -> Array:
 		if not times.has(int(reset_time)): times.append(int(reset_time))
 	times.sort()
 	return times
-
