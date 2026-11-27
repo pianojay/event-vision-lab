@@ -48,6 +48,10 @@ The representative settings are 80 by 60 pixels, one second, and 8,333,333 ns sa
 
 The sensor maintains an initial log-intensity anchor and separate ON/OFF threshold-level counts. The reference offset is `N_on*C_on - N_off*C_off`. Threshold products and their subtraction use explicit FP32 operations. Counts are estimated by division and checked against the next representable level. There is no additive count bias. The anchored representation avoids repeated absolute-reference addition drift when intensity returns exactly to its starting value.
 
+The two private state vectors in `ReferenceAnchors` are `(anchor_log, on_count, off_count, anchor_intensity)` and `(on_threshold, off_threshold, previous_intensity, unused)`. Both intensities include the sensor floor. An explicit reset sets both to the current intensity. A threshold edit replaces the anchor with the previous sampled intensity. Ordinary samples update only the previous intensity and counts. The public diagnostic layout below is unchanged.
+
+Near the anchor, subtracting two rounded absolute logs can erase a one-ULP optical change. The sensor instead evaluates `log(I/A)` as `2*z*(1 + z©÷/3 + z©ù/5)`, where `z=(I-A)/(I+A)`, when `|I-A| <= 0.01*A`. Here `|z| <= 0.01/1.99`, so the omitted series has magnitude at most `2*|z|^7 / (7*(1-z©÷)) < 2.4e-17` in exact arithmetic. FP32 arithmetic roundoff remains. Outside this neighborhood the sensor retains the absolute-log difference. This fixes the cancellation observed in slow returns to the initial intensity; it does not establish a universal timing bound for arbitrary low-slope threshold crossings.
+
 Every interval exports eight FP32 values per pixel:
 
 ```text

@@ -140,6 +140,20 @@ class RecordedReferenceTests(unittest.TestCase):
             prior[3][4] = math.log(2)
         self.assertEqual(simulate_frames(frames, 1), [(0, 0, 1000, 1)])
 
+    def test_refraction_camera_slow_return_owns_later_interval(self):
+        # Actual FP32 samples at pixel 42,23 in the archived 87c568c camera run.
+        anchor = 0.1042657122015953
+        frames = [frame(0, [anchor], True, on=0.2, off=0.2),
+                  frame(16666667, [0.07546325027942657], on=0.2, off=0.2),
+                  frame(266666672, [0.10426568984985352], on=0.2, off=0.2),
+                  frame(283333339, [0.10426570475101471], on=0.2, off=0.2),
+                  frame(300000006, [anchor], on=0.2, off=0.2)]
+        events = simulate_frames(frames, 1)
+        self.assertEqual([e[3] for e in events], [-1, 1])
+        self.assertEqual(events[-1][2], 300000006)
+        self.assertNotEqual(frames[-2][2][0], anchor)
+        self.assertEqual(f32(math.log(frames[-2][2][0])), f32(math.log(anchor)))
+
     def test_guard_aborts(self):
         with self.assertRaises(OverflowError):
             simulate_frames([frame(0,[1],True),frame(1000,[math.exp(1.1)])],1,limit=3)
