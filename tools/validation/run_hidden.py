@@ -14,6 +14,33 @@ from ctypes import wintypes
 from pathlib import Path
 
 
+def resolve_engine(requested):
+    engine = requested.resolve()
+    if not engine.is_file():
+        raise FileNotFoundError(f"Engine does not exist: {engine}")
+    if engine.name.lower().startswith("godot") and engine.name.lower().endswith("_console.exe"):
+        engine = engine.with_name(engine.name[:-len("_console.exe")] + ".exe")
+        if not engine.is_file():
+            raise FileNotFoundError(f"Godot console wrapper requires its same-directory engine: {engine}")
+    return engine
+
+
+def file_sha256(path):
+    with path.open("rb") as stream:
+        return hashlib.file_digest(stream, "sha256").hexdigest()
+
+
+def process_image(process):
+    api = ctypes.WinDLL("kernel32", use_last_error=True).QueryFullProcessImageNameW
+    api.argtypes = [wintypes.HANDLE, wintypes.DWORD, wintypes.LPWSTR, ctypes.POINTER(wintypes.DWORD)]
+    api.restype = wintypes.BOOL
+    capacity = wintypes.DWORD(32768)
+    path = ctypes.create_unicode_buffer(capacity.value)
+    if not api(wintypes.HANDLE(int(process._handle)), 0, path, ctypes.byref(capacity)):
+        raise ctypes.WinError(ctypes.get_last_error())
+    return Path(path.value)
+
+
 def power_status():
     class Status(ctypes.Structure):
         _fields_ = [("ac", wintypes.BYTE), ("flags", wintypes.BYTE), ("percent", wintypes.BYTE),
@@ -153,8 +180,12 @@ def main():
     if os.name != "nt":
         parser.error("This launcher requires Windows and a real Windows graphics context")
     scenario = json.loads(args.scenario.read_text(encoding="utf-8"))
-    if not args.engine.is_file() or not (args.project / "project.godot").is_file():
-        parser.error("Engine or Godot project does not exist")
+    try:
+        engine = resolve_engine(args.engine)
+    except OSError as error:
+        parser.error(str(error))
+    if not (args.project / "project.godot").is_file():
+        parser.error("Godot project does not exist")
     if args.output.exists():
         parser.error("Use a new output directory to preserve prior evidence")
     args.output.mkdir(parents=True)
@@ -163,7 +194,7 @@ def main():
     startup = subprocess.STARTUPINFO()
     startup.dwFlags |= subprocess.STARTF_USESHOWWINDOW
     startup.wShowWindow = 0
-    command = [str(args.engine.resolve()), "--path", str(args.project.resolve()), "--display-driver", "windows",
+    command = [str(engine), "--path", str(args.project.resolve()), "--display-driver", "windows",
                "--rendering-method", "mobile", "--rendering-driver", "vulkan", "--position", "-32000,-32000",
                "--resolution", args.resolution, "--single-window", "--script", "res://tests/runtime_scenario.gd",
                "--log-file", str((args.output / "godot.log").resolve()), "--",
@@ -181,6 +212,8 @@ def main():
     samples, windows = [], set()
     timed_out = False
     report = {"command": command, "source": identity, "platform": platform.platform(),
+              "engine": {"requested_path": str(args.engine.resolve()), "resolved_path": str(engine),
+                         "resolved_sha256": file_sha256(engine)},
               "processor": platform.processor(), "logical_cpus": os.cpu_count(), "headless": False,
               "windows_hardware": windows_inventory(),
               "startup_show_window": "SW_HIDE", "requested_backend": "windows/vulkan/mobile",
@@ -201,6 +234,11 @@ def main():
                     user32.ShowWindow(window, 0)
             return True
         try:
+            actual_image = process_image(process)
+            report["process_image"] = {"path": str(actual_image), "sha256": file_sha256(actual_image),
+                                       "matches_resolved_engine": actual_image.samefile(engine)}
+            if not report["process_image"]["matches_resolved_engine"]:
+                raise RuntimeError("Owned process image does not match the resolved engine")
             with (args.output / "process.jsonl").open("w", encoding="utf-8") as telemetry:
                 while process.poll() is None:
                     elapsed = time.monotonic() - started
@@ -216,6 +254,9 @@ def main():
                         process.kill()
                         break
                     time.sleep(0.02)
+        except Exception as error:
+            report["launcher_error"] = repr(error)
+            raise
         finally:
             if process.poll() is None:
                 process.kill()
