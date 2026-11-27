@@ -61,6 +61,11 @@ def load_sequence(manifest_path):
         last_ns = t_ns
     if offset != len(data) or last_ns != config["duration_ns"]:
         raise ValueError("incomplete optical archive")
+    completed_resets = {t_ns for index, (t_ns, reset, _, _) in enumerate(frames)
+                        if reset and index > 0 and frames[index-1][0] == t_ns
+                        and not frames[index-1][1]}
+    if not set(config["reset_times_ns"]).issubset(completed_resets):
+        raise ValueError("requested reset missing its completed interval and same-time reset frame")
     return manifest, frames
 
 

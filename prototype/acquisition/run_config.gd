@@ -37,14 +37,15 @@ static func parse(overrides: Dictionary) -> Dictionary:
 	for key in ["on_threshold", "off_threshold"]:
 		if typeof(config[key]) not in [TYPE_INT, TYPE_FLOAT] or not is_finite(config[key]) or config[key] < 0.001 or config[key] > 10:
 			return {"error": "Threshold must be finite within [0.001,10]"}
-		# Match the exact parameter passed to the GPU, including asymmetric thresholds.
 		config[key] = PackedFloat32Array([config[key]])[0]
 	if not config.reset_times_ns is Array: return {"error": "Reset schedule must be an array"}
 	var previous := 0
-	for value in config.reset_times_ns:
+	for index in config.reset_times_ns.size():
+		var value = config.reset_times_ns[index]
 		if typeof(value) not in [TYPE_INT, TYPE_FLOAT] or value != int(value) or value <= previous or value >= config.duration_ns:
 			return {"error": "Reset times must be increasing interior integers"}
 		previous = int(value)
+		config.reset_times_ns[index] = previous
 	var frames: int = ceili(float(config.duration_ns) / config.sample_period_ns) + 1 + config.reset_times_ns.size() * 2
 	if frames > 10000 or frames * config.width * config.height > 10000000:
 		return {"error": "Optical archive exceeds ten million sample values or ten thousand frames"}
