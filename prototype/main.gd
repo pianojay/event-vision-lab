@@ -137,7 +137,7 @@ func _ready() -> void:
 		live_config = RunConfig.parse({"archive_mode":"stream","scene":"interactive","duration_ns":3600000000000,"sample_period_ns":16666667,"wall_paced":true}).config
 		interaction_stage.enabled = true
 		stage_check.button_pressed = true
-		_focus_station(0)
+		_focus_station(1)
 		if not _start_acquisition(): return
 	if not acquisition_config_path.is_empty() or not event_capture_directory.is_empty():
 		if not _configure_acquisition(): return

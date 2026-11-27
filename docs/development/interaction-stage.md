@@ -1,6 +1,6 @@
 # Nine-station interaction stage
 
-The default application now opens a bounded 80 by 60 event stream with a 16,666,667 ns target sample period. It displays nine optical interactions in one navigable analytic 3D scene. The host schedules integer sample times. If rendering, readback, event expansion, or processing takes longer than the requested period, simulation slows without skipping intervals. This is not a real-time guarantee or a calibrated camera.
+The default application opens the diffuse sphere under moving illumination in a bounded 80 by 60 event stream with a 16,666,667 ns target sample period. Absorption remains selectable; its static transmitting sheet does not respond to the point lamp, so it was a poor initial activity demonstration. It displays nine optical interactions in one navigable analytic 3D scene. The host schedules integer sample times. If rendering, readback, event expansion, or processing takes longer than the requested period, simulation slows without skipping intervals. This is not a real-time guarantee or a calibrated camera.
 
 ## Run and capture
 
@@ -36,6 +36,8 @@ The old sphere, orbit-light, and room presets remain on 1, 2, and 3. They disabl
 | O, G, Y, U | Toggle central ROI, bin size, polarity selection, and temporal representation |
 | I | Show relative grayscale inference |
 
+Station selection focuses the camera and selects the controlled model; it does not hide other visible materials. A shared lamp and independent material history can produce peripheral events. Compare matched controls and use post-event ROI to inspect a selected region; cropping does not change generation cost or the raw capture.
+
 Every stage shows parameter names, values, its registry model, and missing physics. Treatment controls are zero absorption, lower diffuse albedo, zero glossy lobe, zero transmission, equal refraction indices, zero fluorescence yield, zero phosphor output, zero opposite-face slab transport, and zero indirect bounces. The control changes only the selected station. It does not reset sensor reference history.
 
 Truth component selection exposes direct/converted fluorescence or absorbed/untraced refractive energy in the RGB truth view. The detector always consumes total intensity from texture alpha. A truth view must not become a new optical stimulus.
@@ -68,7 +70,7 @@ Surface defaults, bounds, and missing physics come from `prototype/materials/reg
 
 The immutable event boundary remains `event_batch(events, cursor_ns)` with `[x,y,t_relative_ns,p]` rows. Processing consumes every completed batch before the next host sample. The raw window and the processed view each use bounded streaming state. ROI, bins, polarity, temporal settings, and capacity clear only the processed view. Gain and normalization retain it.
 
-Forward grayscale integration keeps one binary64 log estimate per raw pixel. It uses a declared constant log prior and actual ON/OFF thresholds from the completed sample. ROI, binning, and polarity controls do not affect it. It retains no event history and cannot warm from an earlier capture point. Sensor reset starts a fresh constant prior. Material reset does not reset inference. The display maps inferred relative intensity with fixed `I/(1+I)`. Silent initial texture and absolute intensity remain unknown.
+Forward grayscale integration keeps one binary64 log estimate per raw pixel. It uses a declared constant log prior and actual ON/OFF thresholds from the completed sample. ROI, binning, and polarity controls do not affect it. It retains no event history and cannot warm from an earlier capture point. The I toggle shows or hides the inferred pane while retaining this bounded live estimate, so toggling it on needs no retrospective replay. The hidden-view profile still includes forward contrast accumulation; it is not a compute-off ablation. Sensor reset starts a fresh constant prior. Material reset does not reset inference. The display maps inferred relative intensity with fixed `I/(1+I)`. Silent initial texture and absolute intensity remain unknown.
 
 Saved settings include material parameters, camera, processing, inference prior, and display policy. Loading validates material and processing settings. A changed inference prior starts new inference. Optical population is retained. Processing semantic changes clear processing; gain retains it. Settings are saved at `user://interaction-settings.json`, with the effective path shown in the status label.
 
