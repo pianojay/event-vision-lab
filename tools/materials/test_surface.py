@@ -61,6 +61,23 @@ class SurfaceTests(unittest.TestCase):
                 self.assertAlmostEqual(glossy(.7,roughness,n,l,v),glossy(.7,roughness,n,v,l))
         self.assertGreater(glossy(.7,.1,n,n,n),glossy(.7,.5,n,n,n))
 
+    def test_glossy_roughness_endpoint_and_off_lobe(self):
+        n=(0,0,1)
+        off_lobe=(math.sqrt(.75),0,.5)
+        zero_cosine=(math.sqrt(.5),0,math.sqrt(.5))
+        expected=.7/(2*math.pi)
+        for l,v in ((off_lobe,off_lobe),(zero_cosine,zero_cosine),
+                    (n,off_lobe),(n,n)):
+            with self.subTest(light=l,view=v):
+                self.assertAlmostEqual(glossy(.7,1,n,l,v),expected)
+        for roughness in (.1,.5,.999):
+            with self.subTest(roughness=roughness):
+                self.assertEqual(glossy(.7,roughness,n,off_lobe,off_lobe),0)
+                self.assertEqual(glossy(.7,roughness,n,zero_cosine,zero_cosine),0)
+        for l,v in (((0,0,-1),n),(n,(0,0,-1)),((1,0,0),n)):
+            with self.subTest(light=l,view=v):
+                self.assertEqual(glossy(.7,1,n,l,v),0)
+
     def test_pane_energy_and_limits(self):
         for pane in (ThinPane(0,1),ThinPane(0,0),ThinPane(.1,.6)):
             self.assertAlmostEqual(pane.reflection+pane.transmission+pane.absorption,1)
