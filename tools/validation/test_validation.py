@@ -1,4 +1,5 @@
 import json
+import hashlib
 import tempfile
 import unittest
 from pathlib import Path
@@ -6,8 +7,8 @@ from pathlib import Path
 import numpy as np
 
 from output_bounds import OutputAccumulator, analyze_bounds, linear_rgb, maximum_window
-from observations import compare_pair, event_features
-from runtime_report import assess
+from observations import compare_pair, event_features, evaluate
+from runtime_report import assess, REQUIRED_COUNTERS
 from run_hidden import memory_trend
 
 
@@ -23,6 +24,16 @@ class OutputBoundsTests(unittest.TestCase):
         report = analyze_bounds(low, low + 255)
         self.assertEqual(report["maximum_hot_area"]["fraction"], 1)
         self.assertEqual(report["verdict"], "inconclusive")
+
+    def test_opposing_full_field_transitions_are_recorded(self):
+        with tempfile.TemporaryDirectory() as directory:
+            accumulator = OutputAccumulator(directory, 1)
+            for frame in range(13):
+                rgb = np.full((256, 341, 3), 255 if frame % 2 else 0, dtype=np.uint8)
+                accumulator.consume({"width":341,"height":256,"draw_frame":frame,"wall_s":frame/12},rgb.tobytes())
+            report = accumulator.finish(True)
+            self.assertEqual(report["general_capable_pixels"], 341*256)
+            self.assertEqual(report["verdict"], "inconclusive")
 
     def test_slow_fade_accumulates_despite_small_adjacent_deltas(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -83,6 +94,28 @@ class OutputBoundsTests(unittest.TestCase):
 
 
 class ObservationTests(unittest.TestCase):
+    def test_truth_changes_only_scores(self):
+        with tempfile.TemporaryDirectory() as directory:
+            base = Path(directory)
+            for side, rows in (("control", "0,0,0,1,0\n"), ("treatment", "0,0,0,1,0\n1,0,10,-1,1\n")):
+                path = base / side
+                path.mkdir()
+                payload = ("x,y,t_ns,p,sequence\n" + rows).encode()
+                (path / "events.csv").write_bytes(payload)
+                meta = {"stage":"pixel-emitted","complete_relative_to_stage_input":True,"file":"events.csv",
+                        "epoch_ns":"0","width":2,"height":2,"stored_count":len(rows.splitlines()),
+                        "sha256":hashlib.sha256(payload).hexdigest()}
+                (path / "manifest.json").write_text(json.dumps({"captures":{"events":meta}}),encoding="utf-8")
+            pair = {"station":"example","control":"control/manifest.json","treatment":"treatment/manifest.json",
+                    "roi":[0,0,2,2],"start_ns":0,"end_ns":100,"relative_count_threshold":0.05,
+                    "score_truth":{"count_response_difference":True}}
+            first = evaluate({"pairs":[pair]},base)["results"][0]
+            pair["score_truth"]["count_response_difference"] = False
+            second = evaluate({"pairs":[pair]},base)["results"][0]
+            self.assertEqual(first["prediction"],second["prediction"])
+            self.assertTrue(first["score"]["matches"])
+            self.assertFalse(second["score"]["matches"])
+
     def test_roi_polarity_and_motion_come_from_events(self):
         events = [[1, 2, 0, 1], [3, 4, 100, -1], [50, 50, 50, 1]]
         result = event_features(events, [0, 0, 10, 10], 0, 100)
@@ -101,6 +134,19 @@ class ObservationTests(unittest.TestCase):
 
 
 class RuntimeEvidenceTests(unittest.TestCase):
+    def test_complete_fixture_can_pass_and_battery_cannot(self):
+        state = {key:0 for key in REQUIRED_COUNTERS}
+        state.update(effective={"strobe_enabled":True},inference_cursor_ns=None)
+        runtime = {"success":True,"stream_finalization":{"finalized":True},"measured_wall_seconds":600,
+                   "event_count":100,"sample_batches":2,"sample_service":{"count":2},"final_snapshot":state,
+                   "actions":[{"requested":{"strobe_enabled":True}},{"key":"V","latency_usec":1000},
+                              {"key":"R","latency_usec":1000}]}
+        launcher = {"exit_code":0,"ac_power_all_samples":True}
+        telemetry = [{"wall_s":200,"events":0,"snapshot":state},{"wall_s":400,"events":100,"snapshot":state}]
+        self.assertEqual(assess(runtime,launcher,telemetry)["verdict"],"evidence-complete-for-recorded-profile")
+        launcher["ac_power_all_samples"] = False
+        self.assertEqual(assess(runtime,launcher,telemetry)["verdict"],"incomplete")
+
     def test_short_proxy_run_cannot_satisfy_sustained_evidence(self):
         report = assess({"measured_wall_seconds":10,"sample_batches":600,"event_count":1000}, {}, [])
         self.assertEqual(report["verdict"], "incomplete")
