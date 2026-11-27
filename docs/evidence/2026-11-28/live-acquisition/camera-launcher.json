@@ -1,0 +1,37 @@
+{
+  "command": [
+    "C:\\Godot_v4.7.2-stable_win64.exe\\Godot_v4.7.2-stable_win64_console.exe",
+    "--path",
+    "C:\\Users\\piano\\.codex\\worktrees\\918c\\Event Game\\prototype",
+    "--display-driver",
+    "windows",
+    "--rendering-method",
+    "mobile",
+    "--rendering-driver",
+    "vulkan",
+    "--position",
+    "-32000,-32000",
+    "--resolution",
+    "1280x800",
+    "--single-window",
+    "--log-file",
+    "D:\\ChatGPT\\Event Game\\runs\\next-acquisition\\camera-anchored-launch\\godot.log",
+    "--",
+    "--report=D:\\ChatGPT\\Event Game\\runs\\next-acquisition\\camera-anchored-launch\\report.json",
+    "--acquisition-config=C:\\Users\\piano\\.codex\\worktrees\\918c\\Event Game\\tools\\acquisition\\configs\\camera-occlusion.json",
+    "--event-capture=D:\\ChatGPT\\Event Game\\runs\\next-acquisition\\camera-anchored",
+    "--source-revision=d8c7478"
+  ],
+  "process_id": 20732,
+  "exit_code": 0,
+  "owned_windows": 0,
+  "visible_window_observations": 0,
+  "startup_show_window": "SW_HIDE",
+  "position": [
+    -32000,
+    -32000
+  ],
+  "computer_use": false,
+  "real_context": "windows/vulkan/mobile",
+  "duration_s": 4.581821099993249
+}

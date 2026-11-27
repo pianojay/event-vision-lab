@@ -1,0 +1,126 @@
+COMMAND python -m unittest discover -s tools/timing -p test_*.py -v
+test_asymmetric_thresholds (test_timing_reference.TimingTests.test_asymmetric_thresholds) ... ok
+test_batching_same_sample_sequence (test_timing_reference.TimingTests.test_batching_same_sample_sequence) ... ok
+test_boundary_owned_once (test_timing_reference.TimingTests.test_boundary_owned_once) ... ok
+test_capture_roundtrip_ties_epoch_and_overflow (test_timing_reference.TimingTests.test_capture_roundtrip_ties_epoch_and_overflow) ... ok
+test_gate_counts_missing_extra_and_polarity (test_timing_reference.TimingTests.test_gate_counts_missing_extra_and_polarity) ... ok
+test_hidden_pulse_and_known_boundaries (test_timing_reference.TimingTests.test_hidden_pulse_and_known_boundaries) ... ok
+test_invalid_input (test_timing_reference.TimingTests.test_invalid_input) ... ok
+test_long_epoch_float32_collapse (test_timing_reference.TimingTests.test_long_epoch_float32_collapse) ... ok
+test_malformed_and_unordered_capture_rejected (test_timing_reference.TimingTests.test_malformed_and_unordered_capture_rejected) ... ok
+test_pulse_oracle_hand_solution_all_crossings (test_timing_reference.TimingTests.test_pulse_oracle_hand_solution_all_crossings) ... ok
+test_ramp_crossings_hand_solution (test_timing_reference.TimingTests.test_ramp_crossings_hand_solution) ... ok
+test_residual_and_reversal (test_timing_reference.TimingTests.test_residual_and_reversal) ... ok
+test_sine_first_crossing_closed_form (test_timing_reference.TimingTests.test_sine_first_crossing_closed_form) ... ok
+test_sine_timestep_convergence (test_timing_reference.TimingTests.test_sine_timestep_convergence) ... ok
+test_static_and_reset_no_flash (test_timing_reference.TimingTests.test_static_and_reset_no_flash) ... ok
+test_threshold_touch_at_extremum_is_included (test_timing_reference.TimingTests.test_threshold_touch_at_extremum_is_included) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.045s
+
+OK
+
+COMMAND python -m unittest discover -s tools/sensor -p test_*.py -v
+test_asymmetric_polarity_thresholds (test_reference_sensor.ReferenceSensorTests.test_asymmetric_polarity_thresholds) ... ok
+test_capacity_failure_is_atomic_and_not_silent_loss (test_reference_sensor.ReferenceSensorTests.test_capacity_failure_is_atomic_and_not_silent_loss) ... ok
+test_dark_input_has_longer_equal_contrast_latency (test_reference_sensor.ReferenceSensorTests.test_dark_input_has_longer_equal_contrast_latency) ... ok
+test_dark_offset_reduces_weak_signal_fractional_contrast (test_reference_sensor.ReferenceSensorTests.test_dark_offset_reduces_weak_signal_fractional_contrast) ... ok
+test_event_order_and_coordinates (test_reference_sensor.ReferenceSensorTests.test_event_order_and_coordinates) ... ok
+test_hold_subdivision_does_not_change_rc_events (test_reference_sensor.ReferenceSensorTests.test_hold_subdivision_does_not_change_rc_events) ... ok
+test_ideal_fractional_contrast_is_scale_invariant (test_reference_sensor.ReferenceSensorTests.test_ideal_fractional_contrast_is_scale_invariant) ... ok
+test_ideal_initialization_and_constant_input_are_silent (test_reference_sensor.ReferenceSensorTests.test_ideal_initialization_and_constant_input_are_silent) ... ok
+test_ideal_multiple_crossings_residual_and_reversal (test_reference_sensor.ReferenceSensorTests.test_ideal_multiple_crossings_residual_and_reversal) ... ok
+test_invalid_input_and_time_do_not_mutate_state (test_reference_sensor.ReferenceSensorTests.test_invalid_input_and_time_do_not_mutate_state) ... ok
+test_invalid_profile_and_dimensions_are_rejected (test_reference_sensor.ReferenceSensorTests.test_invalid_profile_and_dimensions_are_rejected) ... ok
+test_mismatch_is_persistent_across_steps_and_reset (test_reference_sensor.ReferenceSensorTests.test_mismatch_is_persistent_across_steps_and_reset) ... ok
+test_mismatch_moments_and_polarity_independence (test_reference_sensor.ReferenceSensorTests.test_mismatch_moments_and_polarity_independence) ... ok
+test_rc_crossing_times_satisfy_forward_response_for_both_polarities (test_reference_sensor.ReferenceSensorTests.test_rc_crossing_times_satisfy_forward_response_for_both_polarities) ... ok
+test_rc_step_response_crosses_half_height_at_tau_log_two (test_reference_sensor.ReferenceSensorTests.test_rc_step_response_crosses_half_height_at_tau_log_two) ... ok
+test_refractory_applies_to_last_emission_across_both_polarities (test_reference_sensor.ReferenceSensorTests.test_refractory_applies_to_last_emission_across_both_polarities) ... ok
+test_refractory_consumes_reference_without_deferred_burst (test_reference_sensor.ReferenceSensorTests.test_refractory_consumes_reference_without_deferred_burst) ... ok
+test_reset_clears_dynamics_counters_and_refractory (test_reference_sensor.ReferenceSensorTests.test_reset_clears_dynamics_counters_and_refractory) ... ok
+test_roundoff_at_threshold_does_not_lose_a_crossing (test_reference_sensor.ReferenceSensorTests.test_roundoff_at_threshold_does_not_lose_a_crossing) ... ok
+test_seed_zero_is_reproducible_and_seed_changes_instance (test_reference_sensor.ReferenceSensorTests.test_seed_zero_is_reproducible_and_seed_changes_instance) ... ok
+test_threshold_floor_is_explicit (test_reference_sensor.ReferenceSensorTests.test_threshold_floor_is_explicit) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.040s
+
+OK
+
+COMMAND python -m unittest discover -s tools/rendering -p test_*.py -v
+test_axial_sphere_matches_closed_form_and_preserves_hdr (test_optical_fixture.OpticalFixtureTests.test_axial_sphere_matches_closed_form_and_preserves_hdr) ... ok
+test_camera_axis_and_top_left_orientation (test_optical_fixture.OpticalFixtureTests.test_camera_axis_and_top_left_orientation) ... ok
+test_checked_in_fixtures_load_and_typo_is_rejected (test_optical_fixture.OpticalFixtureTests.test_checked_in_fixtures_load_and_typo_is_rejected) ... ok
+test_constant_field_and_zero_are_preserved (test_optical_fixture.OpticalFixtureTests.test_constant_field_and_zero_are_preserved) ... ok
+test_edge_motion_changes_integrated_flux_by_exact_area (test_optical_fixture.OpticalFixtureTests.test_edge_motion_changes_integrated_flux_by_exact_area) ... ok
+test_edge_outside_image (test_optical_fixture.OpticalFixtureTests.test_edge_outside_image) ... ok
+test_exact_edge_coverage_and_image_orientation (test_optical_fixture.OpticalFixtureTests.test_exact_edge_coverage_and_image_orientation) ... ok
+test_existing_sequence_is_never_overwritten (test_optical_fixture.OpticalFixtureTests.test_existing_sequence_is_never_overwritten) ... ok
+test_f32_encoding_roundtrip_keeps_hdr_and_order (test_optical_fixture.OpticalFixtureTests.test_f32_encoding_roundtrip_keeps_hdr_and_order) ... ok
+test_invalid_dimensions_time_and_geometry_are_rejected (test_optical_fixture.OpticalFixtureTests.test_invalid_dimensions_time_and_geometry_are_rejected) ... ok
+test_invalid_exact_mode_is_rejected (test_optical_fixture.OpticalFixtureTests.test_invalid_exact_mode_is_rejected) ... ok
+test_invalid_intensity_is_rejected (test_optical_fixture.OpticalFixtureTests.test_invalid_intensity_is_rejected) ... ok
+test_linear_area_integration_precedes_log (test_optical_fixture.OpticalFixtureTests.test_linear_area_integration_precedes_log) ... ok
+test_midpoint_quadrature_error_bound_across_phases (test_optical_fixture.OpticalFixtureTests.test_midpoint_quadrature_error_bound_across_phases) ... ok
+test_point_samples_can_hide_subpixel_optical_change (test_optical_fixture.OpticalFixtureTests.test_point_samples_can_hide_subpixel_optical_change) ... ok
+test_sequence_manifest_hashes_and_samples_match_payloads (test_optical_fixture.OpticalFixtureTests.test_sequence_manifest_hashes_and_samples_match_payloads) ... ok
+test_sphere_background_and_repeatability (test_optical_fixture.OpticalFixtureTests.test_sphere_background_and_repeatability) ... ok
+test_sphere_backlight_and_lamp_off_leave_ambient (test_optical_fixture.OpticalFixtureTests.test_sphere_backlight_and_lamp_off_leave_ambient) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.287s
+
+OK
+
+COMMAND python -m unittest discover -s tools/coordination -p test_*.py -v
+test_held_input_adapter_converges_to_log_ramp (test_milestone_compatibility.CompatibilityTests.test_held_input_adapter_converges_to_log_ramp) ... ok
+test_rendered_artifact_to_both_models (test_milestone_compatibility.CompatibilityTests.test_rendered_artifact_to_both_models) ... ok
+test_sensor_events_to_timing_capture_preserves_stage_and_epoch (test_milestone_compatibility.CompatibilityTests.test_sensor_events_to_timing_capture_preserves_stage_and_epoch) ... ok
+test_static_sphere_silent_in_both_models (test_milestone_compatibility.CompatibilityTests.test_static_sphere_silent_in_both_models) ... ok
+test_zero_intensity_requires_explicit_policy (test_milestone_compatibility.CompatibilityTests.test_zero_intensity_requires_explicit_policy) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.192s
+
+OK
+
+COMMAND python -m unittest discover -s tools/pipeline -p test_*.py -v
+test_capture_rejects_bad_coordinates_order_polarity_and_metadata (test_pipeline.PipelineTests.test_capture_rejects_bad_coordinates_order_polarity_and_metadata) ... ok
+test_effective_config_roundtrip_and_cli (test_pipeline.PipelineTests.test_effective_config_roundtrip_and_cli) ... ok
+test_empty_capacity_is_valid_but_incomplete (test_pipeline.PipelineTests.test_empty_capacity_is_valid_but_incomplete) ... ok
+test_exact_area_edge_and_log_interpolation_have_distinct_times (test_pipeline.PipelineTests.test_exact_area_edge_and_log_interpolation_have_distinct_times) ... ok
+test_exact_area_prevents_midpoint_edge_aliasing (test_pipeline.PipelineTests.test_exact_area_prevents_midpoint_edge_aliasing) ... ok
+test_in_run_reset_preserves_prior_events_but_initializes_new_reference (test_pipeline.PipelineTests.test_in_run_reset_preserves_prior_events_but_initializes_new_reference) ... ok
+test_invalid_config_and_unsupported_combinations_fail (test_pipeline.PipelineTests.test_invalid_config_and_unsupported_combinations_fail) ... ok
+test_left_hold_never_uses_future_endpoint (test_pipeline.PipelineTests.test_left_hold_never_uses_future_endpoint) ... ok
+test_long_duration_reset_exact_endpoint_serializes (test_pipeline.PipelineTests.test_long_duration_reset_exact_endpoint_serializes) ... ok
+test_narrow_pulse_is_missed_then_recovered_by_known_boundaries (test_pipeline.PipelineTests.test_narrow_pulse_is_missed_then_recovered_by_known_boundaries) ... ok
+test_new_stream_reproducible_seed_and_no_state_carry (test_pipeline.PipelineTests.test_new_stream_reproducible_seed_and_no_state_carry) ... ok
+test_nonideal_and_capture_loss_are_separate (test_pipeline.PipelineTests.test_nonideal_and_capture_loss_are_separate) ... ok
+test_positive_hdr_pulse_preserves_endpoints (test_pipeline.PipelineTests.test_positive_hdr_pulse_preserves_endpoints) ... ok
+test_resource_limit_aborts_without_successful_artifact (test_pipeline.PipelineTests.test_resource_limit_aborts_without_successful_artifact) ... ok
+test_roundtrip_large_epoch_quantization_and_stable_ties (test_pipeline.PipelineTests.test_roundtrip_large_epoch_quantization_and_stable_ties) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 1.589s
+
+OK
+
+COMMAND python -m unittest discover -s tools/acquisition -p test_*.py -v
+test_all_crossings_from_actual_rounded_values (test_recorded_input.RecordedReferenceTests.test_all_crossings_from_actual_rounded_values) ... ok
+test_asymmetric_thresholds_and_signs (test_recorded_input.RecordedReferenceTests.test_asymmetric_thresholds_and_signs) ... ok
+test_comparison_separates_missing_sign_and_time (test_recorded_input.RecordedReferenceTests.test_comparison_separates_missing_sign_and_time) ... ok
+test_exact_return_after_nine_levels (test_recorded_input.RecordedReferenceTests.test_exact_return_after_nine_levels) ... ok
+test_guard_aborts (test_recorded_input.RecordedReferenceTests.test_guard_aborts) ... ok
+test_large_clock_origin_local_offsets (test_recorded_input.RecordedReferenceTests.test_large_clock_origin_local_offsets) ... ok
+test_pre_floor_zero_silent_and_finite (test_recorded_input.RecordedReferenceTests.test_pre_floor_zero_silent_and_finite) ... ok
+test_reference_really_uses_float_archive (test_recorded_input.RecordedReferenceTests.test_reference_really_uses_float_archive) ... ok
+test_reset_preserves_finished_endpoint (test_recorded_input.RecordedReferenceTests.test_reset_preserves_finished_endpoint) ... ok
+test_spatial_order_before_quantization (test_recorded_input.RecordedReferenceTests.test_spatial_order_before_quantization) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.002s
+
+OK
