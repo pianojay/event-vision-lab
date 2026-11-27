@@ -35,12 +35,21 @@ float stage_intersect(vec3 ro,vec3 rd,out vec3 n,out int id) {
     return nearest;
 }
 float stage_pattern(vec3 ro,vec3 rd) {
-    // Actual fixed back/front planes, sampled with the transmitted/reflected ray.
+    // Emissive back/front planes, sampled at the actual ray-plane intersection.
     float z=rd.z<0.0?-5.0:4.0;
     if(abs(rd.z)<1e-6) return 0.02;
     float t=(z-ro.z)/rd.z;
     if(t<0.0) return 0.02;
     vec3 q=ro+rd*t;
+    // Finite rear emitters behind the transmission and refraction stations.
+    // Source coordinates and motion are independent of camera, material, and detector.
+    if(rd.z<0.0) {
+        for(int panel=3;panel<=4;panel++) {
+            vec2 local=q.xy-stage_center(panel).xy;
+            if(abs(local.x)<0.9 && abs(local.y)<0.9)
+                return 0.44+0.36*sin(2.0*MAT_PI*(local.x-s.motion.y)/0.5);
+        }
+    }
     float checker=mod(floor(q.x*4.0)+floor(q.y*4.0),2.0);
     return mix(0.08,0.8,checker);
 }

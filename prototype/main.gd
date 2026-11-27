@@ -745,7 +745,7 @@ func _build_stage_ui(sidebar: VBoxContainer) -> void:
 		if interaction_stage.set_primary(v): _station_description())
 	sidebar.add_child(_label("Object translation (metres), independent of camera",12))
 	_slider(sidebar,-0.5,0.5,0.01,0.0,func(v: float): interaction_stage.object_offset=v)
-	sidebar.add_child(_label("Rear excitation stripe position (metres)",12))
+	sidebar.add_child(_label("Rear emission / excitation stripe position (metres)",12))
 	_slider(sidebar,-0.5,0.5,0.01,0.0,func(v: float): interaction_stage.stripe_offset=v)
 	sidebar.add_child(_label("Excitation band overlap (0 to 1)",12))
 	_slider(sidebar,0,1,0.05,1,func(v: float): interaction_stage.excitation_band=v)

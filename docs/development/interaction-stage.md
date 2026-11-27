@@ -26,7 +26,7 @@ The old sphere, orbit-light, and room presets remain on 1, 2, and 3. They disabl
 | One-factor slider | Change the named material parameter within validated bounds |
 | Z | Reset only the selected material preset; the phosphor station also clears its population |
 | Object translation slider | Translate the station geometry independently of the camera |
-| Stripe slider | Move rear excitation in the subsurface slab's material coordinates |
+| Stripe slider | Translate the rear emissive pattern for transmission/refraction and rear excitation in the subsurface slab |
 | Excitation overlap slider | Split source energy between excitation and emission bands |
 | WASD, Q/E, arrows, right drag | Translate and rotate the camera |
 | L, azimuth, elevation, strength, B | Control point illumination independently of the camera, except explicit camera-mounted mode |
@@ -44,7 +44,7 @@ The media display has a default reduced-flashes setting and an explicit opt-out.
 
 ## Geometry and restricted models
 
-Station centres are `(x,y,z)` with `x=(-3,0,3)`, `y=(6,3.5,1)`, and `z=-3` metres. Patterned emissive background planes lie at z=-5 and z=4. Navigation changes actual rays and occlusion, not screen-space material labels. All material functions operate before the logarithmic sensor.
+Station centres are `(x,y,z)` with `x=(-3,0,3)`, `y=(6,3.5,1)`, and `z=-3` metres. Patterned emissive background planes lie at z=-5 and z=4. Two finite 1.8 m square emitters on the rear plane are centred behind transmission and refraction. Their relative linear radiance is `0.44 + 0.36*sin(2*pi*(local_x-stripe_offset)/0.5 m)`, bounded from 0.08 to 0.8. The emitter boundaries stay fixed while the stripe translates. Rays outside the emitters see the fixed checker. The front plane remains fixed. These are prescribed emissive sources, separate from point-lamp illumination. Both treatment and control observe the same sources through their actual ray paths. Navigation changes actual rays and occlusion, not screen-space material labels. All material functions operate before the logarithmic sensor.
 
 | Station | Implemented geometry and optical model |
 | --- | --- |
@@ -83,10 +83,12 @@ Reports include elapsed wall and simulated time, sample count, skips, stage/sens
 ## Integrated experiment matrix
 
 ```powershell
-python -B tools/stage/experiment.py prepare runs/stage-matrix
-./tools/stage/run-matrix.ps1 -Protocol runs/stage-matrix/protocol.json
-python -B tools/stage/experiment.py analyze runs/stage-matrix
+python -B tools/stage/experiment.py prepare runs/stage-matrix-v2
+./tools/stage/run-matrix.ps1 -Protocol runs/stage-matrix-v2/protocol.json
+python -B tools/stage/experiment.py analyze runs/stage-matrix-v2
 ```
+
+Version 2 changes the transmission and refraction stimuli to `stripe`, with offset `0.2*sin(3*t)` metres and fixed camera, geometry, and point lamp. The original moving-pane and camera trials generated peripheral activity; the old `stripe` action did not affect either station's optical input. The finite rear emitters fix that missing stimulus. This is a new physical experiment. The original protocol, captures, failures, central region, and numerical gates remain unchanged. New captures must use a separate directory. GPU results are required before claiming that the revised task passes. This source change supports issues #9, #20, #21, and #1 without establishing user comprehension.
 
 The protocol is written before captures and refuses an existing output directory. It specifies 45 actual stage runs, with treatment, paired control, static control, twice the temporal sampling, and twice each spatial dimension for every station. Prescribed trajectories disable scene edits. A static trial initializes phosphor population at its steady state, except its explicit dark control; pulse trials start at zero population.
 

@@ -29,6 +29,19 @@ func run() -> void:
 		var b := Controller.interaction_parameters(config,16666667,0,false,stage)
 		check("76 parameter stage shape "+str(i),a.size()==76 and b.size()==76)
 		stage = Stage.new()
+	for station_index in [3,4]:
+		var config: Dictionary = Config.parse({"scene":"interaction-stage","station":station_index,"stage_action":"stripe"}).config
+		var treatment_stage := Stage.new()
+		var first := Controller.interaction_parameters(config,0,0,true,treatment_stage)
+		var moved := Controller.interaction_parameters(config,250000000,0,false,treatment_stage)
+		check("stripe holds camera and point lamp fixed "+str(station_index),first.slice(8,28)==moved.slice(8,28))
+		check("stripe translates source without moving geometry "+str(station_index),treatment_stage.stripe_offset>0.0 and treatment_stage.object_offset==0.0)
+		config.treatment=false
+		var control_stage := Stage.new()
+		Controller.interaction_parameters(config,0,0,true,control_stage)
+		var control := Controller.interaction_parameters(config,250000000,0,false,control_stage)
+		control[30]=moved[30]
+		check("stripe paired control changes only treatment "+str(station_index),control==moved)
 	check("diagnostic ten-minute bound remains",Config.parse({"duration_ns":600000000000}).has("error"))
 	check("stream permits ten minutes",not Config.parse({"archive_mode":"stream","duration_ns":600000000000}).has("error"))
 	check("unknown station rejected",Config.parse({"station":9}).has("error"))

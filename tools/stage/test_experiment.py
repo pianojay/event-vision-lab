@@ -8,12 +8,19 @@ class ExperimentTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as parent:
             path=Path(parent)/"trial"
             protocol=prepare(path)
+            self.assertEqual(protocol["schema"],"event-lab-stage-experiment-v2")
             self.assertEqual(protocol["gates"],GATES)
             self.assertEqual(len(protocol["runs"]),45)
             for station in range(9):
                 runs=[r for r in protocol["runs"] if r["station"]==station]
                 self.assertEqual({r["variant"] for r in runs},{"treatment","control","static","spatial","temporal"})
                 self.assertFalse(any(Path(r["output"]).exists() for r in runs))
+                configs={r["variant"]:json.loads(Path(r["config"]).read_text()) for r in runs}
+                control=dict(configs["control"],treatment=True)
+                self.assertEqual(control,configs["treatment"])
+                if station in (3,4):
+                    self.assertEqual(configs["treatment"]["stage_action"],"stripe")
+                    self.assertEqual(configs["static"]["stage_action"],"static")
             with self.assertRaises(FileExistsError): prepare(path)
     def test_event_task_locates_without_truth(self):
         events=[(40,30,10,1),(41,31,11,-1),(42,32,12,1)]

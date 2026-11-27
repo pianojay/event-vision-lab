@@ -4,7 +4,7 @@ import argparse, array, csv, hashlib, json, math, subprocess, sys
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 IDS = ["absorption", "diffuse", "glossy", "transmission", "refraction", "fluorescence", "phosphorescence", "subsurface", "interreflection"]
-ACTIONS = ["object", "light", "light", "object", "camera", "pulse", "pulse", "stripe", "pulse"]
+ACTIONS = ["object", "light", "light", "stripe", "stripe", "pulse", "pulse", "stripe", "pulse"]
 # These tolerances are written to protocol.json before captures exist.
 GATES = {"static_event_count": 0, "optical_difference_min": 1e-5,
          "event_task_min_events": 1, "central_event_fraction_min": 0.35,
@@ -37,7 +37,9 @@ def prepare(output: Path):
         ROOT/"prototype/shaders/interaction_stage.glsl",ROOT/"prototype/shaders/material_models.glsl",
         ROOT/"prototype/stage/interaction_stage.gd",ROOT/"prototype/stage/stage_controller.gd",
         ROOT/"prototype/materials/registry.json",Path(__file__)]}
-    protocol = dict(schema="event-lab-stage-experiment-v1",gates=GATES,runs=runs,source_sha256=hashes,
+    protocol = dict(schema="event-lab-stage-experiment-v2",gates=GATES,runs=runs,source_sha256=hashes,
+        revision_reason="v1 transmission/object and refraction/camera trials produced peripheral activity; v2 uses finite rear emitter stripe motion at fixed camera/object/light; gates and ROI unchanged",
+        optical_stimulus="At z=-5 m, two 1.8 m square emitters centred behind stations 3 and 4; radiance 0.44+0.36*sin(2*pi*(local_x-offset)/0.5 m), offset=0.2*sin(3*t) m for stripe action; front plane and other background stay fixed",
         scope="Actual combined nine-station shader, focused camera; ideal sensor; restricted analytic models",
         event_task="Locate changed region from emitted events alone; compare count/polarity/spatial histogram with paired control",
         central_region="middle 60% of pixel width and height; predeclared from focused station layout",
@@ -114,7 +116,7 @@ def analyze(output: Path):
             _,b,_=read_run(output/keys["control"])
             difference=max(abs(x-y) for x,y in zip(a,b))
             check(name+" treatment changes optics",difference>=gates["optical_difference_min"],difference,gates["optical_difference_min"])
-    report=dict(schema="event-lab-stage-results-v1",gates=gates,missing=missing,checks=checks,results=results,
+    report=dict(schema="event-lab-stage-results-v1",protocol_schema=protocol["schema"],gates=gates,missing=missing,checks=checks,results=results,
         passed=not missing and all(c["passed"] for c in checks))
     (output/"results.json").write_text(json.dumps(report,indent=2)+"\n")
     print(json.dumps(dict(passed=report["passed"],checks=len(checks),failed=sum(not c["passed"] for c in checks),missing=len(missing))))
