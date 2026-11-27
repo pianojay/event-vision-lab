@@ -1,7 +1,11 @@
 import math
+import hashlib
+import json
+from pathlib import Path
+import tempfile
 import struct
 import unittest
-from recorded_input import simulate_frames, compare_events
+from recorded_input import simulate_frames, compare_events, load_sequence
 
 
 def f32(x):
@@ -15,6 +19,38 @@ def frame(t, values, reset=False, on=0.25, off=0.25):
 
 
 class RecordedReferenceTests(unittest.TestCase):
+    def reset_archive(self, directory, include_reset):
+        times = [(0, True), (500, False)]
+        if include_reset:
+            times.append((500, True))
+        times.append((1000, False))
+        payload = struct.pack("<f", 1)
+        entries = []
+        for index, (time_ns, reset) in enumerate(times):
+            entries.append({"time_ns": time_ns, "reset": reset, "file": "intensity.f32",
+                            "offset_bytes": index * 4, "length_bytes": 4,
+                            "sha256": hashlib.sha256(payload).hexdigest(),
+                            "parameters": frame(time_ns, [1], reset)[3]})
+        manifest = {"schema": "event-lab-pipeline-v1", "effective_config": {
+            "profile_name": "gpu-ideal-log-linear-v1", "sensor": "ideal", "trajectory": "log-linear",
+            "width": 1, "height": 1, "intensity_floor": 1e-6, "duration_ns": 1000,
+            "reset_times_ns": [500]}, "optical_input": {"frames": entries}}
+        path = Path(directory) / "manifest.json"
+        path.write_text(json.dumps(manifest), encoding="utf-8")
+        path.with_name("intensity.f32").write_bytes(payload * len(times))
+        return path
+
+    def test_requested_reset_must_be_present_in_archive(self):
+        with tempfile.TemporaryDirectory() as directory:
+            with self.assertRaises(ValueError):
+                load_sequence(self.reset_archive(directory, False))
+
+    def test_requested_reset_finishes_interval_before_reset(self):
+        with tempfile.TemporaryDirectory() as directory:
+            _, frames = load_sequence(self.reset_archive(directory, True))
+            self.assertEqual([(f[0], f[1]) for f in frames],
+                             [(0, True), (500, False), (500, True), (1000, False)])
+
     def test_all_crossings_from_actual_rounded_values(self):
         frames=[frame(0,[1],True),frame(1000,[math.exp(1.1)])]
         events=simulate_frames(frames,1)

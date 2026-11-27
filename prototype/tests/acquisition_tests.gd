@@ -35,6 +35,8 @@ func _initialize() -> void:
 		check("incompatible config rejected " + str(override), Config.parse(override).has("error"))
 	var config: Dictionary = Config.parse({"width":1,"height":1,"duration_ns":1000,"sample_period_ns":600,"reset_times_ns":[500],"on_threshold":0.25,"off_threshold":0.25,"capture_capacity":2,"epoch_ns":"9000000000000000000"}).config
 	check("schedule includes end and reset exactly", Config.schedule(config) == [0,500,600,1000])
+	var json_config: Dictionary = Config.parse(JSON.parse_string(JSON.stringify(config))).config
+	check("JSON requested reset matches integer acquisition cursor", json_config.reset_times_ns.has(500))
 	check("threshold is effective GPU float", Config.parse({"on_threshold":0.2}).config.on_threshold == PackedFloat32Array([0.2])[0])
 	var path := ProjectSettings.globalize_path("res://../runs/acquisition-headless-" + str(Time.get_ticks_usec()))
 	var writer := Writer.new()
