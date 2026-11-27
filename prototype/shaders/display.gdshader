@@ -11,6 +11,10 @@ uniform int representation=0;
 // One display frame can span several sensor samples. Retain every sample's
 // contribution using crossing timestamps rather than only the final sample.
 uniform float display_interval=0.0167;
+float limited_gray(vec3 value) {
+    float linear_luminance=clamp(dot(value,vec3(0.2126,0.7152,0.0722)),0.0,1.0)*0.08;
+    return linear_luminance<=0.0031308?12.92*linear_luminance:1.055*pow(linear_luminance,1.0/2.4)-0.055;
+}
 void fragment() {
     vec4 events=texture(event_texture,UV);
     vec3 background=vec3(0.008,0.014,0.025);
@@ -29,6 +33,6 @@ void fragment() {
         vec3 linear=texture(scene_texture,UV).rgb;
         value=pow(max(linear/(linear+vec3(1.0)),vec3(0.0)),vec3(1.0/2.2));
     }
-    if (reduced_flashes) value=vec3(clamp(dot(value,vec3(0.2126,0.7152,0.0722)),0.0,1.0)*0.08);
+    if (reduced_flashes) value=vec3(limited_gray(value));
     COLOR=vec4(value,1.0);
 }

@@ -40,7 +40,7 @@ Every stage shows parameter names, values, its registry model, and missing physi
 
 Truth component selection exposes direct/converted fluorescence or absorbed/untraced refractive energy in the RGB truth view. The detector always consumes total intensity from texture alpha. A truth view must not become a new optical stimulus.
 
-The media display has a default reduced-flashes setting and an explicit opt-out. It bounds displayed media output independently of optical/sensor values. Actual viewport output must be measured to assess the transfer function and temporal behavior. It is not a safety certification. Strobe remains off by default and is an explicit optical stimulus.
+The media display has a default reduced-flashes setting and an explicit opt-out. It maps media to grayscale with a maximum linear SDR luminance of 0.08, then applies the sRGB encoding transfer. This display-only remapping preserves optical/sensor values. The earlier encoded-value multiply reached only RGB8 20 (linear luminance 0.007) in an actual recorded raw pane and was overly dim. Actual viewport output must be measured to assess the transfer function and temporal behavior. It is not a safety certification. Strobe remains off by default and is an explicit optical stimulus.
 
 ## Geometry and restricted models
 
