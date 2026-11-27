@@ -48,6 +48,16 @@ void main() {
     result.value[18]=mat_thin_weights(0.1,0.6).z;
     vec3 ray;
     result.value[19]=float(mat_refract(vec3(sqrt(0.75),0,-0.5),vec3(0,0,1),1.5,1.0,ray));
+    vec3 fluorescence=mat_fluorescence(3.0,0.4,0.8,0.7,405.0,550.0,0.1,0.9);
+    result.value[20]=fluorescence.x;
+    result.value[21]=fluorescence.y;
+    result.value[22]=fluorescence.z;
+    result.value[23]=mat_fluorescence(0.0,3.0,0.8,0.7,405.0,550.0,0.1,0.9).y;
+    float stored=mat_population_step(0.0,2.0,0.2,0.4,0.6);
+    result.value[24]=stored;
+    result.value[25]=mat_afterglow_power(mat_population_step(stored,0.0,0.3,0.4,0.6),0.4,0.8);
+    result.value[26]=mat_population_step(stored,100.0,0.0,0.4,0.6);
+    result.value[27]=mat_population_step(0.0,2.0,0.000001,0.4,0.6);
 }
 """
 	var spirv := rd.shader_compile_spirv_from_source(source)
@@ -102,17 +112,33 @@ void main() {
 	_check("Sphere path exists",values[17],1.0)
 	_check("Nonbending pane absorption",values[18],0.3)
 	_check("TIR ray rejected",values[19],0.0)
+	_check("Fluorescence direct bands",values[20],(0.1*0.6+0.9*0.4)/PI)
+	_check("Fluorescence photon energy conversion",values[21],0.9*(3.0*0.8/(6.62607015e-34*299792458.0/(405e-9)))*0.7*(6.62607015e-34*299792458.0/(550e-9))/PI)
+	_check("Fluorescence excitation absorption",values[22],2.4)
+	_check("Nonexciting band control",values[23],0.0)
+	var stored_expected := 0.6*2.0*0.4*(1.0-exp(-0.2/0.4))
+	_check("Causal reservoir charge",values[24],stored_expected)
+	_check("Afterglow persists after source off",values[25],0.8*stored_expected*exp(-0.3/0.4)/0.4)
+	_check("Paused material state",values[26],stored_expected)
+	_check("Small timestep reservoir",values[27],0.6*2.0*0.4*(1.0-exp(-0.000001/0.4)),0.0000000001)
 	for resource in [uniforms,pipeline,shader,buffer]:
 		rd.free_rid(resource)
 	rd.free()
 	var report := {"passed": not failed,"scope":"standalone material GLSL numerical probes; not integrated stage validation","checks":checks}
-	for argument in OS.get_cmdline_user_args():
-		if argument.begins_with("--output="):
-			var file := FileAccess.open(argument.trim_prefix("--output="),FileAccess.WRITE)
-			if file == null:
-				push_error("Cannot write material GPU evidence.")
-				failed=true
-			else:
-				file.store_string(JSON.stringify(report,"  ")+"\n")
+	var arguments := OS.get_cmdline_user_args()
+	var output_path := ""
+	for index in range(arguments.size()):
+		var argument := arguments[index]
+		if argument.begins_with("--output=") or argument.begins_with("--report="):
+			output_path=argument.substr(argument.find("=")+1)
+		elif argument in ["--output","--report"] and index+1 < arguments.size():
+			output_path=arguments[index+1]
+	if not output_path.is_empty():
+		var file := FileAccess.open(output_path,FileAccess.WRITE)
+		if file == null:
+			push_error("Cannot write material GPU evidence.")
+			failed=true
+		else:
+			file.store_string(JSON.stringify(report,"  ")+"\n")
 	print("MATERIAL_GPU_RESULT ",JSON.stringify(report))
 	quit(1 if failed else 0)
