@@ -29,6 +29,8 @@ var motion_check: CheckBox
 var lamp_check: CheckBox
 var strobe_check: CheckBox
 var panel_check: CheckBox
+var colors_check: CheckBox
+var shortcut_actions: Dictionary[Key, Callable] = {}
 var ready_gpu := false
 var needs_reset := true
 var simulation_time := 0.0
@@ -71,7 +73,6 @@ func _ready() -> void:
 			capture_path = arg.trim_prefix("--capture=")
 		elif arg.begins_with("--view="):
 			initial_view = clampi(arg.trim_prefix("--view=").to_int(), 0, 3)
-	mode_select.select(initial_view)
 	_set_mode(initial_view)
 	RenderingServer.call_on_render_thread(_initialize_gpu)
 
@@ -201,17 +202,12 @@ func _input(event: InputEvent) -> void:
 		if canvas.get_global_rect().has_point(get_global_mouse_position()):
 			yaw += event.relative.x * 0.004
 			pitch = clampf(pitch - event.relative.y * 0.004, -0.9, 0.9)
-	if event is InputEventKey and event.pressed and not event.echo:
-		match event.physical_keycode:
-			KEY_1: _preset(0)
-			KEY_2: _preset(1)
-			KEY_3: _preset(2)
-			KEY_R: needs_reset = true
-			KEY_P: pause_check.button_pressed = not pause_check.button_pressed
-			KEY_V:
-				mode_select.select((mode_select.selected + 1) % 4)
-				_set_mode(mode_select.selected)
-			KEY_T: strobe_check.button_pressed = not strobe_check.button_pressed
+	if event is InputEventKey and not (event.ctrl_pressed or event.alt_pressed or event.shift_pressed or event.meta_pressed):
+		var key: Key = event.physical_keycode if event.physical_keycode != 0 else event.keycode
+		if shortcut_actions.has(key):
+			if event.pressed and not event.echo:
+				shortcut_actions[key].call()
+			get_viewport().set_input_as_handled()
 
 func _preset(which: int) -> void:
 	motion_check.button_pressed = which == 2
@@ -239,6 +235,7 @@ func _light_preset(angle: float, elevation: float) -> void:
 	elevation_slider.value = elevation
 
 func _set_mode(index: int) -> void:
+	mode_select.select(index)
 	display_material.set_shader_parameter("representation", index)
 
 func _label(text: String, font_size: int = 15, color: Color = Color("b6c2d4")) -> Label:
@@ -317,7 +314,7 @@ func _build_ui() -> void:
 	sidebar.custom_minimum_size.x = 286
 	sidebar.add_theme_constant_override("separation", 5)
 	scroll.add_child(sidebar)
-	sidebar.add_child(_label("OBSERVATION", 13, Color("66c9db")))
+	sidebar.add_child(_label("OBSERVATION [V] - display only", 13, Color("66c9db")))
 	mode_select = OptionButton.new()
 	for mode in ["Event activity (decaying counts)", "Time surface", "Raw events (display window)", "Reference intensity [debug]"]:
 		mode_select.add_item(mode)
@@ -326,9 +323,9 @@ func _build_ui() -> void:
 	sidebar.add_child(mode_select)
 	pause_check = _check("Pause acquisition [P]", false)
 	sidebar.add_child(pause_check)
-	var colors := _check("Polarity colors (optional)", false)
-	colors.toggled.connect(func(v: bool): display_material.set_shader_parameter("polarity_color", v))
-	sidebar.add_child(colors)
+	colors_check = _check("Polarity colors [C] (optional)", false)
+	colors_check.toggled.connect(func(v: bool): display_material.set_shader_parameter("polarity_color", v))
+	sidebar.add_child(colors_check)
 	threshold_label = _label("Contrast threshold  0.20 log units")
 	sidebar.add_child(threshold_label)
 	_slider(sidebar, 0.02, 0.6, 0.01, threshold, func(v: float):
@@ -341,13 +338,13 @@ func _build_ui() -> void:
 		persistence_label.text = "Activity / surface decay  %.0f ms" % (v * 1000.0)
 		display_material.set_shader_parameter("persistence", v))
 	sidebar.add_child(HSeparator.new())
-	sidebar.add_child(_label("ACTIVE LIGHTING", 13, Color("66c9db")))
+	sidebar.add_child(_label("ACTIVE LIGHTING [L]", 13, Color("66c9db")))
 	light_mode = OptionButton.new()
 	for name in ["Fixed world light", "Camera-mounted light", "Orbiting light / fixed target"]: light_mode.add_item(name)
 	light_mode.select(2)
 	light_mode.focus_mode = Control.FOCUS_NONE
 	sidebar.add_child(light_mode)
-	sphere_check = _check("Matte sphere control scene", true)
+	sphere_check = _check("Matte sphere control scene [F]", true)
 	sidebar.add_child(sphere_check)
 	sidebar.add_child(_label("Light azimuth offset (-180 to 180 deg)", 13))
 	azimuth_slider = _slider(sidebar, -180, 180, 1, light_azimuth, func(v: float): light_azimuth = v)
@@ -355,19 +352,19 @@ func _build_ui() -> void:
 	elevation_slider = _slider(sidebar, 0, 80, 1, light_elevation, func(v: float): light_elevation = v)
 	sidebar.add_child(_label("Orbit speed (0.02 to 0.5 turns/s)", 13))
 	_slider(sidebar, 0.02, 0.5, 0.01, light_speed, func(v: float): light_speed = v)
-	sidebar.add_child(_button("Light from left", _light_preset.bind(-60.0, 30.0)))
-	sidebar.add_child(_button("Light from right", _light_preset.bind(60.0, 30.0)))
-	sidebar.add_child(_button("Light from above", _light_preset.bind(0.0, 75.0)))
+	sidebar.add_child(_button("Light from left [4]", _light_preset.bind(-60.0, 30.0)))
+	sidebar.add_child(_button("Light from right [5]", _light_preset.bind(60.0, 30.0)))
+	sidebar.add_child(_button("Light from above [6]", _light_preset.bind(0.0, 75.0)))
 	sidebar.add_child(_label("Matte control albedo (0.05 to 0.9)", 13))
 	_slider(sidebar, 0.05, 0.9, 0.05, control_albedo, func(v: float): control_albedo = v)
 	sidebar.add_child(_label("Lamp strength (0.1 to 10)", 13))
 	_slider(sidebar, 0.1, 10, 0.1, strength, func(v: float): strength = v)
 	sidebar.add_child(HSeparator.new())
 	sidebar.add_child(_label("OTHER STIMULI", 13, Color("66c9db")))
-	motion_check = _check("Moving object (room scene)", false)
-	lamp_check = _check("Lamp powered", true)
+	motion_check = _check("Moving object [M] (room scene)", false)
+	lamp_check = _check("Lamp powered [B]", true)
 	strobe_check = _check("Strobe illumination [T] (opt-in)", false)
-	panel_check = _check("Changing emissive panel", false)
+	panel_check = _check("Changing emissive panel [N]", false)
 	for check in [motion_check, lamp_check, strobe_check, panel_check]: sidebar.add_child(check)
 	frequency_label = _label("Strobe frequency  2.0 Hz")
 	sidebar.add_child(frequency_label)
@@ -383,6 +380,24 @@ func _build_ui() -> void:
 	note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	note.custom_minimum_size.x = 270
 	sidebar.add_child(note)
+	shortcut_actions = {
+		KEY_1: _preset.bind(0),
+		KEY_2: _preset.bind(1),
+		KEY_3: _preset.bind(2),
+		KEY_4: _light_preset.bind(-60.0, 30.0),
+		KEY_5: _light_preset.bind(60.0, 30.0),
+		KEY_6: _light_preset.bind(0.0, 75.0),
+		KEY_R: func(): needs_reset = true,
+		KEY_V: func(): _set_mode((mode_select.selected + 1) % mode_select.item_count),
+		KEY_L: func(): light_mode.select((light_mode.selected + 1) % light_mode.item_count),
+		KEY_P: func(): pause_check.button_pressed = not pause_check.button_pressed,
+		KEY_C: func(): colors_check.button_pressed = not colors_check.button_pressed,
+		KEY_F: func(): sphere_check.button_pressed = not sphere_check.button_pressed,
+		KEY_M: func(): motion_check.button_pressed = not motion_check.button_pressed,
+		KEY_B: func(): lamp_check.button_pressed = not lamp_check.button_pressed,
+		KEY_T: func(): strobe_check.button_pressed = not strobe_check.button_pressed,
+		KEY_N: func(): panel_check.button_pressed = not panel_check.button_pressed,
+	}
 
 func _write_report() -> void:
 	frame_times.sort()

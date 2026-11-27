@@ -1,6 +1,7 @@
 param(
     [switch]$Editor,
     [switch]$Validate,
+    [switch]$ValidateControls,
     [ValidateSet('vulkan','d3d12')][string]$Driver = 'vulkan',
     [int]$ProfileSeconds = 0,
     [string]$CapturePath = '',
@@ -9,6 +10,9 @@ param(
     [string]$EvidenceDirectory = ''
 )
 $ErrorActionPreference = 'Stop'
+if ($ValidateControls -and ($Editor -or $Validate -or $ProfileSeconds -ne 0)) {
+    throw '-ValidateControls cannot be combined with -Editor, -Validate, or -ProfileSeconds.'
+}
 $projectPath = Join-Path $PSScriptRoot 'prototype'
 # Explicit settings must resolve as given; do not silently fall back after a typo.
 if (-not $GodotDirectory) { $GodotDirectory = $env:EVENT_LAB_GODOT_DIR }
@@ -39,8 +43,13 @@ Write-Host "Godot $version from $GodotDirectory"
 if ($EvidenceDirectory) { $evidencePath = [System.IO.Path]::GetFullPath($EvidenceDirectory) }
 else { $evidencePath = Join-Path $PSScriptRoot 'docs\evidence\2026-11-22' }
 New-Item -ItemType Directory -Force -Path $evidencePath | Out-Null
-$godotArguments = @('--path', $projectPath, '--rendering-method', 'mobile', '--rendering-driver', $Driver)
-if ($Editor) {
+$godotArguments = @('--path', $projectPath)
+if (-not $ValidateControls) {
+    $godotArguments += @('--rendering-method', 'mobile', '--rendering-driver', $Driver)
+}
+if ($ValidateControls) {
+    $godotArguments += @('--headless', '--script', 'res://tests/controls_tests.gd', '--log-file', (Join-Path $evidencePath 'controls-tests.log'))
+} elseif ($Editor) {
     $godotArguments += '--editor'
 } elseif ($Validate) {
     $godotArguments += @('--script', 'res://tests/sensor_tests.gd', '--log-file', (Join-Path $evidencePath 'active-lighting-tests.log'), '--', ('--report=' + (Join-Path $evidencePath 'active-lighting-tests.json')))
@@ -51,6 +60,6 @@ if ($Editor) {
 } else {
     $godotArguments += @('--log-file', (Join-Path $evidencePath 'godot-interactive.log'), '--', ('--view=' + $View))
 }
-if ($Validate -or $ProfileSeconds -gt 0) { & $consoleExe @godotArguments }
+if ($ValidateControls -or $Validate -or $ProfileSeconds -gt 0) { & $consoleExe @godotArguments }
 else { & $guiExe @godotArguments }
 if ($LASTEXITCODE) { exit $LASTEXITCODE }

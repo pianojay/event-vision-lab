@@ -10,6 +10,7 @@ November 28 update: the [configurable CPU pipeline](pipeline-prototype.md) now g
 .\run-lab.ps1
 .\run-lab.ps1 -Editor
 .\run-lab.ps1 -Validate
+.\run-lab.ps1 -ValidateControls -EvidenceDirectory runs/controls-check
 ```
 
 Or double-click [Run Event Vision Lab.cmd](../Run%20Event%20Vision%20Lab.cmd), which uses Windows PowerShell 5.1. The launcher resolves the engine directory in this order: explicit `-GodotDirectory`, environment variable `EVENT_LAB_GODOT_DIR`, shared `C:\Godot_v4.7.2-stable_win64.exe\`, then checkout-local `tools/godot/4.7.2/`. Explicit paths must be valid; they do not silently fall back. Both standard GUI and console executables are required, and the launcher checks for version 4.7.2. Engine binaries remain excluded from Git. A fresh clone/worktree on this machine can use the shared installation without copying binaries. Vulkan/Mobile is tested; D3D12 is an untested alternative. Headless import checks do not validate GPU execution.
@@ -21,25 +22,39 @@ Or double-click [Run Event Vision Lab.cmd](../Run%20Event%20Vision%20Lab.cmd), w
 
 `-EvidenceDirectory` redirects logs/reports without changing which checkout's `prototype` runs. Use a distinct output directory per track and run GPU checks sequentially. Omitting it retains the historical output location and overwrite behavior. The launcher does not install Godot or change PATH/environment settings.
 
+`-ValidateControls` runs the live lab's control regression checks in headless Godot and writes `controls-tests.log`. It injects key events inside Godot and exercises UI signals without opening a desktop window or taking keyboard focus. It checks configuration and shader parameters, not rendered pixels or GPU sensor execution. `-Validate` remains the separate real-context GPU check. `-ValidateControls` cannot be combined with `-Editor`, `-Validate`, or `-ProfileSeconds`.
+
 ## First experiment: light moves, object does not
 
 Startup uses a **stationary matte sphere**, an **orbiting point light**, **monochrome decaying event counts**, and **strobe off**. The changing appearance comes from varying illumination rather than a moving object. Scroll the right panel for additional controls.
 
 | Control | Meaning |
 | --- | --- |
+| L / light selector | Cycle fixed world, camera-mounted, and orbiting light, then wrap to fixed world |
 | Fixed world light | Source stays independent of the camera; adjust azimuth/elevation or use left/right/above presets |
 | Camera-mounted light | Point source follows camera position with a small offset; it is not a directional spotlight |
 | Orbiting light | Source moves around `(0,1,-1)` at a three-unit radius; set elevation, starting-angle offset and orbit speed |
-| Matte sphere control | Constant diffuse albedo, no specular term; disable to return to the original analytic room |
+| F / matte sphere checkbox | Toggle constant diffuse albedo with no specular term; disable to return to the original analytic room |
 | Albedo / lamp strength | Vary reflectance independently of illumination amplitude |
 | P / pause checkbox | Freeze acquisition, camera and the displayed simulation time for inspection |
 | R | Initialize reference from current intensity; clear event history |
 | 1 | Static sphere and fixed light: event view fades away |
 | 2 | Stationary sphere with orbiting light |
 | 3 | Original room, moving object and fixed light |
-| V / observation selector | Activity counts, time surface, raw display window, debug intensity |
+| V / observation selector | Cycle activity counts, time surface, raw display window, debug intensity, then wrap to activity counts |
+| C / polarity colors checkbox | Toggle monochrome and ON/OFF colors |
+| 4 / 5 / 6 | Fixed light from left / right / above, matching the direction buttons |
+| M / moving object checkbox | Toggle object motion in the room scene |
+| B / lamp powered checkbox | Toggle lamp power |
+| N / emissive panel checkbox | Toggle the changing panel in the room scene |
 | WASD / Q/E; arrows / right-drag | Translate / raise/lower; look |
 | Strobe checkbox / T | Explicit opt-in square-wave modulation; not required for the active-lighting experiment |
+
+Discrete shortcuts act once per press and ignore autorepeat and Ctrl, Alt, Shift, or Meta combinations. They use physical key positions, with a logical-key fallback when the event has no physical key code. An open selector popup owns its keyboard input. All live lab selectors, checkboxes, and preset buttons have the shortcuts listed above. Numeric settings remain slider controls.
+
+**V changes only the observation representation.** It preserves scene, lighting, pause, and sensor reference state. The live GPU sensor remains ideal in all four views; generic nonideal sensor profiles belong to the separate CPU pipeline. Observation and polarity changes can display existing textures while paused. Scene and lighting changes affect the next acquisition step, so resume with P to see them while paused.
+
+Scene presets 1/2/3 set all scene stimulus flags and request a sensor-reference reset, while preserving the chosen observation and pause state. Manual scene/lighting checkboxes, L, and direction presets preserve the reference so their optical changes can generate events. R explicitly requests a reset; while paused, it takes effect when acquisition resumes.
 
 The azimuth/elevation presets reposition the source instantaneously; they are controlled lighting changes, not a physical motion trajectory. Orbit mode computes a new source position at every sensor step. The camera pose is interpolated across substeps. A fixed camera cannot reveal a change-free scene through ideal events alone.
 
