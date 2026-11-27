@@ -1,5 +1,7 @@
 # Sensor track — CPU reference milestone
 
+November 28 follow-up: [generic background activity and bounded readout](generic-model.md) and an [executed pinned IEBCS comparison](iebcs-comparison.md) are now available through a dedicated offline held-frame adapter. The original reference below remains unchanged. The new work is uncalibrated and does not alter the live GPU sensor.
+
 November 22, 2026. Branch: `codex/fidelity-sensor`. Base: `7e90917` (shared Godot launcher setup, after coordination root `749c238`). Public progress belongs to [issue #5](https://github.com/pianojay/event-vision-lab/issues/5); sensor-local documentation and deliberate evidence live here.
 
 **Implemented:** an isolated, Python-standard-library CPU pixel reference with an ideal mode, persistent seeded ON/OFF threshold mismatch, a generic intensity-dependent first-order response, an optional additive dark offset, and explicit refractory event gating. **21 analytical/statistical tests passed.** This is a small-fixture oracle, not a Godot feature, upstream simulator reproduction, calibrated camera or real-time implementation.
@@ -65,8 +67,8 @@ Checks also cover both-polarity RC equations, threshold asymmetry, reset/replay,
 
 ## Research basis and next integration milestone
 
-The [v2e paper, sections 3–4](https://arxiv.org/html/2006.07722v2) motivates persistent mismatch, finite intensity-dependent response and low-light effects. Its [pinned implementation](https://github.com/SensorsINI/v2e/blob/f63ab4c10d29e39a9d500c47be561e295e429c65/v2ecore/emulator.py) is a future same-input comparison target. This code is independently implemented: the held-input closed-form solver, input scaling and chosen refractory semantics must not be described as v2e parity. No upstream package/checkpoint was installed or executed.
+The [v2e paper, sections 3–4](https://arxiv.org/html/2006.07722v2) motivates persistent mismatch, finite intensity-dependent response and low-light effects. Its [pinned implementation](https://github.com/SensorsINI/v2e/blob/f63ab4c10d29e39a9d500c47be561e295e429c65/v2ecore/emulator.py) is a future same-input comparison target. This code is independently implemented: the held-input closed-form solver, input scaling and chosen refractory semantics must not be described as v2e parity. No upstream package/checkpoint was installed or executed for this November 22 milestone. The November 28 comparison linked above executes pinned IEBCS source separately.
 
 For coordinator handoff: expose a sensor-input boundary, explicit initialization/profile state and candidate-versus-emitted diagnostics. Adapt this oracle to that boundary before any GPU port. Preserve ideal defaults and compare new GPU state/count/timing against these small fixtures using a real graphics context, one GPU run at a time.
 
-Remaining #5 work: leak/temporal noise with time-based seeds and statistical tests, realistic reset/blind behavior if required, readout queues/loss, same-input comparison with a pinned external simulator, measured implementation cost and eventual camera-specific calibration. Rendering/optics and unknown optical transitions remain separate. **Issue #5 stays open.**
+At the November 22 milestone, remaining #5 work was leak/temporal noise with time-based seeds and statistical tests, realistic reset/blind behavior if required, readout queues/loss, same-input comparison with a pinned external simulator, measured implementation cost and eventual camera-specific calibration. Rendering/optics and unknown optical transitions remain separate. **Issue #5 stays open.**
