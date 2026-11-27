@@ -147,14 +147,29 @@ func _apply(config: Dictionary, name: String) -> bool:
 	var result: Dictionary = lab.validation_apply_scenario(config)
 	acknowledgements.append({"name":name,"requested":config,"result":result,"wall_usec":Time.get_ticks_usec()})
 	if not result.get("applied", false):
-		_fail("Scenario was rejected: " + name)
+		_fail("Scenario was rejected: " + name + ": " + str(result.get("error", "No rejection reason supplied")))
 		return false
 	var effective: Dictionary = result.get("effective", {})
 	for key in config:
-		if not effective.has(key) or effective[key] != config[key]:
+		if not effective.has(key) or not _same_setting(config[key], effective[key]):
 			_fail("Scenario intent differs from effective value: " + name + "/" + str(key))
 			return false
 	return true
+
+static func _same_setting(requested: Variant, effective: Variant) -> bool:
+	if requested is Dictionary and effective is Dictionary:
+		if requested.size() != effective.size(): return false
+		for key in requested:
+			if not effective.has(key) or not _same_setting(requested[key], effective[key]): return false
+		return true
+	if requested is Array and effective is Array:
+		if requested.size() != effective.size(): return false
+		for index in requested.size():
+			if not _same_setting(requested[index], effective[index]): return false
+		return true
+	if typeof(requested) != typeof(effective):
+		if typeof(requested) not in [TYPE_INT, TYPE_FLOAT] or typeof(effective) not in [TYPE_INT, TYPE_FLOAT]: return false
+	return requested == effective
 
 func _inject_key(key: String, name: String) -> void:
 	if not pending_key.is_empty():
@@ -274,6 +289,6 @@ func _fail(message: String) -> void:
 	push_error(message)
 	if not directory.is_empty():
 		var file := FileAccess.open(directory.path_join("validation-failure.json"),FileAccess.WRITE)
-		if file: file.store_string(JSON.stringify({"errors":errors},"  "))
+		if file: file.store_string(JSON.stringify({"errors":errors,"actions":acknowledgements},"  "))
 	finishing = true
 	quit(1)
